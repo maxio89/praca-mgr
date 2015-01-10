@@ -1,0 +1,317 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass aghdpl
+\options pdflatex
+\use_default_options false
+\maintain_unincluded_children false
+\language polish
+\language_package default
+\inputencoding iso8859-2
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 0
+\use_package amssymb 0
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Indeks
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Wprowadzenie
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:wprowadzenie"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Wstęp
+\end_layout
+
+\begin_layout Standard
+Tematyka niniejszej pracy jest związana z przetwarzaniem równoległym w środowisk
+u rozproszonym oraz algorytmami ewolucyjnymi.
+ Obliczenia równoległe, systemy wysokiej dostępności oraz wielkiej skali
+ są tematem bardzo aktualnym i wciąż powszechnie rozwijanym.
+ Powstaje wiele urządzeń oraz systemów wieloprocesorowych zbudowanych w
+ celu połączenia zasobów w jedną całość oraz wykorzystujących w maksymalnym
+ stopniu ich moc obliczeniową.
+ Zasoby te mogą być zlokalizowane lokalnie lub być rozproszone w różnych
+ rejonach świata, czyli np.
+ w sieci Internet.
+ Przykładem mogą być takie projekty jak Hadoop lub Condor.
+ Połączone zasoby mogą zostać wykorzystane do obliczeń o dużej skali (np.
+ symulacji) i przyśpieszenia krytycznych obliczeń (systemy obronne, loty
+ kosmiczne, prognozy).
+ Jak również są przydatne w przypadku przetwarzania dużej liczby rozproszonych
+ danych i rozwiązywania trudnych problemów optymalizacji (przeszukiwania
+ dużych przestrzeni rozwiązań np.
+ w celu poszukiwania ekstremum).
+ Do głównych obszarów zastosowań można zaliczyć też obliczenia naukowe prowadzon
+e przez różne uniwersytety i inne ośrodki badawcze, które w dużym stopniu
+ przyczyniają się do rośnięcia zapotrzebowania na takie rozwiązania oraz
+ powstawanie nowych.
+ We wcześniejszych latach ta tematyka napotykała różne bariery w rozwoju,
+ takie jak zbyt mały rynek zbytu, spowodowany wysokimi kosztami utrzymania
+ oraz realizacji architektury.
+ Było również mniej rozwiązań tego typu oraz mniejsze zapotrzebowanie na
+ nie.
+ Klastry są bardziej elastycznym rozwiązaniem a co za tym idzie bardziej
+ opłacalnym.
+ Stały się zatem nową perspektywą, powszechnie już wykorzystywaną w dzisiejszych
+ systemach.
+ Możliwość użycia tego typu rozwiązań przez zwykłych użytkowników i mniejsze
+ firmy, komercjalizacja, wykorzystanie w przemyśle i elastyczne formy handlu,
+ np.
+ sprzedaż zużytej mocy obliczeniowej w bardzo dużym stopniu przyczyniły
+ się do popularyzacji tejże tematyki.
+ Trwa ciągły rozwój technologii z tym zwiazanych, mając na uwadze takie
+ rzeczy jak wydajność i zapotrzebowanie na energię oraz łatwa dostępność.
+ Wiele problemów nie zostsało jeszcze rozwiązanych lub w wystarczającym
+ stopniu zbadanych.
+ Argumenty stojące za rozwojem tych technologii to m.in.
+ rosnące zapotrzebowanie na moc obliczeniową, stosunek ceny do mocy obliczeniowe
+j, bariery technologiczne rozwoju procesorów sekwencyjnych, dzielenie zasobów,
+ skalowalność, komunikacja.
+ 
+\end_layout
+
+\begin_layout Section
+Aktualny stan wiedzy
+\end_layout
+
+\begin_layout Standard
+Do tej pory zostało opracowanych kilka klastrów obliczeniowych z wykorzystaniem
+ urządzeń SoC takich jak Raspberry Pi.
+ Przykładem może być praca opisana w artykule Iridis-pi: a low-cost, compact
+ demonstration cluster 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "1"
+
+\end_inset
+
+.
+ Powstało również kilka podobnych rozwiązań o których informacje można znaleść
+ na Internecie.
+ Dosyć dawno ukazało się wydanie czasopisma Informatica opisujące klaster
+ obliczeniowy wykorzystujący telefony komórkowe, oraz rolę komunikacji i
+ kilka różnych podeść bazujących na różnych architekturach systemu 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "2"
+
+\end_inset
+
+.
+ Dwa kolejne artykuły opisują klastry w których skład wchodzą urządzenia
+ przenośne podłączone do sieci Internet lub połączone w szybkiej sieci lokalnej
+ ukazały się na łamach ...
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "3,4"
+
+\end_inset
+
+.
+ Poruszono tam także problem dynamicznego load-balancingu oraz zrównoleglania
+ obliczeń.
+ W artykule Adaptive clustering for mobile wireless networks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "5"
+
+\end_inset
+
+ opisano samoorganizującą się, odporną na uszkodzenia składowych węzłów
+ mobilną sieć oraz algorytmy z nią związane, które są dosyć istotne w kontekście
+ niniejszej pracy.
+ W pracy Cluster Computing: A Mobile Code Approach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "6"
+
+\end_inset
+
+ opisano klaster wysokiej wydajności wraz z jego architekturą oraz implementacją.
+ Natomiast praca pt.
+ DroidCluster: Towards Smartphone Cluster Computing - The Streets are Paved
+ with Potential Computer Clusters 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "7"
+
+\end_inset
+
+ opisuje nowoczesne smarfony wchodzące w skład klastra obliczeniowego oraz
+ temat Grid-Computing.
+ Jak widać temat i problemy z nim związane znany jest od dosyć dawna.
+ Natomiast wciąż jest aktualny i nadal brakuje skutecznych rozwiązań wszystkich
+ problemów.
+ Same urządzenia SoC zyskały swoją popularność dopiero w ostatnich latach,
+ głównie za sprawą taniego mini komputera jakim jest Raspberry Pi.
+ Większość powstałych rozwiązań bazuje na takich technologiach jak MPI oraz
+ Hadoop, natomiast w niniejszej pracy autor skupi się na technologiach pracujący
+ch w wirtualnej maszynie Javy, co jeszcze bardziej zwiększy mobilność powstałej
+ platformy.
+\end_layout
+
+\begin_layout Section
+Cel pracy
+\end_layout
+
+\begin_layout Standard
+Do celów niniejszej pracy należy nakreślenie możliwości zastosowania przenośnych
+ klastrów obliczeniowych, przedstawienie problemów związanych z ich wykorzystani
+em, zidentyfikowanie obszarów potencjalnych usprawnień oraz wykorzystanie
+ przygotowanego klastra w celu rozwiązania trudnego problemu obliczeniowego.
+ Jako część programistyczna niniejszej pracy, zostanie wykonana mobilna
+ platforma łącząca możliwości urządzeń SoC, nadzorująca ich pracę oraz zarządzaj
+ąca dostępną energią.
+ Pod uwagę zostanie również wzięta odporność na uszkodzenia oraz łatwa zastępowa
+lność urządzeń.
+ Zostaną wykorzystane takie paradygmaty jak programowanie funkcjonalne oraz
+ reaktywne, z wykorzystaniem technologii Scala oraz Akka wraz z podejściem
+ równoległym.
+ Jako część persystencji danych zostanie wykorzystana baza oparta na grafach
+ w technologii Neo4J.
+ Część kliencka zostanie zrealizowana w technologii REST/HTTP z użyciem
+ frameworka Spray.
+ Zaprojektowana platforma będzie w stanie monitorować pracę klastra, “łączyć”
+ komponenty w jedną całość czyli zarządzać komunikacją, być odporna na sytuację
+ uszkodzenia jednego z elementów klastra oraz częściową utratę danych, maksymaln
+ie wykorzystywać moc obliczeniową elementów klastra oraz zarządzać load
+ balancingiem.
+ Niniejsza praca będzie próbą wykorzystania urządzeń SoC do wykonywania
+ wydajnych obliczeń prowadzonych w wirtualnej maszynie Javy oraz próbą odpowiedz
+enia na pytanie czy jest możliwe zaprogramowanie komunikacji między elementami
+ klastra w sieci Ethernet nie powodującej zbyt wielkiego narzutu przesyłu
+ danych w stosunku do szybkości obliczeń.
+ Praca będzie też próbą wykorzystania wirtualnej maszyny Javy oraz technologii
+ wysokiego poziomu do wykonywania obliczeń dużej skali i sprawdzenie wydajności
+ takich rozwiązań.
+ Stworzenie samoorganizującej się oraz inteligentnej platformy będzie bardzo
+ dużym wyzwaniem wkraczającym trochę w tematykę AI oraz Systemów Agentowych.
+ Jeśli rozwiązanie wykorzystujące technologie przedstawione w niniejszej
+ pracy będzie wystarczająco wydajne i odpowiednio skalowalne, ułatwi to
+ w znacznym stopniu mobilność tego rozwiązania oraz rozwiąże potrzebę tworzenia
+ nowych bibliotek z myślą o konkretnej platformie.
+ Co za tym idzie większą część czasu i nakładów finansowych będzie można
+ poświęcać na implementację rozwiązania samego problemu aniżeli na uruchomienie
+ tej implementacji lub tworzenie rozwiązań pasujących do konkretnego sprzętu
+ (architektury) lub systemu.
+\end_layout
+
+\begin_layout Section
+Zawartość pracy
+\end_layout
+
+\begin_layout Standard
+W pierwszym rozdziale został zawarty wstęp, aktualny stan wiedzy, cel pracy
+ oraz hipoteza badawcza.
+ 
+\end_layout
+
+\begin_layout Standard
+W drugim rozdziale został opisany kontekst rozpatrywanego problemu oraz
+ została przedstawiona charakterystyka rozwiązania propowanego w niniejszej
+ pracy.
+ 
+\end_layout
+
+\begin_layout Standard
+W trzecim rozdziale zostały opisane urządzenia SoC oraz Cluster Computing.
+ 
+\end_layout
+
+\begin_layout Standard
+W czwartym rozdziale zostaną przedstawione sposoby zrównoleglenia algorytmów
+ ewolucyjnych.
+ 
+\end_layout
+
+\begin_layout Standard
+W piątym rozdziale zostały opisane rozwiązania implementacyjne zastosowane
+ przy realizacji niniejszej pracy.
+ 
+\end_layout
+
+\begin_layout Standard
+W szóstym rozdziale zostało zawarte podsumowanie w którym zostały omówione
+ wyniki pracy oraz naświetlone możliwości rozwoju.
+ 
+\end_layout
+
+\begin_layout Standard
+Ostatnim rozdziałem pracy jest bibliografia zawierająca przegląd literatury,
+ artykułów oraz innych pozycji wykorzystanych w niniejszej pracy.
+ 
+\end_layout
+
+\begin_layout Standard
+Został także stworzony listing wszystkich wykresów, schematów oraz rysunków,
+ jak również tabel oraz wzorów.
+ Do pracy została dołączona również instrukcja uruchomienia stworzonego
+ rozwiązania.
+\end_layout
+
+\end_body
+\end_document
