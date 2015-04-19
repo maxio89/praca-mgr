@@ -97,10 +97,10 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \begin_body
 
 \begin_layout Chapter
-Charakterystyka rozpatrywanego problemu
+Opis rozwiązania
 \begin_inset CommandInset label
 LatexCommand label
-name "cha:problem"
+name "cha:rozwiązanie"
 
 \end_inset
 
@@ -108,11 +108,11 @@ name "cha:problem"
 \end_layout
 
 \begin_layout Section
-Urządzenia SoC
+Platforma
 \end_layout
 
 \begin_layout Section
-Cluster Computing
+Użyte technologie
 \end_layout
 
 \end_body

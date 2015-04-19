@@ -231,10 +231,10 @@ lność urządzeń.
  Zostaną wykorzystane takie paradygmaty jak programowanie funkcjonalne oraz
  reaktywne, z wykorzystaniem technologii Scala oraz Akka wraz z podejściem
  równoległym.
- Jako część persystencji danych zostanie wykorzystana baza oparta na grafach
- w technologii Neo4J.
+ Jako część persystencji danych zostanie wykorzystana baza NoSQL w technologii
+ MongoDB.
  Część kliencka zostanie zrealizowana w technologii REST/HTTP z użyciem
- frameworka Spray.
+ frameworka Play oraz AngularJS.
  Zaprojektowana platforma będzie w stanie monitorować pracę klastra, “łączyć”
  komponenty w jedną całość czyli zarządzać komunikacją, być odporna na sytuację
  uszkodzenia jednego z elementów klastra oraz częściową utratę danych, maksymaln
