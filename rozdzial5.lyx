@@ -107,12 +107,39 @@ name "cha:podsumowanie"
 
 \end_layout
 
+\begin_layout Standard
+W poniższym rozdziale zostało zawarte podsumowanie niniejszej pracy.
+ Opisane zostały wnioski oraz nakreślono możliwości dalszego rozwoju.
+\end_layout
+
 \begin_layout Section
-Wyniki testów
+Wnioski
 \end_layout
 
 \begin_layout Section
 Możliwości rozwoju
+\end_layout
+
+\begin_layout Standard
+Rozwiązanie stworzone na potrzeby niniejszej pracy posiada kilka ciekawych
+ aspektów, których rozwój mogłby być kontynouwany.
+ W niniejszym podrozdziale zostało opisanych kilka z nich.
+\end_layout
+
+\begin_layout Subsection
+Wykorzystanie GPU
+\end_layout
+
+\begin_layout Subsection
+Inne algorytmy (lub modyfikacje algorytmu genetycznego)
+\end_layout
+
+\begin_layout Subsection
+Optymalizacja (systemu, bytecode'u, pod katem SoC, tuning GC)
+\end_layout
+
+\begin_layout Subsection
+IoT
 \end_layout
 
 \end_body

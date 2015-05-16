@@ -97,22 +97,1355 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \begin_body
 
 \begin_layout Chapter
-Wykorzystane algorytmy
+Opis rozwiązania
 \begin_inset CommandInset label
 LatexCommand label
-name "cha:algorytmy"
+name "cha:rozwiazanie"
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Section
-Algorytmy ewolucyjne
+\begin_layout Standard
+Niniejszy rozdział zawiera charakterystykę rozwiązania stworzonego na potrzeby
+ niniejszej pracy, przedstawiono tutaj najważniejsze wykorzystane algorytmy
+ oraz omówiono w skrócie użyte technologię.
 \end_layout
 
 \begin_layout Section
+Wykorzystane algorytmy
+\end_layout
+
+\begin_layout Standard
+W rozdziale opisano kilka algorytmów użytych podczas implementacji rozwiązania
+ stworzonego na potrzeby niniejszej pracy.
+\end_layout
+
+\begin_layout Subsection
+Algorytmy genetyczne
+\end_layout
+
+\begin_layout Standard
+Algorytmy genetyczne zaliczają się do grupy algorytmów ewolucyjnych.
+ Zostały opracowane przez Johna Hollanda w latach siedemdziesiątych i są
+ inspirowane teorią ewolucji Darwina tudzież ewolucją biologiczną 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "10"
+
+\end_inset
+
+.
+ Istnieje wiele różnych prac traktujących o wykorzystaniu algorytmów genetycznyc
+h, różnych ich odmianach czy modyfikacjach oraz badaniu ich efektywności.
+ Przykładem może być praca magisterska zawarta w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "10"
+
+\end_inset
+
+ lub trochę starsza pozycja książkowa 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "12"
+
+\end_inset
+
+.
+ Opis implementacji algorytmów genetycznych można znaleść w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "13"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Pojęcia
+\end_layout
+
+\begin_layout Itemize
+Gen - cecha mająca wpływ na jakość rozwiązania.
+\end_layout
+
+\begin_layout Itemize
+Chromosom - indywiduum, osobnik prezentujący jedno z rozwiązań problemu,
+ składa się z genów.
+\end_layout
+
+\begin_layout Itemize
+Populacja - zbiór chromosomów, prezentuje zbiór wszystkich rozwiązań danego
+ problemu.
+\end_layout
+
+\begin_layout Itemize
+Migracja - wymiana osobników pomiędzy populacjami.
+\end_layout
+
+\begin_layout Itemize
+Selekcja - algorytm wyboru osobników pozostałych w danej populacji.
+\end_layout
+
+\begin_layout Itemize
+Krzyżowanie - tworzenie osobników potomnych w trakcie trwania ewolucji na
+ podstawie innych, wybranych osobników - rodziców.
+\end_layout
+
+\begin_layout Itemize
+Mutacja - modyfikacja osobnika z elementem losowości, mająca na celu próbę
+ ekploracji nowych obszarów rozwiązań.
+\end_layout
+
+\begin_layout Itemize
+Funkcja przystosowania (ang.
+ fitness) - zwana też funckją celu, określa jakość danego rozwiązania.
+\end_layout
+
+\begin_layout Itemize
+Ewaluacja - wyliczenie wartości funkcji fitness dla każdego osobnika populacji
+ czyli inaczej ocena jakości znalezionych rozwiązań.
+\end_layout
+
+\begin_layout Itemize
+Ewolucja - powtarzający się cykl w trakcie którego następuje rozwój populacji
+ oraz w skład którego wchodzi m.in.
+ ewaluacja, selekcja, krzyżowanie, mutacja oraz migracja.
+ 
+\end_layout
+
+\begin_layout Itemize
+Generacja - jeden cykl algorytmu.
+\end_layout
+
+\begin_layout Subsubsection
+Model wyspowy
+\end_layout
+
+\begin_layout Standard
+Jest to odmiana algorytmu genetycznego przystosowana do obliczeń równoległych
+ oraz rozproszonych.
+ Zamiast jednej dużej populacji rozważamy tutaj kilka podpopulacji zwanych
+ wyspami.
+ Każda wyspa może być traktowana jako osobna populacja, ponieważ ewolucja
+ na niej zachodzi w izolacji od pozostałych wysp.
+ Co pewien okres populacje znajdujące się na wyspach wymieniają się między
+ sobą pewną ilością osobników w procesie migracji.
+ Pozwala to przyśpieszyć znajdywanie rozwiązania.
+ Istotna jest tutaj topologia połączeń pomiędzy wyspami pozwalająca na wymianę
+ osobników, metoda selekcji migrujących osobników, ich wielkość oraz odstęp
+ pomiędzy kolejnymi migracjami.
+ Badania różnych parametrów tego zjawiska można znaleść m.in.
+ w pracy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "10"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Zastosowanie
+\end_layout
+
+\begin_layout Standard
+Algorytmy ewolucyjne sprawdzają się tam gdzie nie jest dobrze znana przestrzeń
+ rozwiązań ale został określony sposób oceny jakości rozwiązania.
+ Znajdują zastosowanie przy rozwiązywaniu problemów NP, np.
+ problemu komiwojażera w którym trzeba znaleść najkrótszą drogę łączącą
+ wszystkie miasta tak aby odwiedzić każde miasto conajmniej raz.
+ Innymi zastosowaniami mogą być poszukiwania ekstremów funkcji, których
+ nie da się obliczyć analitycznie lub przeszukiwanie dużych przestrzeni
+ rozwiązań jak np.
+ w przypadku problemu grupowania.
+ Alborytmy genetyczne są mniej zależne od wstępnej inicjalizacji oraz mniej
+ skłonne do znajdywania rozwiązań lokalnych zamiast optymalnych 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "9,10"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
 Master/slave
+\end_layout
+
+\begin_layout Standard
+Master/slave jest modelem komunikacji w którym jedno urządzenie lub proces
+ zwane master kontroluje jedno lub więcej urządzeń lub procesów zwanych
+ slave lub worker 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "17"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ten model komunikacji może zostać wykorzystany w następujących przypadkach:
+\end_layout
+
+\begin_layout Itemize
+gdy chcemy mieć jeden proces, tzw.
+ single-point of responsibility, który podejmuje decyzje i koordynuje akcje
+ w celu zachowania spójności w systemie,
+\end_layout
+
+\begin_layout Itemize
+potrzebujemy zapewnić jeden punkt dostępu do zewnętrznego systemu,
+\end_layout
+
+\begin_layout Itemize
+istnieje potrzeba stworzenia scentralizowanego serwisu, np.
+ zajmującego się routingiem.
+\end_layout
+
+\begin_layout Standard
+Rozwiązanie to ma niestety również kilka wad, jak na przykład istnieje niebezpie
+czeństwo utworzenia tzw.
+ wąskiego gardła co może spowodować problemy z wydajnością lub tzw.
+ single-point of failure.
+ Jeśli urządzenie/proces posiadające rolę master ulega awarii, powinniśmy
+ w jakiś sposób obsłużyć taką sytuację, np.
+ poprzez ponowne wystartowanie procesu/urządzenia z rolą master aby zapewnić
+ poprawne i niezawodne działanie komunikacji.
+ Sytuacje takie mogą wprowadzić pewne opóźnienia w procesie odzyskiwania
+ sprawności systemu 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "14"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Użyte technologie
+\end_layout
+
+\begin_layout Standard
+Podrozdział przedstawia krótką charakterystykę oraz uzasadnienie wykorzystanych
+ technologii.
+\end_layout
+
+\begin_layout Subsection
+Scala
+\end_layout
+
+\begin_layout Standard
+Do stworzenia platformy na potrzeby niniejszej pracy wykorzystano język
+ Scala.
+ Głównym aspektem przemawiającym na korzyść tego języka jest to, że do jego
+ działania wystarczy maszyna wirtualna Javy.
+ Jest to język obiektowy podobnie jak Java ale łączy również zalety języków
+ funkcyjnych, które w ostatnim czasie stają się coraz bardziej popularne.
+ Język ten jest stworzony aby umożliwić elegancko i zwięźle programować.
+ Mimo że jest językiem dynamicznie typowanym zapewnia tzw.
+ type safety 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "42"
+
+\end_inset
+
+.
+ Wprowadza również wiele innowacji oraz ciekawych rozwiązań do konstrukcji
+ języka jak np.
+ case class, currying, zagnieżdżanie funkcji, dsl, tail recursion, słowo
+ kluczowe lazy czy trait, konsktrukcja podobna do interfejsu z języka Java
+ ale mogąca posiadać częściową implementację.
+ Scala preferuje obiekty immutable.
+ Scala obsługuje funkcje wyższego rzędu oraz pozwala zwięźle definiować
+ funkcje anonimowe, kładzie również duży nacisk na skalowalność.
+ Dodatkową zaletą tego języka jest to, iż jest on w pełni kompatybilny z
+ językiem Java, co oznacza że możemy w nim używać biblioteki lub frameworki
+ stworzone dla Javy bez żadnych dodatkowych deklaracji.
+ Ostatecznie program napisany w Scali jest kompilowany do kodu bajtowego
+ Javy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "27,28,30,8"
+
+\end_inset
+
+.
+ Według autora niniejszej pracy do wad tego języka należy m.in.
+ to, że niektóre instrukcje można wyrazić na wiele różnych sposobów co utrudnia
+ czytelność kodu oraz zwiększa trudność nauki tej technologii.
+\end_layout
+
+\begin_layout Subsection
+Akka
+\end_layout
+
+\begin_layout Standard
+Jednym z kluczowych frameworków wykorzystanych w niniejszej pracy jest Akka.
+ Akka jest projektem Open Source na licencji Apache 2.
+ Posiada wersję przeznaczoną dla języka Java jak również dla języka Scala.
+ Projekt Akka mimo stosunkowo niedługiej obecności na rynku jest gotowy
+ do zastosowań produkcyjnych.
+ Cechuje się obecnością wielu interesujących z punktu widzenia niniejszej
+ pracy rozszerzeń, które zostały opisane w jednym z następnych podrodziałów,
+ wyczerpującej dokumentacji oraz dużej i aktywnej społeczności rozwijającej
+ ten produkt a także wsparciem komercyjnych firm.
+ Akka używa modelu aktorowego aby zwiększyć poziom abstrakcji i rozdzielić
+ logikę biznesową od niskopoziomowego zarządzania wątkami oraz operacjami
+ I/O 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "29,31"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Podstawowym bytem w technologii Akka są aktorzy.
+ Aktor zapewnia wysokopoziomową abstrakcję dla lepszej współbieżności oraz
+ zrównoleglenia operacji.
+ Jest on lekkim, wydajnym, sterowanym zdarzeniami procesem, który komunikuje
+ się z innymi aktorami za pomocą asynchronicznych wiadomości przechowywanych
+ w skrzynkach odbiorczych.
+ Aktor enkapsuluje pewien stan i zachowania, które realizują określone zadania.
+ Więcej informacji na temat koncepcji aktorów w projekcie Akka można znaleść
+ w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "31"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Każdy aktor w systemie może być identyfikowany na kilka różnych sposobów
+ pozwalających na komunikację między nimi.
+ Różnicę między kilkoma z nich przedstawiono na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Relacja-między-kilkoma"
+
+\end_inset
+
+.
+ Więcej informacji na ten temat można znaleść w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "48"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ActorPath.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Relacja między kilkoma pojęciami identyfikującymi aktorów w systemie 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Relacja-między-kilkoma"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "48"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Aktorzy działają w obrębie systemu zwanego Actor System opisanego w pozycji
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "49"
+
+\end_inset
+
+.
+ System aktorowy można traktować jako pewną strukturę z zaalokowaną pulą
+ wątków, stworzoną w ramach jednej logicznej aplikacji.
+ Konfiguracją puli wątków zajmuje się Akka.
+ Pewne ustawienia mogą być zmienione w pliku 
+\shape italic
+application.conf
+\shape default
+, który jest głównym plikiem konfiguracyjnym systemu aktorowego.
+ System aktorowy zarządza dostępnymi zasobami i może mieć uruchomione miliony
+ aktorów, instancja każdego z aktorów zajmuje okolo 300 bajtów pamięci.
+\end_layout
+
+\begin_layout Standard
+Akka framework dostarcza wszystkich zalet programowania reaktywnego 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "43"
+
+\end_inset
+
+ oraz zapewnia między innymi:
+\end_layout
+
+\begin_layout Itemize
+współbieżność, dzięki zaadaptowaniu modelu aktorowego, programista może
+ zatem skupić się na logice biznesowej zamiast zajmować się problemami współbież
+ności,
+\end_layout
+
+\begin_layout Itemize
+skalowalność, asynchroniczna komunikacja pomiędzy aktorami dobrze skaluje
+ się w systemach multiprocesorowych,
+\end_layout
+
+\begin_layout Itemize
+odporność na błędy, framework Akka zapożyczył koncept i technologie z języka
+ Erlang, co pozwoliło wykorzystać model 
+\shape italic
+let it crash 
+\shape default
+[ODNOSNIK] do zapewnienia sprawnego działania systemu i skrócenia jego niedostęp
+ności,
+\end_layout
+
+\begin_layout Itemize
+architekture sterowana zdarzeniami,
+\end_layout
+
+\begin_layout Itemize
+transakcyjność,
+\end_layout
+
+\begin_layout Itemize
+ujednolicony model programowania dla potrzeb programowania wielowątkowego
+ oraz obliczeń rozproszonego,
+\end_layout
+
+\begin_layout Itemize
+Akka wspiera zarówno API języka Java jak i języka Scala 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "29"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Zastosowania projektu Akka są bardzo szerokie, można je znaleść chociażby
+ w następujących dziedzinach:
+\end_layout
+
+\begin_layout Itemize
+analiza danych,
+\end_layout
+
+\begin_layout Itemize
+bankowość inwestycyjna,
+\end_layout
+
+\begin_layout Itemize
+ecommerce,
+\end_layout
+
+\begin_layout Itemize
+symulacje,
+\end_layout
+
+\begin_layout Itemize
+media społecznościowe.
+\end_layout
+
+\begin_layout Standard
+Systemy w których potrzebujemy uzyskać wysoką przepustowość oraz małe opóźnienie
+ są dobrym kandydatem do wykorzystania frameworka Akka 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "31"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Rozszerzenia Akka
+\end_layout
+
+\begin_layout Subsubsection
+Akka Cluster
+\end_layout
+
+\begin_layout Standard
+Jest to najbardziej istotne rozszerzenie z punktu widzenia niniejszej pracy.
+ Została na nim oparta komunikacja pomiędzy urządzeniami działającymi w
+ obrębie klastra.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+TODO's
+\end_layout
+
+\begin_layout Standard
+Czlonkostwo, gossip, failure detector, seed nodes, Membership Lifecycle,
+ diagram stanow
+\end_layout
+
+\begin_layout Standard
+Dołączanie do klastra.
+\end_layout
+
+\begin_layout Standard
+Opuszczanie klastra, automatic downing.
+\end_layout
+
+\begin_layout Standard
+Subskrybowanie zdarzeń klastra.
+\end_layout
+
+\begin_layout Standard
+Role węzłów.
+\end_layout
+
+\begin_layout Standard
+Failure detector.
+\end_layout
+
+\begin_layout Standard
+Metryki (Sigar) i moze wspomniec o load balancingu na podstawie metryk?
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand cite
+key "34,32"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Cluster Singleton
+\end_layout
+
+\begin_layout Standard
+Cluster Singleton jest rozszerzeniem projektu Akka zapewniającym jedną instancję
+ aktora danego typu w obrębie klastra lub w obrębie węzłów z wybraną rolą.
+ Został wykorzystany do zaimplementowania modelu master/slave opisanego
+ w poprzednim podrozdziale.
+ Rozszerzenie to dostarcza implementacji menedżera, który pozwala zarządzać
+ instancjonowaniem aktora-singletona.
+ Dostęp do działającej instancji jest możliwy z każdego urządzenia działającego
+ w klastrze i odbywa się przez aktora pośrednika, tzw.
+ proxy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "14"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Distributed Publish Subscribe in Cluster
+\end_layout
+
+\begin_layout Standard
+Kolejne rozszerzenie projektu Akka, które umożliwia komunikację między aktorami
+ bez posiadania informacji na których konkretnie urządzeniach poszczególni
+ aktorzy są uruchomieni, czyli lokacja aktora jest transparentna z punktu
+ widzenia komunikacji.
+ Dostarcza aktora-mediatora który zarządza rejestracją innych aktorów do
+ konkretnych kanałów komunikacji którymi są zainteresowani.
+ Zachowanie to, można porównać z subskrypcją RSS [ODNOSNIK].
+ Wiadomość opublikowana w danym kanale dotrze do wszystkich aktorów którzy
+ zostali w nim uprzednio zarejestrowani.
+ Rozszerzenie to pozwala również wysłać wiadomość do jednego lub więcej
+ aktorów pasujących do określonego wzorca.
+ W niniejszej pracy zostało wykorzystane do przesyłania wyników zadania
+ do klienta oraz do realizacji migracji populacji w implementacji algorytmów
+ genetycznych 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "47"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Akka Persistence 
+\end_layout
+
+\begin_layout Standard
+Rozszerzenie Akka persistence pozstala na zapisywanie stanów aktorów w bazie
+ danych.
+ Pozwala to na odtworzenie stanu aplikacji w przypadku awarii i zapewnia
+ w pewnym stopniu niezawodność działania systemu 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "46"
+
+\end_inset
+
+.
+ Dostępnych jest wiele różnych dodatków dedykowanych dla konkretnych implementac
+ji serwerów bazodanowych.
+ W niniejszej pracy wykorzystano dodatek przeznaczony do pracy z bazą MongoDB
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "45"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Raspberry Pi
+\end_layout
+
+\begin_layout Standard
+Do testów platformy stworzonej na potrzeby niniejszej pracy wykorzystano
+ jedno z urządzeń SoC 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "44"
+
+\end_inset
+
+ jakim jest Raspberry Pi model B.
+ Jest to urządzenie stworzone przez fundację non-profit oparte na architekturze
+ ARM.
+\end_layout
+
+\begin_layout Standard
+Na rysunku ...
+ przedstawiono schemat urządzenia.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../../../Dropbox/School/Praca-inz-lyx/rpi.png
+	lyxscale 10
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schemat Raspberry Pi model B 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schemat-Raspberry-Pi"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tabela ...
+ zawiera specyfikację urządzenia.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Specyfikacja urządzenia 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "26"
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Specyfikacja-urządzenia-"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="18" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Parametr
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Model B
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SoC:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Broadcom BCM2835
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CPU:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+700 MHz ARM1176JZF-S core
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GPU:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Broadcom VideoCore IV, OpenGL ES 2.0, 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1080p30 h.264/MPEG-4 AVC high-profile decode
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pamięć:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+512 MB (współdzielona przez GPU)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Porty USB 2.0:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 (za pomocą zintegrowanego koncentratora USB)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wyjścia wideo:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Composite RCA, HDMI
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wyjścia dźwięku:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.5 mm jack, HDMI
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nośnik danych:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+złącze kart SD / MMC / SDIO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Połączenia sieciowe:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10/100 Ethernet (RJ45)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pozostałe łącza:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8 x GPIO, UART, szyna I²C , szyna SPI z dwoma liniami CS, 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++3.3 V, +5 V, masa
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Zasilanie:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+700 mA (3.5 W)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Źródło zasilania:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 V przy pomocy złącza MicroUSB, ewentualnie za 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+pomocą złącza GPIO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wymiary
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+85.60 × 53.98 mm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obsługiwane systemy operacyjne:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Debian GNU/Linux, Fedora, Arch Linux i wiele z rodziny UNIX
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+MongoDB
+\end_layout
+
+\begin_layout Standard
+MongoDB jest bazą NoSQL, opartą na dokumentach typu JSON, co pozwala na
+ elastyczność oraz przejrzystość w przechowywaniu danych.
+ Jest to technologia Open Source.
+ Jako, że jest to baza NoSQL posiada ona elastyczny schemat danych.
+ Wspiera replikację oraz sharding [ODNOSNIK] a także map reduce.
+ Technologia ta została wykorzystana ze względu na jej łatwe użycie, dobrą
+ skalowalność oraz wydajność przy wykorzystaniu stosunkowo niewielkich zasobów
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "41"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Kolejnymi argumentami przemawiającymi na korzysć tej technologii są łatwa
+ dostępność dokumentacji oraz integracja z innymi technologiami wykorzystanymi
+ w niniejszej pracy.
+\end_layout
+
+\begin_layout Subsection
+Play Framework i AngularJS
+\end_layout
+
+\begin_layout Standard
+Technologie Play framework oraz AngularJS zostały wykorzystane do przygotowania
+ aplikacji webowej będącej interfejsem klienta, dzięki któremu może sterować
+ on działaniem platformy, monitorować ją oraz oglądać wyniki obliczeń.
+\end_layout
+
+\begin_layout Standard
+Play framework jest to technologia server-side, działająca zarówno z językiem
+ Java jak i Scala.
+ Integruje ona komponenty oraz API potrzebne do stworzenia aplikacji webowej.
+ Bazuje on na lekkiej, bezstanowej architekturze, niskim zużyciu zasobów,
+ wysokiej skalowalności oraz programowaniu reaktywnym.
+ Wykorzystuję komunikację protokołu HTTP oraz pozwala na implementację serwisów
+ w technologii REST [ODNOSNIK].
+ Play framework zapewnia również wsparcie dla technologii WebSocket wykorzystane
+j w niniejszej pracy oraz łatwą integrację z frameworkiem Akka 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "35,37"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+AngularJS jest to technologia stworzona z użyciem języka JavaScript i wspierana
+ przez Google.
+ Rozszerza możliwości HTML oraz CSS oraz pozwala tworzyć tzw.
+ SPA (ang.
+ Single Page Applications).
+ W niniejszej pracy wykorzystano ją do prezentowania informacji odebranych
+ z aplikacji serwerowej oraz interakcji z użytkownikiem za pomocą przeglądarki
+ internetowej 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "36,38"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Wykorzystane szablony
+\end_layout
+
+\begin_layout Standard
+Platforma Typesafe w której skład wchodzą technologie wykorzystane w niniejszej
+ pracy, takie jak Play framework, Akka oraz Scala dostarcza bardzo wyczerpującą
+ dokumentację wraz z wieloma przykładami oraz szablonami na licencji Public
+ Domain.
+\end_layout
+
+\begin_layout Standard
+Rozwiązanie stworzone na potrzeby niniejszej pracy bazowało początkowo na
+ dwóch szablonach, pierwszy zawierał przykład monitoringu urządzeń podłączonych
+ do klastra natomiast drugi dystrybucję zadań pomiędzy urządzenia 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "40,39"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Platforma
+\end_layout
+
+\begin_layout Standard
+Niniejszy podrozdział omawia wybrane aspekty stworzonej platformy, takie
+ jak architektura, protokoły komunikacji oraz odporność na awarię.
+\end_layout
+
+\begin_layout Subsection
+Architektura (aktorzy?, schematy)
+\end_layout
+
+\begin_layout Standard
+ClusterSingletonManager
+\end_layout
+
+\begin_layout Standard
+ClusterSingletonProxy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "14"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+DistributedPubSubMediator 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "47"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Master,
+\end_layout
+
+\begin_layout Standard
+Worker,
+\end_layout
+
+\begin_layout Standard
+WorkExecutor,
+\end_layout
+
+\begin_layout Standard
+MasterWorkerProtocol,
+\end_layout
+
+\begin_layout Standard
+FrontendActor,
+\end_layout
+
+\begin_layout Standard
+MetricsActor,
+\end_layout
+
+\begin_layout Standard
+MonitorActor,
+\end_layout
+
+\begin_layout Subsection
+Komunikacja (protokol komunikacji, schematy), 
+\end_layout
+
+\begin_layout Standard
+Protokół Gossip 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "33"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Work Pulling Pattern 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "50"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Fault tolerance i supervision strategy
+\end_layout
+
+\begin_layout Standard
+(choc moze wystarczy opis tego w rozdziale poswieconym akka cluster?) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "51,52,53"
+
+\end_inset
+
+
 \end_layout
 
 \end_body

@@ -74,8 +74,52 @@
 Dodatek A
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
 Instrukcja uruchomienia platformy
+\end_layout
+
+\begin_layout Subsection
+System
+\end_layout
+
+\begin_layout Subsection
+Wymagana infrastruktura
+\end_layout
+
+\begin_layout Subsection
+Skrypty
+\end_layout
+
+\begin_layout Subsection
+Aplikacja
+\end_layout
+
+\begin_layout Subsubsection
+Moduły
+\end_layout
+
+\begin_layout Paragraph
+Api, model danych
+\end_layout
+
+\begin_layout Paragraph
+Backend
+\end_layout
+
+\begin_layout Paragraph
+Frontend
+\end_layout
+
+\begin_layout Paragraph
+Boot
+\end_layout
+
+\begin_layout Subsubsection
+Konfiguracja
+\end_layout
+
+\begin_layout Subsubsection
+Uruchomienie
 \end_layout
 
 \end_body

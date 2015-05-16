@@ -107,12 +107,25 @@ name "cha:problem"
 
 \end_layout
 
+\begin_layout Standard
+W poniższym rozdziale zarysowano kontekst problemów poruszanych w niniejszej
+ pracy.
+\end_layout
+
 \begin_layout Section
 Urządzenia SoC
 \end_layout
 
 \begin_layout Section
 Cluster Computing
+\end_layout
+
+\begin_layout Section
+Obliczenia równoległe oraz rozproszone
+\end_layout
+
+\begin_layout Section
+Istniejące rozwiązania
 \end_layout
 
 \end_body
