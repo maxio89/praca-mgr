@@ -260,58 +260,5 @@ enia na pytanie czy jest możliwe zaprogramowanie komunikacji między elementami
  (architektury) lub systemu.
 \end_layout
 
-\begin_layout Section
-Zawartość pracy
-\end_layout
-
-\begin_layout Standard
-W pierwszym rozdziale został zawarty wstęp, aktualny stan wiedzy, cel pracy
- oraz hipoteza badawcza.
- 
-\end_layout
-
-\begin_layout Standard
-W drugim rozdziale został opisany kontekst rozpatrywanego problemu oraz
- została przedstawiona charakterystyka rozwiązania propowanego w niniejszej
- pracy.
- 
-\end_layout
-
-\begin_layout Standard
-W trzecim rozdziale zostały opisane urządzenia SoC oraz Cluster Computing.
- 
-\end_layout
-
-\begin_layout Standard
-W czwartym rozdziale zostaną przedstawione sposoby zrównoleglenia algorytmów
- ewolucyjnych.
- 
-\end_layout
-
-\begin_layout Standard
-W piątym rozdziale zostały opisane rozwiązania implementacyjne zastosowane
- przy realizacji niniejszej pracy.
- 
-\end_layout
-
-\begin_layout Standard
-W szóstym rozdziale zostało zawarte podsumowanie w którym zostały omówione
- wyniki pracy oraz naświetlone możliwości rozwoju.
- 
-\end_layout
-
-\begin_layout Standard
-Ostatnim rozdziałem pracy jest bibliografia zawierająca przegląd literatury,
- artykułów oraz innych pozycji wykorzystanych w niniejszej pracy.
- 
-\end_layout
-
-\begin_layout Standard
-Został także stworzony listing wszystkich wykresów, schematów oraz rysunków,
- jak również tabel oraz wzorów.
- Do pracy została dołączona również instrukcja uruchomienia stworzonego
- rozwiązania.
-\end_layout
-
 \end_body
 \end_document

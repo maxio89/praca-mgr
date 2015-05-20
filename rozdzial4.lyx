@@ -127,10 +127,17 @@ Monitoring
 \end_layout
 
 \begin_layout Standard
-Na rysunku ...
- zaprezentowano interfejs klienta prezentujący obecny stan klastra.
- Wylistowano na nim listę urządzeń pracujących w klastrze, aktywnego mastera,
- adresy IP wraz z portami, stan urządzenia oraz kilka metryk, m.in.
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Podgląd-stanu-klastra"
+
+\end_inset
+
+ przedstawiono interfejs klienta prezentujący obecny stan klastra.
+ Wylistowano na nim również listę urządzeń pracujących w klastrze, z uwględnieni
+em aktywnego mastera, adresu IP wraz z portami, dostępność urządzenia oraz
+ kilka metryk, m.in.
  zużycie CPU oraz pamięci RAM.
 \end_layout
 
@@ -156,7 +163,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Podgląd stanu klastra
+Podgląd stanu klastra.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Podgląd-stanu-klastra"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -176,11 +191,10 @@ Podgląd stanu klastra
 \begin_layout Standard
 Stan klastra propagowany jest za pomocą protokołu Gossip opisanego w poprzednim
  rozdziale.
- Jeżeli jakieś urządzenie nie odpowiada przez około 10 sekund (wartość konfiguro
-walna) w wyniku np.
+ Jeżeli jakieś urządzenie nie odpowiada przez określony czas w wyniku np.
  problemów z siecią, jest ono uznawane jako niedostępne, czyli nie może
  już przyjmować żadnych zadań ale może jeszcze powrócić do pracy w klastrze
- jeżeli odzyska responsywność w ciągu następnych kilku sekund.
+ jeżeli odzyska sprawność w ciągu najbliższych kilku sekund.
  Jeżeli nie, w takim przypadku jest ono usuwane z listy urządzeń pracujących
  w klastrze.
  Po usunięciu urządzenia z klastra nie może ono dołączyć ponownie do klastra
@@ -188,8 +202,11 @@ walna) w wyniku np.
  Pozwala to zapobiec sytuacji, gdy w trakcie problemów z siecią, dane urządzenie
  odłączy się na chwilę od klastra aktywując własnego mastera a następnie
  po powrocie do klastra bedą aktywne dwa mastery.
+ Dzieje się tak dlatego, że w przypadku gdy urządzenie utraci kontakt z
+ pozostałymi urządzeniami, nie może ono z pewnością stwierdzić co było przyczyną
+ awarii i zakłada, że jest jedynym urządzeniemi w klastrze.
  W trakcie awarii urządzenia podczas wykonywania obliczeń dzięki występowaniu
- migracji opisanej w jednym z kolejnych podrozdziałów, nie tracimy wszystkich
+ migracji opisanej w jednym z kolejnych podrozdziałów nie tracimy wszystkich
  wyników pracy a jedynie te uzyskane od poprzedniej migracji.
  
 \end_layout
@@ -197,7 +214,7 @@ walna) w wyniku np.
 \begin_layout Standard
 Stan mastera jest zapisywany w bazie danych, co pozwala na jego odtworzenie
  w przypadku awarii urządzenia z aktywnym masterem.
- Do bazy danych persystowane sa zserializowane zdarzenia zgodnie ze wzorcem
+ Do bazy danych persystowane są zserializowane zdarzenia zgodnie ze wzorcem
  Event Sourcing opisanym w pozycjach 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -210,7 +227,14 @@ key "18,19"
 \end_layout
 
 \begin_layout Standard
-Listę zdarzeń oraz ich opis przedstawiono w tabeli ...
+Listę zdarzeń oraz ich opis przedstawiono w tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Lista-zdarzeń-sterujących"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -223,7 +247,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Lista zdarzeń sterujących stanem zadania
+Lista zdarzeń sterujących stanem zadania.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Lista-zdarzeń-sterujących"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -234,7 +265,7 @@ Lista zdarzeń sterujących stanem zadania
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="12cm">
@@ -243,6 +274,28 @@ Lista zdarzeń sterujących stanem zadania
 \begin_inset Text
 
 \begin_layout Plain Layout
+Nazwa stanu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opis
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
 WorkAccepted
 \end_layout
 
@@ -252,7 +305,8 @@ WorkAccepted
 \begin_inset Text
 
 \begin_layout Plain Layout
-Stan zadania po wysłaniu go przez klienta oraz przyjęciu przez mastera
+Stan zadania po przyjęciu go przez mastera oraz wysłaniu potwierdzenia do
+ klienta.
 \end_layout
 
 \end_inset
@@ -263,6 +317,8 @@ Stan zadania po wysłaniu go przez klienta oraz przyjęciu przez mastera
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 WorkStarted
 \end_layout
 
@@ -272,7 +328,7 @@ WorkStarted
 \begin_inset Text
 
 \begin_layout Plain Layout
-Stan zadania po przyjęciu go przez workera
+Stan zadania przekazanego do realizacji do workera.
 \end_layout
 
 \end_inset
@@ -283,6 +339,8 @@ Stan zadania po przyjęciu go przez workera
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 WorkInProgress
 \end_layout
 
@@ -293,7 +351,7 @@ WorkInProgress
 
 \begin_layout Plain Layout
 Stan zadania w trakcie trwania obliczeń, przechowujący częsciowe wyniki
- zadania
+ zadania.
 \end_layout
 
 \end_inset
@@ -304,6 +362,8 @@ Stan zadania w trakcie trwania obliczeń, przechowujący częsciowe wyniki
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 WorkCompleted
 \end_layout
 
@@ -313,7 +373,7 @@ WorkCompleted
 \begin_inset Text
 
 \begin_layout Plain Layout
-Stan zadania po zakończeniu obliczeń, przechowujący końcowe wyniki
+Stan zadania otrzymany po zakończeniu obliczeń, przechowujący końcowe wyniki.
 \end_layout
 
 \end_inset
@@ -324,6 +384,8 @@ Stan zadania po zakończeniu obliczeń, przechowujący końcowe wyniki
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 WorkerFailed
 \end_layout
 
@@ -333,7 +395,7 @@ WorkerFailed
 \begin_inset Text
 
 \begin_layout Plain Layout
-Stan zadania zakończonego niepowodzeniem
+Stan zadania zakończonego niepowodzeniem.
 \end_layout
 
 \end_inset
@@ -344,6 +406,8 @@ Stan zadania zakończonego niepowodzeniem
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 WorkerTimedOut
 \end_layout
 
@@ -353,8 +417,8 @@ WorkerTimedOut
 \begin_inset Text
 
 \begin_layout Plain Layout
-Stan zadania ustawiany jeśli worker pracujący nad danych zadaniem nie odeśle
- wyników w określonym czasie
+Stan zadania ustawiany jeśli worker pracujący nad danym zadaniem nie odeśle
+ wyników w określonym czasie.
 \end_layout
 
 \end_inset
@@ -375,22 +439,70 @@ Stan zadania ustawiany jeśli worker pracujący nad danych zadaniem nie odeśle
 \begin_layout Standard
 Dla przykładu, jeżeli klient zadał zadanie i zmieniło ono stan na WorkAccepted
  (czyli zostało zaakceptowane ale nie przesłane jeszcze do żadnego workera)
- a w tym samym czasie nastąpiła jakaś awaria przerywająca pracę mastera,
+ a w tym samym czasie nastąpiła jakaś awaria przerywająca pracę mastera
  kolejna instancja mastera zostanie aktywowana na innym urządzeniu i odtworzy
- stan mastera który uległ awarii, co oznacza, że klient nie będzie musiał
- ponownie rozpoczynać zadania lecz jego poprzednio zadane zadanie zostanie
+ stan mastera, który uległ awarii, co oznacza, że klient nie będzie musiał
+ ponownie rozpoczynać zadania, lecz jego poprzednio rozpoczęte zadanie zostanie
  przekazane do realizacji do wolnego workera.
 \end_layout
 
 \begin_layout Standard
-Diagram stanów lub schemat blokowy prezentujący dopuszczalne zmiany stanów
- zadania przedstawiono na rysunku ...
+Diagram prezentujący dopuszczalne zmiany stanów zadania przedstawiono na
+ rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Przejścia-pomiędzy-stanami"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
-\series bold
-DIAGRAM
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename work states.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Przejścia pomiędzy stanami zadania.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Przejścia-pomiędzy-stanami"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -416,6 +528,71 @@ key "20"
 \end_layout
 
 \begin_layout Standard
+W przypadku problemu Rastrigina gen jest liczbą typu Double, chromosomy
+ zawierają listę genów czyli obrazują punkty w przestrzeni rozwiązań.
+ W przypadku dwuwymiarowej funkcji Rastrigina jest to lista dwuelementowa.
+ Natomiast populacja zawiera listę chromosomów.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Schemat-blokowy-ewolucji."
+
+\end_inset
+
+ przedstawiono schemat blokowy ewolucji.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ewolucja.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schemat blokowy ewolucji.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schemat-blokowy-ewolucji."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 
 \series bold
 Opisać w jakis sposób została dostosowana, jak wygląda ewolucja (schemat
@@ -423,7 +600,14 @@ Opisać w jakis sposób została dostosowana, jak wygląda ewolucja (schemat
 \end_layout
 
 \begin_layout Standard
-Zadanie jest konfigurowane parametrami przedstawionymi w tabeli 4.1.
+Zadanie jest konfigurowane parametrami przedstawionymi w tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Parametry-zadania."
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -436,7 +620,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Parametry zadania
+Parametry zadania.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Parametry-zadania."
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -447,7 +639,7 @@ Parametry zadania
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="8" columns="2">
+<lyxtabular version="3" rows="9" columns="2">
 <features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="12cm">
@@ -456,6 +648,28 @@ Parametry zadania
 \begin_inset Text
 
 \begin_layout Plain Layout
+Nazwa parametru
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opis
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
 Dimension
 \end_layout
 
@@ -465,7 +679,7 @@ Dimension
 \begin_inset Text
 
 \begin_layout Plain Layout
-Wymiar optymalizowanej funkcji ciągłej
+Wymiar optymalizowanej funkcji ciągłej.
 \end_layout
 
 \end_inset
@@ -476,6 +690,8 @@ Wymiar optymalizowanej funkcji ciągłej
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Cycles
 \end_layout
 
@@ -485,7 +701,7 @@ Cycles
 \begin_inset Text
 
 \begin_layout Plain Layout
-Maksymalna ilość cykli ewolucji
+Maksymalna ilość cykli ewolucji.
 \end_layout
 
 \end_inset
@@ -496,6 +712,8 @@ Maksymalna ilość cykli ewolucji
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Initial population size
 \end_layout
 
@@ -509,7 +727,7 @@ Początkowy rozmiar populacji (podczas krzyżowania
 \end_layout
 
 \begin_layout Plain Layout
-i mutacji liczba osobników populacji zostaje wzrasta)
+i mutacji liczba osobników populacji zostaje wzrasta).
 \end_layout
 
 \end_inset
@@ -520,6 +738,8 @@ i mutacji liczba osobników populacji zostaje wzrasta)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Maximum population size
 \end_layout
 
@@ -529,7 +749,7 @@ Maximum population size
 \begin_inset Text
 
 \begin_layout Plain Layout
-Maksymalny rozmiar populacji
+Maksymalny rozmiar populacji.
 \end_layout
 
 \end_inset
@@ -540,6 +760,8 @@ Maksymalny rozmiar populacji
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Snapshot frequency
 \end_layout
 
@@ -550,7 +772,8 @@ Snapshot frequency
 
 \begin_layout Plain Layout
 Częstotliwość persystowania wyników obliczeń (w tym przypadku osobników
- populacji) *
+ populacji).
+ *
 \end_layout
 
 \end_inset
@@ -561,6 +784,8 @@ Częstotliwość persystowania wyników obliczeń (w tym przypadku osobników
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Migration frequency
 \end_layout
 
@@ -570,7 +795,8 @@ Migration frequency
 \begin_inset Text
 
 \begin_layout Plain Layout
-Częstotliwość występowania migracji *
+Częstotliwość występowania migracji.
+ *
 \end_layout
 
 \end_inset
@@ -581,6 +807,8 @@ Częstotliwość występowania migracji *
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Mutation parameter
 \end_layout
 
@@ -590,7 +818,7 @@ Mutation parameter
 \begin_inset Text
 
 \begin_layout Plain Layout
-Parametr mutacji, określa wpływ mutacji na geny
+Parametr mutacji, określa wpływ mutacji na geny.
 \end_layout
 
 \end_inset
@@ -601,6 +829,8 @@ Parametr mutacji, określa wpływ mutacji na geny
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Migration factor
 \end_layout
 
@@ -610,7 +840,7 @@ Migration factor
 \begin_inset Text
 
 \begin_layout Plain Layout
-Procent migrującej populacji
+Procent migrującej populacji.
 \end_layout
 
 \end_inset
@@ -633,12 +863,12 @@ Procent migrującej populacji
 \end_layout
 
 \begin_layout Standard
-Migracja polega na wybraniu pewnej ilości najlepszych osobników populacji
- oraz wysłaniu ich do innego węzła klastra, odbywa się ona co określoną
- liczbę cykli konfigurowalną w parametrach zadania.
+Migracja odbywa się poprzez wybranie pewnej ilości najlepszych osobników
+ populacji oraz wysłaniu ich do innego węzła klastra, wykonuje się ona co
+ określoną liczbę cykli konfigurowalną w parametrach zadania.
  Zaimplementowano dwa rodzaje wyboru węzła do którego wysyłani są migrujący
  osobnicy.
- Pierwszy to jest wybór losowy węzła a drugi metodą round-robin, czyli wysyłanie
+ Pierwszy to jest wybór losowy a drugi metodą round-robin, czyli wysyłanie
  migrującej częsci populacji na zmianę do każdego kolejnego węzła 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -646,11 +876,7 @@ key "21"
 
 \end_inset
 
- 
-\series bold
-moze schemat
-\series default
-?.
+.
  Migracja odbywa się bez użycia mastera, do jej działania wykorzystano rozszerze
 nie frameworka Akka o nazwie 
 \shape italic
@@ -661,7 +887,7 @@ Distributed Publish Subscribe in Cluster
 
 \begin_layout Standard
 Inicjalizacja populacji odbywa się w każdym węźle klastra osobno.
- W przypadku problemu Rastrigina opisanego w kolejnym rozdziale, początkowa
+ W przypadku problemu Rastrigina opisanego w kolejnym podrozdziale, początkowa
  populacja składa się z osobników zainicjalizowanych losowymi liczbami z
  przedziału 
 \begin_inset Formula $[-5.12,\,5.12]$
@@ -671,13 +897,18 @@ Inicjalizacja populacji odbywa się w każdym węźle klastra osobno.
 \end_layout
 
 \begin_layout Standard
-Na rysunku ...
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Problem-Rastrigina."
+
+\end_inset
+
  zaprezentowano wygląd interfejsu użytkownika pozwalającego na podgląd wyników
  rozpoczętych zadań oraz rozpoczęcie nowych.
- Widoczne jest tutaj każde urządzenie wykonujące obliczenia, identyfikowane
- po adresie IP oraz ID workera.
- Każde zadanie oraz worker identyfikowane są dodatkowo unikalnymi identyfikatora
-mi.
+ Widoczne jest tutaj każde urządzenie wykonujące obliczenia w klastrze,
+ które są identyfikowane po adresie IP oraz ID workera.
+ Każde zadanie oraz worker rozróżniane są dodatkowo unikalnymi identyfikatorami.
 \end_layout
 
 \begin_layout Standard
@@ -725,7 +956,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Problem Rastrigina
+Problem Rastrigina.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Problem-Rastrigina."
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -762,17 +1001,15 @@ Funkcja Rastrigina jest funkcją niewypukłą.
 \begin_inset Formula $f(x)=0$
 \end_inset
 
-, bywa trudna w optymalizacji, ponieważ algorytmy optymalizacyjne, mogą
- utknąć w którymś z lokalnych minimów, tracąc szanse na znalezienie minimum
- globalnego.
+, bywa trudna w optymalizacji, ponieważ algorytmy optymalizacyjne mogą utknąć
+ w którymś z lokalnych minimów tracąc szanse na znalezienie minimum globalnego.
  Funckja ta często znajduje zatem zastosowanie jako funkcja testująca algorytmy
  optymalizacyjne.
- Została ona również użyta jako problem testowy w niniejszej implementacji
- algorytmów genetycznych.
+ Została ona również użyta jako problem testowy w niniejszej implementacji.
 \end_layout
 
 \begin_layout Standard
-Wzor funkcji Rastrigina przedstawiono poniżej
+Wzór funkcji Rastrigina przedstawiono poniżej
 \end_layout
 
 \begin_layout Standard
@@ -810,7 +1047,21 @@ key "25"
 \end_layout
 
 \begin_layout Standard
-Wykres funkcji Rastrigina przedstawiono na rysunkach ...
+Wykres funkcji Rastrigina przedstawiono na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wykres-funckji-Rastrigina-3D"
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wykres-funkcji-Rastrigina-2D"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -840,6 +1091,14 @@ Wykres funckji Rastrigina 3D
 \begin_inset CommandInset citation
 LatexCommand cite
 key "24"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wykres-funckji-Rastrigina-3D"
 
 \end_inset
 
@@ -885,6 +1144,13 @@ key "24"
 
 \end_inset
 
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wykres-funkcji-Rastrigina-2D"
+
+\end_inset
+
 
 \end_layout
 
@@ -903,18 +1169,18 @@ Dystrybucja
 \end_layout
 
 \begin_layout Standard
-Do łatwej dystrybucji platformy na inne urządzenia wykorzystano dodatek
- projektu Akka o nazwie Microkernel oraz rozszerzenie Sbt o nazwie sbt-native-pa
-ckager.
+Do łatwej dystrybucji platformy między innymi urządzeniami wykorzystano
+ dodatek projektu Akka o nazwie Microkernel oraz rozszerzenie Sbt o nazwie
+ sbt-native-packager.
 \end_layout
 
 \begin_layout Standard
-Akka Microkernel oraz sbt-native-packager dostarczają mechanizmu archiwizowania,
- dzięku któremu można udostępniać aplikację jako pojedyńczy plik, bez potrzeby
+Akka Microkernel oraz sbt-native-packager dostarczają mechanizmu archiwizowania
+ dzięki któremu można udostępniać aplikację jako pojedyńczy plik bez potrzeby
  uruchamiania lub instalowania dodatkowych aplikacji, dostarczania zależności
  lub ręcznego tworzenia skryptów startowych.
- Pozwala również na wystartowanie systemu aktorowego używając klasy z metodą
- statyczną main 
+ Pozwalają również na wystartowanie systemu aktorowego używając klasy z
+ metodą statyczną main 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "15,16"
@@ -992,13 +1258,23 @@ Rozważono tutaj problem dla jednego urządzenia w celu porównania go z bardzie
 \end_layout
 
 \begin_layout Standard
-Na rysunku ...
- przedstawiono wykres wartości funkcji Rastrigina 2D gdzie wsp.
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania"
+
+\end_inset
+
+ przedstawiono wykres wartości funkcji Rastrigina 2D gdzie współczynnik
  mutacji wynosi 
 \begin_inset Formula $0.2$
 \end_inset
 
- a całkowita ilość cykli 10 000.
+ a całkowita ilość cykli 
+\begin_inset Formula $10000$
+\end_inset
+
+.
  Aby zwiększyć czytelność wykresu użyto skali logarytmicznej.
 \end_layout
 
@@ -1031,6 +1307,14 @@ status open
 \begin_layout Plain Layout
 Całkowity czas wykonania ...
  Znaleziony punkt ..., wartość funkcji ...
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1044,7 +1328,13 @@ Całkowity czas wykonania ...
 \end_layout
 
 \begin_layout Standard
-Wykres na rysunku ...
+Wykres na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania"
+
+\end_inset
+
  pokazuje, że w początkowych cyklach ewolucji populacji gdy osobnicy nie
  są jeszcze dobrze rozwinięci kolejne rozwiązania znajdywane są wolniej.
  Szybkość znajdywania nowych rozwiązań przyśpiesza wraz ze wzrostem ilości
@@ -1068,6 +1358,14 @@ status open
 \begin_layout Plain Layout
 Całkowity czas wykonania ...
  Znaleziony punkt ..., wartość funkcji ...
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1086,8 +1384,12 @@ Całkowity czas wykonania ...
 
 \begin_layout Standard
 Na rysunku ...
- przedstawiono wykres wartości funkcji dla większego wsp.
- mutacji wynoszącego 0.4.
+ przedstawiono wykres wartości funkcji dla większego współczynnika mutacji
+ wynoszącego 
+\begin_inset Formula $0.4$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1108,14 +1410,14 @@ Powtorzyc dla 0.8.
 \end_layout
 
 \begin_layout Standard
-Podsumowując większy wsp.
- mutacji wpływa dobrze na znajdywanie rozwiązań.
+Podsumowując, zauważono, że większy współczynnik mutacji przyśpiesza znajdywanie
+ nowych rozwiązań.
 \end_layout
 
 \begin_layout Standard
-Podczas przeprowadzenia testów w klastrze pracowały dwa typy urządzeń Raspberry
- Pi, model B oraz B plus, który jest nowszy oraz posiada większą ilość zaistalow
-anej pamięci RAM a mianowicie 512MB w porównaniu do 256MB w modelu B 
+Podczas przeprowadzania testów w klastrze pracowały dwa typy urządzeń Raspberry
+ Pi, model B oraz B plus, który jest nowszy od modelu B oraz posiada większą
+ ilość zaistalowanej pamięci RAM 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "26"
@@ -1126,7 +1428,7 @@ key "26"
 \end_layout
 
 \begin_layout Standard
-Dostępna w urządzeniu pamięć RAM ma dość duży wpływ na czas obliczeń.
+Dostępna w urządzeniach pamięć RAM ma dość duży wpływ na czas obliczeń.
  Czas uzyskiwany przez nowszy model urządzenia, który posiada więcej pamięci
  był około 30% (
 \series bold
@@ -1162,7 +1464,7 @@ Mają one bezpośredni wpływ na skalowalność platformy.
 Bez występowania migracji osobników pomiędzy wyspami (węzłami klastra),
  teoretycznie mogłaby zaistnieć sytuacja, gdy pomimo pracy kilku urządzeń
  w klastrze, każde z nich uzyskałoby takie same wyniki w zbliżonym czasie,
- co oznaczałoby, że równie dobrze, obliczenia mogłyby być przeprowadzane
+ co oznaczałoby, że równie dobrze obliczenia mogłyby być przeprowadzane
  tylko na jednym urządzeniu, bo wzrost liczby urządzeń nie wpłynął znacząco
  na szybkość znajdywanych wyników.
 \end_layout
@@ -1232,15 +1534,6 @@ Częstość wykonywania zapisów do bazy, przesyłania wyników częściowych do
 \begin_layout Standard
 Pozostałym parametrem konfigurującym zadanie jest częstość przesyłania wyników
  częściowych do klienta oraz ich persystencja.
-\end_layout
-
-\begin_layout Subsection
-Zużycie energii
-\end_layout
-
-\begin_layout Standard
-Tabela przedstawiająca średnie zużycie energii przez kilka modeli Raspberry
- Pi w trakcie wykonywania obliczeń oraz w stanie bezczynności.
 \end_layout
 
 \begin_layout Subsection
