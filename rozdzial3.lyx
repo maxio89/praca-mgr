@@ -476,7 +476,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Relacja między kilkoma pojęciami identyfikującymi aktorów w systemie.
+Relacja między kilkoma pojęciami identyfikującymi aktorów w systemie 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "48"
+
+\end_inset
+
+.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -485,13 +492,6 @@ name "fig:Relacja-między-kilkoma"
 \end_inset
 
  
-\begin_inset CommandInset citation
-LatexCommand cite
-key "48"
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -647,11 +647,18 @@ Akka Cluster
 Jest to najbardziej istotne rozszerzenie z punktu widzenia niniejszej pracy.
  Została na nim oparta komunikacja pomiędzy urządzeniami działającymi w
  obrębie klastra.
- 
+ Zapewnia ono pewien poziom abstrakcji dla protokołu TCP/IP 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "51"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Dostarcza ono odporny na awarię oraz zdecentralizowany serwis członkostwa
+Dostarcza również odporny na awarię oraz zdecentralizowany serwis członkostwa
  (ang.
  membership service) oparty na protokole Gossip 
 \begin_inset CommandInset citation
@@ -695,105 +702,6 @@ key "31"
 \end_layout
 
 \begin_layout Standard
-Czlonkostwo w klastrze jest rozpoczynane komendą 
-\shape italic
-join
-\shape default
- wysyłaną do jednego z aktywnych członków klastra.
- Każdy węzeł poza nazwą hosta oraz portem jest identyfikowany dodatkowo
- unikalnym identyfikatorem, tzw.
- uid, co pozwala na uruchomienie kilku węzłów hosta na jednej maszynie.
- Jeżeli członek klastra ulegnie awarii lub opuści klaster na własne życzenie
- nie może on ponownie dołączyć do klastra dopóki system aktorowy uruchomiony
- na nim nie zostanie zrestartowany, co pozwoli na wygenerowanie nowego uid.
- Więcej szczegółów na temat idei członkostwa w klastrze można znaleść w
- pozycjach 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "31,56"
-
-\end_inset
-
-.
- Na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Diagram-stanów-członków"
-
-\end_inset
-
- zaprezentowany przejścia pomiędzy stanami członków klastra, oraz możliwa
- akcje.
- Każdy węzeł może zmienić swój stan członkostwa lub może on zostać zmieniony
- automatycznie.
- Oznaczenie 
-\shape italic
-fd*
-\shape default
- jest to skrót od angielskiego wyrażenia 
-\shape italic
-failure detector
-\shape default
-, w przypadku systemu Akka, oznacza on automatyczną detekcję niedziałających
- węzłów, dzięki której również mogą być podejmowane decyzje mające na celu
- zmianię stanu węzłów, np.
- dany węzeł może zostać uznany za nieosiągalny (ang.
- unreachable).
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename member-states.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Diagram stanów członków klastra 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "31"
-
-\end_inset
-
-.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Diagram-stanów-członków"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Protokół Gossip wspomniany powyżej pozwala rozpropagować stan klastra do
  wszystkich jego węzłów, tak aby każdy węzeł miał takie same informację
  o pozostałych członkach klastra.
@@ -803,51 +711,79 @@ Protokół Gossip wspomniany powyżej pozwala rozpropagować stan klastra do
 \end_layout
 
 \begin_layout Standard
-failure detector, seed nodes, Membership Lifecycle, diagram stanow
+Czlonkostwo w klastrze jest rozpoczynane komendą 
+\shape italic
+join
+\shape default
+ wysyłaną do jednego z aktywnych członków klastra, gdy każdy węzeł klastra
+ otrzyma informację o dołączającym węźle dzięki protokołowi Gossip, taki
+ węzeł może zostać uznany za osiągalny.
+ Może on jednak utracić ten stan gdy np.
+ wystąpią jakieś problemy z siecią.
+ Stan nieosiągalny może trwać jedynie określony czas po czym jeśli węzeł
+ nie powróci do pełnej sprawności straci status członka klastra.
+ Każdy węzeł poza nazwą hosta oraz portem jest identyfikowany dodatkowo
+ unikalnym identyfikatorem, tzw.
+ uid, co pozwala na uruchomienie kilku węzłów hosta na jednej maszynie.
+ Jeżeli członek klastra ulegnie awarii lub opuści klaster na własne życzenie
+ nie może on ponownie dołączyć do klastra dopóki system aktorowy uruchomiony
+ na nim nie zostanie zrestartowany, co pozwoli na wygenerowanie nowego uid.
+ Każdy węzeł może zmienić swój stan członkostwa lub może on zostać zmieniony
+ automatycznie dzięki automatycznej detekcji niedziałających węzłów.
+ Ustawienia detekcji niedziałających węzłów oraz protokołu Gossip są konfigurowa
+lne, tzn.
+ że można np.
+ ustalić czas po którym węzeł zostanie uznany za nieosiągalny.
+ Więcej szczegółów na temat idei członkostwa w klastrze oraz dostępnych
+ stanów węzłów można znaleść w pozycjach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "31,56"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
-Dołączanie do klastra.
+Lider jest to tylko rola jaką posiada dany węzeł, każdy węzeł może zostać
+ liderem oraz każdy węzeł jest w stanie w sposób deterministyczny wyznaczyć
+ lidera.
+ Węzły mogą też posiadać inne role, które mogą się przydać np.
+ w ograniczeniu zasięgu komunikacji.
+ 
 \end_layout
 
 \begin_layout Standard
-Opuszczanie klastra, automatic downing.
+Zdarzenia związane ze zmianą stanu węzłów klastra mogą być subskrybowanie
+ przez istniejących członków, co ułatwia implementację monitoringu stanu
+ klastra.
 \end_layout
 
 \begin_layout Standard
-Subskrybowanie zdarzeń klastra.
-\end_layout
+Kolejną ciekawą opcją w rozszerzeniu Akka Cluster jest wykorzystanie bibliotek
+ Sigar 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "57"
 
-\begin_layout Standard
-Role węzłów.
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Failure detector.
-\end_layout
-
-\begin_layout Standard
-Metryki (Sigar) i moze wspomniec o load balancingu na podstawie metryk?
-\end_layout
-
-\begin_layout Standard
+ oraz integracja z nimi.
+ Pozwalają one na dostęp do informacji systemowych takich jak zużycie CPU,
+ wykorzystanie pamięci RAM, stan sieci.
+ Mogą zostać wykorzystane do implementacji load balancigu
 \begin_inset CommandInset citation
 LatexCommand cite
 key "34,32"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
-Fault tolerance i supervision strategy 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "51,52,53"
-
-\end_inset
-
 
 \end_layout
 
@@ -989,7 +925,11 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Schemat Raspberry Pi model B.
+Schemat Raspberry Pi model B [
+\series bold
+ODNOSNIK
+\series default
+].
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -1133,22 +1073,69 @@ Platforma
 
 \begin_layout Standard
 Niniejszy podrozdział omawia wybrane aspekty stworzonej platformy, takie
- jak architektura, protokoły komunikacji oraz odporność na awarię.
+ jak architektura, protokoły komunikacji oraz przydzielanie zadań.
 \end_layout
 
 \begin_layout Subsection
 Architektura
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename architektura.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Podgląd architektury.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Podgląd-architektury."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Wybrani aktorzy 
 \end_layout
 
-\begin_layout Standard
-ClusterSingletonManager
+\begin_layout Itemize
+ClusterSingletonManager,
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 ClusterSingletonProxy 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1156,10 +1143,10 @@ key "14"
 
 \end_inset
 
-
+,
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 DistributedPubSubMediator 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1167,39 +1154,125 @@ key "47"
 
 \end_inset
 
-
+,
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Master,
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Worker,
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 WorkExecutor,
 \end_layout
 
-\begin_layout Standard
-MasterWorkerProtocol,
+\begin_layout Itemize
+Frontend,
 \end_layout
 
-\begin_layout Standard
-FrontendActor,
+\begin_layout Itemize
+Metrics,
 \end_layout
 
-\begin_layout Standard
-MetricsActor,
-\end_layout
-
-\begin_layout Standard
-MonitorActor,
+\begin_layout Itemize
+Monitor.
 \end_layout
 
 \begin_layout Subsection
-Komunikacja (protokol komunikacji, schematy), 
+Komunikacja
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename registration.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rejestracja Workerów.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Rejestracja-Workerów."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename work_protocol.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Protokół Master/Worker.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Protokół-Master/Worker."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
