@@ -186,7 +186,7 @@ Migracja - wymiana osobników pomiędzy populacjami.
 \end_layout
 
 \begin_layout Itemize
-Selekcja - algorytm wyboru osobników pozostałych w danej populacji w danym
+Selekcja - algorytm wyboru osobników pozostałych w danej populacji w następnym
  cyklu.
 \end_layout
 
@@ -238,7 +238,7 @@ Jest to odmiana algorytmu genetycznego przystosowana do obliczeń równoległych
  Istotna jest tutaj topologia połączeń pomiędzy wyspami pozwalająca na wymianę
  osobników, metoda selekcji migrujących osobników, ich wielkość oraz odstęp
  pomiędzy kolejnymi migracjami.
- Badania różnych parametrów tego zjawiska można znaleść m.in.
+ Badania różnych parametrów tych zjawis można znaleść m.in.
  w pracy 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -263,8 +263,9 @@ Algorytmy ewolucyjne sprawdzają się tam gdzie nie jest dobrze znana przestrze�
  nie da się obliczyć analitycznie lub przeszukiwanie dużych przestrzeni
  rozwiązań jak np.
  w przypadku problemu grupowania.
- Alborytmy genetyczne są mniej zależne od wstępnej inicjalizacji oraz mniej
- skłonne do znajdywania rozwiązań lokalnych zamiast optymalnych 
+ Alborytmy genetyczne są mniej zależne od wstępnej inicjalizacji zadania
+ oraz mniej skłonne do znajdywania rozwiązań lokalnych zamiast optymalnych
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "9,10"
@@ -321,7 +322,7 @@ czeństwo utworzenia tzw.
  w jakiś sposób obsłużyć taką sytuację, np.
  poprzez ponowne wystartowanie procesu/urządzenia z rolą master aby zapewnić
  poprawne i niezawodne działanie komunikacji.
- Sytuacje takie mogą wprowadzić pewne opóźnienia w procesie odzyskiwania
+ Sytuacje takie mogą wprowadzić pewne opóźnienia w trakcie odzyskiwania
  sprawności systemu 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -367,13 +368,13 @@ key "42"
  Wprowadza również wiele innowacji oraz ciekawych rozwiązań do konstrukcji
  języka jak np.
  case classes, currying, zagnieżdżanie funkcji, DSL, tail recursion, słowo
- kluczowe lazy czy trait, konsktrukcja podobna do interfejsu z języka Java
+ kluczowe lazy lub trait, konsktrukcja podobna do interfejsu z języka Java
  ale mogąca posiadać częściową implementację.
  Scala preferuje obiekty immutable.
  Obsługuje również funkcje wyższego rzędu oraz pozwala zwięźle definiować
  funkcje anonimowe, kładzie również duży nacisk na skalowalność.
  Dodatkową zaletą tego języka jest to, iż jest on w pełni kompatybilny z
- językiem Java, co oznacza że możemy w nim używać bibliotek lub frameworków
+ językiem Java, co oznacza, że możemy w nim używać bibliotek lub frameworków
  napisanych w Javie bez żadnych dodatkowych deklaracji.
  Ostatecznie program napisany w Scali jest kompilowany do kodu bajtowego
  Javy 
@@ -403,7 +404,7 @@ Jednym z kluczowych frameworków wykorzystanych w niniejszej pracy jest Akka.
  pracy rozszerzeń, które zostały opisane w jednym z następnych podrodziałów,
  wyczerpującej dokumentacji oraz dużej i aktywnej społeczności rozwijającej
  ten produkt a także wsparciem komercyjnych firm.
- Akka używa modelu aktorowego aby zwiększyć poziom abstrakcji i rozdzielić
+ Akka używa modelu aktorowego aby zwiększyć poziom abstrakcji i oddzielić
  logikę biznesową od niskopoziomowego zarządzania wątkami oraz operacjami
  I/O 
 \begin_inset CommandInset citation
@@ -419,7 +420,7 @@ key "29,31"
 Podstawowym bytem w technologii Akka są aktorzy.
  Aktor zapewnia wysokopoziomową abstrakcję dla lepszej współbieżności oraz
  zrównoleglenia operacji.
- Jest on lekkim, wydajnym, sterowanym zdarzeniami procesem, który komunikuje
+ Jest on lekkim, wydajnym oraz sterowanym zdarzeniami procesem, który komunikuje
  się z innymi aktorami za pomocą asynchronicznych wiadomości przechowywanych
  w skrzynkach odbiorczych.
  Aktor enkapsuluje pewien stan i zachowania, które realizują określone zadania.
@@ -436,7 +437,7 @@ key "31"
 
 \begin_layout Standard
 Każdy aktor w systemie może być identyfikowany na kilka różnych sposobów.
- Różnicę między kilkoma z nich przedstawiono na rysunku 
+ Różnicę pomiędzy kilkoma z nich przedstawiono na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Relacja-między-kilkoma"
@@ -523,7 +524,8 @@ application.conf
 \shape default
 , który jest głównym plikiem konfiguracyjnym systemu aktorowego.
  System aktorowy zarządza dostępnymi zasobami i może mieć uruchomione miliony
- aktorów, instancja każdego z aktorów zajmuje okolo 300 bajtów pamięci.
+ aktorów gdyż instancja każdego z aktorów zajmuje zaledwie okolo 300 bajtów
+ pamięci.
 \end_layout
 
 \begin_layout Standard
@@ -569,7 +571,7 @@ fail fast
 \end_layout
 
 \begin_layout Itemize
-architekture sterowana zdarzeniami,
+architekture sterowaną zdarzeniami,
 \end_layout
 
 \begin_layout Itemize
@@ -577,8 +579,8 @@ transakcyjność,
 \end_layout
 
 \begin_layout Itemize
-ujednolicony model programowania dla potrzeb programowania wielowątkowego
- oraz obliczeń rozproszonych,
+ujednolicony model programowania dla potrzeb wielowątkowości oraz obliczeń
+ rozproszonych,
 \end_layout
 
 \begin_layout Itemize
@@ -593,7 +595,7 @@ key "29"
 \end_layout
 
 \begin_layout Standard
-Zastosowania projektu Akka są bardzo szerokie, można je znaleść chociażby
+Zastosowania projektu Akka są bardzo szerokie, można je odnaleść chociażby
  w następujących dziedzinach:
 \end_layout
 
@@ -679,7 +681,7 @@ Pojęcia:
 \begin_layout Itemize
 węzeł (ang.
  node) - logiczny członek klastra, może istnieć wiele węzłów na jednej fizycznej
- maszynie, identyfikowany krotką nazwa_hosta:port:uid,
+ maszynie, identyfikowany krotką: nazwa_hosta:port:uid,
 \end_layout
 
 \begin_layout Itemize
@@ -702,6 +704,14 @@ key "31"
 \end_layout
 
 \begin_layout Standard
+Lider jest tylko rolą jaką posiada dany węzeł, każdy węzeł może zostać liderem
+ oraz każdy węzeł jest w stanie w sposób deterministyczny wyznaczyć lidera.
+ Węzły mogą też posiadać inne role, które mogą się przydać np.
+ w ograniczeniu zasięgu komunikacji.
+ 
+\end_layout
+
+\begin_layout Standard
 Protokół Gossip wspomniany powyżej pozwala rozpropagować stan klastra do
  wszystkich jego węzłów, tak aby każdy węzeł miał takie same informację
  o pozostałych członkach klastra.
@@ -720,11 +730,12 @@ join
  węzeł może zostać uznany za osiągalny.
  Może on jednak utracić ten stan gdy np.
  wystąpią jakieś problemy z siecią.
- Stan nieosiągalny może trwać jedynie określony czas po czym jeśli węzeł
- nie powróci do pełnej sprawności straci status członka klastra.
+ Stan nieosiągalny może trwać jedynie określony czas po upływie którego
+ jeśli węzeł nie powróci do pełnej sprawności traci on status członka klastra.
  Każdy węzeł poza nazwą hosta oraz portem jest identyfikowany dodatkowo
  unikalnym identyfikatorem, tzw.
- uid, co pozwala na uruchomienie kilku węzłów hosta na jednej maszynie.
+ uid, co pozwala na uruchomienie kilku węzłów klastra na jednej fizycznej
+ maszynie.
  Jeżeli członek klastra ulegnie awarii lub opuści klaster na własne życzenie
  nie może on ponownie dołączyć do klastra dopóki system aktorowy uruchomiony
  na nim nie zostanie zrestartowany, co pozwoli na wygenerowanie nowego uid.
@@ -734,6 +745,9 @@ join
 lne, tzn.
  że można np.
  ustalić czas po którym węzeł zostanie uznany za nieosiągalny.
+ Zdarzenia związane ze zmianą stanu węzłów klastra mogą być subskrybowanie
+ przez istniejących członków, co ułatwia implementację monitoringu stanu
+ klastra.
  Więcej szczegółów na temat idei członkostwa w klastrze oraz dostępnych
  stanów węzłów można znaleść w pozycjach 
 \begin_inset CommandInset citation
@@ -744,21 +758,6 @@ key "31,56"
 
 .
  
-\end_layout
-
-\begin_layout Standard
-Lider jest to tylko rola jaką posiada dany węzeł, każdy węzeł może zostać
- liderem oraz każdy węzeł jest w stanie w sposób deterministyczny wyznaczyć
- lidera.
- Węzły mogą też posiadać inne role, które mogą się przydać np.
- w ograniczeniu zasięgu komunikacji.
- 
-\end_layout
-
-\begin_layout Standard
-Zdarzenia związane ze zmianą stanu węzłów klastra mogą być subskrybowanie
- przez istniejących członków, co ułatwia implementację monitoringu stanu
- klastra.
 \end_layout
 
 \begin_layout Standard
@@ -773,7 +772,8 @@ key "57"
  oraz integracja z nimi.
  Pozwalają one na dostęp do informacji systemowych takich jak zużycie CPU,
  wykorzystanie pamięci RAM, stan sieci.
- Mogą zostać wykorzystane do implementacji load balancigu
+ Mogą zostać wykorzystane do implementacji load balancigu lub monitorowania
+ obciążenia urządzeń klastra 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "34,32"
@@ -926,9 +926,12 @@ status open
 
 \begin_layout Plain Layout
 Schemat Raspberry Pi model B [
-\series bold
-ODNOSNIK
-\series default
+\begin_inset CommandInset citation
+LatexCommand cite
+key "26"
+
+\end_inset
+
 ].
  
 \begin_inset CommandInset label
@@ -951,8 +954,8 @@ name "fig:Schemat-Raspberry-Pi"
 \end_layout
 
 \begin_layout Standard
-Urządzenie posiada procesor oparty na architekturze ARM o taktowaniu 700MHz
- oraz 512MB pamięci RAM.
+Urządzenie posiada jednostkę CPU oparty o taktowaniu 700MHz oraz 512MB pamięci
+ RAM.
  Poza procesorem CPU jest również wyposażone m.in.
  w jednostkę GPU, dwa porty USB, złącze kart SD (na których może być zainstalowa
 na dystrybucja Linuxa), złącze Ethernet 100Mb/s oraz złącze MicroUSB wykorzystan
@@ -975,11 +978,11 @@ MongoDB
 MongoDB jest bazą NoSQL opartą na dokumentach typu JSON, co pozwala na elastyczn
 ość oraz przejrzystość w przechowywaniu danych.
  Jest to technologia Open Source.
- Jako, że jest to baza NoSQL posiada ona elastyczny schemat danych, wspiera
- replikację oraz sharding a także map reduce.
+ Jako, że jest to baza NoSQL posiada ona elastyczny schemat danych.
+ Wspiera replikację oraz sharding a także map reduce.
  Technologia ta została wykorzystana ze względu na jej łatwe użycie, dobrą
  skalowalność oraz wydajność przy wykorzystaniu stosunkowo niewielkich zasobów
- 
+ obliczeniowych 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "41"
@@ -1000,7 +1003,7 @@ Play Framework i AngularJS
 \end_layout
 
 \begin_layout Standard
-Technologie Play framework oraz AngularJS zostały wykorzystane do przygotowania
+Technologie Play Framework oraz AngularJS zostały wykorzystane do przygotowania
  aplikacji webowej będącej interfejsem klienta dzięki któremu może sterować
  on działaniem platformy, monitorować ją oraz oglądać wyniki obliczeń.
 \end_layout
@@ -1049,7 +1052,7 @@ Wykorzystane szablony
 
 \begin_layout Standard
 Platforma Typesafe w której skład wchodzą technologie wykorzystane w niniejszej
- pracy, takie jak Play framework, Akka oraz Scala dostarcza bardzo wyczerpującą
+ pracy, takie jak Play Framework, Akka oraz Scala dostarcza bardzo wyczerpującą
  dokumentację wraz z wieloma przykładami oraz szablonami na licencji Public
  Domain.
 \end_layout
@@ -1078,6 +1081,136 @@ Niniejszy podrozdział omawia wybrane aspekty stworzonej platformy, takie
 
 \begin_layout Subsection
 Architektura
+\end_layout
+
+\begin_layout Standard
+Węzeł klastra jest to instancja aplikacji niezwiązana z fizycznym urządzeniem.
+ Co oznacza, że na jednym urządzeniu może być uruchomionych kilka węzłów,
+ czyli kilka aplikacji.
+ W skład platformy wchodzą dwie aplikacje nazwane 
+\shape italic
+frontend
+\shape default
+ i 
+\shape italic
+backend
+\shape default
+.
+ Posiadają one różne odpowiedzialności jak i rodzaje uruchomionych na nich
+ aktorów o których zostanie wspomniane w kolejnym podrozdziale.
+ 
+\end_layout
+
+\begin_layout Standard
+Aplikacja 
+\shape italic
+frontend
+\shape default
+ odpowiada za interakcje z użytkownikiem dzięki takim technologiom jak Play
+ Framework, AngularJS, WebSocket oraz protokołowi HTTP.
+ Komunikuje się ona z aplikacją 
+\shape italic
+backend
+\shape default
+ w celu zlecenia wykonania zadania oraz odebrania wyników.
+ Posiada ona interfejs webowy.
+ Instancja aplikacji jest traktowana jako osobny węzeł klastra.
+\end_layout
+
+\begin_layout Standard
+Aplikacja 
+\shape italic
+backend
+\shape default
+ nie posiada interfejsu użytkownika.
+ Zajmuje się realizacją zleconych zadań.
+ Instancja tej aplikacji odpowiada jednemu węzłowi klastra.
+ W klastrze może być uruchomionych wiele instancji, po jednej na każdym
+ urządzeniu lub jeśli urządzenie posiada wystarczająco mocy obliczeniowej
+ może posiadać kilka uruchomionych aplikacji.
+ Każda uruchomiona aplikacja posiada uruchomionego workera oraz tylko jedna
+ z nich posiada również uruchomionego mastera, gdyż w klastrze powinna być
+ tylko jedna aktywna instancja mastera.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Podgląd-architektury."
+
+\end_inset
+
+ przedstawiono podgląd architektury, zielonym kolorem zaznaczono aplikację
+ 
+\shape italic
+frontend
+\shape default
+ natomiast niebieskim aplikację 
+\shape italic
+backend
+\shape default
+.
+ Założono, że każda aplikacja jest uruchomiona na osobnym urządzeniu pracującym
+ w klastrze, są dwa urządzenia wykonujące obliczenia oraz jedno urządzenie
+ klienckie.
+ Na wspomnianym rysunku pokazano także kilka aktorów uruchomionych na wybranych
+ urządzeniach.
+ Aplikacja kliencka, która dostarcza interfejsu użytkownika może zostać
+ uruchomiona na oddzielnym urządzeniu lub na urządzeniu, które posiada już
+ uruchomioną aplikację zajmującą się obliczeniami, czyli posiadającą instancję
+ workera.
+ Wszystkie urządzenia pracują w sieci lokalnej z wykorzystaniem technologii
+ Ethernet.
+ Użytkownik komunikuje za pomocą protokołu HTTP z urządzeniem klienckim,
+ które z kolei przesyła odpowiednie żadania do urządzenia posiadającego
+ aktywnego mastera.
+ Urządzenie klienckie nie musi posiadać informacji o tym gdzie dokładnie
+ jest aktywny master, ponieważ dostęp do mastera odbywa się poprzez proxy.
+ Natomiast aplikacja kliencka powinna mieć podany adres IP przynajmniej
+ jednego urządzenia pracującego w klastrze.
+ Może mieć informację o kilku adresach IP urządzeń pracujących w klastrze,
+ co pozwala uniknąć problemów gdy jedno z urządzeń nie odpowiada.
+ Najłatwiejszym sposobem podania adresów urządzeń pracujących w klastrze
+ jest użycie dodatkowych argumentów podczas uruchamiania aplikacji.
+ Szczegóły tych ustawień oraz sposobu uruchamiania aplikacji wchodzących
+ w skład przygotowanej platformy zostały opisane w dodatku A załączonym
+ do niniejszej pracy.
+\end_layout
+
+\begin_layout Standard
+Urządzenia wykonujące obliczenia w klastrze komunikują się ze sobą za pomocą
+ protokołu TCP/IP, którym zarządza Akka.
+ Odkąd aktywny master posiada listę wszystkich zarejestrowanych workerów
+ potrafi on w łatwy sposób nawiązywać z nimi kontakt oraz informować ich
+ o nadchodzących zadaniach od klienta.
+ Z kolei komunikacja w drugą stronę, np.
+ gdy worker skończył wykonywać zadanie i chce wysłać zgromadzone wyniki
+ odbywa się przez proxy, ponieważ worker nie wie na którym urządzeniu znajduje
+ się aktywny master.
+ Gdy master otrzyma wyniki zadania od realizującego je workera odsyła je
+ do klienta za pomocą rozszerzenia 
+\shape italic
+Distributed Publish Subscribe in Cluster 
+\shape default
+opisanego w jednym z poprzednich podrozdzialow.
+ Co oznacza, że nie musi posiadać informacji o adresie IP klienta, ponieważ
+ publikuje wiadomości w wybranym temacie i otrzymają je tylko zainteresowani
+ klienci.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Podgląd-architektury."
+
+\end_inset
+
+ pokazano jedynie kilka najważniejszych aktorów działających na urządzeniach
+ będących częścią klastra.
+ Zostali oni opisani wraz z pozostałymi, którzy również są aktywni podczas
+ działania platformy w następnym podrozdziale.
 \end_layout
 
 \begin_layout Standard
@@ -1131,23 +1264,60 @@ name "fig:Podgląd-architektury."
 Wybrani aktorzy 
 \end_layout
 
-\begin_layout Itemize
-ClusterSingletonManager,
+\begin_layout Standard
+Aplikacja 
+\shape italic
+backend
+\shape default
+:
 \end_layout
 
 \begin_layout Itemize
-ClusterSingletonProxy 
+ClusterSingletonManager, aktor dostarczony wraz z rozszerzeniem 
+\shape italic
+Akka Cluster Singleton
+\shape default
+, który odpowiada za to aby w klastrze była obecna tylko jedna instancja
+ mastera.
+ Zostaje on uruchomiony na wszystkich węzłach lub na węzłach z konkretną
+ rolą.
+ Instancjonuje aktora singletona na najstarszym węźle, czyli takim, który
+ dołączył do klastra najwcześniej.
+ Monitoruje on również stan dostępności węzła na którym uruchomiony jest
+ aktor singleton i w przypadku jakiś awarii startuje nową instancję aktora
+ singletona na innym węźle.
+\end_layout
+
+\begin_layout Itemize
+ClusterSingletonProxy, aktor współpracujący z poprzednim opisanym aktorem
+ i będący proxy zapewniającym dostęp do aktora singletona czyli mastera.
+ Jest on uruchomiony na każdym węźle, który potrzebuje komunikować się z
+ masterem i działa jak router przekierowujący wszystkie przychodzące wiadomości
+ do aktora singletona.
+ Jeśli aktor ten jest niedostępny np.
+ ze względu na awarię lub jest w trakcie odzyskiwania sprawności zadaniem
+ aktora ClusterSingletonProxy jest przechowywanie wszystkich odebranych
+ wiadomości aż do momentu ponownego nawiązania komunikacji.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "14"
 
 \end_inset
 
-,
+.
 \end_layout
 
 \begin_layout Itemize
-DistributedPubSubMediator 
+DistributedPubSubMediator, aktor ten zostaje uruchomiony na wszystkich węzłach
+ klastra lub na węzłach z konkretną rolą.
+ Zarządza rejestracją innych aktorów do wybranych kanałów komunikacji oraz
+ replikuje tą wiedzę pośród inne instancje pracujące na pozostałych urządzeniach
+ klastra tak aby zachować spójność tych danych w obrębie klastra.
+ Zajmuje się również wysyłaniem wiadomości z każdego urządzenia klastra
+ do zarejestrowanych aktorów pracujących na jakimkolwiek urządzeniu w obrębie
+ klastra.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "47"
@@ -1158,31 +1328,113 @@ key "47"
 \end_layout
 
 \begin_layout Itemize
-Master,
+Master, jest to tzw.
+ aktor singleton.
+ Oznacza to że w obrębie klastra powinna być aktywna tylko jedna instancja
+ tego aktora.
+ Jest to zapewnione poprzez aktora ClusterSingletonManager opisanego powyżej.
+ Dostęp do mastera uzyskuje się poprzez proxy, czyli aktora ClusterSingletonProx
+y z każdego urządzenia pracującego w klastrze.
+ Głównymi zadaniami tego aktora są: przydzielanie zadań workerom, zarządzanie
+ ich rejestracją, odbieranie wyników i przesyłanie ich do klienta, reagowanie
+ w sytuacji awarii workera i zapisywanie wyników do bazy.
 \end_layout
 
 \begin_layout Itemize
-Worker,
+Worker, jest to aktor realizujący zadania otrzymane od mastera po uprzedniej
+ rejestracji.
+ Każdy worker uruchamia jedną instancję aktora wykonującego właściwe obliczenia,
+ po to aby zachować responsywność w komunikacji z masterem.
+ Zajmuje się on również procesem migracji gdzie znowu jest wykorzystywany
+ mechanizm dostarczony wraz z rozszerzeniem 
+\shape italic
+Distributed Publish Subscribe.
 \end_layout
 
 \begin_layout Itemize
-WorkExecutor,
+WorkExecutor, aktor wykonujący właściwe obliczenia czyli realizujący zadanie
+ zlecone przez klienta.
+ Jest on instancjonowany przez workera i komunikuje się tylko z nim.
+ 
+\end_layout
+
+\begin_layout Standard
+Aplikacja 
+\shape italic
+frontend
+\shape default
+:
 \end_layout
 
 \begin_layout Itemize
-Frontend,
+Frontend, aktor z którym komunikuje się użytkownik.
+ Odbiera on wyniki zadania od mastera oraz przesyła mu zadania do wykonania.
+ Do komunikacji z masterem używa proxy, natomiast wyniki odbiera dzięki
+ rozszerzeniu 
+\shape italic
+Distributed Publish Subscribe
+\shape default
+ oraz rejestracji w wybranym kanale komunikacji.
 \end_layout
 
 \begin_layout Itemize
-Metrics,
+Metrics, aktor subskrybujący zdarzenia związane ze zmianą różnych metryk
+ klastra, np.
+ obciążenia CPU lub pamięci RAM.
+ Dzięki połączeniu WebSocket przesyła te informację na widok.
 \end_layout
 
 \begin_layout Itemize
-Monitor.
+Monitor, aktory obserwujący zdarzenia związane z członkostwem w klastrze.
+ Jeśli jakiś węzeł dołącza do klastra lub go opuszcza taka informacja jest
+ aktualizowana na widoku.
+\end_layout
+
+\begin_layout Standard
+Poza wyżej wymienionymi aktorami działającymi w aplikacji frontend, posiada
+ ona również kilka tych samych aktorów co aplikacja frontend, m.in.
+ ClusterSingletonProxy oraz DistributedPubSubMediator, którzy służą do komunikac
+ji z masterem oraz odbieraniem wyników realizowanych zadań.
 \end_layout
 
 \begin_layout Subsection
-Komunikacja
+Protokoły komunikacji
+\end_layout
+
+\begin_layout Standard
+Na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rejestracja-Workerów."
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Protokół-Master/Worker."
+
+\end_inset
+
+ przedstawiono dwa najważniejsze protokoły definiujące kolejność oraz znaczenie
+ poszczególnych wiadomości i służące do komunikacji na linii Frontend -
+ Master - Worker - WorkExecutor.
+ Widoczni są tam aktorzy biorący lub nie udział w komunikacji oraz rodzaje
+ wiadomości przesyłanych między nimi.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rejestracja-Workerów."
+
+\end_inset
+
+ przedstawiono proces rejestracji workerów w serwisie mastera, po to aby
+ master mógł ich poinformować o tym, że posiada jakieś zadanie, które trzeba
+ zrealizować.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1229,6 +1481,175 @@ name "fig:Rejestracja-Workerów."
 \end_layout
 
 \begin_layout Standard
+W tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Opis-komunikatów--"
+
+\end_inset
+
+ przedstawiono opis komunikatów zawartych na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rejestracja-Workerów."
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Opis komunikatów - rejestracja workerów.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Opis-komunikatów--"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="middle" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nazwa komunikatu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opis
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+RegisterWorker
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat rejestrujący worker o danym id w serwisie mastera.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkIsReady
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Informacja o tym, że master posiada zakolejkowane zadanie po które dany
+ worker może się zgłosić.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Protokół-Master/Worker."
+
+\end_inset
+
+ pokazano przepływ informacji podczas zlecenia oraz realizacji zadania.
+ Dla uproszczenia przedstawiono przypadek zadania zrealizowanego bez przesyłania
+ częściowych wyników.
+ W przypadku zadań trwających długo lub gdzie czas trwania nie jest z góry
+ określony tzw.
+ 
+\shape italic
+long-running jobs
+\shape default
+ wprowadzono również komunikat 
+\shape italic
+WorkInProgress
+\shape default
+, który jest przesyłany cyklicznie w trakcie wykonywania zadania i zawiera
+ jego częściowe wyniki, czyli pomiędzy komunikatami 
+\shape italic
+Work
+\shape default
+ a 
+\shape italic
+WorkIsDone
+\shape default
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1266,6 +1687,223 @@ name "fig:Protokół-Master/Worker."
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Opis-komunikatów-w"
+
+\end_inset
+
+ przedstawiono opis komunikatów przesyłanych w trakcie procesu realizacji
+ zadań.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Opis komunikatów w trakcie realizacji zadania.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Opis-komunikatów-w"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nazwa komunikatu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opis
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Work
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat przechowujący parametry konfiguracyjne zadania jak również jego
+ id.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Ack
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Potwierdzenie odebrania poprzedniego komunikatu.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkIsReady
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Informacja o tym, że master posiada zakolejkowane zadanie po które dany
+ worker może się zgłosić.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkerRequestsWork
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat przechowujący id workera i informujący mastera, że dany worker
+ jest wolny i może zająć się kolejnym zadaniem.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkIsProgress
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat przechowujący częściowe wyniki zadania jak również jego id oraz
+ id workera.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkIsDone
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat przechowujący końcowe wyniki zadania jak i jego id oraz id workera.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 
 \end_layout
@@ -1276,14 +1914,26 @@ name "fig:Protokół-Master/Worker."
 \end_layout
 
 \begin_layout Standard
-Work Pulling Pattern 
+Do odpowiedniego rozłożenia obciążenia pomiędzy pracujących workerów początkowo
+ rozważano podejście gdzie to master decyduje, któremu workerowi przydzielić
+ zadanie bazując między innymi na metrykach takich jak obciążenie CPU lub
+ zajętość pamięci RAM.
+ Jednak okazało się ono nieefektywne w implementacji testowanych algorytmów
+ genetycznych, ponieważ te metryki zmieniały zazwyczaj z opóźnieniem pozostawiaj
+ąc workera w stanie bezczynności.
+ Zdecydowano się zaimplementować podejście zwane
+\shape italic
+ Work Pulling Pattern
+\shape default
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "50"
 
 \end_inset
 
-
+ gdzie to wolny worker zgłasza się po zadanie a nie oczekuje na reakcję
+ mastera.
 \end_layout
 
 \end_body

@@ -205,14 +205,14 @@ Stan klastra propagowany jest za pomocą protokołu Gossip opisanego w poprzedni
  Dzieje się tak dlatego, że w przypadku gdy urządzenie utraci kontakt z
  pozostałymi urządzeniami, nie może ono z pewnością stwierdzić co było przyczyną
  awarii i zakłada, że jest jedynym urządzeniemi w klastrze.
- W trakcie awarii urządzenia podczas wykonywania obliczeń dzięki występowaniu
- migracji opisanej w jednym z kolejnych podrozdziałów nie tracimy wszystkich
- wyników pracy a jedynie te uzyskane od poprzedniej migracji.
  
 \end_layout
 
 \begin_layout Standard
-Stan mastera jest zapisywany w bazie danych, co pozwala na jego odtworzenie
+W trakcie awarii urządzenia podczas wykonywania obliczeń dzięki występowaniu
+ migracji opisanej w jednym z kolejnych podrozdziałów nie tracimy wszystkich
+ wyników pracy a jedynie te uzyskane od poprzedniej migracji.
+ Stan mastera jest zapisywany w bazie danych, co pozwala na jego odtworzenie
  w przypadku awarii urządzenia z aktywnym masterem.
  Do bazy danych persystowane są zserializowane zdarzenia zgodnie ze wzorcem
  Event Sourcing opisanym w pozycjach 
@@ -224,10 +224,7 @@ key "18,19"
 
 .
  Zdarzenia te odzwierciedlają stan przyjętego zadania.
-\end_layout
-
-\begin_layout Standard
-Listę zdarzeń oraz ich opis przedstawiono w tabeli 
+ Listę zdarzeń oraz ich opis przedstawiono w tabeli 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Lista-zdarzeń-sterujących"
@@ -283,6 +280,7 @@ Nazwa stanu
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Opis
 \end_layout
 
@@ -305,6 +303,7 @@ WorkAccepted
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Stan zadania po przyjęciu go przez mastera oraz wysłaniu potwierdzenia do
  klienta.
 \end_layout
@@ -328,6 +327,7 @@ WorkStarted
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Stan zadania przekazanego do realizacji do workera.
 \end_layout
 
@@ -350,6 +350,7 @@ WorkInProgress
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Stan zadania w trakcie trwania obliczeń, przechowujący częsciowe wyniki
  zadania.
 \end_layout
@@ -373,6 +374,7 @@ WorkCompleted
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Stan zadania otrzymany po zakończeniu obliczeń, przechowujący końcowe wyniki.
 \end_layout
 
@@ -395,6 +397,7 @@ WorkerFailed
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Stan zadania zakończonego niepowodzeniem.
 \end_layout
 
@@ -417,6 +420,7 @@ WorkerTimedOut
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Stan zadania ustawiany jeśli worker pracujący nad danym zadaniem nie odeśle
  wyników w określonym czasie.
 \end_layout
@@ -439,7 +443,7 @@ Stan zadania ustawiany jeśli worker pracujący nad danym zadaniem nie odeśle
 \begin_layout Standard
 Dla przykładu, jeżeli klient zadał zadanie i zmieniło ono stan na WorkAccepted
  (czyli zostało zaakceptowane ale nie przesłane jeszcze do żadnego workera)
- a w tym samym czasie nastąpiła jakaś awaria przerywająca pracę mastera
+ a w tym samym czasie nastąpiła jakaś awaria przerywająca pracę mastera,
  kolejna instancja mastera zostanie aktywowana na innym urządzeniu i odtworzy
  stan mastera, który uległ awarii, co oznacza, że klient nie będzie musiał
  ponownie rozpoczynać zadania, lecz jego poprzednio rozpoczęte zadanie zostanie
@@ -593,13 +597,6 @@ name "fig:Schemat-blokowy-ewolucji."
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-Opisać w jakis sposób została dostosowana, jak wygląda ewolucja (schemat
- blokowy), populacja, chromosom, gen.
-\end_layout
-
-\begin_layout Standard
 Zadanie jest konfigurowane parametrami przedstawionymi w tabeli 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -648,6 +645,7 @@ name "tab:Parametry-zadania."
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align center
 Nazwa parametru
 \end_layout
 
@@ -657,6 +655,7 @@ Nazwa parametru
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align center
 Opis
 \end_layout
 
@@ -679,6 +678,7 @@ Dimension
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Wymiar optymalizowanej funkcji ciągłej.
 \end_layout
 
@@ -701,6 +701,7 @@ Cycles
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Maksymalna ilość cykli ewolucji.
 \end_layout
 
@@ -723,10 +724,13 @@ Initial population size
 \begin_inset Text
 
 \begin_layout Plain Layout
+\paragraph_spacing onehalf
+\align left
 Początkowy rozmiar populacji (podczas krzyżowania 
 \end_layout
 
 \begin_layout Plain Layout
+\align left
 i mutacji liczba osobników populacji zostaje wzrasta).
 \end_layout
 
@@ -749,6 +753,7 @@ Maximum population size
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Maksymalny rozmiar populacji.
 \end_layout
 
@@ -771,6 +776,7 @@ Snapshot frequency
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Częstotliwość persystowania wyników obliczeń (w tym przypadku osobników
  populacji).
  *
@@ -795,6 +801,7 @@ Migration frequency
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Częstotliwość występowania migracji.
  *
 \end_layout
@@ -818,6 +825,7 @@ Mutation parameter
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Parametr mutacji, określa wpływ mutacji na geny.
 \end_layout
 
@@ -840,6 +848,7 @@ Migration factor
 \begin_inset Text
 
 \begin_layout Plain Layout
+\align left
 Procent migrującej populacji.
 \end_layout
 
@@ -864,12 +873,13 @@ Procent migrującej populacji.
 
 \begin_layout Standard
 Migracja odbywa się poprzez wybranie pewnej ilości najlepszych osobników
- populacji oraz wysłaniu ich do innego węzła klastra, wykonuje się ona co
- określoną liczbę cykli konfigurowalną w parametrach zadania.
- Zaimplementowano dwa rodzaje wyboru węzła do którego wysyłani są migrujący
+ populacji oraz wysłanie ich do innego węzła klastra.
+ Wykonuje się ona co określoną liczbę cykli konfigurowalną w parametrach
+ zadania.
+ Do wyboru są dwa rodzaje selekcji węzła do którego wysyłani są migrujący
  osobnicy.
  Pierwszy to jest wybór losowy a drugi metodą round-robin, czyli wysyłanie
- migrującej częsci populacji na zmianę do każdego kolejnego węzła 
+ migrującej części populacji na zmianę do każdego kolejnego węzła 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "21"
@@ -906,9 +916,9 @@ reference "fig:Problem-Rastrigina."
 
  zaprezentowano wygląd interfejsu użytkownika pozwalającego na podgląd wyników
  rozpoczętych zadań oraz rozpoczęcie nowych.
- Widoczne jest tutaj każde urządzenie wykonujące obliczenia w klastrze,
- które są identyfikowane po adresie IP oraz ID workera.
- Każde zadanie oraz worker rozróżniane są dodatkowo unikalnymi identyfikatorami.
+ Widoczne jest tutaj każde z urządzeń wykonujących obliczenia w klastrze
+ i są one identyfikowane po adresie IP oraz ID workera.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -938,7 +948,7 @@ key "23"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1001,7 +1011,7 @@ Funkcja Rastrigina jest funkcją niewypukłą.
 \begin_inset Formula $f(x)=0$
 \end_inset
 
-, bywa trudna w optymalizacji, ponieważ algorytmy optymalizacyjne mogą utknąć
+ bywa trudna w optymalizacji, ponieważ algorytmy optymalizacyjne mogą utknąć
  w którymś z lokalnych minimów tracąc szanse na znalezienie minimum globalnego.
  Funckja ta często znajduje zatem zastosowanie jako funkcja testująca algorytmy
  optymalizacyjne.
@@ -1169,7 +1179,7 @@ Dystrybucja
 \end_layout
 
 \begin_layout Standard
-Do łatwej dystrybucji platformy między innymi urządzeniami wykorzystano
+Do łatwej dystrybucji platformy między różnymi urządzeniami wykorzystano
  dodatek projektu Akka o nazwie Microkernel oraz rozszerzenie Sbt o nazwie
  sbt-native-packager.
 \end_layout
@@ -1192,11 +1202,12 @@ key "15,16"
 \end_layout
 
 \begin_layout Standard
-Umożliwia to łatwą instalację platformy na różnych urządzeniach klastra.
- Dzięki temu aby uruchomić platformę na danym urządzeniu wystarczy aby posiadało
- ono zainstalowany system wraz z wirtualną maszyną Javy oraz archiwum z
- platformą, które po rozpakowaniu pozwala uruchomić aplikację za pomocą
- jednego skryptu wykonywalnego.
+Umożliwia to łatwą instalację oraz uruchomienie platformy na różnych urządzeniac
+h klastra.
+ Do uruchomienia platformy na danym urządzeniu wystarczy aby posiadało ono
+ zainstalowany system wraz z wirtualną maszyną Javy oraz archiwum z platformą,
+ które po rozpakowaniu pozwala uruchomić aplikację za pomocą jednego skryptu
+ wykonywalnego.
  Żadne dodatkowe oprogramowanie nie jest wymagane.
 \end_layout
 
@@ -1415,9 +1426,9 @@ Podsumowując, zauważono, że większy współczynnik mutacji przyśpiesza znaj
 \end_layout
 
 \begin_layout Standard
-Podczas przeprowadzania testów w klastrze pracowały dwa typy urządzeń Raspberry
- Pi, model B oraz B plus, który jest nowszy od modelu B oraz posiada większą
- ilość zaistalowanej pamięci RAM 
+Warto dodać, że podczas przeprowadzania testów w klastrze pracowały dwa
+ typy urządzeń Raspberry Pi, model B oraz B plus, który jest nowszy od modelu
+ B oraz posiada większą ilość zaistalowanej pamięci RAM 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "26"
@@ -1461,12 +1472,12 @@ Mają one bezpośredni wpływ na skalowalność platformy.
 \end_layout
 
 \begin_layout Standard
-Bez występowania migracji osobników pomiędzy wyspami (węzłami klastra),
- teoretycznie mogłaby zaistnieć sytuacja, gdy pomimo pracy kilku urządzeń
- w klastrze, każde z nich uzyskałoby takie same wyniki w zbliżonym czasie,
- co oznaczałoby, że równie dobrze obliczenia mogłyby być przeprowadzane
- tylko na jednym urządzeniu, bo wzrost liczby urządzeń nie wpłynął znacząco
- na szybkość znajdywanych wyników.
+Bez występowania migracji osobników pomiędzy wyspami (węzłami klastra) mogłaby
+ zaistnieć sytuacja, gdy pomimo pracy kilku urządzeń w klastrze każde z
+ nich uzyskałoby podobne wyniki w zbliżonym czasie, co oznaczałoby, że równie
+ dobrze obliczenia mogłyby być przeprowadzane tylko na jednym urządzeniu,
+ bo wzrost liczby urządzeń nie wpłynął znacząco na szybkość znajdywanych
+ wyników.
 \end_layout
 
 \begin_layout Standard
@@ -1474,7 +1485,7 @@ Dzięki zastosowaniu migracji, gdy do klastra zostaje włączone nowe urządzeni
  i zaczyna wykonywać obliczenia, to po odebraniu osobników migrujących z
  innej wyspy, którzy z dużym prawdopodobieństwem będą zawierali lepszej
  jakości rozwiązania aniżeli nowo zainicjalizowani osobnicy na aktualnej
- wyspie, ewolucja takiej wyspy zostaje przyśpieszona.
+ wyspie ewolucja takiej wyspy zostaje przyśpieszona.
  Przy wysokiej częstości migracji oraz dużym procencie migrującej populacji
  istnieje ryzyko, że wyspy zostaną zdominowane przez osobników o podobnych
  cechach, co może prowadzić do odnalezienia jedynie lokalnego minimum zamiast
@@ -1486,7 +1497,7 @@ Dzięki zastosowaniu migracji, gdy do klastra zostaje włączone nowe urządzeni
 
 \series bold
 Tutaj chciałbym pokazać jaki jest wpływ migracji oraz jej parametrów na
- wyniki obliczeń porównując wyniki w poprzedniego podrozdziału uzyskane
+ wyniki obliczeń porównując wyniki z poprzedniego podrozdziału uzyskane
  dla jednego urządzenia..
 \end_layout
 
@@ -1533,7 +1544,8 @@ Częstość wykonywania zapisów do bazy, przesyłania wyników częściowych do
 
 \begin_layout Standard
 Pozostałym parametrem konfigurującym zadanie jest częstość przesyłania wyników
- częściowych do klienta oraz ich persystencja.
+ częściowych do klienta co ma wpływ również na częstość wykonywania zapisów
+ do bazy.
 \end_layout
 
 \begin_layout Subsection
