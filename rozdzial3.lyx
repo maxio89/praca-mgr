@@ -1156,13 +1156,9 @@ backend
  klienckie.
  Na wspomnianym rysunku pokazano także kilka aktorów uruchomionych na wybranych
  urządzeniach.
- Aplikacja kliencka, która dostarcza interfejsu użytkownika może zostać
- uruchomiona na oddzielnym urządzeniu lub na urządzeniu, które posiada już
- uruchomioną aplikację zajmującą się obliczeniami, czyli posiadającą instancję
- workera.
- Wszystkie urządzenia pracują w sieci lokalnej z wykorzystaniem technologii
- Ethernet.
- Użytkownik komunikuje za pomocą protokołu HTTP z urządzeniem klienckim,
+ Założono również, że urządzenia pracują w sieci lokalnej z wykorzystaniem
+ technologii Ethernet.
+ Użytkownik komunikuje się za pomocą protokołu HTTP z urządzeniem klienckim,
  które z kolei przesyła odpowiednie żadania do urządzenia posiadającego
  aktywnego mastera.
  Urządzenie klienckie nie musi posiadać informacji o tym gdzie dokładnie
@@ -1186,8 +1182,8 @@ Urządzenia wykonujące obliczenia w klastrze komunikują się ze sobą za pomoc
  o nadchodzących zadaniach od klienta.
  Z kolei komunikacja w drugą stronę, np.
  gdy worker skończył wykonywać zadanie i chce wysłać zgromadzone wyniki
- odbywa się przez proxy, ponieważ worker nie wie na którym urządzeniu znajduje
- się aktywny master.
+ odbywa się poprzez proxy, ponieważ worker nie wie na którym urządzeniu
+ znajduje się aktywny master.
  Gdy master otrzyma wyniki zadania od realizującego je workera odsyła je
  do klienta za pomocą rozszerzenia 
 \shape italic
@@ -1195,8 +1191,8 @@ Distributed Publish Subscribe in Cluster
 \shape default
 opisanego w jednym z poprzednich podrozdzialow.
  Co oznacza, że nie musi posiadać informacji o adresie IP klienta, ponieważ
- publikuje wiadomości w wybranym temacie i otrzymają je tylko zainteresowani
- klienci.
+ publikuje wiadomości w wybranym kanale i otrzymają je tylko zainteresowani
+ klienci, którzy obserwują dany kanał.
 \end_layout
 
 \begin_layout Standard
@@ -1209,8 +1205,9 @@ reference "fig:Podgląd-architektury."
 
  pokazano jedynie kilka najważniejszych aktorów działających na urządzeniach
  będących częścią klastra.
- Zostali oni opisani wraz z pozostałymi, którzy również są aktywni podczas
- działania platformy w następnym podrozdziale.
+ Zostali oni opisani razem z pozostałymi, którzy również są aktywni podczas
+ działania platformy w następnym podrozdziale wraz z podziałem na aplikacje
+ w których są wykorzystywani.
 \end_layout
 
 \begin_layout Standard
@@ -1277,28 +1274,26 @@ ClusterSingletonManager, aktor dostarczony wraz z rozszerzeniem
 \shape italic
 Akka Cluster Singleton
 \shape default
-, który odpowiada za to aby w klastrze była obecna tylko jedna instancja
+, który odpowiada za to aby w klastrze była aktywna tylko jedna instancja
  mastera.
- Zostaje on uruchomiony na wszystkich węzłach lub na węzłach z konkretną
- rolą.
+ Zostaje on uruchomiony na wszystkich węzłach lub na węzłach z wybraną rolą.
  Instancjonuje aktora singletona na najstarszym węźle, czyli takim, który
  dołączył do klastra najwcześniej.
  Monitoruje on również stan dostępności węzła na którym uruchomiony jest
- aktor singleton i w przypadku jakiś awarii startuje nową instancję aktora
- singletona na innym węźle.
+ aktor singleton i w przypadku awarii startuje nową instancję na innym węźle.
 \end_layout
 
 \begin_layout Itemize
 ClusterSingletonProxy, aktor współpracujący z poprzednim opisanym aktorem
- i będący proxy zapewniającym dostęp do aktora singletona czyli mastera.
+ i będący proxy zapewniającym dostęp do aktora singletona czyli w tym przypadku
+ mastera.
  Jest on uruchomiony na każdym węźle, który potrzebuje komunikować się z
  masterem i działa jak router przekierowujący wszystkie przychodzące wiadomości
  do aktora singletona.
  Jeśli aktor ten jest niedostępny np.
- ze względu na awarię lub jest w trakcie odzyskiwania sprawności zadaniem
+ ze względu na awarię lub jest w trakcie odzyskiwania sprawności, zadaniem
  aktora ClusterSingletonProxy jest przechowywanie wszystkich odebranych
- wiadomości aż do momentu ponownego nawiązania komunikacji.
- 
+ wiadomości aż do momentu ponownego nawiązania komunikacji 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "14"
@@ -1310,34 +1305,33 @@ key "14"
 
 \begin_layout Itemize
 DistributedPubSubMediator, aktor ten zostaje uruchomiony na wszystkich węzłach
- klastra lub na węzłach z konkretną rolą.
+ klastra lub na węzłach z wybraną rolą.
  Zarządza rejestracją innych aktorów do wybranych kanałów komunikacji oraz
  replikuje tą wiedzę pośród inne instancje pracujące na pozostałych urządzeniach
  klastra tak aby zachować spójność tych danych w obrębie klastra.
  Zajmuje się również wysyłaniem wiadomości z każdego urządzenia klastra
  do zarejestrowanych aktorów pracujących na jakimkolwiek urządzeniu w obrębie
- klastra.
- 
+ klastra 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "47"
 
 \end_inset
 
-,
+.
 \end_layout
 
 \begin_layout Itemize
 Master, jest to tzw.
  aktor singleton.
- Oznacza to że w obrębie klastra powinna być aktywna tylko jedna instancja
+ Oznacza to, że w obrębie klastra powinna być aktywna tylko jedna instancja
  tego aktora.
  Jest to zapewnione poprzez aktora ClusterSingletonManager opisanego powyżej.
  Dostęp do mastera uzyskuje się poprzez proxy, czyli aktora ClusterSingletonProx
 y z każdego urządzenia pracującego w klastrze.
  Głównymi zadaniami tego aktora są: przydzielanie zadań workerom, zarządzanie
  ich rejestracją, odbieranie wyników i przesyłanie ich do klienta, reagowanie
- w sytuacji awarii workera i zapisywanie wyników do bazy.
+ w sytuacji awarii workera oraz zapisywanie wyników do bazy.
 \end_layout
 
 \begin_layout Itemize
@@ -1345,8 +1339,9 @@ Worker, jest to aktor realizujący zadania otrzymane od mastera po uprzedniej
  rejestracji.
  Każdy worker uruchamia jedną instancję aktora wykonującego właściwe obliczenia,
  po to aby zachować responsywność w komunikacji z masterem.
- Zajmuje się on również procesem migracji gdzie znowu jest wykorzystywany
- mechanizm dostarczony wraz z rozszerzeniem 
+ Zajmuje się on również procesem migracji, gdzie znowu jest wykorzystywany
+ mechanizm publikowania w wybranym kanale dostarczony wraz z rozszerzeniem
+ 
 \shape italic
 Distributed Publish Subscribe.
 \end_layout
@@ -1385,14 +1380,21 @@ Metrics, aktor subskrybujący zdarzenia związane ze zmianą różnych metryk
 \end_layout
 
 \begin_layout Itemize
-Monitor, aktory obserwujący zdarzenia związane z członkostwem w klastrze.
+Monitor, aktor obserwujący zdarzenia związane z członkostwem w klastrze.
  Jeśli jakiś węzeł dołącza do klastra lub go opuszcza taka informacja jest
  aktualizowana na widoku.
 \end_layout
 
 \begin_layout Standard
-Poza wyżej wymienionymi aktorami działającymi w aplikacji frontend, posiada
- ona również kilka tych samych aktorów co aplikacja frontend, m.in.
+Poza wyżej wymienionymi aktorami działającymi w aplikacji 
+\shape italic
+frontend
+\shape default
+, posiada ona również kilka tych samych aktorów co aplikacja 
+\shape italic
+backend
+\shape default
+, m.in.
  ClusterSingletonProxy oraz DistributedPubSubMediator, którzy służą do komunikac
 ji z masterem oraz odbieraniem wyników realizowanych zadań.
 \end_layout
@@ -1416,11 +1418,11 @@ reference "fig:Protokół-Master/Worker."
 
 \end_inset
 
- przedstawiono dwa najważniejsze protokoły definiujące kolejność oraz znaczenie
- poszczególnych wiadomości i służące do komunikacji na linii Frontend -
- Master - Worker - WorkExecutor.
- Widoczni są tam aktorzy biorący lub nie udział w komunikacji oraz rodzaje
- wiadomości przesyłanych między nimi.
+ przedstawiono dwa najważniejsze protokoły definiujące kolejność oraz rodzaje
+ przesyłanych wiadomości służących do komunikacji na linii Frontend - Master
+ - Worker - WorkExecutor.
+ Widoczni są tam również aktorzy biorący lub nie udział we wspomnianej komunikac
+ji.
 \end_layout
 
 \begin_layout Standard
@@ -1571,7 +1573,7 @@ RegisterWorker
 \begin_inset Text
 
 \begin_layout Plain Layout
-Komunikat rejestrujący worker o danym id w serwisie mastera.
+Komunikat rejestrujący workera o danym ID w serwisie mastera.
 \end_layout
 
 \end_inset
@@ -1624,7 +1626,7 @@ reference "fig:Protokół-Master/Worker."
 
 \end_inset
 
- pokazano przepływ informacji podczas zlecenia oraz realizacji zadania.
+ pokazano przepływ informacji podczas zlecania oraz realizacji zadania.
  Dla uproszczenia przedstawiono przypadek zadania zrealizowanego bez przesyłania
  częściowych wyników.
  W przypadku zadań trwających długo lub gdzie czas trwania nie jest z góry
@@ -1638,7 +1640,7 @@ long-running jobs
 WorkInProgress
 \shape default
 , który jest przesyłany cyklicznie w trakcie wykonywania zadania i zawiera
- jego częściowe wyniki, czyli pomiędzy komunikatami 
+ jego częściowe wyniki, można go umiejscowić pomiędzy komunikatami 
 \shape italic
 Work
 \shape default
@@ -1718,7 +1720,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Opis komunikatów w trakcie realizacji zadania.
+Opis komunikatów przesyłanych w trakcie realizacji zadania.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -1737,7 +1739,7 @@ name "tab:Opis-komunikatów-w"
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="2">
+<lyxtabular version="3" rows="8" columns="2">
 <features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="12cm">
@@ -1778,7 +1780,7 @@ Work
 
 \begin_layout Plain Layout
 Komunikat przechowujący parametry konfiguracyjne zadania jak również jego
- id.
+ ID.
 \end_layout
 
 \end_inset
@@ -1845,7 +1847,7 @@ WorkerRequestsWork
 \begin_inset Text
 
 \begin_layout Plain Layout
-Komunikat przechowujący id workera i informujący mastera, że dany worker
+Komunikat przechowujący ID workera i informujący mastera, że dany worker
  jest wolny i może zająć się kolejnym zadaniem.
 \end_layout
 
@@ -1868,8 +1870,30 @@ WorkIsProgress
 \begin_inset Text
 
 \begin_layout Plain Layout
-Komunikat przechowujący częściowe wyniki zadania jak również jego id oraz
- id workera.
+Komunikat przechowujący częściowe wyniki zadania jak również jego ID oraz
+ ID workera.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkIsDone
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat przechowujący WorkResult oraz ID workera.
 \end_layout
 
 \end_inset
@@ -1882,7 +1906,7 @@ Komunikat przechowujący częściowe wyniki zadania jak również jego id oraz
 \begin_layout Plain Layout
 
 \series bold
-WorkIsDone
+WorkResult
 \end_layout
 
 \end_inset
@@ -1891,7 +1915,7 @@ WorkIsDone
 \begin_inset Text
 
 \begin_layout Plain Layout
-Komunikat przechowujący końcowe wyniki zadania jak i jego id oraz id workera.
+Komunikat przechowujący końcowe wyniki zadania jak i jego ID.
 \end_layout
 
 \end_inset
@@ -1920,8 +1944,8 @@ Do odpowiedniego rozłożenia obciążenia pomiędzy pracujących workerów pocz
  zajętość pamięci RAM.
  Jednak okazało się ono nieefektywne w implementacji testowanych algorytmów
  genetycznych, ponieważ te metryki zmieniały zazwyczaj z opóźnieniem pozostawiaj
-ąc workera w stanie bezczynności.
- Zdecydowano się zaimplementować podejście zwane
+ąc workera w stanie bezczynności przez jakiś określony czas.
+ Zdecydowano się zatem zaimplementować podejście zwane
 \shape italic
  Work Pulling Pattern
 \shape default

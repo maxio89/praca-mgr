@@ -109,7 +109,7 @@ name "cha:podsumowanie"
 
 \begin_layout Standard
 W poniższym rozdziale zostało zawarte podsumowanie niniejszej pracy.
- Opisane zostały wnioski oraz nakreślono możliwości dalszego rozwoju.
+ Opisano również wnioski oraz nakreślono możliwości dalszego rozwoju.
 \end_layout
 
 \begin_layout Section
@@ -117,16 +117,16 @@ Wnioski
 \end_layout
 
 \begin_layout Standard
-W ramach niniejszej pracy udało się spełnić początkowe wymagania i przygotować
+W ramach niniejszej pracy udało się spełnić początkowe założenia i przygotować
  platformę oferującą możliwość uruchomienia obliczeń na wielu urządzeniach
  pracujących w klastrze, dostarczającą narzędzi do monitoringu, rozwiązującą
  problem load-balancingu zadań, skalowalności a także zapewniającą wsparcie
  w sytuacji awarii tychże urządzeń, poprzez reorganizację oraz odzyskiwanie
  sprawności czyli powrót do stanu klastra sprzed wystąpienia awarii.
- Pozwalającą również na skuteczne obliczenia wykorzystując ograniczoną moc
- obliczeniową urządzeń SoC.
+ Platforma pozwala również na prowadzenie efektywnych obliczeń mimo ograniczonej
+ mocy obliczeniowej urządzeń SoC.
  Wykorzystanie tych urządzeń oraz technologii działających na maszynie wirtualne
-j Javy zapewniło dużą mobilność tego rozwiązania.
+j Javy zapewnia mobilność tego rozwiązania.
 \end_layout
 
 \begin_layout Standard
@@ -154,7 +154,7 @@ Możliwości rozwoju
 \begin_layout Standard
 Rozwiązanie stworzone na potrzeby niniejszej pracy posiada kilka ciekawych
  aspektów nad którymi badania mogą być kontynuowane.
- Kilka z nich zostało opisane poniżej.
+ Kilka z nich zostało opisanych poniżej.
 \end_layout
 
 \begin_layout Subsection
@@ -167,7 +167,7 @@ W testowanym rozwiązaniu rozważono tylko jedną aplikację kliencką, będąc�
  W kolejnych etapach prac nad stworzoną platformą warto byłoby się pokusić
  o zaimplementowanie przypadku gdzie klientów jest więcej i w różnym stopniu
  obciążają oni urządzenia pracujące w klastrze a także nad sposobem dysponowania
- wolnymi węzłami tak aby jeden klient nie zajał wszystkich dostępnych węzłów
+ wolnymi węzłami tak aby jeden klient nie zajął wszystkich dostępnych węzłów
  podczas gdy reszta nie byłaby w żaden sposób obsługiwana.
 \end_layout
 
@@ -176,15 +176,15 @@ Sieć rozgległa
 \end_layout
 
 \begin_layout Standard
-Na potrzeby niniejszej pracy rozważono pracę urządzeń klastra w sieci lokalnej
- lecz rozwiązanie to mogłoby się również sprawdzić w sieci globalnej Internet,
- gdzie węzły klastra mogłybyć uruchomione na różnego typu urządzeniach znacząco
- oddalonych od siebie lecz mających do siebie dostęp za pomocą protokołu
- TCP/IP.
- Istnotnym tutaj aspektem byłaby zróżnicowana przepustowość połączenia,
- ponieważ w takim przypadku pasowałoby dobrać odpowiednie ustawienia detekcji
- awarii i arbitralne wybranie dozwolonego czasu opóźnień mogłoby być problematyc
-zne.
+Na potrzeby niniejszej pracy rozważono działanie urządzeń klastra w sieci
+ lokalnej lecz przygotowane rozwiązanie mogłoby się również sprawdzić w
+ sieci globalnej Internet, gdzie węzły klastra mogłyby być uruchomione na
+ różnego typu urządzeniach znacząco oddalonych od siebie i mających do siebie
+ dostęp za pomocą protokołu TCP/IP.
+ Ciekawym aspektem tutaj byłaby zróżnicowana przepustowość połączenia, ponieważ
+ w takim przypadku trzeba byłoby dobrać odpowiednie ustawienia detekcji
+ awarii i arbitralne wybranie dozwolonego czasu opóźnień mogłoby być niełatwym
+ zadaniem.
  
 \end_layout
 
@@ -208,8 +208,7 @@ key "58"
 \end_inset
 
 , które pozwalają na wykonywanie kodu napisanego w Scali na procesorach
- graficznych i równoległych prowadzeniach obliczeń na dwóch różnych typach
- procesorów.
+ graficznych i równoległym prowadzeniu obliczeń na różnych architekturach.
  W roku 2011 Martin Odersky, współtwórca języka Scala oraz jego zespół pracujący
  na uniwersytecie w Lozannie uzyskali wielomilionowy grant od Europejskiej
  Rady ds.
@@ -233,11 +232,11 @@ Inne algorytmy
 
 \begin_layout Standard
 Kolejną kwestią którą można rozważyć w planach dalszego rozwoju jest zaimplement
-owanie innych algorytmów, które będą w stanie wykorzystać w pełni potencjał
- stworzonego rozwiązania.
- Wartoby również poeksperymentować z różnymi modyfikacjami algorytmów genetyczny
-ch, takimi jak inne metody selekcji lub krzyżowania aby uzyskać jeszcze
- większą efektywność obliczeń.
+owanie innych algorytmów, które będą w stanie wykorzystać potencjał stworzonej
+ platformy.
+ Warto byłoby również poeksperymentować z różnymi modyfikacjami algorytmów
+ genetycznych, takimi jak różne metody selekcji lub krzyżowania, aby uzyskać
+ jeszcze większą efektywność obliczeń.
 \end_layout
 
 \begin_layout Subsection
@@ -249,15 +248,15 @@ Urządzenia SoC na których testowano przygotowaną platformę posiadają ograni
  możliwości obliczeniowe, co oznacza, że uruchamiane na nich aplikacje powinny
  być zoptymalizowane pod tym kątem.
  Wykorzystanie pamięci RAM oraz procesora jest tutaj bardzo istotne i może
- w znaczny sposób wpłynąć na wyniki obliczeń więc nie można pozwolić sobie
- na niepotrzebne operacje i nadmierną zajętość pamięci, co może wydłużyć
- wykonywanie obliczeń.
+ w znaczny sposób wpłynąć na szybkość obliczeń.
+ Nie można zatem pozwolić sobie na zbędne operacje i nadmierną zajętość
+ pamięci, co mogłoby wydłużyć wykonywanie obliczeń.
  Warto byłoby użyć jakiegoś narzędzia do profilowania JVM aby sprawdzić
  czy nie ma żadnych wycieków pamięci a także przenalizować zrzut pamięci
  (tzw.
  head dump) pod kątem instancjonowanych obiektów oraz zajętości pamięci.
- Możnaby również wykonać tuning GC (garbage collector) oraz spróbować dobrać
- optymalne parametry.
+ Można byłoby również wykonać tuning GC (garbage collector) oraz spróbować
+ dobrać optymalne parametry.
 \end_layout
 
 \begin_layout Subsection
@@ -270,7 +269,7 @@ W ostatnich latach coraz bardziej wzrasta znaczenie urządzeń podłączonych
  Coraz więcej sprzętu codziennego użytku posiada zainstalowane układy procesorow
 e o wystarczającej mocy obliczeniowej aby móc obsłużyć systemy mobilne takie
  jak Android.
- Stwarza to zatem pole do popisu oraz nowych pomysłów wykorzystania stworzonego
+ Stwarza to zatem pole do popisu oraz nowe pomysły wykorzystania stworzonego
  rozwiązania w wersji bardziej rozproszonej.
 \end_layout
 
