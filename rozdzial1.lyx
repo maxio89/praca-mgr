@@ -71,7 +71,7 @@
 \begin_body
 
 \begin_layout Chapter
-Wprowadzenie
+Wstęp
 \begin_inset CommandInset label
 LatexCommand label
 name "cha:wprowadzenie"
@@ -81,8 +81,8 @@ name "cha:wprowadzenie"
 
 \end_layout
 
-\begin_layout Section
-Wstęp
+\begin_layout Section*
+Motywacja
 \end_layout
 
 \begin_layout Standard
@@ -133,7 +133,7 @@ j, bariery technologiczne rozwoju procesorów sekwencyjnych, dzielenie zasobów,
  
 \end_layout
 
-\begin_layout Section
+\begin_layout Section*
 Aktualny stan wiedzy
 \end_layout
 
@@ -214,7 +214,7 @@ ch w wirtualnej maszynie Javy, co jeszcze bardziej zwiększy mobilność powsta�
  platformy.
 \end_layout
 
-\begin_layout Section
+\begin_layout Section*
 Cel pracy
 \end_layout
 
@@ -258,6 +258,72 @@ enia na pytanie czy jest możliwe zaprogramowanie komunikacji między elementami
  poświęcać na implementację rozwiązania samego problemu aniżeli na uruchomienie
  tej implementacji lub tworzenie rozwiązań pasujących do konkretnego sprzętu
  (architektury) lub systemu.
+\end_layout
+
+\begin_layout Section*
+Opis rozdziałów
+\end_layout
+
+\begin_layout Standard
+W pierwszym rozdziale został zawarty wstęp oraz cel pracy.
+\end_layout
+
+\begin_layout Standard
+W drugim rozdziale został opisany kontekst rozpatrywanego problemu oraz
+ została przedstawiona
+\end_layout
+
+\begin_layout Standard
+charakterystyka rozwi ̨azania propowanego w niniejszej pracy.
+\end_layout
+
+\begin_layout Standard
+W trzecim rozdziale zostały opisane urz ̨adzenia SoC oraz Cluster Computing.
+\end_layout
+
+\begin_layout Standard
+W czwartym rozdziale zostan ̨a przedstawione sposoby zrównoleglenia algorytmów
+ ewolucyjnych.
+\end_layout
+
+\begin_layout Standard
+W pi ̨atym rozdziale zostały opisane rozwi ̨azania implementacyjne zastosowane
+ przy realizacji
+\end_layout
+
+\begin_layout Standard
+niniejszej pracy.
+\end_layout
+
+\begin_layout Standard
+W szóstym rozdziale zostało zawarte podsumowanie w którym zostały omówione
+ wyniki pracy oraz
+\end_layout
+
+\begin_layout Standard
+naswietlone mo ́ zliwo ̇ sci rozwoju.
+ ́
+\end_layout
+
+\begin_layout Standard
+Ostatnim rozdziałem pracy jest bibliografia zawieraj ̨aca przegl ̨ad literatury,
+ artykułów oraz innych
+\end_layout
+
+\begin_layout Standard
+pozycji wykorzystanych w niniejszej pracy.
+\end_layout
+
+\begin_layout Standard
+Został takze stworzony listing wszystkich wykresów, schematów oraz rysunków,
+ jak równie ̇ z tabel ̇
+\end_layout
+
+\begin_layout Standard
+oraz wzorów.
+ Do pracy została doł ̨aczona równiez instrukcja uruchomienia stworzonego
+ rozwi ̨azania.
+ ̇
 \end_layout
 
 \end_body

@@ -1,0 +1,277 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass aghdpl
+\begin_preamble
+\chapter{Pierwszy dokument}
+\label{cha:pierwszyDokument}
+
+W rozdziale tym przedstawiono podstawowe informacje dotyczące struktury prostych plików \LaTeX a. Omówiono również metody kompilacji plików z zastosowaniem programów \emph{latex} oraz \emph{pdflatex}.
+
+%---------------------------------------------------------------------------
+
+\section{Struktura dokumentu}
+\label{sec:strukturaDokumentu}
+
+Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia formatujące ten tekst (analogicznie do języka HTML). Plik składa się z dwóch części:
+\begin{enumerate}%[1)]
+\item Preambuły -- określającej klasę dokumentu oraz zawierającej m.in. polecenia dołączającej dodatkowe pakiety;
+
+\item Części głównej -- zawierającej zasadniczą treść dokumentu.
+\end{enumerate}
+
+
+
+\begin{lstlisting}
+      % preambuła
+
+
+
+\usepackage{times}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language polish
+\language_package default
+\inputencoding iso8859-2
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 0
+\use_package amssymb 0
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Indeks
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Podsumowanie
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:podsumowanie"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W poniższym rozdziale zostało zawarte podsumowanie niniejszej pracy.
+ Opisano również wnioski oraz nakreślono możliwości dalszego rozwoju.
+\end_layout
+
+\begin_layout Section
+Wnioski
+\end_layout
+
+\begin_layout Standard
+W ramach niniejszej pracy udało się spełnić początkowe założenia i przygotować
+ platformę oferującą możliwość uruchomienia obliczeń na wielu urządzeniach
+ pracujących w klastrze, dostarczającą narzędzi do monitoringu, rozwiązującą
+ problem load-balancingu zadań, skalowalności a także zapewniającą wsparcie
+ w sytuacji awarii tychże urządzeń, poprzez reorganizację oraz odzyskiwanie
+ sprawności czyli powrót do stanu klastra sprzed wystąpienia awarii.
+ Platforma pozwala również na prowadzenie efektywnych obliczeń mimo ograniczonej
+ mocy obliczeniowej urządzeń SoC.
+ Wykorzystanie tych urządzeń oraz technologii działających na maszynie wirtualne
+j Javy zapewnia mobilność tego rozwiązania.
+\end_layout
+
+\begin_layout Standard
+Technologie Akka okazały się kluczowe z punktu widzenia niniejszej pracy
+ idealnie wkomponowując się w wybraną tematykę.
+ Dzięki rozwiązanion wysokiego poziomu ułatwiły one tworzenie nowych komponentów
+ oraz dostarczyły pewnych strategii i wzorców zwiększając tym samym przejrzystoś
+ć jak i możliwości dalszego rozwóju przygotowanego rozwiązania.
+\end_layout
+
+\begin_layout Standard
+Niniejsza praca pozwoliła również autorowi na zapoznanie się z tematyką
+ problemów występujących w klastrze oraz rozwiązaniami stosowanymi w celu
+ zrównoleglenia lub rozproszenia obliczeń.
+ Kolejnym ciekawym aspektem niniejszej pracy z punktu widzenia autora, który
+ pozwolił na eksplorację nowych obszarów wiedzy jest względnie nowa dziedzina
+ w programowaniu a mianowicie programowanie reaktywne i technologie z platformy
+ Typesafe w połączeniu z urządzeniami SoC oraz Cluster Computing.
+\end_layout
+
+\begin_layout Section
+Możliwości rozwoju
+\end_layout
+
+\begin_layout Standard
+Rozwiązanie stworzone na potrzeby niniejszej pracy posiada kilka ciekawych
+ aspektów nad którymi badania mogą być kontynuowane.
+ Kilka z nich zostało opisanych poniżej.
+\end_layout
+
+\begin_layout Subsection
+Wiele klientów
+\end_layout
+
+\begin_layout Standard
+W testowanym rozwiązaniu rozważono tylko jedną aplikację kliencką, będącą
+ jedynym źródłem zadań w klastrze.
+ W kolejnych etapach prac nad stworzoną platformą warto byłoby się pokusić
+ o zaimplementowanie przypadku gdzie klientów jest więcej i w różnym stopniu
+ obciążają oni urządzenia pracujące w klastrze a także nad sposobem dysponowania
+ wolnymi węzłami tak aby jeden klient nie zajął wszystkich dostępnych węzłów
+ podczas gdy reszta nie byłaby w żaden sposób obsługiwana.
+\end_layout
+
+\begin_layout Subsection
+Sieć rozgległa
+\end_layout
+
+\begin_layout Standard
+Na potrzeby niniejszej pracy rozważono działanie urządzeń klastra w sieci
+ lokalnej lecz przygotowane rozwiązanie mogłoby się również sprawdzić w
+ sieci globalnej Internet, gdzie węzły klastra mogłyby być uruchomione na
+ różnego typu urządzeniach znacząco oddalonych od siebie i mających do siebie
+ dostęp za pomocą protokołu TCP/IP.
+ Ciekawym aspektem tutaj byłaby zróżnicowana przepustowość połączenia, ponieważ
+ w takim przypadku trzeba byłoby dobrać odpowiednie ustawienia detekcji
+ awarii i arbitralne wybranie dozwolonego czasu opóźnień mogłoby być niełatwym
+ zadaniem.
+ 
+\end_layout
+
+\begin_layout Subsection
+Wykorzystanie GPU
+\end_layout
+
+\begin_layout Standard
+Do obliczeń wykonywanych w obrębie platformy wykorzystano jedynie procesory
+ CPU lecz większość urządzeń SoC posiada również jednostki GPU, które są
+ w tym czasie niewykorzystywane.
+ Jedno z urządzeń SoC, zwane Parallela posiada nawet mocniejszy procesor
+ graficzny aniżeli jednostkę centralną.
+ Warto byłoby się zastanowić nad potencjalnym wykorzystaniem tych jednostek
+ np.
+ przy użyciu takich bibliotek jak ScalaCL 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "58"
+
+\end_inset
+
+, które pozwalają na wykonywanie kodu napisanego w Scali na procesorach
+ graficznych i równoległym prowadzeniu obliczeń na różnych architekturach.
+ W roku 2011 Martin Odersky, współtwórca języka Scala oraz jego zespół pracujący
+ na uniwersytecie w Lozannie uzyskali wielomilionowy grant od Europejskiej
+ Rady ds.
+ Badań Naukowych (ERBN) dzięki któremu mogli kontynuować pracę nad problemami
+ zrównoleglania obliczeń w różnych modelach programowania jak np.
+ OpenMP, MPI, CUDA, OpenCL 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "59"
+
+\end_inset
+
+ co potwierdza, że prace nad podobnymi rozwiązaniami są prowadzone już od
+ wielu lat.
+ 
+\end_layout
+
+\begin_layout Subsection
+Inne algorytmy
+\end_layout
+
+\begin_layout Standard
+Kolejną kwestią którą można rozważyć w planach dalszego rozwoju jest zaimplement
+owanie innych algorytmów, które będą w stanie wykorzystać potencjał stworzonej
+ platformy.
+ Warto byłoby również poeksperymentować z różnymi modyfikacjami algorytmów
+ genetycznych, takimi jak różne metody selekcji lub krzyżowania, aby uzyskać
+ jeszcze większą efektywność obliczeń.
+\end_layout
+
+\begin_layout Subsection
+Optymalizacja
+\end_layout
+
+\begin_layout Standard
+Urządzenia SoC na których testowano przygotowaną platformę posiadają ograniczone
+ możliwości obliczeniowe, co oznacza, że uruchamiane na nich aplikacje powinny
+ być zoptymalizowane pod tym kątem.
+ Wykorzystanie pamięci RAM oraz procesora jest tutaj bardzo istotne i może
+ w znaczny sposób wpłynąć na szybkość obliczeń.
+ Nie można zatem pozwolić sobie na zbędne operacje i nadmierną zajętość
+ pamięci, co mogłoby wydłużyć wykonywanie obliczeń.
+ Warto byłoby użyć jakiegoś narzędzia do profilowania JVM aby sprawdzić
+ czy nie ma żadnych wycieków pamięci a także przenalizować zrzut pamięci
+ (tzw.
+ head dump) pod kątem instancjonowanych obiektów oraz zajętości pamięci.
+ Można byłoby również wykonać tuning GC (garbage collector) oraz spróbować
+ dobrać optymalne parametry.
+\end_layout
+
+\begin_layout Subsection
+IoT
+\end_layout
+
+\begin_layout Standard
+W ostatnich latach coraz bardziej wzrasta znaczenie urządzeń podłączonych
+ do Internetu.
+ Coraz więcej sprzętu codziennego użytku posiada zainstalowane układy procesorow
+e o wystarczającej mocy obliczeniowej aby móc obsłużyć systemy mobilne takie
+ jak Android.
+ Stwarza to zatem pole do popisu oraz nowe pomysły wykorzystania stworzonego
+ rozwiązania w wersji bardziej rozproszonej.
+\end_layout
+
+\end_body
+\end_document

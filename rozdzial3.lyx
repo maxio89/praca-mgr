@@ -114,7 +114,7 @@ Niniejszy rozdział zawiera charakterystykę rozwiązania stworzonego na potrzeb
 \end_layout
 
 \begin_layout Section
-Wykorzystane algorytmy
+Równoległe algorytmy ewolucyjne
 \end_layout
 
 \begin_layout Standard
@@ -164,7 +164,7 @@ key "13"
 .
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Pojęcia
 \end_layout
 
@@ -221,7 +221,7 @@ Ewolucja - powtarzający się cykl w trakcie którego następuje rozwój populac
 Generacja - jeden cykl algorytmu.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Model wyspowy
 \end_layout
 
@@ -249,7 +249,7 @@ key "10"
 .
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Zastosowanie
 \end_layout
 
