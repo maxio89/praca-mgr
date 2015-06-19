@@ -90,20 +90,19 @@ Tematyka niniejszej pracy jest związana z przetwarzaniem równoległym w środo
 u rozproszonym oraz algorytmami ewolucyjnymi.
  Obliczenia równoległe, systemy wysokiej dostępności oraz wielkiej skali
  są tematem bardzo aktualnym i wciąż powszechnie rozwijanym.
- Powstaje wiele urządzeń oraz systemów wieloprocesorowych zbudowanych w
- celu połączenia zasobów w jedną całość oraz wykorzystujących w maksymalnym
- stopniu ich moc obliczeniową.
+ Powstaje coraz więcej urządzeń oraz systemów wieloprocesorowych.
+ Powstają aplikacje i technologie mające na celu połączenie zasobów w jedną
+ całość oraz efektywne ich wykorzystanie.
  Zasoby te mogą być zlokalizowane lokalnie lub być rozproszone w różnych
- rejonach świata, czyli np.
- w sieci Internet.
- Przykładem mogą być takie projekty jak Hadoop lub Condor.
- Połączone zasoby mogą zostać wykorzystane do obliczeń o dużej skali (np.
- symulacji) i przyśpieszenia krytycznych obliczeń (systemy obronne, loty
- kosmiczne, prognozy).
- Jak również są przydatne w przypadku przetwarzania dużej liczby rozproszonych
- danych i rozwiązywania trudnych problemów optymalizacji (przeszukiwania
- dużych przestrzeni rozwiązań np.
- w celu poszukiwania ekstremum).
+ rejonach świata i połączone w sieci Internet.
+ Przykładem są takie projekty jak Hadoop lub Condor.
+ Połączone zasoby mogą zostać wykorzystane do obliczeń o dużej skali, symulacji
+ i przyśpieszenia krytycznych obliczeń w takich dziedzinach jak systemy
+ obronne, loty kosmiczne, prognozy pogody.
+ Znajdują również przydatność w przypadku przetwarzania dużej liczby rozproszony
+ch danych i rozwiązywania trudnych problemów optymalizacji np.
+ przeszukiwania dużych przestrzeni rozwiązań np.
+ w celu poszukiwania ekstremum.
  Do głównych obszarów zastosowań można zaliczyć też obliczenia naukowe prowadzon
 e przez różne uniwersytety i inne ośrodki badawcze, które w dużym stopniu
  przyczyniają się do rośnięcia zapotrzebowania na takie rozwiązania oraz
@@ -131,87 +130,6 @@ e przez różne uniwersytety i inne ośrodki badawcze, które w dużym stopniu
 j, bariery technologiczne rozwoju procesorów sekwencyjnych, dzielenie zasobów,
  skalowalność, komunikacja.
  
-\end_layout
-
-\begin_layout Section*
-Aktualny stan wiedzy
-\end_layout
-
-\begin_layout Standard
-Do tej pory zostało opracowanych kilka klastrów obliczeniowych z wykorzystaniem
- urządzeń SoC takich jak Raspberry Pi.
- Przykładem może być praca opisana w artykule Iridis-pi: a low-cost, compact
- demonstration cluster 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "1"
-
-\end_inset
-
-.
- Powstało również kilka podobnych rozwiązań o których informacje można znaleść
- na Internecie.
- Dosyć dawno ukazało się wydanie czasopisma Informatica opisujące klaster
- obliczeniowy wykorzystujący telefony komórkowe, oraz rolę komunikacji i
- kilka różnych podeść bazujących na różnych architekturach systemu 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "2"
-
-\end_inset
-
-.
- Dwa kolejne artykuły opisują klastry w których skład wchodzą urządzenia
- przenośne podłączone do sieci Internet lub połączone w szybkiej sieci lokalnej
- ukazały się na łamach ...
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "3,4"
-
-\end_inset
-
-.
- Poruszono tam także problem dynamicznego load-balancingu oraz zrównoleglania
- obliczeń.
- W artykule Adaptive clustering for mobile wireless networks 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "5"
-
-\end_inset
-
- opisano samoorganizującą się, odporną na uszkodzenia składowych węzłów
- mobilną sieć oraz algorytmy z nią związane, które są dosyć istotne w kontekście
- niniejszej pracy.
- W pracy Cluster Computing: A Mobile Code Approach 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "6"
-
-\end_inset
-
- opisano klaster wysokiej wydajności wraz z jego architekturą oraz implementacją.
- Natomiast praca pt.
- DroidCluster: Towards Smartphone Cluster Computing - The Streets are Paved
- with Potential Computer Clusters 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "7"
-
-\end_inset
-
- opisuje nowoczesne smarfony wchodzące w skład klastra obliczeniowego oraz
- temat Grid-Computing.
- Jak widać temat i problemy z nim związane znany jest od dosyć dawna.
- Natomiast wciąż jest aktualny i nadal brakuje skutecznych rozwiązań wszystkich
- problemów.
- Same urządzenia SoC zyskały swoją popularność dopiero w ostatnich latach,
- głównie za sprawą taniego mini komputera jakim jest Raspberry Pi.
- Większość powstałych rozwiązań bazuje na takich technologiach jak MPI oraz
- Hadoop, natomiast w niniejszej pracy autor skupi się na technologiach pracujący
-ch w wirtualnej maszynie Javy, co jeszcze bardziej zwiększy mobilność powstałej
- platformy.
 \end_layout
 
 \begin_layout Section*

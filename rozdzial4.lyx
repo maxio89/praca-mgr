@@ -97,10 +97,21 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \begin_body
 
 \begin_layout Chapter
-Zastosowanie w praktyce
+Mobilny klaster obliczeniowy
 \begin_inset CommandInset label
 LatexCommand label
-name "cha:zastosowanie"
+name "cha:klaster"
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+W tym rozdziale powinien Pan wyjsc od koncepcji (jakies schematy ideowe)
+ przez projekt do implementacji.
+\end_layout
 
 \end_inset
 
@@ -108,37 +119,26 @@ name "cha:zastosowanie"
 \end_layout
 
 \begin_layout Standard
-Rozdział ten przedstawia sposoby wykorzystania rozwiązania stworzonego na
- potrzeby niniejszej pracy, jego możliwości oraz wyniki testów.
+Rozdział ten przedstawia opis przygotowanego rozwiązania.
 \end_layout
 
 \begin_layout Section
-Użycie
-\end_layout
-
-\begin_layout Standard
-W niniejszym podrozdziale opisano wykorzystanie stworzonej platformy w praktyce,
- sposób jej użycia oraz zasady działania a także wyniki zaimplementowanych
- rozwiązań.
-\end_layout
-
-\begin_layout Subsection
-Monitoring
+Koncepcja
 \end_layout
 
 \begin_layout Standard
 Na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Podgląd-stanu-klastra"
+reference "fig:Wygląd-klastra"
 
 \end_inset
 
- przedstawiono interfejs klienta prezentujący obecny stan klastra.
- Wylistowano na nim również listę urządzeń pracujących w klastrze, z uwględnieni
-em aktywnego mastera, adresu IP wraz z portami, dostępność urządzenia oraz
- kilka metryk, m.in.
- zużycie CPU oraz pamięci RAM.
+ zaprezentowano początkową koncepcję przedstawiającą sieć lokalną i działający
+ w niej klaster obliczeniowy w skład którego wchodzą urządzenia Raspberry
+ Pi, gdzie jedno z nich jest masterem natomiast pozostałe pełnią rolę slave.
+ W klastrze znajduje się również uruchomiony serwer WWW służący do komunikacji
+ z użytkownikiem za pomocą przeglądarki internetowej.
 \end_layout
 
 \begin_layout Standard
@@ -150,1161 +150,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename dashboard.jpg
-	lyxscale 30
-	scale 30
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Podgląd stanu klastra.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Podgląd-stanu-klastra"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Stan klastra propagowany jest za pomocą protokołu Gossip opisanego w poprzednim
- rozdziale.
- Jeżeli jakieś urządzenie nie odpowiada przez określony czas w wyniku np.
- problemów z siecią, jest ono uznawane jako niedostępne, czyli nie może
- już przyjmować żadnych zadań ale może jeszcze powrócić do pracy w klastrze
- jeżeli odzyska sprawność w ciągu najbliższych kilku sekund.
- Jeżeli nie, w takim przypadku jest ono usuwane z listy urządzeń pracujących
- w klastrze.
- Po usunięciu urządzenia z klastra nie może ono dołączyć ponownie do klastra
- dopóki aplikacja uruchomiona na tym urządzeniu nie zostanie zrestartowana.
- Pozwala to zapobiec sytuacji, gdy w trakcie problemów z siecią, dane urządzenie
- odłączy się na chwilę od klastra aktywując własnego mastera a następnie
- po powrocie do klastra bedą aktywne dwa mastery.
- Dzieje się tak dlatego, że w przypadku gdy urządzenie utraci kontakt z
- pozostałymi urządzeniami, nie może ono z pewnością stwierdzić co było przyczyną
- awarii i zakłada, że jest jedynym urządzeniemi w klastrze.
- 
-\end_layout
-
-\begin_layout Standard
-W trakcie awarii urządzenia podczas wykonywania obliczeń dzięki występowaniu
- migracji opisanej w jednym z kolejnych podrozdziałów nie tracimy wszystkich
- wyników pracy a jedynie te uzyskane od poprzedniej migracji.
- Stan mastera jest zapisywany w bazie danych, co pozwala na jego odtworzenie
- w przypadku awarii urządzenia z aktywnym masterem.
- Do bazy danych persystowane są zserializowane zdarzenia zgodnie ze wzorcem
- Event Sourcing opisanym w pozycjach 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "18,19"
-
-\end_inset
-
-.
- Zdarzenia te odzwierciedlają stan przyjętego zadania.
- Listę zdarzeń oraz ich opis przedstawiono w tabeli 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Lista-zdarzeń-sterujących"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Lista zdarzeń sterujących stanem zadania.
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:Lista-zdarzeń-sterujących"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="2">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top" width="12cm">
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Nazwa stanu
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Opis
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkAccepted
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania po przyjęciu go przez mastera oraz wysłaniu potwierdzenia do
- klienta.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkStarted
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania przekazanego do realizacji do workera.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkInProgress
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania w trakcie trwania obliczeń, przechowujący częsciowe wyniki
- zadania.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkCompleted
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania otrzymany po zakończeniu obliczeń, przechowujący końcowe wyniki.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkerFailed
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania zakończonego niepowodzeniem.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkerTimedOut
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania ustawiany jeśli worker pracujący nad danym zadaniem nie odeśle
- wyników w określonym czasie.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Dla przykładu, jeżeli klient zadał zadanie i zmieniło ono stan na WorkAccepted
- (czyli zostało zaakceptowane ale nie przesłane jeszcze do żadnego workera)
- a w tym samym czasie nastąpiła jakaś awaria przerywająca pracę mastera,
- kolejna instancja mastera zostanie aktywowana na innym urządzeniu i odtworzy
- stan mastera, który uległ awarii, co oznacza, że klient nie będzie musiał
- ponownie rozpoczynać zadania, lecz jego poprzednio rozpoczęte zadanie zostanie
- przekazane do realizacji do wolnego workera.
-\end_layout
-
-\begin_layout Standard
-Diagram prezentujący dopuszczalne zmiany stanów zadania przedstawiono na
- rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Przejścia-pomiędzy-stanami"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename work states.png
-	lyxscale 50
-	scale 50
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Przejścia pomiędzy stanami zadania.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Przejścia-pomiędzy-stanami"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Implementacja algorytmów genetycznych
-\end_layout
-
-\begin_layout Standard
-Rozwiązanie stworzone na potrzeby niniejszej pracy przetestowano dzięki
- zaimplementowaniu algorytmów genetycznych w odmianie wyspowej opisanych
- w poprzednim rozdziale.
-\end_layout
-
-\begin_layout Standard
-Implementacja ta, została oparta na implementacji algorytmów genetycznych
- przedstawionej w książce Scala for Machine Learning 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "20"
-
-\end_inset
-
- oraz dostosowana do optymalizacji funkcji ciągłej.
-\end_layout
-
-\begin_layout Standard
-W przypadku problemu Rastrigina gen jest liczbą typu Double, chromosomy
- zawierają listę genów czyli obrazują punkty w przestrzeni rozwiązań.
- W przypadku dwuwymiarowej funkcji Rastrigina jest to lista dwuelementowa.
- Natomiast populacja zawiera listę chromosomów.
-\end_layout
-
-\begin_layout Standard
-Na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Schemat-blokowy-ewolucji."
-
-\end_inset
-
- przedstawiono schemat blokowy ewolucji.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename ewolucja.png
-	lyxscale 50
-	scale 50
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Schemat blokowy ewolucji.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Schemat-blokowy-ewolucji."
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Zadanie jest konfigurowane parametrami przedstawionymi w tabeli 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Parametry-zadania."
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Parametry zadania.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:Parametry-zadania."
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="9" columns="2">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top" width="12cm">
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align center
-Nazwa parametru
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align center
-Opis
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Dimension
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Wymiar optymalizowanej funkcji ciągłej.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Cycles
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Maksymalna ilość cykli ewolucji.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Initial population size
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\paragraph_spacing onehalf
-\align left
-Początkowy rozmiar populacji (podczas krzyżowania 
-\end_layout
-
-\begin_layout Plain Layout
-\align left
-i mutacji liczba osobników populacji zostaje wzrasta).
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Maximum population size
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Maksymalny rozmiar populacji.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Snapshot frequency
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Częstotliwość persystowania wyników obliczeń (w tym przypadku osobników
- populacji).
- *
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Migration frequency
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Częstotliwość występowania migracji.
- *
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Mutation parameter
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Parametr mutacji, określa wpływ mutacji na geny.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Migration factor
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Procent migrującej populacji.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-* częstotliwość jest określana przez ilość cykli
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Migracja odbywa się poprzez wybranie pewnej ilości najlepszych osobników
- populacji oraz wysłanie ich do innego węzła klastra.
- Wykonuje się ona co określoną liczbę cykli konfigurowalną w parametrach
- zadania.
- Do wyboru są dwa rodzaje selekcji węzła do którego wysyłani są migrujący
- osobnicy.
- Pierwszy to jest wybór losowy a drugi metodą round-robin, czyli wysyłanie
- migrującej części populacji na zmianę do każdego kolejnego węzła 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "21"
-
-\end_inset
-
-.
- Migracja odbywa się bez użycia mastera, do jej działania wykorzystano rozszerze
-nie frameworka Akka o nazwie 
-\shape italic
-Distributed Publish Subscribe in Cluster
-\shape default
- opisane w poprzednim rozdziale.
-\end_layout
-
-\begin_layout Standard
-Inicjalizacja populacji odbywa się w każdym węźle klastra osobno.
- W przypadku problemu Rastrigina opisanego w kolejnym podrozdziale, początkowa
- populacja składa się z osobników zainicjalizowanych losowymi liczbami z
- przedziału 
-\begin_inset Formula $[-5.12,\,5.12]$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Problem-Rastrigina."
-
-\end_inset
-
- zaprezentowano wygląd interfejsu użytkownika pozwalającego na podgląd wyników
- rozpoczętych zadań oraz rozpoczęcie nowych.
- Widoczne jest tutaj każde z urządzeń wykonujących obliczenia w klastrze
- i są one identyfikowane po adresie IP oraz ID workera.
- 
-\end_layout
-
-\begin_layout Standard
-Wyniki prezentowane są w czasie rzeczywistym przy użyciu technologi WebSocket
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "22"
-
-\end_inset
-
-.
- Dla każdego zadania rysowany jest wykres przedstawiający wartość funkcji
- Rastrigina zmieniającą się w trakcie trwania ewolucji, czyli w kolejnych
- cyklach algorytmu.
- Wykres narysowano za pomocą biblioteki D3.js 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "23"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename rastrigin_service.jpg
-	lyxscale 30
-	scale 30
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Problem Rastrigina.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Problem-Rastrigina."
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Problem Rastrigina
-\end_layout
-
-\begin_layout Standard
-Implementacja algorytmów genetycznych opisana w poprzednim podrozdziale
- została wykorzystana do znalezienia minimum funkcji Rastrigina.
-\end_layout
-
-\begin_layout Standard
-Funkcja Rastrigina jest funkcją niewypukłą.
- Ze wględu na to, że posiada wiele minimów lokalnych oraz jedno globalne
- dla 
-\begin_inset Formula $x=0$
-\end_inset
-
-, 
-\begin_inset Formula $f(x)=0$
-\end_inset
-
- bywa trudna w optymalizacji, ponieważ algorytmy optymalizacyjne mogą utknąć
- w którymś z lokalnych minimów tracąc szanse na znalezienie minimum globalnego.
- Funckja ta często znajduje zatem zastosowanie jako funkcja testująca algorytmy
- optymalizacyjne.
- Została ona również użyta jako problem testowy w niniejszej implementacji.
-\end_layout
-
-\begin_layout Standard
-Wzór funkcji Rastrigina przedstawiono poniżej
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-f(x)=An+{\textstyle \stackrel[i=1]{n}{\sum}[x_{i}^{2}-Acos(2\pi x_{i})]},
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-gdzie 
-\begin_inset Formula $A=10$
-\end_inset
-
-, 
-\begin_inset Formula $x_{i}\epsilon[-5.12,\,5.12]$
-\end_inset
-
- a 
-\begin_inset Formula $n$
-\end_inset
-
- oznacza wymiar funkcji 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "25"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Wykres funkcji Rastrigina przedstawiono na rysunkach 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Wykres-funckji-Rastrigina-3D"
-
-\end_inset
-
- oraz 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Wykres-funkcji-Rastrigina-2D"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Rastrigin_function.png
-	lyxscale 20
-	scale 30
-	rotateOrigin center
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Wykres funckji Rastrigina 3D 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "24"
-
-\end_inset
-
-.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Wykres-funckji-Rastrigina-3D"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Rastrigin_Contour.jpg
-	lyxscale 20
-	scale 30
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Wykres funkcji Rastrigina 2D 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "24"
-
-\end_inset
-
-.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Wykres-funkcji-Rastrigina-2D"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Dystrybucja 
-\end_layout
-
-\begin_layout Standard
-Do łatwej dystrybucji platformy między różnymi urządzeniami wykorzystano
- dodatek projektu Akka o nazwie Microkernel oraz rozszerzenie Sbt o nazwie
- sbt-native-packager.
-\end_layout
-
-\begin_layout Standard
-Akka Microkernel oraz sbt-native-packager dostarczają mechanizmu archiwizowania
- dzięki któremu można udostępniać aplikację jako pojedyńczy plik bez potrzeby
- uruchamiania lub instalowania dodatkowych aplikacji, dostarczania zależności
- lub ręcznego tworzenia skryptów startowych.
- Pozwalają również na wystartowanie systemu aktorowego używając klasy z
- metodą statyczną main 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "15,16"
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-Umożliwia to łatwą instalację oraz uruchomienie platformy na różnych urządzeniac
-h klastra.
- Do uruchomienia platformy na danym urządzeniu wystarczy aby posiadało ono
- zainstalowany system wraz z wirtualną maszyną Javy oraz archiwum z platformą,
- które po rozpakowaniu pozwala uruchomić aplikację za pomocą jednego skryptu
- wykonywalnego.
- Żadne dodatkowe oprogramowanie nie jest wymagane.
-\end_layout
-
-\begin_layout Section
-Wyniki testów
-\end_layout
-
-\begin_layout Standard
-Do przeprowadzenia testów zostało wykorzystanych kilka urządzeń Raspberry
- Pi.
- Jako problem testowy wykorzystano optymalizację wielowymiarowej funkcji
- Rastrigina opisanej w poprzednim podrozdziale.
-\end_layout
-
-\begin_layout Subsection
-Wyniki obliczeń 
-\end_layout
-
-\begin_layout Standard
-Ze wględu na ograniczoną precyzję obliczeń nie udało się uzyskać wyniku
- równego poszukiwanemu minumum, czyli 
-\begin_inset Formula $f(x)=0$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Najlepsze uzyskane wyniki oscylowały w okolicach 
-\begin_inset Formula $2e-30$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-Do obliczeń wykorzystano typ Double, który w języku Scala cechuje się podwójną
- precyzją, zapisaną na 64 bitach 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "8"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Na poniższych wykresach przedstawiono wyniki oraz czasy ich uzyskania w
- zależności od różnych ustawień początkowych zadania.
-\end_layout
-
-\begin_layout Standard
-Rozważono tutaj problem dla jednego urządzenia w celu porównania go z bardziej
- istotnym przypadkiem dla celów niniejszej pracy a mianowicie wielu urządzeń
- pracujących w klastrze, który rozważono w następnym podrozdziale poświeconemu
- skalowalności rozwiązania.
-\end_layout
-
-\begin_layout Standard
-Na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Całkowity-czas-wykonania"
-
-\end_inset
-
- przedstawiono wykres wartości funkcji Rastrigina 2D gdzie współczynnik
- mutacji wynosi 
-\begin_inset Formula $0.2$
-\end_inset
-
- a całkowita ilość cykli 
-\begin_inset Formula $10000$
-\end_inset
-
-.
- Aby zwiększyć czytelność wykresu użyto skali logarytmicznej.
-\end_layout
-
-\begin_layout Standard
-Na wykresie uwzględniono również różne maksymalne wielkości populacji, co
- zaznaczono innym kolorem.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename wykres_4_2_1.png
-	lyxscale 40
+	filename Cluster Overview.png
+	lyxscale 90
 	scale 40
 
 \end_inset
@@ -1316,12 +163,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Całkowity czas wykonania ...
- Znaleziony punkt ..., wartość funkcji ...
- 
+Wygląd klastra 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Całkowity-czas-wykonania"
+name "fig:Wygląd-klastra"
 
 \end_inset
 
@@ -1330,6 +175,10 @@ name "fig:Całkowity-czas-wykonania"
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -1339,17 +188,403 @@ name "fig:Całkowity-czas-wykonania"
 \end_layout
 
 \begin_layout Standard
-Wykres na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Całkowity-czas-wykonania"
+Początkowe założenia były takie, że na urządzeniach uruchomione są aplikacje
+ oparte o technologie JVM, które komunikują się ze sobą za pomocą protokołu
+ TCP/IP.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Opisac na podstawie notatek/pytan/todosow z jakimi problemami sie zmagano.
+\end_layout
+
+\begin_layout Section
+Platforma 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Nie uzywac tutaj slowa ewolucja
+\end_layout
 
 \end_inset
 
- pokazuje, że w początkowych cyklach ewolucji populacji gdy osobnicy nie
- są jeszcze dobrze rozwinięci kolejne rozwiązania znajdywane są wolniej.
- Szybkość znajdywania nowych rozwiązań przyśpiesza wraz ze wzrostem ilości
- cykli oraz wzrostem wielkości populacji.
+
+\end_layout
+
+\begin_layout Standard
+Niniejszy podrozdział omawia wybrane aspekty przygotowanej platformy, takie
+ jak architektura, protokoły komunikacji oraz sposób przydzielania zadań.
+\end_layout
+
+\begin_layout Subsection
+Architektura
+\end_layout
+
+\begin_layout Standard
+Na początek warto wyjaśnić kilka pojęć.
+\end_layout
+
+\begin_layout Standard
+Węzeł klastra jest to instancja aplikacji niezwiązana z fizycznym urządzeniem.
+ Co oznacza, że na jednym urządzeniu może zostać uruchomionych kilka węzłów,
+ czyli kilka aplikacji.
+ W skład platformy wchodzą właściwie dwie aplikacje nazwane 
+\shape italic
+frontend
+\shape default
+ oraz 
+\shape italic
+backend
+\shape default
+.
+ Posiadają one różne odpowiedzialności jak i różne rodzaje uruchomionych
+ na nich aktorów, których dokładniejszy opis znajduje się w kolejnym podrozdzial
+e.
+ 
+\end_layout
+
+\begin_layout Standard
+Aplikacja 
+\shape italic
+frontend
+\shape default
+ odpowiada za interakcję z użytkownikiem dzięki takim technologiom jak Play
+ Framework, AngularJS, WebSocket oraz protokołowi HTTP.
+ Komunikuje się ona z aplikacją 
+\shape italic
+backend
+\shape default
+ w celu zlecenia wykonania zadania oraz odebrania wyników.
+ Posiada ona interfejs webowy.
+ Instancja aplikacji jest traktowana jako osobny węzeł klastra.
+\end_layout
+
+\begin_layout Standard
+Aplikacja 
+\shape italic
+backend
+\shape default
+ nie posiada interfejsu użytkownika.
+ Zajmuje się realizacją zleconych zadań.
+ Instancja tej aplikacji również odpowiada jednemu węzłowi klastra.
+ W klastrze może być uruchomionych wiele takich instancji, po jednej na
+ każdym urządzeniu lub jeśli urządzenie posiada wystarczająco dużo mocy
+ obliczeniowej może posiadać ich kilka.
+ Każda uruchomiona aplikacja posiada uruchomionego workera oraz tylko jedna
+ z nich posiada również uruchomionego mastera, gdyż w klastrze powinna być
+ tylko jedna aktywna instancja mastera.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Podgląd-architektury."
+
+\end_inset
+
+ przedstawiono podgląd architektury, gdzie zielonym kolorem zaznaczono aplikację
+ 
+\shape italic
+frontend
+\shape default
+ natomiast niebieskim aplikację 
+\shape italic
+backend
+\shape default
+.
+ Założono, że każda aplikacja jest uruchomiona na osobnym urządzeniu pracującym
+ w klastrze, są dwa urządzenia wykonujące obliczenia oraz jedno urządzenie
+ klienckie.
+ Na wspomnianym rysunku pokazano także kilka aktorów uruchomionych na wybranych
+ urządzeniach.
+ Założono również, że urządzenia pracują w sieci lokalnej z wykorzystaniem
+ technologii Ethernet.
+ Użytkownik komunikuje się za pomocą protokołu HTTP z urządzeniem klienckim,
+ które z kolei przesyła odpowiednie żadania do urządzenia posiadającego
+ aktywnego mastera.
+ Urządzenie klienckie nie musi posiadać informacji o tym gdzie dokładnie
+ jest aktywny master, ponieważ dostęp do mastera odbywa się poprzez proxy.
+ Natomiast aplikacja kliencka powinna mieć podany adres IP przynajmniej
+ jednego urządzenia pracującego w klastrze.
+ Może mieć informację o kilku adresach IP urządzeń pracujących w klastrze,
+ co pozwala uniknąć problemów gdy jedno z urządzeń nie odpowiada.
+ Najłatwiejszym sposobem podania adresów urządzeń pracujących w klastrze
+ jest użycie dodatkowych argumentów podczas uruchamiania aplikacji.
+ Szczegóły tych ustawień oraz sposobu uruchamiania aplikacji wchodzących
+ w skład przygotowanej platformy zostały opisane w dodatku A załączonym
+ do niniejszej pracy.
+\end_layout
+
+\begin_layout Standard
+Urządzenia wykonujące obliczenia w klastrze komunikują się ze sobą za pomocą
+ protokołu TCP/IP, którym zarządza Akka.
+ Odkąd aktywny master posiada listę wszystkich zarejestrowanych workerów
+ potrafi on w łatwy sposób nawiązywać z nimi kontakt oraz informować ich
+ o nadchodzących zadaniach od klienta.
+ Z kolei komunikacja w drugą stronę, np.
+ gdy worker skończył wykonywać zadanie i chce wysłać zgromadzone wyniki
+ odbywa się poprzez proxy, ponieważ worker nie wie na którym urządzeniu
+ znajduje się aktywny master.
+ Gdy master otrzyma wyniki zadania od realizującego je workera odsyła je
+ do klienta za pomocą rozszerzenia 
+\shape italic
+Distributed Publish Subscribe in Cluster 
+\shape default
+opisanego w jednym z następnych podrozdzialow.
+ Co oznacza, że nie musi posiadać informacji o adresie IP klienta, ponieważ
+ opublikowane wyniki trafią tylko do zainteresowanych odbiorców.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Podgląd-architektury."
+
+\end_inset
+
+ pokazano jedynie kilka najważniejszych aktorów działających na urządzeniach
+ będących częścią klastra.
+ Zostali oni opisani razem z pozostałymi, którzy również są aktywni podczas
+ działania platformy w następnym podrozdziale wraz z podziałem na aplikacje
+ w których są wykorzystywani.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename architektura.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Podgląd architektury.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Podgląd-architektury."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Wybrani aktorzy 
+\end_layout
+
+\begin_layout Standard
+Poniżej wymieniono kilka aktorów działających w klastrze z uwzględnieniem
+ tego w jakiej aplikacji wchodzącej w skład przygotowanej platformy są oni
+ uruchomieni.
+\end_layout
+
+\begin_layout Standard
+Aplikacja 
+\shape italic
+backend
+\shape default
+:
+\end_layout
+
+\begin_layout Itemize
+ClusterSingletonManager, aktor dostarczony wraz z rozszerzeniem 
+\shape italic
+Akka Cluster Singleton
+\shape default
+, który odpowiada za to aby w klastrze była aktywna tylko jedna instancja
+ mastera.
+ Zostaje on uruchomiony na wszystkich węzłach lub tylko na węzłach z wybraną
+ rolą.
+ Instancjonuje aktora singletona na najstarszym węźle, czyli takim, który
+ dołączył do klastra najwcześniej.
+ Monitoruje on również stan dostępności węzła na którym uruchomiony jest
+ aktor singleton i w przypadku awarii startuje nową instancję mastera na
+ innym węźle klastra.
+\end_layout
+
+\begin_layout Itemize
+ClusterSingletonProxy, aktor współpracujący z poprzednim opisanym aktorem
+ i będący pośrednikiem (ang.
+ proxy) zapewniającym dostęp do aktora singletona czyli w tym przypadku
+ mastera.
+ Jest on uruchomiony na każdym węźle, który potrzebuje komunikować się z
+ masterem i działa jak router przekierowujący wszystkie przychodzące wiadomości
+ do aktora singletona.
+ Jeśli aktor ten jest niedostępny np.
+ ze względu na awarię lub jest w trakcie odzyskiwania sprawności, zadaniem
+ aktora ClusterSingletonProxy jest przechowywanie wszystkich odebranych
+ wiadomości aż do momentu ponownego nawiązania komunikacji z masterem 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "14"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+DistributedPubSubMediator, aktor ten zostaje uruchomiony na wszystkich węzłach
+ klastra lub tylko na węzłach z wybraną rolą.
+ Zarządza rejestracją innych aktorów do wybranych kanałów komunikacji oraz
+ replikuje tą wiedzę pośród inne instancje pracujące na pozostałych urządzeniach
+ klastra, tak aby zachować spójność tych danych w obrębie klastra.
+ Zajmuje się również wysyłaniem wiadomości z każdego urządzenia klastra
+ do zarejestrowanych aktorów pracujących na jakimkolwiek urządzeniu w obrębie
+ klastra 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "47"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Master, jest to tzw.
+ aktor singleton.
+ Oznacza to, że w obrębie klastra powinna być aktywna tylko jedna instancja
+ tego aktora.
+ Jest to zapewnione poprzez aktora ClusterSingletonManager opisanego powyżej.
+ Dostęp do mastera uzyskuje się poprzez proxy, czyli aktora ClusterSingletonProx
+y z każdego urządzenia pracującego w klastrze.
+ Głównymi zadaniami tego aktora są: przydzielanie zadań workerom, zarządzanie
+ ich rejestracją, odbieranie wyników i przesyłanie ich do klienta, reagowanie
+ w sytuacji awarii jednego z workerów oraz zapisywanie wyników do bazy.
+\end_layout
+
+\begin_layout Itemize
+Worker, jest to aktor realizujący zadania otrzymane od mastera po uprzedniej
+ rejestracji w serwisie mastera.
+ Każdy worker uruchamia jedną instancję aktora wykonującego właściwe obliczenia,
+ tzw.
+ WorkExecutor, po to aby zachować responsywność podczas komunikacji z masterem.
+ Zajmuje się on również procesem migracji, gdzie znowu jest wykorzystywany
+ mechanizm publikowania w wybranym kanale dostarczony wraz z rozszerzeniem
+ 
+\shape italic
+Distributed Publish Subscribe.
+\end_layout
+
+\begin_layout Itemize
+WorkExecutor, aktor wykonujący właściwe obliczenia czyli realizujący zadanie
+ zlecone przez klienta.
+ Jest on instancjonowany przez workera i komunikuje się tylko z nim.
+ 
+\end_layout
+
+\begin_layout Standard
+Aplikacja 
+\shape italic
+frontend
+\shape default
+:
+\end_layout
+
+\begin_layout Itemize
+Frontend, aktor z którym komunikuje się użytkownik.
+ Odbiera on wyniki zadań od mastera oraz przesyła mu zadania do wykonania.
+ Do komunikacji z masterem używa proxy, natomiast wyniki odbiera dzięki
+ rozszerzeniu 
+\shape italic
+Distributed Publish Subscribe
+\shape default
+ oraz byciu zarejestrowanym w wybranym kanale komunikacji.
+\end_layout
+
+\begin_layout Itemize
+Metrics, aktor subskrybujący zdarzenia związane ze zmianą różnych metryk
+ klastra, np.
+ obciążenia CPU lub pamięci RAM.
+ Dzięki połączeniu WebSocket przesyła te informacje na widok.
+\end_layout
+
+\begin_layout Itemize
+Monitor, aktor obserwujący zdarzenia związane z członkostwem w klastrze.
+ Jeżeli jakiś węzeł dołącza do klastra lub go opuszcza taka informacja jest
+ aktualizowana na widoku w aplikacji webowej.
+\end_layout
+
+\begin_layout Standard
+Poza wyżej wymienionymi aktorami działającymi w aplikacji 
+\shape italic
+frontend
+\shape default
+, posiada ona również kilka podobnych aktorów co aplikacja 
+\shape italic
+backend
+\shape default
+, m.in.
+ ClusterSingletonProxy oraz DistributedPubSubMediator, którzy służą do komunikac
+ji z masterem oraz odbieraniem wyników realizowanych zadań.
+\end_layout
+
+\begin_layout Subsection
+Protokoły komunikacji
+\end_layout
+
+\begin_layout Standard
+Na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rejestracja-Workerów."
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Protokół-Master/Worker."
+
+\end_inset
+
+ przedstawiono dwa najważniejsze protokoły definiujące kolejność oraz rodzaje
+ przesyłanych wiadomości podczas komunikacji na linii Frontend - Master
+ - Worker - WorkExecutor.
+ Widoczni są tam również aktorzy biorący lub nie udział we wspomnianej komunikac
+ji.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rejestracja-Workerów."
+
+\end_inset
+
+ przedstawiono proces rejestracji workerów w serwisie mastera, po to aby
+ master mógł ich poinformować o tym, że posiada jakieś zadanie, które trzeba
+ zrealizować.
  
 \end_layout
 
@@ -1360,6 +595,14 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename registration.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
 
 \end_layout
 
@@ -1367,12 +610,60 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Całkowity czas wykonania ...
- Znaleziony punkt ..., wartość funkcji ...
+Rejestracja Workerów.
  
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Całkowity-czas-wykonania-1"
+name "fig:Rejestracja-Workerów."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Opis-komunikatów--"
+
+\end_inset
+
+ przedstawiono opis komunikatów zawartych na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rejestracja-Workerów."
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Opis komunikatów - rejestracja workerów.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Opis-komunikatów--"
 
 \end_inset
 
@@ -1385,6 +676,81 @@ name "fig:Całkowity-czas-wykonania-1"
 \end_layout
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="middle" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nazwa komunikatu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opis
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+RegisterWorker
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat rejestrujący workera o danym ID w serwisie mastera.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkIsReady
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Informacja o tym, że master posiada zakolejkowane zadanie po które dany
+ worker może się zgłosić.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
 
 \end_layout
 
@@ -1394,44 +760,388 @@ name "fig:Całkowity-czas-wykonania-1"
 \end_layout
 
 \begin_layout Standard
-Na rysunku ...
- przedstawiono wykres wartości funkcji dla większego współczynnika mutacji
- wynoszącego 
-\begin_inset Formula $0.4$
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Protokół-Master/Worker."
+
 \end_inset
 
+ pokazano przepływ informacji podczas zlecania oraz realizacji zadania.
+ Dla uproszczenia przedstawiono przypadek zadania zrealizowanego bez przesyłania
+ częściowych wyników.
+ W przypadku zadań trwających długo lub gdzie czas trwania nie jest z góry
+ określony tzw.
+ 
+\shape italic
+long-running jobs
+\shape default
+ wprowadzono również komunikat 
+\shape italic
+WorkInProgress
+\shape default
+, który jest przesyłany cyklicznie w trakcie wykonywania zadania i zawiera
+ jego częściowe wyniki, można go umiejscowić pomiędzy komunikatami 
+\shape italic
+Work
+\shape default
+ a 
+\shape italic
+WorkIsDone
+\shape default
 .
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename work_protocol.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Protokół Master/Worker.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Protokół-Master/Worker."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Opis-komunikatów-w"
+
+\end_inset
+
+ przedstawiono opis komunikatów przesyłanych w trakcie procesu realizacji
+ zadań.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Opis komunikatów przesyłanych w trakcie realizacji zadania.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Opis-komunikatów-w"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nazwa komunikatu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opis
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 
 \series bold
-TODO
-\series default
- sprobowac zmiescic rozne wspolczynniki mutacji na jednym wykresie, z roznymi
- odcieniami danego koloru a drugi wykres zrobic dla 8 wymiarow.
+Work
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat przechowujący parametry konfiguracyjne zadania jak również jego
+ ID.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Ack
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Potwierdzenie odebrania poprzedniego komunikatu.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkIsReady
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Informacja o tym, że master posiada zakolejkowane zadanie po które dany
+ worker może się zgłosić.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkerRequestsWork
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat przechowujący ID workera i informujący mastera, że dany worker
+ jest wolny i może zająć się kolejnym zadaniem.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkIsProgress
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat przechowujący częściowe wyniki zadania jak również jego ID oraz
+ ID workera.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkIsDone
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat przechowujący WorkResult oraz ID workera.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkResult
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Komunikat przechowujący końcowe wyniki zadania jak i jego ID.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Powtorzyc dla 0.4.
-\end_layout
-
-\begin_layout Standard
-Powtorzyc dla 0.8.
-\end_layout
-
-\begin_layout Standard
-Podsumowując, zauważono, że większy współczynnik mutacji przyśpiesza znajdywanie
- nowych rozwiązań.
-\end_layout
-
-\begin_layout Standard
-Warto dodać, że podczas przeprowadzania testów w klastrze pracowały dwa
- typy urządzeń Raspberry Pi, model B oraz B plus, który jest nowszy od modelu
- B oraz posiada większą ilość zaistalowanej pamięci RAM 
+Do odpowiedniego rozłożenia obciążenia pomiędzy pracujących workerów początkowo
+ rozważano podejście gdzie to master decyduje, któremu workerowi przydzielić
+ zadanie bazując między innymi na metrykach takich jak obciążenie CPU lub
+ zajętość pamięci RAM.
+ Jednak okazało się ono nieefektywne w implementacji testowanych algorytmów
+ genetycznych, ponieważ te metryki zmieniały się zazwyczaj z opóźnieniem
+ pozostawiając workera w stanie bezczynności przez nieokreślony czas.
+ Zdecydowano się zatem zaimplementować podejście zwane
+\shape italic
+ Work Pulling Pattern
+\shape default
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "26"
+key "50"
+
+\end_inset
+
+ w którym to wolny worker zgłasza się po zadanie a nie oczekuje na akcję
+ mastera.
+\end_layout
+
+\begin_layout Section
+Inne wykorzystane technologie
+\end_layout
+
+\begin_layout Subsection*
+Akka Persistence 
+\end_layout
+
+\begin_layout Standard
+Rozszerzenie Akka Persistence pozwala na zapisywanie stanu aktorów w bazie
+ danych.
+ Pozwala to na odtworzenie stanu aplikacji w przypadku awarii i zapewnia
+ w pewnym stopniu niezawodność działania systemu 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "46"
+
+\end_inset
+
+.
+ Dostępnych jest wiele różnych dodatków dedykowanych dla różnych technologii
+ bazodanowych.
+ W niniejszej pracy wykorzystano dodatek przeznaczony do pracy z bazą MongoDB
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "45"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+MongoDB
+\end_layout
+
+\begin_layout Standard
+MongoDB jest bazą NoSQL opartą na dokumentach typu JSON, co pozwala na elastyczn
+ość oraz przejrzystość w przechowywaniu danych.
+ Jest to technologia Open Source.
+ Jako, że jest to baza NoSQL posiada ona elastyczny schemat danych.
+ Wspiera replikację oraz sharding a także map reduce.
+ Technologia ta została wykorzystana ze względu na jej łatwe użycie, dobrą
+ skalowalność oraz wydajność przy wykorzystaniu stosunkowo niewielkich zasobów
+ obliczeniowych 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "41"
 
 \end_inset
 
@@ -1439,124 +1149,81 @@ key "26"
 \end_layout
 
 \begin_layout Standard
-Dostępna w urządzeniach pamięć RAM ma dość duży wpływ na czas obliczeń.
- Czas uzyskiwany przez nowszy model urządzenia, który posiada więcej pamięci
- był około 30% (
-\series bold
-sprawdzić ile dokładnie
-\series default
-) lepszy.
- 
+Kolejnymi argumentami przemawiającymi na korzysć tej technologii są łatwa
+ dostępność dokumentacji oraz integracja z innymi technologiami wykorzystanymi
+ w niniejszej pracy.
 \end_layout
 
-\begin_layout Subsection
-Skalowalność
+\begin_layout Subsection*
+Play Framework i AngularJS
 \end_layout
 
 \begin_layout Standard
-Kolejnymi dwoma parametrami konfigurującymi zadanie są współczynnik migracji
- oraz częstość jej występowania.
+Technologie Play Framework oraz AngularJS zostały wykorzystane do przygotowania
+ aplikacji webowej będącej interfejsem klienta dzięki któremu może sterować
+ on działaniem platformy, monitorować ją oraz oglądać wyniki obliczeń.
 \end_layout
 
 \begin_layout Standard
-Mają one bezpośredni wpływ na skalowalność platformy.
- Współczynnik migracji podawany jest w zakresie 
-\begin_inset Formula $0..100$
+Play Framework jest to technologia server-side, działająca zarówno z językiem
+ Java jak i Scala.
+ Integruje ona komponenty oraz API potrzebne do stworzenia aplikacji webowej
+ opartej o wzorzec MVC.
+ Bazuje on na lekkiej, bezstanowej architekturze, niskim zużyciu zasobów,
+ wysokiej skalowalności oraz programowaniu reaktywnym.
+ Do komunikacji wykorzystuje metody protokołu HTTP oraz pozwala na implementację
+ serwisów w technologii REST.
+ Play zapewnia również wsparcie dla technologii WebSocket wykorzystanej
+ w niniejszej pracy oraz łatwą integrację z frameworkiem Akka 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "35,37"
+
 \end_inset
 
- i oznacza procent migrującej populacji.
- Natomiast parametr określający częstość występowania migracji wyznacza
- co ile cykli następuje migracja.
- Jego wartość może wynosić zero, wtedy migracja nie występuje lub jakiś
- ułamek maksymalnej liczby cykli.
+.
 \end_layout
 
 \begin_layout Standard
-Bez występowania migracji osobników pomiędzy wyspami (węzłami klastra) mogłaby
- zaistnieć sytuacja, gdy pomimo pracy kilku urządzeń w klastrze każde z
- nich uzyskałoby podobne wyniki w zbliżonym czasie, co oznaczałoby, że równie
- dobrze obliczenia mogłyby być przeprowadzane tylko na jednym urządzeniu,
- bo wzrost liczby urządzeń nie wpłynął znacząco na szybkość znajdywanych
- wyników.
+Z kolei AngularJS jest to technologia stworzona z użyciem języka JavaScript,
+ ze wsparciem komercyjnych firm takich jak Google.
+ Rozszerza możliwości języka HTML oraz CSS a ponadto pozwala tworzyć tzw.
+ SPA (ang.
+ Single Page Applications).
+ W niniejszej pracy wykorzystano ją do prezentowania informacji odebranych
+ z aplikacji serwerowej oraz interakcji z użytkownikiem za pomocą przeglądarki
+ internetowej 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "36,38"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Wykorzystane szablony
 \end_layout
 
 \begin_layout Standard
-Dzięki zastosowaniu migracji, gdy do klastra zostaje włączone nowe urządzenie
- i zaczyna wykonywać obliczenia, to po odebraniu osobników migrujących z
- innej wyspy, którzy z dużym prawdopodobieństwem będą zawierali lepszej
- jakości rozwiązania aniżeli nowo zainicjalizowani osobnicy na aktualnej
- wyspie ewolucja takiej wyspy zostaje przyśpieszona.
- Przy wysokiej częstości migracji oraz dużym procencie migrującej populacji
- istnieje ryzyko, że wyspy zostaną zdominowane przez osobników o podobnych
- cechach, co może prowadzić do odnalezienia jedynie lokalnego minimum zamiast
- minimum globalnego.
- 
+Platforma Typesafe w której skład wchodzą technologie wykorzystane w niniejszej
+ pracy, takie jak Play Framework, Akka oraz Scala dostarcza bardzo wyczerpującą
+ dokumentację wraz z wieloma przykładami oraz szablonami na licencji Public
+ Domain.
 \end_layout
 
 \begin_layout Standard
+Rozwiązanie stworzone na potrzeby niniejszej pracy bazowało początkowo na
+ dwóch szablonach, pierwszy zawierał przykład monitoringu urządzeń podłączonych
+ do klastra natomiast drugi dystrybucję zadań pomiędzy urządzenia 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "40,39"
 
-\series bold
-Tutaj chciałbym pokazać jaki jest wpływ migracji oraz jej parametrów na
- wyniki obliczeń porównując wyniki z poprzedniego podrozdziału uzyskane
- dla jednego urządzenia..
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Wykres ...
- Na wykresie przedstawiono innym kolorem różną częstość migracji dla 10%
- migrującej populacji.
-\end_layout
-
-\begin_layout Standard
-4 urzadzenia, 2 wymiary.
-\end_layout
-
-\begin_layout Standard
-4 urzadzenia 8 wymiarow.
-\end_layout
-
-\begin_layout Standard
-Powtorzyc dla 20% migrujacej populacji.
-\end_layout
-
-\begin_layout Standard
-40%.
-\end_layout
-
-\begin_layout Subsection
-Wydajność 
-\end_layout
-
-\begin_layout Standard
-Średnie zużycie pamięci RAM oraz obciążenie procesora w trakcie wykonywania
- obliczeń (w zależności od różnych ustawień początkowych) oraz w stanie
- bezczynności.
-\end_layout
-
-\begin_layout Subsection
-Narzut komunikacji.
-\end_layout
-
-\begin_layout Standard
-Częstość wykonywania zapisów do bazy, przesyłania wyników częściowych do
- klienta oraz wpływ wielkości populacji.
-\end_layout
-
-\begin_layout Standard
-Pozostałym parametrem konfigurującym zadanie jest częstość przesyłania wyników
- częściowych do klienta co ma wpływ również na częstość wykonywania zapisów
- do bazy.
-\end_layout
-
-\begin_layout Subsection
-Koszty rozbudowy
-\end_layout
-
-\begin_layout Standard
-Krótka analiza kosztów rozbudowy klastra, biorąc pod uwagę ceny urządzeń
- SoC oraz faktyczny przyrost wydajności uzyskany przy zakupie kolejnego
- urządzenia.
- 
+.
 \end_layout
 
 \end_body

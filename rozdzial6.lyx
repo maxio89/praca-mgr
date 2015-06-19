@@ -157,7 +157,7 @@ Rozwiązanie stworzone na potrzeby niniejszej pracy posiada kilka ciekawych
  Kilka z nich zostało opisanych poniżej.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Wiele klientów
 \end_layout
 
@@ -171,7 +171,7 @@ W testowanym rozwiązaniu rozważono tylko jedną aplikację kliencką, będąc�
  podczas gdy reszta nie byłaby w żaden sposób obsługiwana.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Sieć rozgległa
 \end_layout
 
@@ -188,7 +188,7 @@ Na potrzeby niniejszej pracy rozważono działanie urządzeń klastra w sieci
  
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Wykorzystanie GPU
 \end_layout
 
@@ -226,7 +226,7 @@ key "59"
  
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Inne algorytmy
 \end_layout
 
@@ -239,7 +239,7 @@ owanie innych algorytmów, które będą w stanie wykorzystać potencjał stworz
  jeszcze większą efektywność obliczeń.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Optymalizacja
 \end_layout
 
@@ -259,7 +259,7 @@ Urządzenia SoC na których testowano przygotowaną platformę posiadają ograni
  dobrać optymalne parametry.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 IoT
 \end_layout
 

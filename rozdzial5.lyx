@@ -97,10 +97,20 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \begin_body
 
 \begin_layout Chapter
-Podsumowanie
+Możliwości praktycznego zastosowania
 \begin_inset CommandInset label
 LatexCommand label
-name "cha:podsumowanie"
+name "cha:mozliwosci"
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+algorytm ewolucyjny zamiast genetycznego
+\end_layout
 
 \end_inset
 
@@ -108,169 +118,1766 @@ name "cha:podsumowanie"
 \end_layout
 
 \begin_layout Standard
-W poniższym rozdziale zostało zawarte podsumowanie niniejszej pracy.
- Opisano również wnioski oraz nakreślono możliwości dalszego rozwoju.
+W niniejszym rozdziale opisano wykorzystanie przygotowanej platformy w praktyce,
+ sposób jej użycia oraz zasady działania a także wyniki zaimplementowanych
+ rozwiązań.
 \end_layout
 
 \begin_layout Section
-Wnioski
+Zastosowania 
 \end_layout
 
 \begin_layout Standard
-W ramach niniejszej pracy udało się spełnić początkowe założenia i przygotować
- platformę oferującą możliwość uruchomienia obliczeń na wielu urządzeniach
- pracujących w klastrze, dostarczającą narzędzi do monitoringu, rozwiązującą
- problem load-balancingu zadań, skalowalności a także zapewniającą wsparcie
- w sytuacji awarii tychże urządzeń, poprzez reorganizację oraz odzyskiwanie
- sprawności czyli powrót do stanu klastra sprzed wystąpienia awarii.
- Platforma pozwala również na prowadzenie efektywnych obliczeń mimo ograniczonej
- mocy obliczeniowej urządzeń SoC.
- Wykorzystanie tych urządzeń oraz technologii działających na maszynie wirtualne
-j Javy zapewnia mobilność tego rozwiązania.
+Poniżej wymieniono kilka możliwych zastosowań przygotowanej platformy:
 \end_layout
 
-\begin_layout Standard
-Technologie Akka okazały się kluczowe z punktu widzenia niniejszej pracy
- idealnie wkomponowując się w wybraną tematykę.
- Dzięki rozwiązanion wysokiego poziomu ułatwiły one tworzenie nowych komponentów
- oraz dostarczyły pewnych strategii i wzorców zwiększając tym samym przejrzystoś
-ć jak i możliwości dalszego rozwóju przygotowanego rozwiązania.
+\begin_layout Itemize
+Symulacje.
 \end_layout
 
-\begin_layout Standard
-Niniejsza praca pozwoliła również autorowi na zapoznanie się z tematyką
- problemów występujących w klastrze oraz rozwiązaniami stosowanymi w celu
- zrównoleglenia lub rozproszenia obliczeń.
- Kolejnym ciekawym aspektem niniejszej pracy z punktu widzenia autora, który
- pozwolił na eksplorację nowych obszarów wiedzy jest względnie nowa dziedzina
- w programowaniu a mianowicie programowanie reaktywne i technologie z platformy
- Typesafe w połączeniu z urządzeniami SoC oraz Cluster Computing.
+\begin_layout Itemize
+Obliczenia rownolegle.
+\end_layout
+
+\begin_layout Itemize
+Problemy optymalizacyjne.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Co jeszcze?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Możliwości rozwoju
+Równoległe algorytmy ewolucyjne
 \end_layout
 
 \begin_layout Standard
-Rozwiązanie stworzone na potrzeby niniejszej pracy posiada kilka ciekawych
- aspektów nad którymi badania mogą być kontynuowane.
- Kilka z nich zostało opisanych poniżej.
+W rozdziale opisano kilka algorytmów użytych podczas implementacji rozwiązania
+ stworzonego na potrzeby niniejszej pracy.
 \end_layout
 
 \begin_layout Subsection
-Wiele klientów
+Algorytmy genetyczne
 \end_layout
 
 \begin_layout Standard
-W testowanym rozwiązaniu rozważono tylko jedną aplikację kliencką, będącą
- jedynym źródłem zadań w klastrze.
- W kolejnych etapach prac nad stworzoną platformą warto byłoby się pokusić
- o zaimplementowanie przypadku gdzie klientów jest więcej i w różnym stopniu
- obciążają oni urządzenia pracujące w klastrze a także nad sposobem dysponowania
- wolnymi węzłami tak aby jeden klient nie zajął wszystkich dostępnych węzłów
- podczas gdy reszta nie byłaby w żaden sposób obsługiwana.
+Algorytmy genetyczne zaliczają się do grupy algorytmów ewolucyjnych.
+ Zostały opracowane przez Johna Hollanda w latach siedemdziesiątych i są
+ inspirowane teorią ewolucji Darwina tudzież ewolucją biologiczną 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "10"
+
+\end_inset
+
+.
+ Istnieje wiele różnych prac traktujących o wykorzystaniu algorytmów genetycznyc
+h, różnych ich odmianach czy modyfikacjach oraz badaniu ich efektywności.
+ Przykładem może być praca magisterska zawarta w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "10"
+
+\end_inset
+
+ lub trochę starsza pozycja książkowa 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "12"
+
+\end_inset
+
+.
+ Opis implementacji algorytmów genetycznych można znaleść w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "13"
+
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Subsection
-Sieć rozgległa
+\begin_layout Subsubsection*
+Pojęcia
+\end_layout
+
+\begin_layout Itemize
+Gen - cecha mająca wpływ na jakość rozwiązania.
+\end_layout
+
+\begin_layout Itemize
+Chromosom - indywiduum, osobnik prezentujący jedno z rozwiązań problemu,
+ składa się z genów.
+\end_layout
+
+\begin_layout Itemize
+Populacja - zbiór chromosomów, prezentuje zbiór rozwiązań danego problemu.
+\end_layout
+
+\begin_layout Itemize
+Migracja - wymiana osobników pomiędzy populacjami.
+\end_layout
+
+\begin_layout Itemize
+Selekcja - algorytm wyboru osobników pozostałych w danej populacji w następnym
+ cyklu.
+\end_layout
+
+\begin_layout Itemize
+Krzyżowanie - tworzenie osobników potomnych w trakcie trwania ewolucji na
+ podstawie innych, wybranych osobników - rodziców.
+\end_layout
+
+\begin_layout Itemize
+Mutacja - modyfikacja osobnika zawierająca element losowości, mająca na
+ celu próbę ekploracji nowych obszarów rozwiązań.
+\end_layout
+
+\begin_layout Itemize
+Funkcja przystosowania (ang.
+ fitness) - zwana też funckją celu, określa jakość danego rozwiązania.
+\end_layout
+
+\begin_layout Itemize
+Ewaluacja - wyliczenie wartości funkcji fitness dla każdego osobnika populacji
+ czyli inaczej ocena jakości znalezionych rozwiązań.
+\end_layout
+
+\begin_layout Itemize
+Ewolucja - powtarzający się cykl w trakcie którego następuje rozwój populacji
+ oraz w skład którego wchodzi m.in.
+ ewaluacja, selekcja, krzyżowanie, mutacja oraz migracja.
+ 
+\end_layout
+
+\begin_layout Itemize
+Generacja - jeden cykl algorytmu.
 \end_layout
 
 \begin_layout Standard
-Na potrzeby niniejszej pracy rozważono działanie urządzeń klastra w sieci
- lokalnej lecz przygotowane rozwiązanie mogłoby się również sprawdzić w
- sieci globalnej Internet, gdzie węzły klastra mogłyby być uruchomione na
- różnego typu urządzeniach znacząco oddalonych od siebie i mających do siebie
- dostęp za pomocą protokołu TCP/IP.
- Ciekawym aspektem tutaj byłaby zróżnicowana przepustowość połączenia, ponieważ
- w takim przypadku trzeba byłoby dobrać odpowiednie ustawienia detekcji
- awarii i arbitralne wybranie dozwolonego czasu opóźnień mogłoby być niełatwym
- zadaniem.
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Schemat-blokowy-ewolucji."
+
+\end_inset
+
+ przedstawiono schemat blokowy ewolucji.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Czy to pasuje jako ramowy schemat?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ewolucja.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schemat blokowy ewolucji.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schemat-blokowy-ewolucji."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Zastosowanie
+\end_layout
+
+\begin_layout Standard
+Algorytmy ewolucyjne sprawdzają się tam gdzie nie jest dobrze znana przestrzeń
+ rozwiązań ale został określony sposób oceny jakości rozwiązania.
+ Znajdują one zastosowanie przy rozwiązywaniu problemów NP, np.
+ problemu komiwojażera w którym trzeba znaleść najkrótszą drogę łączącą
+ wszystkie miasta tak, aby odwiedzić każde miasto conajmniej raz.
+ Innymi zastosowaniami mogą być choćby poszukiwania ekstremów funkcji, których
+ nie da się obliczyć analitycznie lub przeszukiwanie dużych przestrzeni
+ rozwiązań jak np.
+ w przypadku problemu grupowania.
+ Alborytmy genetyczne są mniej zależne od wstępnej inicjalizacji zadania
+ oraz mniej skłonne do znajdywania rozwiązań lokalnych zamiast optymalnych
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "9,10"
+
+\end_inset
+
+.
  
 \end_layout
 
 \begin_layout Subsection
-Wykorzystanie GPU
+Master/slave 
 \end_layout
 
 \begin_layout Standard
-Do obliczeń wykonywanych w obrębie platformy wykorzystano jedynie procesory
- CPU lecz większość urządzeń SoC posiada również jednostki GPU, które są
- w tym czasie niewykorzystywane.
- Jedno z urządzeń SoC, zwane Parallela posiada nawet mocniejszy procesor
- graficzny aniżeli jednostkę centralną.
- Warto byłoby się zastanowić nad potencjalnym wykorzystaniem tych jednostek
- np.
- przy użyciu takich bibliotek jak ScalaCL 
+Master/slave jest modelem komunikacji w którym jedno urządzenie lub proces
+ zwane master kontroluje jedno lub więcej urządzeń lub procesów zwanych
+ slave lub worker 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "58"
+key "17"
 
 \end_inset
 
-, które pozwalają na wykonywanie kodu napisanego w Scali na procesorach
- graficznych i równoległym prowadzeniu obliczeń na różnych architekturach.
- W roku 2011 Martin Odersky, współtwórca języka Scala oraz jego zespół pracujący
- na uniwersytecie w Lozannie uzyskali wielomilionowy grant od Europejskiej
- Rady ds.
- Badań Naukowych (ERBN) dzięki któremu mogli kontynuować pracę nad problemami
- zrównoleglania obliczeń w różnych modelach programowania jak np.
- OpenMP, MPI, CUDA, OpenCL 
+.
+ Może on zostać wykorzystany w implementacji algorytmów ewolucyjnych.
+\end_layout
+
+\begin_layout Standard
+Ten model komunikacji może zostać wykorzystany w następujących przypadkach:
+\end_layout
+
+\begin_layout Itemize
+gdy chcemy mieć jeden proces, tzw.
+ single-point of responsibility, który podejmuje decyzje lub koordynuje
+ akcje w celu zachowania spójności w systemie,
+\end_layout
+
+\begin_layout Itemize
+potrzebujemy zapewnić jeden punkt dostępu do zewnętrznego systemu lub jeden
+ punkt wejścia do systemu,
+\end_layout
+
+\begin_layout Itemize
+istnieje potrzeba stworzenia scentralizowanego serwisu, np.
+ zajmującego się routingiem.
+\end_layout
+
+\begin_layout Standard
+Rozwiązanie to ma niestety również kilka wad, jak na przykład istnieje niebezpie
+czeństwo utworzenia tzw.
+ wąskiego gardła co może spowodować problemy z wydajnością lub być tzw.
+ single-point of failure.
+ Jeśli urządzenie/proces posiadające rolę master ulega awarii, powinniśmy
+ w jakiś sposób obsłużyć taką sytuację, np.
+ poprzez ponowne wystartowanie procesu/urządzenia z rolą master aby zapewnić
+ poprawne i niezawodne działanie komunikacji.
+ Sytuacje takie mogą wprowadzić pewne opóźnienia w trakcie odzyskiwania
+ sprawności systemu 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "59"
+key "14"
 
 \end_inset
 
- co potwierdza, że prace nad podobnymi rozwiązaniami są prowadzone już od
- wielu lat.
+.
+\end_layout
+
+\begin_layout Subsection
+Model wyspowy
+\end_layout
+
+\begin_layout Standard
+Jest to odmiana algorytmów ewolucyjnych przystosowana do obliczeń równoległych
+ oraz rozproszonych.
+ Zamiast jednej dużej populacji rozważamy tutaj kilka podpopulacji zwanych
+ wyspami.
+ Każda wyspa może być traktowana jako osobna populacja, ponieważ ewolucja
+ na niej zachodzi w izolacji od pozostałych wysp.
+ Co pewien okres populacje znajdujące się na wyspach wymieniają się między
+ sobą pewną ilością osobników w procesie migracji.
+ Pozwala to przyśpieszyć znajdywanie rozwiązania.
+ Istotna jest tutaj topologia połączeń pomiędzy wyspami pozwalająca na wymianę
+ osobników, metoda selekcji migrujących osobników, ich wielkość oraz odstęp
+ pomiędzy kolejnymi migracjami.
+ Badania różnych parametrów tych zjawis można znaleść m.in.
+ w pracy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "10"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Problemy benchmarkowe
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Napisac o trudnych problemach wielomodalnych i napisac ze rastrigina wykorzystal
+em jako swoj benchmark.
+\end_layout
+
+\begin_layout Standard
+Algorytmy genetyczne opisane w poprzednim podrozdziale zostały wykorzystane
+ do znalezienia minimum funkcji Rastrigina.
+\end_layout
+
+\begin_layout Standard
+Funkcja Rastrigina jest funkcją niewypukłą.
+ Ze wględu na to, że posiada wiele minimów lokalnych oraz jedno globalne
+ dla 
+\begin_inset Formula $x=0$
+\end_inset
+
+, 
+\begin_inset Formula $f(x)=0$
+\end_inset
+
+ bywa trudna w optymalizacji, ponieważ algorytmy optymalizacyjne mogą utknąć
+ w którymś z lokalnych minimów tracąc szanse na znalezienie minimum globalnego.
+ Funckja ta często znajduje zatem zastosowanie jako funkcja testująca algorytmy
+ optymalizacyjne.
+ Została ona również użyta jako problem testowy w niniejszej implementacji.
+\end_layout
+
+\begin_layout Standard
+Wzór funkcji Rastrigina przedstawiono poniżej
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+f(x)=An+{\textstyle \stackrel[i=1]{n}{\sum}[x_{i}^{2}-Acos(2\pi x_{i})]},
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+gdzie 
+\begin_inset Formula $A=10$
+\end_inset
+
+, 
+\begin_inset Formula $x_{i}\epsilon[-5.12,\,5.12]$
+\end_inset
+
+ a 
+\begin_inset Formula $n$
+\end_inset
+
+ oznacza wymiar funkcji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "25"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Wykres funkcji Rastrigina przedstawiono na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wykres-funckji-Rastrigina-3D"
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wykres-funkcji-Rastrigina-2D"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Rastrigin_function.png
+	lyxscale 20
+	scale 30
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wykres funckji Rastrigina 3D 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "24"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wykres-funckji-Rastrigina-3D"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Rastrigin_Contour.jpg
+	lyxscale 20
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wykres funkcji Rastrigina 2D 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "24"
+
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wykres-funkcji-Rastrigina-2D"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Ewolucyjna optymalizacja na platformie 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Jaki tytuł? Opisac jak za pomoca platformy zaimplementowalem ewolucje
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+....
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Czy przeniesc to do rozdzialu 4 i jakos rozdzielic na dwa podrozdzialy,
+ tutaj zostawic tylko screeny aplikacji?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Rozwiązanie stworzone na potrzeby niniejszej pracy przetestowano dzięki
+ zaimplementowaniu algorytmów genetycznych w odmianie wyspowej opisanych
+ w poprzednim rozdziale.
+\end_layout
+
+\begin_layout Standard
+Implementacja ta, została oparta na implementacji algorytmów genetycznych
+ przedstawionej w książce Scala for Machine Learning 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "20"
+
+\end_inset
+
+ oraz dostosowana do optymalizacji funkcji ciągłej.
+\end_layout
+
+\begin_layout Standard
+W przypadku problemu Rastrigina gen jest liczbą typu Double, chromosomy
+ zawierają listę genów czyli obrazują punkty w przestrzeni rozwiązań.
+ W przypadku dwuwymiarowej funkcji Rastrigina jest to lista dwuelementowa.
+ Natomiast populacja zawiera listę chromosomów.
+\end_layout
+
+\begin_layout Standard
+Zadanie jest konfigurowane parametrami przedstawionymi w tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Parametry-zadania."
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Parametry zadania.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Parametry-zadania."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nazwa parametru
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align center
+Opis
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Dimension
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Wymiar optymalizowanej funkcji ciągłej.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Cycles
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Maksymalna ilość cykli ewolucji.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Initial population size
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\align left
+Początkowy rozmiar populacji (podczas krzyżowania 
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+i mutacji liczba osobników populacji zostaje wzrasta).
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Maximum population size
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Maksymalny rozmiar populacji.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Snapshot frequency
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Częstotliwość persystowania wyników obliczeń (w tym przypadku osobników
+ populacji).
+ *
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Migration frequency
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Częstotliwość występowania migracji.
+ *
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Mutation parameter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Parametr mutacji, określa wpływ mutacji na geny.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Migration factor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Procent migrującej populacji.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+* częstotliwość jest określana przez ilość cykli
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Migracja odbywa się poprzez wybranie pewnej ilości najlepszych osobników
+ populacji oraz wysłanie ich do innego węzła klastra.
+ Wykonuje się ona co określoną liczbę cykli konfigurowalną w parametrach
+ zadania.
+ Do wyboru są dwa rodzaje selekcji węzła do którego wysyłani są migrujący
+ osobnicy.
+ Pierwszy to jest wybór losowy a drugi metodą round-robin, czyli wysyłanie
+ migrującej części populacji na zmianę do każdego kolejnego węzła 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "21"
+
+\end_inset
+
+.
+ Migracja odbywa się bez użycia mastera, do jej działania wykorzystano rozszerze
+nie frameworka Akka o nazwie 
+\shape italic
+Distributed Publish Subscribe in Cluster
+\shape default
+ opisane w poprzednim rozdziale.
+\end_layout
+
+\begin_layout Standard
+Inicjalizacja populacji odbywa się w każdym węźle klastra osobno.
+ W przypadku problemu Rastrigina opisanego w kolejnym podrozdziale, początkowa
+ populacja składa się z osobników zainicjalizowanych losowymi liczbami z
+ przedziału 
+\begin_inset Formula $[-5.12,\,5.12]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Realizacja-zadania"
+
+\end_inset
+
+ zaprezentowano wygląd interfejsu użytkownika pozwalającego na podgląd wyników
+ rozpoczętych zadań oraz rozpoczęcie nowych.
+ Widoczne jest tutaj każde z urządzeń wykonujących obliczenia w klastrze
+ i są one identyfikowane po adresie IP oraz ID workera.
  
 \end_layout
 
-\begin_layout Subsection
-Inne algorytmy
+\begin_layout Standard
+Wyniki prezentowane są w czasie rzeczywistym przy użyciu technologi WebSocket
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "22"
+
+\end_inset
+
+.
+ Dla każdego zadania rysowany jest wykres przedstawiający wartość funkcji
+ Rastrigina zmieniającą się w trakcie trwania ewolucji, czyli w kolejnych
+ cyklach algorytmu.
+ Wykres narysowano za pomocą biblioteki D3.js 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "23"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Kolejną kwestią którą można rozważyć w planach dalszego rozwoju jest zaimplement
-owanie innych algorytmów, które będą w stanie wykorzystać potencjał stworzonej
- platformy.
- Warto byłoby również poeksperymentować z różnymi modyfikacjami algorytmów
- genetycznych, takimi jak różne metody selekcji lub krzyżowania, aby uzyskać
- jeszcze większą efektywność obliczeń.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename rastrigin_service.jpg
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Subsection
-Optymalizacja
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rozpoczęcie zadania.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Realizacja-zadania"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Monitoring
 \end_layout
 
 \begin_layout Standard
-Urządzenia SoC na których testowano przygotowaną platformę posiadają ograniczone
- możliwości obliczeniowe, co oznacza, że uruchamiane na nich aplikacje powinny
- być zoptymalizowane pod tym kątem.
- Wykorzystanie pamięci RAM oraz procesora jest tutaj bardzo istotne i może
- w znaczny sposób wpłynąć na szybkość obliczeń.
- Nie można zatem pozwolić sobie na zbędne operacje i nadmierną zajętość
- pamięci, co mogłoby wydłużyć wykonywanie obliczeń.
- Warto byłoby użyć jakiegoś narzędzia do profilowania JVM aby sprawdzić
- czy nie ma żadnych wycieków pamięci a także przenalizować zrzut pamięci
- (tzw.
- head dump) pod kątem instancjonowanych obiektów oraz zajętości pamięci.
- Można byłoby również wykonać tuning GC (garbage collector) oraz spróbować
- dobrać optymalne parametry.
-\end_layout
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Podgląd-stanu-klastra"
 
-\begin_layout Subsection
-IoT
+\end_inset
+
+ przedstawiono interfejs klienta prezentujący obecny stan klastra.
+ Wylistowano na nim również listę urządzeń pracujących w klastrze, z uwględnieni
+em aktywnego mastera, adresu IP wraz z portami, dostępność urządzenia oraz
+ kilka metryk, m.in.
+ zużycie CPU oraz pamięci RAM.
 \end_layout
 
 \begin_layout Standard
-W ostatnich latach coraz bardziej wzrasta znaczenie urządzeń podłączonych
- do Internetu.
- Coraz więcej sprzętu codziennego użytku posiada zainstalowane układy procesorow
-e o wystarczającej mocy obliczeniowej aby móc obsłużyć systemy mobilne takie
- jak Android.
- Stwarza to zatem pole do popisu oraz nowe pomysły wykorzystania stworzonego
- rozwiązania w wersji bardziej rozproszonej.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dashboard.jpg
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Podgląd stanu klastra.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Podgląd-stanu-klastra"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stan klastra propagowany jest za pomocą protokołu Gossip opisanego w poprzednim
+ rozdziale.
+ Jeżeli jakieś urządzenie nie odpowiada przez określony czas w wyniku np.
+ problemów z siecią, jest ono uznawane jako niedostępne, czyli nie może
+ już przyjmować żadnych zadań ale może jeszcze powrócić do pracy w klastrze
+ jeżeli odzyska sprawność w ciągu najbliższych kilku sekund.
+ Jeżeli nie, w takim przypadku jest ono usuwane z listy urządzeń pracujących
+ w klastrze.
+ Po usunięciu urządzenia z klastra nie może ono dołączyć ponownie do klastra
+ dopóki aplikacja uruchomiona na tym urządzeniu nie zostanie zrestartowana.
+ Pozwala to zapobiec sytuacji, gdy w trakcie problemów z siecią, dane urządzenie
+ odłączy się na chwilę od klastra aktywując własnego mastera a następnie
+ po powrocie do klastra bedą aktywne dwa mastery.
+ Dzieje się tak dlatego, że w przypadku gdy urządzenie utraci kontakt z
+ pozostałymi urządzeniami, nie może ono z pewnością stwierdzić co było przyczyną
+ awarii i zakłada, że jest jedynym urządzeniemi w klastrze.
+ 
+\end_layout
+
+\begin_layout Standard
+W trakcie awarii urządzenia podczas wykonywania obliczeń dzięki występowaniu
+ migracji opisanej w jednym z kolejnych podrozdziałów nie tracimy wszystkich
+ wyników pracy a jedynie te uzyskane od poprzedniej migracji.
+ Stan mastera jest zapisywany w bazie danych, co pozwala na jego odtworzenie
+ w przypadku awarii urządzenia z aktywnym masterem.
+ Do bazy danych persystowane są zserializowane zdarzenia zgodnie ze wzorcem
+ Event Sourcing opisanym w pozycjach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "18,19"
+
+\end_inset
+
+.
+ Zdarzenia te odzwierciedlają stan przyjętego zadania.
+ Listę zdarzeń oraz ich opis przedstawiono w tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Lista-zdarzeń-sterujących"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Lista zdarzeń sterujących stanem zadania.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Lista-zdarzeń-sterujących"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Przeniesc to do rozdzialu z architektura?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nazwa stanu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Opis
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkAccepted
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania po przyjęciu go przez mastera oraz wysłaniu potwierdzenia do
+ klienta.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkStarted
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania przekazanego do realizacji do workera.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkInProgress
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania w trakcie trwania obliczeń, przechowujący częsciowe wyniki
+ zadania.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkCompleted
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania otrzymany po zakończeniu obliczeń, przechowujący końcowe wyniki.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkerFailed
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania zakończonego niepowodzeniem.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkerTimedOut
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania ustawiany jeśli worker pracujący nad danym zadaniem nie odeśle
+ wyników w określonym czasie.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dla przykładu, jeżeli klient zadał zadanie i zmieniło ono stan na WorkAccepted
+ (czyli zostało zaakceptowane ale nie przesłane jeszcze do żadnego workera)
+ a w tym samym czasie nastąpiła jakaś awaria przerywająca pracę mastera,
+ kolejna instancja mastera zostanie aktywowana na innym urządzeniu i odtworzy
+ stan mastera, który uległ awarii, co oznacza, że klient nie będzie musiał
+ ponownie rozpoczynać zadania, lecz jego poprzednio rozpoczęte zadanie zostanie
+ przekazane do realizacji do wolnego workera.
+\end_layout
+
+\begin_layout Standard
+Diagram prezentujący dopuszczalne zmiany stanów zadania przedstawiono na
+ rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Przejścia-pomiędzy-stanami"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename work states.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Przejścia pomiędzy stanami zadania.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Przejścia-pomiędzy-stanami"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Dystrybucja 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Przeniesc to do rozdzialu z architektura?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Do łatwej dystrybucji platformy między różnymi urządzeniami wykorzystano
+ dodatek projektu Akka o nazwie Microkernel oraz rozszerzenie Sbt o nazwie
+ sbt-native-packager.
+\end_layout
+
+\begin_layout Standard
+Akka Microkernel oraz sbt-native-packager dostarczają mechanizmu archiwizowania
+ dzięki któremu można udostępniać aplikację jako pojedyńczy plik bez potrzeby
+ uruchamiania lub instalowania dodatkowych aplikacji, dostarczania zależności
+ lub ręcznego tworzenia skryptów startowych.
+ Pozwalają również na wystartowanie systemu aktorowego używając klasy z
+ metodą statyczną main 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "15,16"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Umożliwia to łatwą instalację oraz uruchomienie platformy na różnych urządzeniac
+h klastra.
+ Do uruchomienia platformy na danym urządzeniu wystarczy aby posiadało ono
+ zainstalowany system wraz z wirtualną maszyną Javy oraz archiwum z platformą,
+ które po rozpakowaniu pozwala uruchomić aplikację za pomocą jednego skryptu
+ wykonywalnego.
+ Żadne dodatkowe oprogramowanie nie jest wymagane.
+\end_layout
+
+\begin_layout Section
+Wyniki testów 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Jakie wykresy, co jeszcze procz czasow wykonania zadan dla roznych ustawien
+ zadania oraz ilosci urzadzen?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Do przeprowadzenia testów zostało wykorzystanych kilka urządzeń Raspberry
+ Pi.
+ Jako problem testowy wykorzystano optymalizację wielowymiarowej funkcji
+ Rastrigina opisanej w poprzednim podrozdziale.
+\end_layout
+
+\begin_layout Standard
+Ze wględu na ograniczoną precyzję obliczeń nie udało się uzyskać wyniku
+ równego poszukiwanemu minumum, czyli 
+\begin_inset Formula $f(x)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Najlepsze uzyskane wyniki oscylowały w okolicach 
+\begin_inset Formula $2e-30$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Do obliczeń wykorzystano typ Double, który w języku Scala cechuje się podwójną
+ precyzją, zapisaną na 64 bitach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "8"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Na poniższych wykresach przedstawiono wyniki oraz czasy ich uzyskania w
+ zależności od różnych ustawień początkowych zadania.
+\end_layout
+
+\begin_layout Standard
+Rozważono tutaj problem dla jednego urządzenia w celu porównania go z bardziej
+ istotnym przypadkiem dla celów niniejszej pracy a mianowicie wielu urządzeń
+ pracujących w klastrze, który rozważono w następnym podrozdziale poświeconemu
+ skalowalności rozwiązania.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania"
+
+\end_inset
+
+ przedstawiono wykres wartości funkcji Rastrigina 2D gdzie współczynnik
+ mutacji wynosi 
+\begin_inset Formula $0.2$
+\end_inset
+
+ a całkowita ilość cykli 
+\begin_inset Formula $10000$
+\end_inset
+
+.
+ Aby zwiększyć czytelność wykresu użyto skali logarytmicznej.
+\end_layout
+
+\begin_layout Standard
+Na wykresie uwzględniono również różne maksymalne wielkości populacji, co
+ zaznaczono innym kolorem.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename wykres_4_2_1.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Całkowity czas wykonania ...
+ Znaleziony punkt ..., wartość funkcji ...
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wykres na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania"
+
+\end_inset
+
+ pokazuje, że w początkowych cyklach ewolucji populacji gdy osobnicy nie
+ są jeszcze dobrze rozwinięci kolejne rozwiązania znajdywane są wolniej.
+ Szybkość znajdywania nowych rozwiązań przyśpiesza wraz ze wzrostem ilości
+ cykli oraz wzrostem wielkości populacji.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Całkowity czas wykonania ...
+ Znaleziony punkt ..., wartość funkcji ...
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Na rysunku ...
+ przedstawiono wykres wartości funkcji dla większego współczynnika mutacji
+ wynoszącego 
+\begin_inset Formula $0.4$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+TODO
+\series default
+ sprobowac zmiescic rozne wspolczynniki mutacji na jednym wykresie, z roznymi
+ odcieniami danego koloru a drugi wykres zrobic dla 8 wymiarow.
+\end_layout
+
+\begin_layout Standard
+Powtorzyc dla 0.4.
+\end_layout
+
+\begin_layout Standard
+Powtorzyc dla 0.8.
+\end_layout
+
+\begin_layout Standard
+Podsumowując, zauważono, że większy współczynnik mutacji przyśpiesza znajdywanie
+ nowych rozwiązań.
+\end_layout
+
+\begin_layout Standard
+Warto dodać, że podczas przeprowadzania testów w klastrze pracowały dwa
+ typy urządzeń Raspberry Pi, model B oraz B plus, który jest nowszy od modelu
+ B oraz posiada większą ilość zaistalowanej pamięci RAM 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "26"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dostępna w urządzeniach pamięć RAM ma dość duży wpływ na czas obliczeń.
+ Czas uzyskiwany przez nowszy model urządzenia, który posiada więcej pamięci
+ był około 30% (
+\series bold
+sprawdzić ile dokładnie
+\series default
+) lepszy.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Dodac wykres z przyspieszeniem
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Skalowalność
+\end_layout
+
+\begin_layout Standard
+Kolejnymi dwoma parametrami konfigurującymi zadanie są współczynnik migracji
+ oraz częstość jej występowania.
+\end_layout
+
+\begin_layout Standard
+Mają one bezpośredni wpływ na skalowalność platformy.
+ Współczynnik migracji podawany jest w zakresie 
+\begin_inset Formula $0..100$
+\end_inset
+
+ i oznacza procent migrującej populacji.
+ Natomiast parametr określający częstość występowania migracji wyznacza
+ co ile cykli następuje migracja.
+ Jego wartość może wynosić zero, wtedy migracja nie występuje lub jakiś
+ ułamek maksymalnej liczby cykli.
+\end_layout
+
+\begin_layout Standard
+Bez występowania migracji osobników pomiędzy wyspami (węzłami klastra) mogłaby
+ zaistnieć sytuacja, gdy pomimo pracy kilku urządzeń w klastrze każde z
+ nich uzyskałoby podobne wyniki w zbliżonym czasie, co oznaczałoby, że równie
+ dobrze obliczenia mogłyby być przeprowadzane tylko na jednym urządzeniu,
+ bo wzrost liczby urządzeń nie wpłynął znacząco na szybkość znajdywanych
+ wyników.
+\end_layout
+
+\begin_layout Standard
+Dzięki zastosowaniu migracji, gdy do klastra zostaje włączone nowe urządzenie
+ i zaczyna wykonywać obliczenia, to po odebraniu osobników migrujących z
+ innej wyspy, którzy z dużym prawdopodobieństwem będą zawierali lepszej
+ jakości rozwiązania aniżeli nowo zainicjalizowani osobnicy na aktualnej
+ wyspie ewolucja takiej wyspy zostaje przyśpieszona.
+ Przy wysokiej częstości migracji oraz dużym procencie migrującej populacji
+ istnieje ryzyko, że wyspy zostaną zdominowane przez osobników o podobnych
+ cechach, co może prowadzić do odnalezienia jedynie lokalnego minimum zamiast
+ minimum globalnego.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Tutaj chciałbym pokazać jaki jest wpływ migracji oraz jej parametrów na
+ wyniki obliczeń porównując wyniki z poprzedniego podrozdziału uzyskane
+ dla jednego urządzenia..
+\end_layout
+
+\begin_layout Standard
+Wykres ...
+ Na wykresie przedstawiono innym kolorem różną częstość migracji dla 10%
+ migrującej populacji.
+\end_layout
+
+\begin_layout Standard
+4 urzadzenia, 2 wymiary.
+\end_layout
+
+\begin_layout Standard
+4 urzadzenia 8 wymiarow.
+\end_layout
+
+\begin_layout Standard
+Powtorzyc dla 20% migrujacej populacji.
+\end_layout
+
+\begin_layout Standard
+40%.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+100 to max wielkosc populacji, wymiar funkcji max 100, a co do dokladnosci
+ to wystarczy 1 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Wydajność 
+\end_layout
+
+\begin_layout Standard
+Średnie zużycie pamięci RAM oraz obciążenie procesora w trakcie wykonywania
+ obliczeń (w zależności od różnych ustawień początkowych) oraz w stanie
+ bezczynności.
+\end_layout
+
+\begin_layout Subsection*
+Narzut komunikacji.
+\end_layout
+
+\begin_layout Standard
+Częstość wykonywania zapisów do bazy, przesyłania wyników częściowych do
+ klienta oraz wpływ wielkości populacji.
+\end_layout
+
+\begin_layout Standard
+Pozostałym parametrem konfigurującym zadanie jest częstość przesyłania wyników
+ częściowych do klienta co ma wpływ również na częstość wykonywania zapisów
+ do bazy.
+\end_layout
+
+\begin_layout Subsection*
+
 \end_layout
 
 \end_body

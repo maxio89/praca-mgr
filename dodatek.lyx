@@ -75,7 +75,17 @@ Dodatek A
 \end_layout
 
 \begin_layout Section
-Instrukcja uruchomienia platformy
+Instrukcja uruchomienia platformy 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Na githubie przygotowac dobre readme zamiast tego
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection

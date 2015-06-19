@@ -97,10 +97,10 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \begin_body
 
 \begin_layout Chapter
-Charakterystyka rozpatrywanego problemu
+Obliczenia równoległe i rozproszone
 \begin_inset CommandInset label
 LatexCommand label
-name "cha:problem"
+name "cha:obliczenia"
 
 \end_inset
 
@@ -108,20 +108,574 @@ name "cha:problem"
 \end_layout
 
 \begin_layout Standard
-W poniższym rozdziale zarysowano kontekst problemów poruszanych w niniejszej
- pracy.
+Rodział zawiera klasyfikację modelu architektur równoległych oraz kilku
+ wybranych technologii mających zastosowanie przy obliczeniach równoległych
+ oraz rozproszonych.
 \end_layout
 
 \begin_layout Section
-Urządzenia SoC
+Model architektur rownoleglych 
+\begin_inset Note Note
+status open
+
+\begin_layout Section
+Flynna, jakies schematy, 1 str.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W latach 60-tych Michael Flynn sklasyfikował architektury równoległe biorąc
+ pod uwagę intrukcję oraz strumienie danych w czterech kategoriach.
+\end_layout
+
+\begin_layout Subsection*
+SISD (ang.
+ single instruction, single data) 
+\end_layout
+
+\begin_layout Subsection*
+SIMD (ang.
+ single instruction, multiple data) 
+\end_layout
+
+\begin_layout Subsection*
+MISD (ang.
+ multiple instruction, single data) 
+\end_layout
+
+\begin_layout Subsection*
+MIMD (ang.
+ multiple instruction, multiple data) 
 \end_layout
 
 \begin_layout Section
-Obliczenia równoległe oraz rozproszone
+MPI itd.
+ 
 \end_layout
 
 \begin_layout Section
-Istniejące rozwiązania
+Scala i Akka
+\end_layout
+
+\begin_layout Standard
+Podrozdział przedstawia krótką charakterystykę wykorzystanych technologii
+ z uwzględnieniem ich kluczowych z punktu widzenia niniejszej pracy funkcjonalno
+ści.
+\end_layout
+
+\begin_layout Subsection*
+Scala
+\end_layout
+
+\begin_layout Standard
+Do stworzenia platformy na potrzeby niniejszej pracy wykorzystano język
+ Scala.
+ Głównym aspektem przemawiającym na korzyść tego języka jest to, że do jego
+ działania wystarczy maszyna wirtualna Javy.
+ Jest to język obiektowy podobnie jak Java ale łączy również zalety języków
+ funkcyjnych, które w ostatnim czasie stają się coraz bardziej popularne.
+ Zamiarem twórców było stworzenie języka eleganckiego oraz zwięzłego syntaktyczn
+ie.
+ Mimo, że Scala jest językiem dynamicznie typowanym zapewnia tzw.
+ type safety 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "42"
+
+\end_inset
+
+.
+ Wprowadza również wiele innowacji oraz ciekawych rozwiązań do konstrukcji
+ języka jak np.
+ case classes, currying, zagnieżdżanie funkcji, DSL, tail recursion, słowo
+ kluczowe lazy lub trait, konsktrukcja podobna do interfejsu z języka Java
+ ale mogąca posiadać częściową implementację.
+ Scala preferuje obiekty immutable.
+ Obsługuje również funkcje wyższego rzędu oraz pozwala zwięźle definiować
+ funkcje anonimowe, kładzie również duży nacisk na skalowalność.
+ Dodatkową zaletą tego języka jest to, iż jest on w pełni kompatybilny z
+ językiem Java, co oznacza, że możemy w nim używać bibliotek lub frameworków
+ napisanych w Javie bez żadnych dodatkowych deklaracji.
+ Ostatecznie program napisany w Scali jest kompilowany do kodu bajtowego
+ Javy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "27,28,30,8"
+
+\end_inset
+
+.
+ Według autora niniejszej pracy do wad tego języka można zaliczyć m.in.
+ to, że niektóre instrukcje da się wyrazić na wiele różnych sposobów, co
+ utrudnia czytelność kodu oraz zwiększa trudność nauki tej technologii.
+\end_layout
+
+\begin_layout Subsection*
+Akka
+\end_layout
+
+\begin_layout Standard
+Jednym z kluczowych frameworków wykorzystanych w niniejszej pracy jest Akka.
+ Akka jest projektem Open Source na licencji Apache 2.
+ Posiada wersję przeznaczoną dla języka Java jak również dla języka Scala.
+ Projekt Akka mimo stosunkowo niedługiej obecności na rynku jest w pełni
+ gotowy do zastosowań produkcyjnych.
+ Cechuje się obecnością wielu interesujących z punktu widzenia niniejszej
+ pracy rozszerzeń, które zostały opisane w jednym z następnych podrodziałów,
+ wyczerpującej dokumentacji oraz dużej i aktywnej społeczności rozwijającej
+ ten produkt a także wsparciem komercyjnych firm.
+ Akka używa modelu aktorowego aby zwiększyć poziom abstrakcji i oddzielić
+ logikę biznesową od niskopoziomowego zarządzania wątkami oraz operacjami
+ I/O 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "29,31"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Podstawowym bytem w technologii Akka są aktorzy.
+ Aktor zapewnia wysokopoziomową abstrakcję dla lepszej współbieżności oraz
+ zrównoleglenia operacji.
+ Jest on lekkim, wydajnym oraz sterowanym zdarzeniami procesem, który komunikuje
+ się z innymi aktorami za pomocą asynchronicznych wiadomości przechowywanych
+ w skrzynkach odbiorczych.
+ Aktor enkapsuluje pewien stan i zachowania, które realizują określone zadania.
+ Więcej informacji na temat koncepcji aktorów w projekcie Akka można znaleść
+ w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "31"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Każdy aktor w systemie może być identyfikowany na kilka różnych sposobów.
+ Różnicę pomiędzy kilkoma z nich przedstawiono na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Relacja-między-kilkoma"
+
+\end_inset
+
+.
+ Więcej informacji na ten temat można znaleść w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "48"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ActorPath.png
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Relacja między kilkoma pojęciami identyfikującymi aktorów w systemie 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "48"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Relacja-między-kilkoma"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Aktorzy działają w obrębie systemu zwanego Actor System opisanego w pozycji
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "49"
+
+\end_inset
+
+.
+ System aktorowy można traktować jako pewną strukturę z zaalokowaną pulą
+ wątków, stworzoną w ramach jednej logicznej aplikacji.
+ Konfiguracją puli wątków zajmuje się Akka.
+ Pewne ustawienia mogą być zmienione w pliku 
+\shape italic
+application.conf
+\shape default
+, który jest głównym plikiem konfiguracyjnym systemu aktorowego.
+ System aktorowy zarządza dostępnymi zasobami i może mieć uruchomione miliony
+ aktorów gdyż instancja każdego z aktorów zajmuje zaledwie okolo 300 bajtów
+ pamięci.
+\end_layout
+
+\begin_layout Standard
+Akka framework dostarcza wszystkich zalet programowania reaktywnego 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "43"
+
+\end_inset
+
+ oraz zapewnia między innymi:
+\end_layout
+
+\begin_layout Itemize
+współbieżność, dzięki zaadaptowaniu modelu aktorowego, programista może
+ zatem skupić się na logice biznesowej zamiast zajmować się problemami współbież
+ności,
+\end_layout
+
+\begin_layout Itemize
+skalowalność, asynchroniczna komunikacja pomiędzy aktorami dobrze skaluje
+ się w systemach multiprocesorowych,
+\end_layout
+
+\begin_layout Itemize
+odporność na błędy, framework Akka zapożyczył podejście z języka Erlang,
+ co pozwoliło wykorzystać model 
+\shape italic
+let it crash 
+\shape default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "54"
+
+\end_inset
+
+ zwany też 
+\shape italic
+fail fast
+\shape default
+ do zapewnienia sprawnego działania systemu i skrócenia jego niedostępności,
+\end_layout
+
+\begin_layout Itemize
+architekture sterowaną zdarzeniami,
+\end_layout
+
+\begin_layout Itemize
+transakcyjność,
+\end_layout
+
+\begin_layout Itemize
+ujednolicony model programowania dla potrzeb wielowątkowości oraz obliczeń
+ rozproszonych,
+\end_layout
+
+\begin_layout Itemize
+Akka wspiera zarówno API języka Java jak i języka Scala 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "29"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Zastosowania projektu Akka są bardzo szerokie, można je odnaleść chociażby
+ w następujących dziedzinach:
+\end_layout
+
+\begin_layout Itemize
+analiza danych,
+\end_layout
+
+\begin_layout Itemize
+bankowość inwestycyjna,
+\end_layout
+
+\begin_layout Itemize
+eCommerce,
+\end_layout
+
+\begin_layout Itemize
+symulacje,
+\end_layout
+
+\begin_layout Itemize
+media społecznościowe.
+\end_layout
+
+\begin_layout Standard
+Systemy w których potrzebujemy uzyskać wysoką przepustowość oraz małe opóźnienia
+ są dobrym kandydatem do wykorzystania frameworka Akka 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "31"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Rozszerzenia Akka 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Czy przeniesc to do rozdzialu 4?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Poniżej opisano kilka ciekawych z puntku widzenia niniejszej pracy rozszerzeń
+ projektu Akka wykorzystanych w implementancji stworzonego rozwiązania.
+\end_layout
+
+\begin_layout Subsubsection*
+Akka Cluster
+\end_layout
+
+\begin_layout Standard
+Jest to najbardziej istotne rozszerzenie z punktu widzenia niniejszej pracy.
+ Została na nim oparta komunikacja pomiędzy urządzeniami działającymi w
+ obrębie klastra.
+ Zapewnia ono pewien poziom abstrakcji dla protokołu TCP/IP 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "51"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dostarcza również odporny na awarię oraz zdecentralizowany serwis członkostwa
+ (ang.
+ membership service) oparty na protokole Gossip 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "33"
+
+\end_inset
+
+ oraz automatycznej detekcji niedziałających węzłów (ang.
+ failure detector).
+ 
+\end_layout
+
+\begin_layout Standard
+Pojęcia:
+\end_layout
+
+\begin_layout Itemize
+węzeł (ang.
+ node) - logiczny członek klastra, może istnieć wiele węzłów na jednej fizycznej
+ maszynie, identyfikowany krotką: nazwa_hosta:port:uid,
+\end_layout
+
+\begin_layout Itemize
+klaster (ang.
+ cluster) - grupa węzłów zarejestrowana w serwisie członkostwa, 
+\end_layout
+
+\begin_layout Itemize
+lider (ang.
+ leader) - węzeł odpowiedzialny za kluczowe akcje pozwalające zachować odpowiedn
+i stan klastra w przypadku dołączania nowych lub awarii istniejących węzłów
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "31"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Lider jest tylko rolą jaką posiada dany węzeł, każdy węzeł może zostać liderem
+ oraz każdy węzeł jest w stanie w sposób deterministyczny wyznaczyć lidera.
+ Węzły mogą też posiadać inne role, które mogą się przydać np.
+ w ograniczeniu zasięgu komunikacji.
+ 
+\end_layout
+
+\begin_layout Standard
+Protokół Gossip wspomniany powyżej pozwala rozpropagować stan klastra do
+ wszystkich jego węzłów, tak aby każdy węzeł miał takie same informację
+ o pozostałych członkach klastra.
+ Protokół ten pomaga uzyskać zbieżność stanu klastra we wszystkich jego
+ węzłach w skończonym czasie.
+ 
+\end_layout
+
+\begin_layout Standard
+Czlonkostwo w klastrze jest rozpoczynane komendą 
+\shape italic
+join
+\shape default
+ wysyłaną do jednego z aktywnych członków klastra, gdy każdy węzeł klastra
+ otrzyma informację o dołączającym węźle dzięki protokołowi Gossip, taki
+ węzeł może zostać uznany za osiągalny.
+ Może on jednak utracić ten stan gdy np.
+ wystąpią jakieś problemy z siecią.
+ Stan nieosiągalny może trwać jedynie określony czas po upływie którego
+ jeśli węzeł nie powróci do pełnej sprawności traci on status członka klastra.
+ Każdy węzeł poza nazwą hosta oraz portem jest identyfikowany dodatkowo
+ unikalnym identyfikatorem, tzw.
+ uid, co pozwala na uruchomienie kilku węzłów klastra na jednej fizycznej
+ maszynie.
+ Jeżeli członek klastra ulegnie awarii lub opuści klaster na własne życzenie
+ nie może on ponownie dołączyć do klastra dopóki system aktorowy uruchomiony
+ na nim nie zostanie zrestartowany, co pozwoli na wygenerowanie nowego uid.
+ Każdy węzeł może zmienić swój stan członkostwa lub może on zostać zmieniony
+ automatycznie dzięki automatycznej detekcji niedziałających węzłów.
+ Ustawienia detekcji niedziałających węzłów oraz protokołu Gossip są konfigurowa
+lne, tzn.
+ że można np.
+ ustalić czas po którym węzeł zostanie uznany za nieosiągalny.
+ Zdarzenia związane ze zmianą stanu węzłów klastra mogą być subskrybowanie
+ przez istniejących członków, co ułatwia implementację monitoringu stanu
+ klastra.
+ Więcej szczegółów na temat idei członkostwa w klastrze oraz dostępnych
+ stanów węzłów można znaleść w pozycjach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "31,56"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Kolejną ciekawą opcją w rozszerzeniu Akka Cluster jest wykorzystanie bibliotek
+ Sigar 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "57"
+
+\end_inset
+
+ oraz integracja z nimi.
+ Pozwalają one na dostęp do informacji systemowych takich jak zużycie CPU,
+ wykorzystanie pamięci RAM, stan sieci.
+ Mogą zostać wykorzystane do implementacji load balancigu lub monitorowania
+ obciążenia urządzeń klastra 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "34,32"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Subsection*
+Cluster Singleton
+\end_layout
+
+\begin_layout Standard
+Cluster Singleton jest rozszerzeniem projektu Akka zapewniającym jedną instancję
+ aktora danego typu w obrębie klastra lub w obrębie węzłów z wybraną rolą.
+ Zostało ono wykorzystane do zaimplementowania modelu master/slave opisanego
+ w poprzednim podrozdziale.
+ Rozszerzenie to dostarcza implementacji menedżera, który pozwala zarządzać
+ instancjonowaniem aktora-singletona.
+ Dostęp do działającej instancji jest możliwy z każdego urządzenia działającego
+ w klastrze i odbywa się przez aktora pośrednika, tzw.
+ proxy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "14"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Distributed Publish Subscribe in Cluster
+\end_layout
+
+\begin_layout Standard
+Kolejne rozszerzenie projektu Akka, które umożliwia komunikację między aktorami
+ bez posiadania informacji na których konkretnie urządzeniach poszczególni
+ aktorzy są uruchomieni, czyli lokacja aktora jest transparentna z punktu
+ widzenia komunikacji.
+ Dostarcza ono aktora-mediatora, który zarządza rejestracją innych aktorów
+ do konkretnych kanałów komunikacji którymi są zainteresowani.
+ Zachowanie to, można porównać z subskrypcją RSS 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "55"
+
+\end_inset
+
+.
+ Wiadomość opublikowana w danym kanale powinna zostać dostarczona do wszystkich
+ aktorów, którzy zostali w nim uprzednio zarejestrowani.
+ Rozszerzenie to pozwala również wysłać wiadomość do jednego lub większej
+ ilości aktorów pasujących do określonego wzorca.
+ W niniejszej pracy zostało ono wykorzystane do przesyłania wyników zadania
+ do klienta oraz do realizacji migracji populacji w implementacji algorytmów
+ genetycznych 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "47"
+
+\end_inset
+
+.
 \end_layout
 
 \end_body
