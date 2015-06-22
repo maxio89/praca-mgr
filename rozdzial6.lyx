@@ -114,6 +114,16 @@ W poniższym rozdziale zostało zawarte podsumowanie niniejszej pracy.
 
 \begin_layout Section
 Wnioski
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Zbyt dlugie zdania, brak przecinkow
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -167,7 +177,7 @@ W testowanym rozwiązaniu rozważono tylko jedną aplikację kliencką, będąc�
  W kolejnych etapach prac nad stworzoną platformą warto byłoby się pokusić
  o zaimplementowanie przypadku gdzie klientów jest więcej i w różnym stopniu
  obciążają oni urządzenia pracujące w klastrze a także nad sposobem dysponowania
- wolnymi węzłami tak aby jeden klient nie zajął wszystkich dostępnych węzłów
+ wolnymi węzłami tak, aby jeden klient nie zajął wszystkich dostępnych węzłów
  podczas gdy reszta nie byłaby w żaden sposób obsługiwana.
 \end_layout
 
@@ -265,8 +275,8 @@ IoT
 W ostatnich latach coraz bardziej wzrasta znaczenie urządzeń podłączonych
  do Internetu.
  Coraz więcej sprzętu codziennego użytku posiada zainstalowane układy procesorow
-e o wystarczającej mocy obliczeniowej aby móc obsłużyć systemy mobilne takie
- jak Android.
+e o wystarczającej mocy obliczeniowej, aby móc obsłużyć systemy mobilne
+ takie jak Android.
  Stwarza to zatem pole do popisu oraz nowe pomysły wykorzystania stworzonego
  rozwiązania w wersji bardziej rozproszonej.
 \end_layout

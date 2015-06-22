@@ -83,6 +83,16 @@ name "cha:wprowadzenie"
 
 \begin_layout Section*
 Motywacja
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Zbyt dlugie zdania, brak przecinkow
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -110,13 +120,13 @@ Przyczyniło się to do silnego rozwoju poruszanej tematyki, lecz niektóre
 \end_layout
 
 \begin_layout Standard
-Potrzeby rynku oraz zwiększona podaż spowodowały spadek cen urządzeń mobilnych
+Potrzeby rynku oraz zwiększona podaż spowodowały spadek cen urządzeń mobilnych,
  a także obniżenie stosunku ceny do mocy obliczeniowej.
  Urządzenia SoC zaczęto wykorzystywać na większą skalę w edukacji jak i
  domowych zastosowaniach.
- Mimo, że proces miniaturyzacji oraz zwiększania wydajności procesorów osiąga
- bariery technologiczne poprzez rozwój systemów wieloprocesorowych udaje
- się nadal zwiększać efektywność obliczeń.
+ Pomimo, że proces miniaturyzacji oraz zwiększania wydajności procesorów
+ osiąga bariery technologiczne poprzez rozwój systemów wieloprocesorowych
+ udaje się nadal zwiększać efektywność obliczeń.
  Powstają aplikacje i technologie mające na celu połączenie zasobów w jedną
  całość oraz efektywne ich wykorzystanie.
  Zasoby te mogą być zgromadzone lokalnie lub rozproszone w różnych rejonach
@@ -143,7 +153,17 @@ Dodac odnosniki do BigData, IoT, SoC i jakis ksiazek zwiazanych z architekturami
 \end_layout
 
 \begin_layout Section*
-Cel pracy
+Cel pracy 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Użyć czasu przeszłego?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -162,8 +182,8 @@ ntowanie platformy cechującej się mobilnością, skalowalnością oraz zapewni
  Głównym zadaniem powstałej platformy będzie zarządzanie obliczeniami prowadzony
 mi w klastrze, ich load-balancing a ponadto będzie ona również odpowiedzialna
  za komunikację urządzeń oraz monitoring stanu klastra czyli powinna być
- zdolna do informowania użytkownika jeżeli jakieś urządzenie opuści lub
- dołączy do klastra.
+ zdolna do informowania użytkownika jeżeli którekolwiek urządzenie opuści
+ lub dołączy do klastra.
  Wynika z tego, że oprócz części platformy odpowiedzialnej za obliczenia
  i zarządzanie zadaniami oraz stanem klastra wymagany będzie interfejs użytkowni
 ka, dzięki któremu będzie on mógł zlecać zadania oraz mieć podgląd na stan
@@ -177,11 +197,11 @@ ka, dzięki któremu będzie on mógł zlecać zadania oraz mieć podgląd na st
 \end_layout
 
 \begin_layout Standard
-Końcowym celem będzie przetestowanie opracowanego rozwiązania poprzez implementa
+Ostatnim celem będzie przetestowanie opracowanego rozwiązania poprzez implementa
 cję jednego z modeli programowania równoległego wykorzystanego do prowadzenia
  wymagających obliczeń matematycznych.
  Zbadana zostanie skalowalność, wydajność oraz niezawodność.
- Następnie zostaną opracowane wyniki a także zidentyfikowane możliwości
+ Następnie zostaną opracowane wyniki, a także zidentyfikowane możliwości
  zastosowań jak również perspektywy dalszego rozwoju powstałej platformy.
  
 \begin_inset Note Note

@@ -136,7 +136,8 @@ reference "fig:Wygląd-klastra"
 
  zaprezentowano początkową koncepcję przedstawiającą sieć lokalną i działający
  w niej klaster obliczeniowy w skład którego wchodzą urządzenia Raspberry
- Pi, gdzie jedno z nich jest masterem natomiast pozostałe pełnią rolę slave.
+ Pi, gdzie jedno z nich pełni rolę Master natomiast pozostałe pełnią rolę
+ Slave.
  W klastrze znajduje się również uruchomiony serwer WWW służący do komunikacji
  z użytkownikiem za pomocą przeglądarki internetowej.
 \end_layout
@@ -188,9 +189,8 @@ name "fig:Wygląd-klastra"
 \end_layout
 
 \begin_layout Standard
-Początkowe założenia były takie, że na urządzeniach uruchomione są aplikacje
- oparte o technologie JVM, które komunikują się ze sobą za pomocą protokołu
- TCP/IP.
+Na urządzeniach uruchomione są aplikacje oparte o technologie JVM, które
+ komunikują się ze sobą za pomocą protokołu TCP/IP.
 \end_layout
 
 \begin_layout Standard
