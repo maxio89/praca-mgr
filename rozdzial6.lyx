@@ -118,11 +118,12 @@ Wnioski
 
 \begin_layout Standard
 W ramach niniejszej pracy udało się spełnić początkowe założenia i przygotować
- platformę oferującą możliwość uruchomienia obliczeń na wielu urządzeniach
- pracujących w klastrze, dostarczającą narzędzi do monitoringu, rozwiązującą
- problem load-balancingu zadań, skalowalności a także zapewniającą wsparcie
- w sytuacji awarii tychże urządzeń, poprzez reorganizację oraz odzyskiwanie
- sprawności czyli powrót do stanu klastra sprzed wystąpienia awarii.
+ platformę oferującą możliwość uruchomienia obliczeń równoległych na wielu
+ urządzeniach pracujących w klastrze, dostarczającą narzędzi do monitoringu,
+ rozwiązującą problem load-balancingu zadań, skalowalności a także zapewniającą
+ wsparcie w sytuacji awarii tychże urządzeń, poprzez reorganizację oraz
+ odzyskiwanie sprawności czyli powrót do stanu klastra sprzed wystąpienia
+ awarii.
  Platforma pozwala również na prowadzenie efektywnych obliczeń mimo ograniczonej
  mocy obliczeniowej urządzeń SoC.
  Wykorzystanie tych urządzeń oraz technologii działających na maszynie wirtualne
@@ -133,13 +134,13 @@ j Javy zapewnia mobilność tego rozwiązania.
 Technologie Akka okazały się kluczowe z punktu widzenia niniejszej pracy
  idealnie wkomponowując się w wybraną tematykę.
  Dzięki rozwiązanion wysokiego poziomu ułatwiły one tworzenie nowych komponentów
- oraz dostarczyły pewnych strategii i wzorców zwiększając tym samym przejrzystoś
-ć jak i możliwości dalszego rozwóju przygotowanego rozwiązania.
+ oraz dostarczyły pewnych strategii oraz wzorców zwiększając tym samym przejrzys
+tość jak i możliwości dalszego rozwóju przygotowanego rozwiązania.
 \end_layout
 
 \begin_layout Standard
 Niniejsza praca pozwoliła również autorowi na zapoznanie się z tematyką
- problemów występujących w klastrze oraz rozwiązaniami stosowanymi w celu
+ problemów występujących w klastrach oraz rozwiązaniami stosowanymi w celu
  zrównoleglenia lub rozproszenia obliczeń.
  Kolejnym ciekawym aspektem niniejszej pracy z punktu widzenia autora, który
  pozwolił na eksplorację nowych obszarów wiedzy jest względnie nowa dziedzina
@@ -181,7 +182,7 @@ Na potrzeby niniejszej pracy rozważono działanie urządzeń klastra w sieci
  sieci globalnej Internet, gdzie węzły klastra mogłyby być uruchomione na
  różnego typu urządzeniach znacząco oddalonych od siebie i mających do siebie
  dostęp za pomocą protokołu TCP/IP.
- Ciekawym aspektem tutaj byłaby zróżnicowana przepustowość połączenia, ponieważ
+ Ciekawym aspektem tutaj byłaby zróżnicowana przepustowość połączeń, ponieważ
  w takim przypadku trzeba byłoby dobrać odpowiednie ustawienia detekcji
  awarii i arbitralne wybranie dozwolonego czasu opóźnień mogłoby być niełatwym
  zadaniem.
@@ -196,11 +197,9 @@ Wykorzystanie GPU
 Do obliczeń wykonywanych w obrębie platformy wykorzystano jedynie procesory
  CPU lecz większość urządzeń SoC posiada również jednostki GPU, które są
  w tym czasie niewykorzystywane.
- Jedno z urządzeń SoC, zwane Parallela posiada nawet mocniejszy procesor
- graficzny aniżeli jednostkę centralną.
  Warto byłoby się zastanowić nad potencjalnym wykorzystaniem tych jednostek
  np.
- przy użyciu takich bibliotek jak ScalaCL 
+ przy użyciu takich bibliotek jak ScalaCL (opartej o OpenCL) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "58"
@@ -209,7 +208,7 @@ key "58"
 
 , które pozwalają na wykonywanie kodu napisanego w Scali na procesorach
  graficznych i równoległym prowadzeniu obliczeń na różnych architekturach.
- W roku 2011 Martin Odersky, współtwórca języka Scala oraz jego zespół pracujący
+ W roku 2011 Martin Odersky współtwórca języka Scala oraz jego zespół pracujący
  na uniwersytecie w Lozannie uzyskali wielomilionowy grant od Europejskiej
  Rady ds.
  Badań Naukowych (ERBN) dzięki któremu mogli kontynuować pracę nad problemami
@@ -232,8 +231,8 @@ Inne algorytmy
 
 \begin_layout Standard
 Kolejną kwestią którą można rozważyć w planach dalszego rozwoju jest zaimplement
-owanie innych algorytmów, które będą w stanie wykorzystać potencjał stworzonej
- platformy.
+owanie innych algorytmów, które będą w stanie równie dobrze wykorzystać
+ potencjał stworzonej platformy.
  Warto byłoby również poeksperymentować z różnymi modyfikacjami algorytmów
  genetycznych, takimi jak różne metody selekcji lub krzyżowania, aby uzyskać
  jeszcze większą efektywność obliczeń.
@@ -250,13 +249,13 @@ Urządzenia SoC na których testowano przygotowaną platformę posiadają ograni
  Wykorzystanie pamięci RAM oraz procesora jest tutaj bardzo istotne i może
  w znaczny sposób wpłynąć na szybkość obliczeń.
  Nie można zatem pozwolić sobie na zbędne operacje i nadmierną zajętość
- pamięci, co mogłoby wydłużyć wykonywanie obliczeń.
+ pamięci, co może wydłużyć wykonywanie obliczeń.
  Warto byłoby użyć jakiegoś narzędzia do profilowania JVM aby sprawdzić
  czy nie ma żadnych wycieków pamięci a także przenalizować zrzut pamięci
  (tzw.
- head dump) pod kątem instancjonowanych obiektów oraz zajętości pamięci.
- Można byłoby również wykonać tuning GC (garbage collector) oraz spróbować
- dobrać optymalne parametry.
+ heap dump) pod kątem instancjonowanych obiektów oraz zajętości pamięci.
+ Można byłoby również wykonać tuning GC (ang.
+ Garbage Collector) oraz spróbować dobrać jego optymalne parametry.
 \end_layout
 
 \begin_layout Subsection*

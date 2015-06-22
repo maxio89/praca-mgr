@@ -104,14 +104,14 @@ Przyczyniło się to do silnego rozwoju poruszanej tematyki, lecz niektóre
  w dzisiejszych czasach napotykają pewne bariery.
  Cały czas kreowane są nowe idee w myśl rozwoju współczesnych technologii
  co sprawia, że tematyka niniejszej pracy nie traci na aktualności.
- Takie koncepcje jak BigData lub IoT motywują do rozwoju technologii związanych
+ Takie koncepcje jak BigData lub IoT motywują do rozwoju prac związanych
  z wydajnym przetwarzaniem dużej ilości danych.
  
 \end_layout
 
 \begin_layout Standard
 Potrzeby rynku oraz zwiększona podaż spowodowały spadek cen urządzeń mobilnych
- a także spadek stosunku ceny do mocy obliczeniowej.
+ a także obniżenie stosunku ceny do mocy obliczeniowej.
  Urządzenia SoC zaczęto wykorzystywać na większą skalę w edukacji jak i
  domowych zastosowaniach.
  Mimo, że proces miniaturyzacji oraz zwiększania wydajności procesorów osiąga
@@ -170,19 +170,19 @@ ka, dzięki któremu będzie on mógł zlecać zadania oraz mieć podgląd na st
  działającego klastra.
  Dobór technologii oraz rozwiązań będzie brał pod uwagę ograniczone możliwości
  obliczeniowe typowych urządzeń SoC oraz mobilność powstałej platformy dlatego
- faworyzowane będą multiplatformowe technologie wysokiego poziomu lecz na
- tyle wydajne aby możliwe było osiągnięcie zadowalającej efektywności obliczeń
- przy wszystkich ograniczeniach.
+ faworyzowane będą multiplatformowe technologie wysokiego poziomu, lecz
+ na tyle wydajne aby możliwe było osiągnięcie zadowalającej efektywności
+ obliczeń przy wszystkich ograniczeniach.
  
 \end_layout
 
 \begin_layout Standard
 Końcowym celem będzie przetestowanie opracowanego rozwiązania poprzez implementa
 cję jednego z modeli programowania równoległego wykorzystanego do prowadzenia
- wymagających obliczeń matematycznych z uwzględnieniem skalowalności, wydajności
- oraz niezawodności, opracowanie wyników a także zidentyfikowanie możliwych
- zastosowań jak również wyciągnięcie wniosków oraz nakreślenie możliwości
- dalszego rozwoju powstałej platformy.
+ wymagających obliczeń matematycznych.
+ Zbadana zostanie skalowalność, wydajność oraz niezawodność.
+ Następnie zostaną opracowane wyniki a także zidentyfikowane możliwości
+ zastosowań jak również perspektywy dalszego rozwoju powstałej platformy.
  
 \begin_inset Note Note
 status open
