@@ -86,50 +86,60 @@ Motywacja
 \end_layout
 
 \begin_layout Standard
-Tematyka niniejszej pracy jest związana z przetwarzaniem równoległym w środowisk
-u rozproszonym oraz algorytmami ewolucyjnymi.
- Obliczenia równoległe, systemy wysokiej dostępności oraz wielkiej skali
- są tematem bardzo aktualnym i wciąż powszechnie rozwijanym.
- Powstaje coraz więcej urządzeń oraz systemów wieloprocesorowych.
+Obliczenia równoległe a także systemy rozproszone od lat są wykorzystywane
+ przez różne ośrodki badawcze jak również przemysł do obliczeń wielkiej
+ skali, a także wspomagania systemów wysokiej dostępności.
+ Innymi obszarami zastosowań są różnego rodzaju symulacje, np.
+ w biologii, chemii, astrofizyce lub medycynie a także przyśpieszenie krytycznyc
+h obliczeń w takich dziedzinach jak systemy obronne, przemysł komunikacyjny,
+ meteorologia, astrodynamika, ponadto rozwiązywanie problemów optymalizacyjnych
+ i przetwarzanie dużej ilości danych.
+ 
+\end_layout
+
+\begin_layout Standard
+Przyczyniło się to do silnego rozwoju poruszanej tematyki, lecz niektóre
+ koncepcje opracowane już w połowie XX wieku kiedy to trudno było przewidzieć
+ skalę z jaką wzrasta ilość nowych urządzeń oraz danych do przetwarzania
+ w dzisiejszych czasach napotykają pewne bariery.
+ Cały czas kreowane są nowe idee w myśl rozwoju współczesnych technologii
+ co sprawia, że tematyka niniejszej pracy nie traci na aktualności.
+ Takie koncepcje jak BigData lub IoT motywują do rozwoju technologii związanych
+ z wydajnym przetwarzaniem dużej ilości danych.
+ 
+\end_layout
+
+\begin_layout Standard
+Potrzeby rynku oraz zwiększona podaż spowodowały spadek cen urządzeń mobilnych
+ a także spadek stosunku ceny do mocy obliczeniowej.
+ Urządzenia SoC zaczęto wykorzystywać na większą skalę w edukacji jak i
+ domowych zastosowaniach.
+ Mimo, że proces miniaturyzacji oraz zwiększania wydajności procesorów osiąga
+ bariery technologiczne poprzez rozwój systemów wieloprocesorowych udaje
+ się nadal zwiększać efektywność obliczeń.
  Powstają aplikacje i technologie mające na celu połączenie zasobów w jedną
  całość oraz efektywne ich wykorzystanie.
- Zasoby te mogą być zlokalizowane lokalnie lub być rozproszone w różnych
- rejonach świata i połączone w sieci Internet.
- Przykładem są takie projekty jak Hadoop lub Condor.
- Połączone zasoby mogą zostać wykorzystane do obliczeń o dużej skali, symulacji
- i przyśpieszenia krytycznych obliczeń w takich dziedzinach jak systemy
- obronne, loty kosmiczne, prognozy pogody.
- Znajdują również przydatność w przypadku przetwarzania dużej liczby rozproszony
-ch danych i rozwiązywania trudnych problemów optymalizacji np.
- przeszukiwania dużych przestrzeni rozwiązań np.
- w celu poszukiwania ekstremum.
- Do głównych obszarów zastosowań można zaliczyć też obliczenia naukowe prowadzon
-e przez różne uniwersytety i inne ośrodki badawcze, które w dużym stopniu
- przyczyniają się do rośnięcia zapotrzebowania na takie rozwiązania oraz
- powstawanie nowych.
- We wcześniejszych latach ta tematyka napotykała różne bariery w rozwoju,
- takie jak zbyt mały rynek zbytu, spowodowany wysokimi kosztami utrzymania
- oraz realizacji architektury.
- Było również mniej rozwiązań tego typu oraz mniejsze zapotrzebowanie na
- nie.
- Klastry są bardziej elastycznym rozwiązaniem a co za tym idzie bardziej
- opłacalnym.
- Stały się zatem nową perspektywą, powszechnie już wykorzystywaną w dzisiejszych
- systemach.
- Możliwość użycia tego typu rozwiązań przez zwykłych użytkowników i mniejsze
- firmy, komercjalizacja, wykorzystanie w przemyśle i elastyczne formy handlu,
- np.
- sprzedaż zużytej mocy obliczeniowej w bardzo dużym stopniu przyczyniły
- się do popularyzacji tejże tematyki.
- Trwa ciągły rozwój technologii z tym zwiazanych, mając na uwadze takie
- rzeczy jak wydajność i zapotrzebowanie na energię oraz łatwa dostępność.
- Wiele problemów nie zostsało jeszcze rozwiązanych lub w wystarczającym
- stopniu zbadanych.
- Argumenty stojące za rozwojem tych technologii to m.in.
- rosnące zapotrzebowanie na moc obliczeniową, stosunek ceny do mocy obliczeniowe
-j, bariery technologiczne rozwoju procesorów sekwencyjnych, dzielenie zasobów,
- skalowalność, komunikacja.
+ Zasoby te mogą być zgromadzone lokalnie lub rozproszone w różnych rejonach
+ świata i połączone w sieci Internet.
+ Natomiast dzięki elastycznym formom handlu jak na przykład sprzedaż zużytej
+ mocy obliczeniowej oraz popularyzacji rozwiązań chmur obliczeniowych udaje
+ się w coraz łatwiejszy sposób docierać do klienta indywidualnego oraz mniejszyc
+h firm.
+ Możliwość użycia tego typu rozwiązań przez zwykłych użytkowników ma wpływ
+ na tworzenie społeczności wspierających oraz testujących technologie o
+ otwartym kodzie źródłowym.
  
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Dodac odnosniki do BigData, IoT, SoC i jakis ksiazek zwiazanych z architekturami
+ rownoleglymi lub modelami programowania
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
@@ -137,45 +147,54 @@ Cel pracy
 \end_layout
 
 \begin_layout Standard
-Do celów niniejszej pracy należy nakreślenie możliwości zastosowania przenośnych
- klastrów obliczeniowych, przedstawienie problemów związanych z ich wykorzystani
-em, zidentyfikowanie obszarów potencjalnych usprawnień oraz wykorzystanie
- przygotowanego klastra w celu rozwiązania trudnego problemu obliczeniowego.
- Jako część programistyczna niniejszej pracy, zostanie wykonana mobilna
- platforma łącząca możliwości urządzeń SoC, nadzorująca ich pracę oraz zarządzaj
-ąca dostępną energią.
- Pod uwagę zostanie również wzięta odporność na uszkodzenia oraz łatwa zastępowa
-lność urządzeń.
- Zostaną wykorzystane takie paradygmaty jak programowanie funkcjonalne oraz
- reaktywne, z wykorzystaniem technologii Scala oraz Akka wraz z podejściem
- równoległym.
- Jako część persystencji danych zostanie wykorzystana baza NoSQL w technologii
- MongoDB.
- Część kliencka zostanie zrealizowana w technologii REST/HTTP z użyciem
- frameworka Play oraz AngularJS.
- Zaprojektowana platforma będzie w stanie monitorować pracę klastra, “łączyć”
- komponenty w jedną całość czyli zarządzać komunikacją, być odporna na sytuację
- uszkodzenia jednego z elementów klastra oraz częściową utratę danych, maksymaln
-ie wykorzystywać moc obliczeniową elementów klastra oraz zarządzać load
- balancingiem.
- Niniejsza praca będzie próbą wykorzystania urządzeń SoC do wykonywania
- wydajnych obliczeń prowadzonych w wirtualnej maszynie Javy oraz próbą odpowiedz
-enia na pytanie czy jest możliwe zaprogramowanie komunikacji między elementami
- klastra w sieci Ethernet nie powodującej zbyt wielkiego narzutu przesyłu
- danych w stosunku do szybkości obliczeń.
- Praca będzie też próbą wykorzystania wirtualnej maszyny Javy oraz technologii
- wysokiego poziomu do wykonywania obliczeń dużej skali i sprawdzenie wydajności
- takich rozwiązań.
- Stworzenie samoorganizującej się oraz inteligentnej platformy będzie bardzo
- dużym wyzwaniem wkraczającym trochę w tematykę AI oraz Systemów Agentowych.
- Jeśli rozwiązanie wykorzystujące technologie przedstawione w niniejszej
- pracy będzie wystarczająco wydajne i odpowiednio skalowalne, ułatwi to
- w znacznym stopniu mobilność tego rozwiązania oraz rozwiąże potrzebę tworzenia
- nowych bibliotek z myślą o konkretnej platformie.
- Co za tym idzie większą część czasu i nakładów finansowych będzie można
- poświęcać na implementację rozwiązania samego problemu aniżeli na uruchomienie
- tej implementacji lub tworzenie rozwiązań pasujących do konkretnego sprzętu
- (architektury) lub systemu.
+Celem ogólnym niniejszej pracy jest przygotowanie rozwiązania potrafiącego
+ koordynować pracę klastra obliczeniowego złożonego z urządzeń SoC działających
+ w sieci lokalnej.
+ 
+\end_layout
+
+\begin_layout Standard
+Do celów szczegółowych należy rozpoznanie tematyki obliczeń równoległych
+ w środowisku rozproszonym, zbadanie oraz wybór odpowiednich technologii
+ dzięki którym możliwe będzie zaprojektowanie architektury a następnie zaimpleme
+ntowanie platformy cechującej się mobilnością, skalowalnością oraz zapewniającej
+ wsparcie w sytuacji awarii urządzeń pracujących w klastrze.
+ Głównym zadaniem powstałej platformy będzie zarządzanie obliczeniami prowadzony
+mi w klastrze, ich load-balancing a ponadto będzie ona również odpowiedzialna
+ za komunikację urządzeń oraz monitoring stanu klastra czyli powinna być
+ zdolna do informowania użytkownika jeżeli jakieś urządzenie opuści lub
+ dołączy do klastra.
+ Wynika z tego, że oprócz części platformy odpowiedzialnej za obliczenia
+ i zarządzanie zadaniami oraz stanem klastra wymagany będzie interfejs użytkowni
+ka, dzięki któremu będzie on mógł zlecać zadania oraz mieć podgląd na stan
+ działającego klastra.
+ Dobór technologii oraz rozwiązań będzie brał pod uwagę ograniczone możliwości
+ obliczeniowe typowych urządzeń SoC oraz mobilność powstałej platformy dlatego
+ faworyzowane będą multiplatformowe technologie wysokiego poziomu lecz na
+ tyle wydajne aby możliwe było osiągnięcie zadowalającej efektywności obliczeń
+ przy wszystkich ograniczeniach.
+ 
+\end_layout
+
+\begin_layout Standard
+Końcowym celem będzie przetestowanie opracowanego rozwiązania poprzez implementa
+cję jednego z modeli programowania równoległego wykorzystanego do prowadzenia
+ wymagających obliczeń matematycznych z uwzględnieniem skalowalności, wydajności
+ oraz niezawodności, opracowanie wyników a także zidentyfikowanie możliwych
+ zastosowań jak również wyciągnięcie wniosków oraz nakreślenie możliwości
+ dalszego rozwoju powstałej platformy.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Czy warto pisać tutaj jakie technologie zostały wykorzystane skoro piszemy
+ to na samym końcu, czy na tym etapie jeszcze nie wiemy nic o technologiach?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
@@ -183,65 +202,33 @@ Opis rozdziałów
 \end_layout
 
 \begin_layout Standard
-W pierwszym rozdziale został zawarty wstęp oraz cel pracy.
+W pierwszym rozdziale została zawarta motywacja oraz cel pracy.
 \end_layout
 
 \begin_layout Standard
-W drugim rozdziale został opisany kontekst rozpatrywanego problemu oraz
- została przedstawiona
+W kolejnym rozdziale zamieszczono wprowadzenie do tematyki obliczeń równoległych
+, wraz z podziałem architektur oraz opisem kilku popularnych modeli programowani
+a jak również istniejących technologii.
 \end_layout
 
 \begin_layout Standard
-charakterystyka rozwi ̨azania propowanego w niniejszej pracy.
+W rozdziale trzecim opisano koncepcję IoT oraz kilka przykładowych urządzeń
+ SoC.
 \end_layout
 
 \begin_layout Standard
-W trzecim rozdziale zostały opisane urz ̨adzenia SoC oraz Cluster Computing.
+Rozdział czwarty zawiera ideę przygotowanej platformy oraz jej szczegóły
+ implementacyjne.
 \end_layout
 
 \begin_layout Standard
-W czwartym rozdziale zostan ̨a przedstawione sposoby zrównoleglenia algorytmów
- ewolucyjnych.
+W przedostatnim rozdziale przedstawiono możliwe zastosowania przygotowanego
+ rozwiązania wraz z wynikami jego testów.
 \end_layout
 
 \begin_layout Standard
-W pi ̨atym rozdziale zostały opisane rozwi ̨azania implementacyjne zastosowane
- przy realizacji
-\end_layout
-
-\begin_layout Standard
-niniejszej pracy.
-\end_layout
-
-\begin_layout Standard
-W szóstym rozdziale zostało zawarte podsumowanie w którym zostały omówione
- wyniki pracy oraz
-\end_layout
-
-\begin_layout Standard
-naswietlone mo ́ zliwo ̇ sci rozwoju.
- ́
-\end_layout
-
-\begin_layout Standard
-Ostatnim rozdziałem pracy jest bibliografia zawieraj ̨aca przegl ̨ad literatury,
- artykułów oraz innych
-\end_layout
-
-\begin_layout Standard
-pozycji wykorzystanych w niniejszej pracy.
-\end_layout
-
-\begin_layout Standard
-Został takze stworzony listing wszystkich wykresów, schematów oraz rysunków,
- jak równie ̇ z tabel ̇
-\end_layout
-
-\begin_layout Standard
-oraz wzorów.
- Do pracy została doł ̨aczona równiez instrukcja uruchomienia stworzonego
- rozwi ̨azania.
- ̇
+Ostatni rozdział, szósty, zawiera wnioski oraz naświetlono w nim możliwości
+ dalszego rozwoju platformy stworzonej na potrzeby niniejszej pracy.
 \end_layout
 
 \end_body

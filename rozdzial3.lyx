@@ -52,7 +52,7 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \bibtex_command default
 \index_command default
 \paperfontsize 12
-\spacing single
+\spacing onehalf
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
@@ -117,28 +117,141 @@ SoC
 \end_layout
 
 \begin_layout Standard
-Ogólnie o SoC...
+Urządzenia SoC (System-on-a-chip) są to układy, które oprócz głównego procesora
+ opartego np.
+ na architekturze ARM, zawierają cyfrowe i analogowe moduły składające się
+ w jeden system elektroniczny.
+ Poszczególne moduły zazwyczaj są tworzone przez różnych producentów od
+ których firmy produkujące urządzenia SoC zamawiają sprzęt.
+ W porównaniu do mikrokontrolerów charakteryzują się one posiadaniem większej
+ ilości pamięci RAM oraz CPU o stosunkowo dużej mocy obliczeniowej, która
+ jest wystarczająca do uruchomienia systemów operacyjnych podobnych do tych
+ uruchamianych na komputerach PC.
+ Charakteryzują się również posiadaniem interfejsów umożliwiających podpinanie
+ urządzeń peryferyjnych tych samych co do zwykłych komputerów PC.
+ Urządzenia SoC zyskały swą popularność wśród zwykłych użytkowników dopiero
+ w ostatnich latach, głównie za sprawą taniego mini komputera jakim jest
+ Raspberry Pi.
+ Mają one zastosowanie m.in.
+ jako systemy wbudowane, w dziedzinie Home Automation jak również wiele
+ innych multimedialnych zastosowań ze względu na możliwości zbliżone do
+ zwykłych PC oraz niewielkie rozmiary.
+ Z założenia powinny mieścić się na jednej płytce drukowalnej, być energooszczęd
+ne oraz tanie w produkcji seryjnej.
 \end_layout
 
 \begin_layout Standard
-Do tej pory zostało opracowanych kilka klastrów obliczeniowych z wykorzystaniem
- urządzeń SoC takich jak Raspberry Pi.
- Przykładem może być praca opisana w pozycji 
+Typowe urządzenie SoC powinno zawierać:
+\end_layout
+
+\begin_layout Itemize
+procesor CPU,
+\end_layout
+
+\begin_layout Itemize
+pamięć RAM, ROM, EEPROM lub FLASH,
+\end_layout
+
+\begin_layout Itemize
+układy czasowo-licznikowe,
+\end_layout
+
+\begin_layout Itemize
+kontrolery transmisji szeregowej lub równoległej,
+\end_layout
+
+\begin_layout Itemize
+przetworniki analogowo-cyfrowe lub cyfrowo-analogowe,
+\end_layout
+
+\begin_layout Itemize
+obwody zarządzania zasilaniem.
+\end_layout
+
+\begin_layout Standard
+Spotykane są również urządzenia zawierające procesory GPU oprócz jednostki
+ CPU 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "1"
+key "44,78"
 
 \end_inset
 
 .
- Same urządzenia SoC zyskały swoją popularność dopiero w ostatnich latach,
- głównie za sprawą taniego mini komputera jakim jest Raspberry Pi.
- 
+\end_layout
+
+\begin_layout Standard
+Poniżej wymieniono kilka popularnych urządzeń SoC.
 \end_layout
 
 \begin_layout Subsection*
-Porownac kilka, parallela, rpi itd.
- nie pisac o rzeczach ktore nie wykorzystuje
+Parallela 
+\end_layout
+
+\begin_layout Standard
+Urządzenie posiada dwurdzeniowy procesor ARM o taktowaniu 800MHz, wielordzeniowy
+ procesor Epiphany o architekturze RISC oraz 1GB pamięci RAM.
+ Dodatkowo posiada złącze kart MicroSD, USB 2.0, port Ethernet, HDMI oraz
+ możliwość uruchomienia systemów operacyjnych z rodziny Linux.
+ Urządzenie jest wielkości karty kredytowej a jego cena oscyluje w granicach
+ 100$.
+ Istnieje kilka różnych specyfikacji tego urządzenia różniących się ilością
+ rdzeni procesora Epiphany się oraz ceną.
+ Dzięki obecności procesora Epiphany urządzenie dobrze sprawdza się w obliczenia
+ch równoległych, które mogą zostać zaimplementowane przy wykorzystaniu takich
+ technologii jak OpenMP, MPI lub OpenCL.
+ Projekt został zapoczątkowany na platformie Kickstarter w 2012 roku 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "82"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Intel Galileo
+\end_layout
+
+\begin_layout Standard
+Urządzenie stworzone przez firmę Intel bazujące na procesorze tej samej
+ firmy klasy x86 Pentium o taktowaniu 400MHz (32 bity) wraz z 256MB pamięci
+ RAM.
+ Jest kompatybilne z systemami operacyjnymi takimi jak Windows, Linux lub
+ Mac OS a także z wieloma rozszerzeniami czy bibliotekami platformy Arduino.
+ Cena oraz rozmiary urządzenia są podobne jak w przypadku urządzeń Parallela.
+ Urządzenie to posiada również złącze Ethernet, MicroSD oraz mini PCI Express.
+ Nie posiada natomiast karty dźwiękowej ani procesora graficznego 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "80"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Sharks Cove
+\end_layout
+
+\begin_layout Standard
+Urządzenie promowane przez firmę Microsoft i kompatybilne z Windowsem 10
+ oraz systemem Android.
+ Pracuje pod kontrolą procesora Intel Atom o taktowaniu 1.33GHz, wyposażone
+ jest również w zintegrowany procesor graficzny Intel HD Graphics, 1GB pamięci
+ RAM, kartę dźwiękową oraz m.in.
+ w złącze MicroSD, HDMI, USB 2.0 oraz Ethernet.
+ Posiada trochę wieksze rozmiary od innych opisywanych tutaj urządzeń.
+ Cena urządzenia również jest wyższa, bo wynosi około 300$ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "79"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection*
@@ -146,17 +259,11 @@ Raspberry Pi
 \end_layout
 
 \begin_layout Standard
-Do testów platformy stworzonej na potrzeby niniejszej pracy wykorzystano
- jedno z urządzeń SoC 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "44"
-
-\end_inset
-
- jakim jest Raspberry Pi model B.
+Raspberry Pi jest jednym z urządzeń SoC szerzej wykorzystywanym w niniejszej
+ pracy.
  Jest to urządzenie stworzone przez fundację non-profit oparte na architekturze
  ARM.
+ Pierwsza wersja została wydana w roku 2012.
 \end_layout
 
 \begin_layout Standard
@@ -221,12 +328,32 @@ name "fig:Schemat-Raspberry-Pi"
 \end_layout
 
 \begin_layout Standard
-Urządzenie posiada jednostkę CPU oparty o taktowaniu 700MHz oraz 512MB pamięci
- RAM.
+Urządzenie Raspberry Pi w wersji B posiada jednostkę CPU o taktowaniu 700MHz
+ oraz 512MB pamięci RAM.
  Poza procesorem CPU jest również wyposażone m.in.
- w jednostkę GPU, dwa porty USB, złącze kart SD (na których może być zainstalowa
-na dystrybucja Linuxa), złącze Ethernet 100Mb/s oraz złącze MicroUSB wykorzystan
-e do zasilania.
+ w jednostkę GPU, dwa porty USB, złącze kart SD, złącze Ethernet 100Mb/s
+ oraz złącze MicroUSB wykorzystane do zasilania.
+ W trakcie obciążenia pobiera około 4W prądu.
+ Na tym urządzeniu może być zainstalowana m.in.
+ jedna z wielu dystrybucji Linuxa.
+ Urządzenie to może służyć zarówno jako platforma deweloperska jak i centrum
+ domowej rozrywki.
+ Znalazło również zastosowanie w budowie klastrów obliczeniowych.
+ Przykładem może być praca opisana w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "1"
+
+\end_inset
+
+ oraz widoczna na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Klaster-Raspberry-Pi"
+
+\end_inset
+
+.
  Pełną specyfikację urządzenia można znaleść w pozycji 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -237,8 +364,267 @@ key "26"
 .
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename rpi_cluster.jpg
+	lyxscale 10
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Klaster Raspberry Pi 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "76"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Klaster-Raspberry-Pi"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W roku 2015 został udostępniony do dystrybucji nowy model urządzenia oznaczony
+ wersją 2, który różni się od poprzedniej wersji m.in.
+ tym, że posiada 1GB pamięci RAM oraz czterordzeniowy procesor ARM o taktowaniu
+ 900MHz a także możliwość uruchomienia poza dystrybucjami Linuxa również
+ systemu Windows w wersji 10.
+ Cechuje się też mniejszym rozmiarem - wielkość karty kredytowej.
+ Cena tej wersji urządzenia wynosi 35$ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "81"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Arduino
+\end_layout
+
+\begin_layout Standard
+Jest to rodzina mikrokontrolerów bazująca na technologii Atmel AVR i bardzo
+ popularna wśród użytkowników.
+ Nie są to co prawda urządzenia SoC, ponieważ posiadają znacznie mniej pamięci,
+ słabsze procesory oraz mniejszą ilość wbudowanych modułów ale są oparte
+ na otwartej platformie, która jest łatwo programowalna, posiada dużą społecznoś
+ć zainteresowanych osób przyczyniających się do jej rozwoju oraz wiele darmowych
+ rozszerzeń a także bibliotek ułatwiających ich użycie oraz poszerzających
+ możliwości tych urządzeń.
+ Dzięki temu są one często wykorzystywane w połączeniu z urządzeniami SoC
+ lub do sterowania innymi urządzeniami np.
+ w Home Automation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "83"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dzięki popularyzacji, miniaturyzacji oraz obniżeniu cen urządzeń SoC oraz
+ mikrokontrolerów rozwinęła się idea Internet Of Things.
+ Firmy które wypuszczają nowe urządzenia na rynek starają się aktywizować
+ społeczności wokół tych urządzeń, np.
+ poprzez udostępnianie darmowych urządzeń we wczesnej fazie promocji zainteresow
+anym użytkownikom lub uczelniom.
+ Dla przykładu można podać akcję Intela w przypadku urządzenia Galileo,
+ gdzie aż 50 tys.
+ egzemplarzy trafiło do tysiąca uczelni na całym świecie a wśród nich również
+ do 18 polskich placówek 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "85"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section
 IoT
+\end_layout
+
+\begin_layout Standard
+Wpółczesne systemy komputerowe stają się coraz mniejsze oraz tańsze, co
+ skutkuje obecnością komputerów w prawie każdej dziedzinie życia.
+ Dzięki rozwojowi urządzeń mobilnych, bezprzewodowej transmisji, technologiom
+ działającym w chmurze zwiększającym zasięg Internetu coraz więcej urządzeń
+ ma do niego dostęp.
+ Skutkuje to tym, że ilość danych do przetwarzania ciągle wzrasta jak również
+ wzrasta skala komunikacji tych urządzeń.
+ Do tego typu urządzeń zaliczają się już nie tylko komputery osobiste i
+ urządzenia mobilne takie jak smartfony, tablety czy inteligentne zegarki
+ ale również urządzenia gospodarstwa domowego jak telewizory, lodówki, artykuły
+ oświetleniowe i grzewcze oraz wiele innych urządzeń posiadających jakieś
+ sensory i zbierających dane również na skalę przemysłową.
+\end_layout
+
+\begin_layout Standard
+Koncepcja IoT (ang.
+ Internet Of Things) rozwinęła się wokół wszystkich urządzeń podłączonych
+ do Internetu.
+ Zauważono tutaj wiele nowych możliwości jak również tendencję do wzrostu
+ liczby urządzeń połączonych z Internetem.
+ Firma Cisco szacuje, że do roku 2020 liczba takich urządzeń może przekroczyć
+ 50 bilionów 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "84"
+
+\end_inset
+
+.
+ Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Prognozy-ilości-urządzeń"
+
+\end_inset
+
+ przedstawiono poglądowy wykres tego zjawiska.
+ 
+\end_layout
+
+\begin_layout Standard
+Istnieje również inne pojęcię zwane IoE (ang.
+ Internet of Everything) zapoczątkowane przez firmę Cisco, które czasem
+ jest używane zamiennie do IoT.
+ Jest obecna strona internetowa zawierająca licznik pokazujący przybliżoną
+ liczbę urządzeń podłączonych do Internetu, który aktualnie wskazuje ponad
+ 16 bilionów i cały czas rośnie 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "84"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename iot.png
+	lyxscale 20
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Prognozy ilości urządzeń podłączonych do Internetu 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "86"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Prognozy-ilości-urządzeń"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wiele firm komercyjnych zauważa w tych prognozach sposób na zysk dlatego
+ tanie, miniaturowe platformy komputerowe takie jak urządzenia SoC są bardzo
+ mocno promowane.
+ 
+\end_layout
+
+\begin_layout Standard
+Internet oraz wiele współczesnych technologii zostało wymyślonych o wiele
+ wcześniej aniżeli koncepcja IoT więc nie wszystkie są gotowe na taką ilość
+ urządzeń oraz danych.
+ Pozostawia to miejsce do badań nad nowymi rozwiązaniami oraz istniejącymi
+ problemami, których ilość będzie rosła wraz ze wzrostem skali zjawiska
+ IoT 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "87,77"
+
+\end_inset
+
+.
 \end_layout
 
 \end_body

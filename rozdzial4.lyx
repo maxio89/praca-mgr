@@ -52,7 +52,7 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \bibtex_command default
 \index_command default
 \paperfontsize 12
-\spacing single
+\spacing onehalf
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
@@ -152,7 +152,7 @@ status open
 \begin_inset Graphics
 	filename Cluster Overview.png
 	lyxscale 90
-	scale 40
+	scale 50
 
 \end_inset
 
@@ -197,6 +197,22 @@ Początkowe założenia były takie, że na urządzeniach uruchomione są aplika
 
 \series bold
 Opisac na podstawie notatek/pytan/todosow z jakimi problemami sie zmagano.
+\end_layout
+
+\begin_layout Standard
+load-balancing, wybor nowego mastera, wysylanie progresu, persystencja,
+ zapewnienie jednej instancji mastera, wykrywanie awarii, reakcje w przypadku
+ awarii, jak konfigurowac zadania, Zapisywac stan aktora na kazdym node
+ lub do zdalnej bazki czy przesylac dane do jednego node’a i tam zapisywac,
+ np.
+ we frontend, Gdzie persystowac dane, co potrzebujemy zapisywac, cala populacje
+ co kilka ewaluacji (chyba nie po kazdej?) czy moze tylko najlepszego osobnika?
+ - po jakiejs ustalonej liczbie ewolucji mozna robic snapshot, czyli zapisac
+ populacje do bazki
+\end_layout
+
+\begin_layout Standard
+czemu odpowiada aktor
 \end_layout
 
 \begin_layout Section

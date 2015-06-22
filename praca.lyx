@@ -64,7 +64,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize 11
-\spacing single
+\spacing onehalf
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -296,16 +296,6 @@ filename "rozdzial6.lyx"
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "bibliografia"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "dodatek.lyx"
 
 \end_inset
 
