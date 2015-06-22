@@ -121,9 +121,8 @@ W ramach niniejszej pracy udało się spełnić początkowe założenia i przygo
  platformę oferującą możliwość uruchomienia obliczeń równoległych na wielu
  urządzeniach pracujących w klastrze, dostarczającą narzędzi do monitoringu,
  rozwiązującą problem load-balancingu zadań, skalowalności a także zapewniającą
- wsparcie w sytuacji awarii tychże urządzeń, poprzez reorganizację oraz
- odzyskiwanie sprawności czyli powrót do stanu klastra sprzed wystąpienia
- awarii.
+ wsparcie w sytuacji awarii tychże urządzeń poprzez reorganizację oraz odzyskiwa
+nie sprawności czyli powrót do stanu klastra sprzed wystąpienia awarii.
  Platforma pozwala również na prowadzenie efektywnych obliczeń mimo ograniczonej
  mocy obliczeniowej urządzeń SoC.
  Wykorzystanie tych urządzeń oraz technologii działających na maszynie wirtualne
@@ -131,7 +130,7 @@ j Javy zapewnia mobilność tego rozwiązania.
 \end_layout
 
 \begin_layout Standard
-Technologie Akka okazały się kluczowe z punktu widzenia niniejszej pracy
+Technologia Akka okazała się kluczowa z punktu widzenia niniejszej pracy
  idealnie wkomponowując się w wybraną tematykę.
  Dzięki rozwiązanion wysokiego poziomu ułatwiły one tworzenie nowych komponentów
  oraz dostarczyły pewnych strategii oraz wzorców zwiększając tym samym przejrzys
@@ -142,8 +141,8 @@ tość jak i możliwości dalszego rozwóju przygotowanego rozwiązania.
 Niniejsza praca pozwoliła również autorowi na zapoznanie się z tematyką
  problemów występujących w klastrach oraz rozwiązaniami stosowanymi w celu
  zrównoleglenia lub rozproszenia obliczeń.
- Kolejnym ciekawym aspektem niniejszej pracy z punktu widzenia autora, który
- pozwolił na eksplorację nowych obszarów wiedzy jest względnie nowa dziedzina
+ Kolejnym ciekawym aspektem niniejszej pracy, który pozwolił na eksplorację
+ nowych obszarów wiedzy z punktu widzenia autora jest względnie nowa dziedzina
  w programowaniu a mianowicie programowanie reaktywne i technologie z platformy
  Typesafe w połączeniu z urządzeniami SoC oraz Cluster Computing.
 \end_layout
@@ -159,7 +158,7 @@ Rozwiązanie stworzone na potrzeby niniejszej pracy posiada kilka ciekawych
 \end_layout
 
 \begin_layout Subsection*
-Wiele klientów
+Wiele aplikacji klienckich
 \end_layout
 
 \begin_layout Standard
@@ -250,8 +249,8 @@ Urządzenia SoC na których testowano przygotowaną platformę posiadają ograni
  w znaczny sposób wpłynąć na szybkość obliczeń.
  Nie można zatem pozwolić sobie na zbędne operacje i nadmierną zajętość
  pamięci, co może wydłużyć wykonywanie obliczeń.
- Warto byłoby użyć jakiegoś narzędzia do profilowania JVM aby sprawdzić
- czy nie ma żadnych wycieków pamięci a także przenalizować zrzut pamięci
+ Warto byłoby użyć jakiegoś narzędzia do profilowania JVM, aby sprawdzić
+ czy nie ma żadnych wycieków pamięci, a także przenalizować zrzut pamięci
  (tzw.
  heap dump) pod kątem instancjonowanych obiektów oraz zajętości pamięci.
  Można byłoby również wykonać tuning GC (ang.
