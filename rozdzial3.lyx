@@ -97,7 +97,7 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \begin_body
 
 \begin_layout Chapter
-Od SoC do IoT
+Niekonwencjonalne metody realizacji obliczeń
 \begin_inset CommandInset label
 LatexCommand label
 name "cha:soc"
@@ -113,7 +113,7 @@ Niniejszy rozdział zawiera charakterystykę urządzeń SoC oraz opis koncepcji
 \end_layout
 
 \begin_layout Section
-SoC
+Architektura System on a Chip
 \end_layout
 
 \begin_layout Standard
@@ -490,7 +490,7 @@ key "85"
 \end_layout
 
 \begin_layout Section
-IoT
+Internet of Things
 \end_layout
 
 \begin_layout Standard
@@ -588,6 +588,17 @@ name "fig:Prognozy-ilości-urządzeń"
 \end_inset
 
 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Inny wykres do IoT, bo ten jest niewidoczny albo poprawic tekst aby byl
+ widoczny
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -625,6 +636,32 @@ key "87,77"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Section
+Ubiquitous
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Mark Weiser 1991
+\end_layout
+
+\end_inset
+
+ Computing
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+prosze ten rozdzial zamknac opisem idei Ubiquitous Computing - ktora jest
+ jedna z mozliwych idei zastosowujacych IoT (i nie tylko) w obliczeniach.
+ 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

@@ -222,33 +222,59 @@ Opis rozdziałów
 \end_layout
 
 \begin_layout Standard
-W pierwszym rozdziale została zawarta motywacja oraz cel pracy.
+Na poczatku pracy zawarto motywacje oraz opis jej celów.
+ Następnie zamieszczono wprowadzenie do tematyki obliczeń równoległych wraz
+ z
 \end_layout
 
 \begin_layout Standard
-W kolejnym rozdziale zamieszczono wprowadzenie do tematyki obliczeń równoległych
-, wraz z podziałem architektur oraz opisem kilku popularnych modeli programowani
-a jak również istniejących technologii.
+podziałem sprzetowych architektur oraz opisem kilku popularnych modeli programow
+ania jak również istniejących implementacji wykorzystujacych wymienione
+ architektury oraz modele.
+ 
 \end_layout
 
 \begin_layout Standard
-W rozdziale trzecim opisano koncepcję IoT oraz kilka przykładowych urządzeń
- SoC.
+W kolejnym rozdziale opisano kilka popularnych ostatnio koncepcji takich
+ jak urządzenia SoC, Internet of Things oraz Ubiquitous Computing.
+ Zawarto w nim rownież porównanie paru istniejących urządzeń SoC, przytoczono
+ pare istniejących przykładów zastosowań wymienionych idei oraz pokazano
+ skalę tych zjawisk powołując się na rożne źródła.
 \end_layout
 
 \begin_layout Standard
-Rozdział czwarty zawiera ideę przygotowanej platformy oraz jej szczegóły
- implementacyjne.
+Kolejne dwa rozdziały zarysowują koncepcję przygotowanej platformy zawierającą
+ początkową wizję oraz problemy, którym stawiono czoła.
+ Dalej opisano jej szczegóły implementacyjne zawierające m.in.
+ schemat architektury, protokołów komunikacji oraz innych wykorzystanych
+ technologii.
+ Naświetlono również możliwości zastosowania powstałego rozwiązania z uwglednien
+iem .
+ wyniki testow wydajnosc i skalowalnosc rozwiazanie poczatkowych zalozen
+ 
 \end_layout
 
 \begin_layout Standard
-W przedostatnim rozdziale przedstawiono możliwe zastosowania przygotowanego
- rozwiązania wraz z wynikami jego testów.
+Ostatni rozdział podsumowuje niniejszą pracę a także przedstawia wyciągniete
+ wnioski oraz wskazanie kierunków dalszego rozwoju przygotowanej platformy.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Rozważania na temat obu tych problemów..
 \end_layout
 
-\begin_layout Standard
-Ostatni rozdział, szósty, zawiera wnioski oraz naświetlono w nim możliwości
- dalszego rozwoju platformy stworzonej na potrzeby niniejszej pracy.
+\begin_layout Plain Layout
+Rozdział numer cztery został w całości poświecony problemowi..
+\end_layout
+
+\begin_layout Plain Layout
+Zostal przedstawiony...
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

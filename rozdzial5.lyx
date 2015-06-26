@@ -272,16 +272,6 @@ reference "fig:Schemat-blokowy-ewolucji."
 
  przedstawiono schemat blokowy ewolucji.
  
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Czy to pasuje jako ramowy schemat?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -387,10 +377,44 @@ Problemy benchmarkowe
 \end_layout
 
 \begin_layout Standard
+Algorytmy ewolucyjne ze wgledu na kilka ich cech, m.in.
+ mozliwosc znalezienia wielu optymalnych rozwiazan sa czesto wykorzystywane
+ do optymalizacji wielomodalnej.
+\end_layout
 
-\series bold
-Napisac o trudnych problemach wielomodalnych i napisac ze rastrigina wykorzystal
-em jako swoj benchmark.
+\begin_layout Standard
+W problemach wielomodalnych zdarza sie, ze funkcja celu nie uzglednia wszystkich
+ elementow majacych wplyw na jakosc rozwiazania.
+ Spowodowane jest to zazwyczaj pewnymi uproszczeniami, ktore trzeba przyjac
+ implementujac model algorytmow ewolucyjnych oraz istnieniem cech niemierzalnych.
+ Dlatego istotnym jest aby algorytm optymalizacyjny byl w stanie znalesc
+ wiele rownie dobrych rozwiazan.
+\end_layout
+
+\begin_layout Standard
+Odbywa sie to dzieki wprowadzeniu czynnika losowego, ktory pozwala utrzymywac
+ roznorodnosc populacji i zapobiega znajdywaniu rozwiazan optymalnych lokalnie
+ zamiast globalnie 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "88"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Istnieje grupa funkcji, ktore sa wykorzystywane jako tzw.
+ benchmarki w optymalizacji wielomodalnej, jedna z nich jest wielowymiarowa
+ funkcja Rastrigina 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "89"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1682,27 +1706,9 @@ key "26"
 \end_layout
 
 \begin_layout Standard
-Dostępna w urządzeniach pamięć RAM ma dość duży wpływ na czas obliczeń.
+Dostępna w urządzeniach pamięć RAM ma wpływ na czas obliczeń.
  Czas uzyskiwany przez nowszy model urządzenia, który posiada więcej pamięci
- był około 30% (
-\series bold
-sprawdzić ile dokładnie
-\series default
-) lepszy.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Dodac wykres z przyspieszeniem
-\end_layout
-
-\end_inset
-
-
+ jest parę procent lepszy.
 \end_layout
 
 \begin_layout Subsection*
@@ -1745,7 +1751,7 @@ Dzięki zastosowaniu migracji, gdy do klastra zostaje włączone nowe urządzeni
  Przy wysokiej częstości migracji oraz dużym procencie migrującej populacji
  istnieje ryzyko, że wyspy zostaną zdominowane przez osobników o podobnych
  cechach, co może prowadzić do odnalezienia jedynie lokalnego minimum zamiast
- minimum globalnego.
+ minimum globalnego oraz wolnej zbieżności.
  
 \end_layout
 
@@ -1793,6 +1799,44 @@ status open
 
 \end_layout
 
+\begin_layout Standard
+1 wykres dla 10 wymiarow, populacja 10 I 100
+\end_layout
+
+\begin_layout Standard
+Kolejny taki sam wykres dla rpi B+
+\end_layout
+
+\begin_layout Standard
+3 wykres dla 100 wymiarow, populacja 10 i 100
+\end_layout
+
+\begin_layout Standard
+4 wykres dla 2 urzadzen, dla 10 wymiarow, populacja 10 I 100 – czy warto
+ tutaj oddzielnie uwgledniac urzadzenia na wykresie, wtedy bylyby 4 wykresy,
+ dwa dla 10 i dwa dla 100 populacji?
+\end_layout
+
+\begin_layout Standard
+5 wykres dla 2 urzadzen, dla 100 wymiarow, populacja 10 I 100
+\end_layout
+
+\begin_layout Standard
+Zrobic wykres dla 3 urzadzen?
+\end_layout
+
+\begin_layout Standard
+6 wykres dla 4 urzadzen, dla 10 wymiarow, populacja 10 I 100
+\end_layout
+
+\begin_layout Standard
+7 wykres dla 4 urzadzen, dla 100 wymiarow, populacja 10 I 100
+\end_layout
+
+\begin_layout Standard
+8 wykres dla przyspieszenia – jak go zrobic?
+\end_layout
+
 \begin_layout Subsection*
 Wydajność 
 \end_layout
@@ -1803,13 +1847,18 @@ Wydajność
  bezczynności.
 \end_layout
 
+\begin_layout Standard
+Wydajnosc mastera.
+\end_layout
+
 \begin_layout Subsection*
 Narzut komunikacji.
 \end_layout
 
 \begin_layout Standard
 Częstość wykonywania zapisów do bazy, przesyłania wyników częściowych do
- klienta oraz wpływ wielkości populacji.
+ klienta oraz wpływ wielkości populacji i wymiaru funkcji na czas obliczen
+ oraz wielkosc przesylanych wiadomosci.
 \end_layout
 
 \begin_layout Standard

@@ -105,12 +105,21 @@ name "cha:klaster"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Rozdział ten przedstawia opis przygotowanego rozwiązania.
+ 
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-W tym rozdziale powinien Pan wyjsc od koncepcji (jakies schematy ideowe)
- przez projekt do implementacji.
+Na poczatku kazdego rozdzialu musi byc klej (na koncu tez powinien).
+ I tak na poczatku 4.
+ rozdzialu powinien Pan napisac ze idee opisane wczesniej, w szczegolnosci
+ SoC, znalazly odzwierciedlenie w glownej czesci Panskiej pracy magisterskiej,
+ gdyz podjal sie Pan oprogramowania klastra obliczeniowego na SoC.
+ 
 \end_layout
 
 \end_inset
@@ -118,12 +127,19 @@ W tym rozdziale powinien Pan wyjsc od koncepcji (jakies schematy ideowe)
 
 \end_layout
 
-\begin_layout Standard
-Rozdział ten przedstawia opis przygotowanego rozwiązania.
-\end_layout
-
 \begin_layout Section
 Koncepcja
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Jaki czas powinien byc uzyty w celach pracy oraz koncepcji? Czy koncepcja
+ to sa bardziej szczegolowe cele?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -200,6 +216,8 @@ Opisac na podstawie notatek/pytan/todosow z jakimi problemami sie zmagano.
 \end_layout
 
 \begin_layout Standard
+
+\series bold
 load-balancing, wybor nowego mastera, wysylanie progresu, persystencja,
  zapewnienie jednej instancji mastera, wykrywanie awarii, reakcje w przypadku
  awarii, jak konfigurowac zadania, Zapisywac stan aktora na kazdym node
@@ -212,7 +230,66 @@ load-balancing, wybor nowego mastera, wysylanie progresu, persystencja,
 \end_layout
 
 \begin_layout Standard
+
+\series bold
 czemu odpowiada aktor
+\end_layout
+
+\begin_layout Standard
+Na urzadzeniach klastra wykonywane sa obliczenia rownolegle, ktore sa rozpoczyna
+ne przez klienta klastra a nastepnie dystrybuowane przez wezel posiadajacy
+ role Master pomiedzy pozostale wezly posiadajace role Slave, ktore zajmuja
+ sie wlasciwymi obliczenia.
+\end_layout
+
+\begin_layout Standard
+Powinna istniec tylko jedna instancja mastera w obrebie klastra a w przypadku
+ awarii urzadzenia na ktorym znajduje sie ta instancja powinna zostac uruchomion
+a inna instancja Mastera na jednym z pozostalych urzadzen, ktore bedzie
+ w stanie odtworzyc stan poprzedniej instancji.
+ Co wymaga aby co jakis okreslony czas stan Mastera byl zapisywany.
+ Stan Mastera jest istotny ze wgledu na przechowywane przez niego informacje
+ o wynikach zadania , ktore nie dotarly jeszcze do klienta lub o zadaniach
+ rozpoczetych przez klienta ale nie wyslanych jeszcze do zadnego Workera.
+ Komunikacja na linii Master-Worker, powinna byc zaimplementowana w sposob
+ aby Master nie stanowil tzw.
+ „waskiego gardla” klastra.
+ Wyzwaniem bedzie rowniez wybor algorytmu losowania nowego Mastera jak rowniez
+ load-balancingu zadan, ktory powinien byc zaimplementowany w sposob aby
+ obciazenie Workerow bylo rownomierne i wyeliminowac sytuacje gdy Worker
+ jest w stanie bezczynnosci mimo, ze istnieje zakolejkowane zadanie.
+\end_layout
+
+\begin_layout Standard
+Wyniki zadan odsylane sa do mastera, ktory nastepnie wysyla je klientowi.
+ W przypadku dlugo trwajacych zadan przesylane sa wyniki czesciowe co jakis
+ okreslony czas aby poinformowac klienta o postepie prac.
+\end_layout
+
+\begin_layout Standard
+W trakcie trwania obliczen czesciowe wyniki co jakis okreslony czas sa zapisywan
+e w bazie danych, po to aby mozliwe bylo ich odzyskanie w sytuacji awarii
+ ktoregos urzadzenia.
+\end_layout
+
+\begin_layout Standard
+Interesujaca kwestia jest jakie dane wymagaja persystencji oraz jak czesto
+ ma sie ona odbywac a takze gdzie bedzie przechowywany magazyn danych.
+ Jezeli podjeta zostanie decyzja, ze na urzadzeniu, ktore moze ulec potencjalnej
+ awarii, to byc moze bedzie wymagana replikacja aby zapewnic bezpieczenstwo
+ danych.
+\end_layout
+
+\begin_layout Standard
+Poza wykonywaniem zadan platforma monitoruje prace urzadzen, informuje o
+ dolaczeniu nowych oraz opuszczeniu klastra przez urzadzenie – rozrozniane
+ sa sytuacje gdy urzadzenie opusci klaster na wlasne zyczenie albo ulegnie
+ awarii, czyli przestanie odpowiadac i w takim przypadku zostanie uznane
+ za niedostepne oraz usuniete z klastra po jakims okreslonym czasie.
+\end_layout
+
+\begin_layout Standard
+Model zadania, jego konfiguracja i inicjalizacja.
 \end_layout
 
 \begin_layout Section

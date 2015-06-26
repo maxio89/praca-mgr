@@ -825,6 +825,19 @@ key "14"
 \begin_layout Section
 \paragraph_spacing onehalf
 Istniejące rozwiązania
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Rozdzialy wymagaja wstepu, np.
+ 2.3.
+ - powinien napisac Pan dwa zdania tak zeby sie kleil tekst - poprzedni
+ rozdzial mowil o modelach a tu mowi Pan o implementacjach...
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -1026,7 +1039,7 @@ Wymienione wyżej narzędzia implementują różne modele programowania równole
 \end_layout
 
 \begin_layout Subsection*
-Klastry
+Systemy klastrowe
 \end_layout
 
 \begin_layout Standard
@@ -1044,7 +1057,7 @@ wego oraz współpracujących ze sobą.
 \end_layout
 
 \begin_layout Subsection*
-Gridy
+Systemy gridowe
 \end_layout
 
 \begin_layout Standard
@@ -1485,10 +1498,6 @@ key "34,32"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \begin_layout Subsection*
