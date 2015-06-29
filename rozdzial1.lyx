@@ -97,25 +97,39 @@ Zbyt dlugie zdania, brak przecinkow
 
 \begin_layout Standard
 Obliczenia równoległe a także systemy rozproszone od lat są wykorzystywane
- przez różne ośrodki badawcze jak również przemysł do obliczeń wielkiej
+ przez różne ośrodki badawcze, jak również przemysł do obliczeń wielkiej
  skali, a także wspomagania systemów wysokiej dostępności.
  Innymi obszarami zastosowań są różnego rodzaju symulacje, np.
- w biologii, chemii, astrofizyce lub medycynie a także przyśpieszenie krytycznyc
-h obliczeń w takich dziedzinach jak systemy obronne, przemysł komunikacyjny,
- meteorologia, astrodynamika, ponadto rozwiązywanie problemów optymalizacyjnych
- i przetwarzanie dużej ilości danych.
+ w biologii, chemii, astrofizyce lub medycynie, jak również przyśpieszenie
+ krytycznych obliczeń w takich dziedzinach jak systemy obronne, przemysł
+ komunikacyjny, meteorologia, astrodynamika, ponadto rozwiązywanie problemów
+ optymalizacyjnych i przetwarzanie dużej ilości danych 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "68,75"
+
+\end_inset
+
+.
  
 \end_layout
 
 \begin_layout Standard
 Przyczyniło się to do silnego rozwoju poruszanej tematyki, lecz niektóre
- koncepcje opracowane już w połowie XX wieku kiedy to trudno było przewidzieć
+ koncepcje opracowane już w połowie XX wieku kiedy trudno było przewidzieć
  skalę z jaką wzrasta ilość nowych urządzeń oraz danych do przetwarzania
  w dzisiejszych czasach napotykają pewne bariery.
  Cały czas kreowane są nowe idee w myśl rozwoju współczesnych technologii
  co sprawia, że tematyka niniejszej pracy nie traci na aktualności.
  Takie koncepcje jak BigData lub IoT motywują do rozwoju prac związanych
- z wydajnym przetwarzaniem dużej ilości danych.
+ z wydajnym przetwarzaniem dużej ilości danych 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "87,77,90"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -123,18 +137,39 @@ Przyczyniło się to do silnego rozwoju poruszanej tematyki, lecz niektóre
 Potrzeby rynku oraz zwiększona podaż spowodowały spadek cen urządzeń mobilnych,
  a także obniżenie stosunku ceny do mocy obliczeniowej.
  Urządzenia SoC zaczęto wykorzystywać na większą skalę w edukacji jak i
- domowych zastosowaniach.
- Pomimo, że proces miniaturyzacji oraz zwiększania wydajności procesorów
+ w domowych zastosowaniach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "87,84,77"
+
+\end_inset
+
+.
+ Pomimo tego, że proces miniaturyzacji oraz zwiększania wydajności procesorów
  osiąga bariery technologiczne poprzez rozwój systemów wieloprocesorowych
- udaje się nadal zwiększać efektywność obliczeń.
+ udaje się nadal zwiększać efektywność obliczeń 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "93"
+
+\end_inset
+
+.
  Powstają aplikacje i technologie mające na celu połączenie zasobów w jedną
  całość oraz efektywne ich wykorzystanie.
  Zasoby te mogą być zgromadzone lokalnie lub rozproszone w różnych rejonach
  świata i połączone w sieci Internet.
- Natomiast dzięki elastycznym formom handlu jak na przykład sprzedaż zużytej
- mocy obliczeniowej oraz popularyzacji rozwiązań chmur obliczeniowych udaje
- się w coraz łatwiejszy sposób docierać do klienta indywidualnego oraz mniejszyc
-h firm.
+ Natomiast dzięki elastycznym formom handlu, jak na przykład sprzedaż zużytej
+ mocy obliczeniowej w Amazon AWS oraz popularyzacji rozwiązań chmur obliczeniowy
+ch udaje się w coraz łatwiejszy sposób docierać do klienta indywidualnego
+ oraz mniejszych firm 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "91"
+
+\end_inset
+
+.
  Możliwość użycia tego typu rozwiązań przez zwykłych użytkowników ma wpływ
  na tworzenie społeczności wspierających oraz testujących technologie o
  otwartym kodzie źródłowym.
@@ -158,7 +193,7 @@ Cel pracy
 status open
 
 \begin_layout Plain Layout
-Użyć czasu przeszłego?
+Użyć czasu przeszłego? Raczej przeszly albo terazniejszy
 \end_layout
 
 \end_inset
@@ -167,42 +202,41 @@ Użyć czasu przeszłego?
 \end_layout
 
 \begin_layout Standard
-Celem ogólnym niniejszej pracy jest przygotowanie rozwiązania potrafiącego
- koordynować pracę klastra obliczeniowego złożonego z urządzeń SoC działających
- w sieci lokalnej.
+Celem niniejszej pracy jest przygotowanie rozwiązania potrafiącego koordynować
+ pracę klastra obliczeniowego złożonego z urządzeń SoC działających w sieci
+ lokalnej.
  
 \end_layout
 
 \begin_layout Standard
 Do celów szczegółowych należy rozpoznanie tematyki obliczeń równoległych
  w środowisku rozproszonym, zbadanie oraz wybór odpowiednich technologii
- dzięki którym możliwe będzie zaprojektowanie architektury a następnie zaimpleme
-ntowanie platformy cechującej się mobilnością, skalowalnością oraz zapewniającej
+ dzięki którym możliwe będzie zaprojektowanie architektury oraz implementacja
+ platformy cechującej się mobilnością, skalowalnością a także zapewniającej
  wsparcie w sytuacji awarii urządzeń pracujących w klastrze.
- Głównym zadaniem powstałej platformy będzie zarządzanie obliczeniami prowadzony
-mi w klastrze, ich load-balancing a ponadto będzie ona również odpowiedzialna
- za komunikację urządzeń oraz monitoring stanu klastra czyli powinna być
- zdolna do informowania użytkownika jeżeli którekolwiek urządzenie opuści
- lub dołączy do klastra.
+ Głównym zadaniem powstałej platformy jest zarządzanie obliczeniami prowadzonymi
+ w klastrze, ich load-balancing a ponadto jest ona również odpowiedzialna
+ za komunikację urządzeń oraz monitoring stanu klastra czyli informowanie
+ użytkownika jeżeli którekolwiek urządzenie opuści lub dołączy do klastra.
  Wynika z tego, że oprócz części platformy odpowiedzialnej za obliczenia
- i zarządzanie zadaniami oraz stanem klastra wymagany będzie interfejs użytkowni
-ka, dzięki któremu będzie on mógł zlecać zadania oraz mieć podgląd na stan
+ i zarządzanie zadaniami oraz stanem klastra wymagany jest interfejs użytkownika
+, dzięki któremu jest on w stanie zlecać zadania oraz mieć podgląd na stan
  działającego klastra.
- Dobór technologii oraz rozwiązań będzie brał pod uwagę ograniczone możliwości
- obliczeniowe typowych urządzeń SoC oraz mobilność powstałej platformy dlatego
- faworyzowane będą multiplatformowe technologie wysokiego poziomu, lecz
- na tyle wydajne aby możliwe było osiągnięcie zadowalającej efektywności
- obliczeń przy wszystkich ograniczeniach.
+ Dobór technologii oraz rozwiązań bierze pod uwagę ograniczone możliwości
+ obliczeniowe typowych urządzeń SoC oraz mobilność powstałej platformy,
+ dlatego faworyzowane są multiplatformowe technologie wysokiego poziomu,
+ lecz na tyle wydajne aby możliwe było osiągnięcie zadowalającej efektywności
+ obliczeń biorąc pod uwagę różne ograniczenia.
  
 \end_layout
 
 \begin_layout Standard
-Ostatnim celem będzie przetestowanie opracowanego rozwiązania poprzez implementa
-cję jednego z modeli programowania równoległego wykorzystanego do prowadzenia
+Ostatnim celem jest przetestowanie opracowanego rozwiązania poprzez implementacj
+ę jednego z modeli programowania równoległego wykorzystanego do prowadzenia
  wymagających obliczeń matematycznych.
- Zbadana zostanie skalowalność, wydajność oraz niezawodność.
- Następnie zostaną opracowane wyniki, a także zidentyfikowane możliwości
- zastosowań jak również perspektywy dalszego rozwoju powstałej platformy.
+ Zbadana została skalowalność, wydajność oraz niezawodność.
+ Zidentyfikowano również możliwości zastosowań jak również perspektywy dalszego
+ rozwoju powstałej platformy.
  
 \begin_inset Note Note
 status open
@@ -210,6 +244,7 @@ status open
 \begin_layout Plain Layout
 Czy warto pisać tutaj jakie technologie zostały wykorzystane skoro piszemy
  to na samym końcu, czy na tym etapie jeszcze nie wiemy nic o technologiach?
+ O Scali i Akkce moge wspomniec.
 \end_layout
 
 \end_inset
@@ -224,41 +259,53 @@ Opis rozdziałów
 \begin_layout Standard
 Na poczatku pracy zawarto motywacje oraz opis jej celów.
  Następnie zamieszczono wprowadzenie do tematyki obliczeń równoległych wraz
- z
-\end_layout
-
-\begin_layout Standard
-podziałem sprzetowych architektur oraz opisem kilku popularnych modeli programow
-ania jak również istniejących implementacji wykorzystujacych wymienione
- architektury oraz modele.
+ z podziałem sprzętowych architektur oraz opisem kilku popularnych modeli
+ programowania jak również istniejących implementacji wykorzystujących wymienion
+e architektury oraz modele.
  
 \end_layout
 
 \begin_layout Standard
-W kolejnym rozdziale opisano kilka popularnych ostatnio koncepcji takich
- jak urządzenia SoC, Internet of Things oraz Ubiquitous Computing.
+W kolejnym rozdziale opisano kilka popularnych koncepcji takich jak urządzenia
+ SoC, Internet of Things oraz Ubiquitous Computing.
  Zawarto w nim rownież porównanie paru istniejących urządzeń SoC, przytoczono
- pare istniejących przykładów zastosowań wymienionych idei oraz pokazano
- skalę tych zjawisk powołując się na rożne źródła.
+ niektóre przykłady zastosowania wymienionych idei oraz pokazano skalę tych
+ zjawisk powołując się na rożne źródła.
 \end_layout
 
 \begin_layout Standard
-Kolejne dwa rozdziały zarysowują koncepcję przygotowanej platformy zawierającą
- początkową wizję oraz problemy, którym stawiono czoła.
- Dalej opisano jej szczegóły implementacyjne zawierające m.in.
- schemat architektury, protokołów komunikacji oraz innych wykorzystanych
- technologii.
- Naświetlono również możliwości zastosowania powstałego rozwiązania z uwglednien
-iem .
- wyniki testow wydajnosc i skalowalnosc rozwiazanie poczatkowych zalozen
+Rozdział numer cztery został w całości poświęcony opisowi implementacji
+ platformy.
+ Zarysowuje on koncepcję oraz problemy, którym stawiono czoła.
+ Następnie przedstawia szczegóły implementacyjne zawierające m.in.
+ schemat architektury czy protokołów komunikacji.
+ Na końcu zawarto opis kilku innych wykorzystanych technologii.
  
 \end_layout
 
 \begin_layout Standard
-Ostatni rozdział podsumowuje niniejszą pracę a także przedstawia wyciągniete
+Kolejny rozdział zawiera opis możliwości zastosowania przygotowanego rozwiązania
+ wraz z przybliżeniem tematyki algorytmów ewolucyjnych w kontekście obliczeń
+ równoległych.
+  Następnie opisano użycie wspomnianych algorytmów do rozwiązania problemu
+ testowego jakim jest optymalizacja funkcji wielomodalnej.
+ Na końcu rozdziału zawarto opracowanie wyników testów przedstawiające uzyskaną
+ skalowalność oraz wpływ na wydajność obliczeń różnych parametrów początkowych
+ zadania.
+ 
+\end_layout
+
+\begin_layout Standard
+Ostatni rozdział podsumowuje niniejszą pracę czyli przedstawia wyciągniete
  wnioski oraz wskazanie kierunków dalszego rozwoju przygotowanej platformy.
 \begin_inset Note Note
 status open
+
+\begin_layout Plain Layout
+z uwglednieniem .
+ wyniki testow wydajnosc i skalowalnosc rozwiazanie poczatkowych zalozen
+ 
+\end_layout
 
 \begin_layout Plain Layout
 Rozważania na temat obu tych problemów..

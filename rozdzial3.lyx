@@ -52,7 +52,7 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \bibtex_command default
 \index_command default
 \paperfontsize 12
-\spacing onehalf
+\spacing single
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
@@ -108,8 +108,8 @@ name "cha:soc"
 \end_layout
 
 \begin_layout Standard
-Niniejszy rozdział zawiera charakterystykę urządzeń SoC oraz opis koncepcji
- IoT.
+Niniejszy rozdział zawiera charakterystykę urządzeń SoC oraz opis zjawiska
+ Internet of Things.
 \end_layout
 
 \begin_layout Section
@@ -496,9 +496,9 @@ Internet of Things
 \begin_layout Standard
 Wpółczesne systemy komputerowe stają się coraz mniejsze oraz tańsze, co
  skutkuje obecnością komputerów w prawie każdej dziedzinie życia.
- Dzięki rozwojowi urządzeń mobilnych, bezprzewodowej transmisji, technologiom
- działającym w chmurze zwiększającym zasięg Internetu coraz więcej urządzeń
- ma do niego dostęp.
+ Dzięki rozwojowi urządzeń mobilnych, tanich sensorów, bezprzewodowej transmisji
+ danych oraz technologiom działającym w chmurze zwiększającym zasięg Internetu
+ coraz więcej urządzeń ma do niego dostęp.
  Skutkuje to tym, że ilość danych do przetwarzania ciągle wzrasta jak również
  wzrasta skala komunikacji tych urządzeń.
  Do tego typu urządzeń zaliczają się już nie tylko komputery osobiste i
@@ -512,6 +512,7 @@ Wpółczesne systemy komputerowe stają się coraz mniejsze oraz tańsze, co
 Koncepcja IoT (ang.
  Internet Of Things) rozwinęła się wokół wszystkich urządzeń podłączonych
  do Internetu.
+ Zapoczątkował ją Kevin Ashton w 1999 roku.
  Zauważono tutaj wiele nowych możliwości jak również tendencję do wzrostu
  liczby urządzeń połączonych z Internetem.
  Firma Cisco szacuje, że do roku 2020 liczba takich urządzeń może przekroczyć
@@ -535,12 +536,13 @@ reference "fig:Prognozy-ilości-urządzeń"
 \end_layout
 
 \begin_layout Standard
-Istnieje również inne pojęcię zwane IoE (ang.
- Internet of Everything) zapoczątkowane przez firmę Cisco, które czasem
+Warto również wspomnieć o istnieniu podobnego pojęcia zwanego IoE (ang.
+ Internet of Everything) i zapoczątkowanego przez firmę Cisco, które czasem
  jest używane zamiennie do IoT.
- Jest obecna strona internetowa zawierająca licznik pokazujący przybliżoną
- liczbę urządzeń podłączonych do Internetu, który aktualnie wskazuje ponad
- 16 bilionów i cały czas rośnie 
+ Ciekawostką jest fakt, że licznik pokazujący przybliżoną liczbę urządzeń
+ podłączonych do Internetu jest aktualizowany na bierząco oraz zamieszczony
+ na stronie internetowej.
+ Aktualnie wskazuje na ponad 16 bilionów urządzeń i cały czas rośnie 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "84"
@@ -616,7 +618,7 @@ Inny wykres do IoT, bo ten jest niewidoczny albo poprawic tekst aby byl
 \end_layout
 
 \begin_layout Standard
-Wiele firm komercyjnych zauważa w tych prognozach sposób na zysk dlatego
+Wiele firm komercyjnych zauważa w tychże prognozach sposób na zysk, dlatego
  tanie, miniaturowe platformy komputerowe takie jak urządzenia SoC są bardzo
  mocno promowane.
  
@@ -636,6 +638,13 @@ key "87,77"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+ew.
+ wstawic tutaj ide o UC...
+ aby wyjasnic cele...
+ z takich kawaleczkow mozna pospinac klaster.
 \end_layout
 
 \begin_layout Section
@@ -662,6 +671,14 @@ prosze ten rozdzial zamknac opisem idei Ubiquitous Computing - ktora jest
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Koncepcją powiązaną z ideą IoT jest Ubiquitous Computing czyli wszechobecne
+ obliczenia.
+ Poraz pierwszy tej nazwy użył Mark Weiser w 1991 roku (czyli parę lat wcześniej
+ przed wymyśleniem nazwy IoT) w odniesieniu do urządzeń działających w Interneci
+e.
 \end_layout
 
 \end_body

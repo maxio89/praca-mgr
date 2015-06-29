@@ -52,7 +52,7 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \bibtex_command default
 \index_command default
 \paperfontsize 12
-\spacing onehalf
+\spacing single
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
@@ -247,7 +247,7 @@ Kolejną kwestią którą można rozważyć w planach dalszego rozwoju jest zaim
 owanie innych algorytmów, które będą w stanie równie dobrze wykorzystać
  potencjał stworzonej platformy.
  Warto byłoby również poeksperymentować z różnymi modyfikacjami algorytmów
- genetycznych, takimi jak różne metody selekcji lub krzyżowania, aby uzyskać
+ genetycznych, takimi jak inne metody selekcji lub krzyżowania, aby uzyskać
  jeszcze większą efektywność obliczeń.
 \end_layout
 
@@ -282,7 +282,8 @@ W ostatnich latach coraz bardziej wzrasta znaczenie urządzeń podłączonych
 e o wystarczającej mocy obliczeniowej, aby móc obsłużyć systemy mobilne
  takie jak Android.
  Stwarza to zatem pole do popisu oraz nowe pomysły wykorzystania stworzonego
- rozwiązania w wersji bardziej rozproszonej.
+ rozwiązania w wersji bardziej rozproszonej oraz z wykorzystaniem nie tylko
+ urządzeń SoC.
 \end_layout
 
 \end_body

@@ -52,7 +52,7 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \bibtex_command default
 \index_command default
 \paperfontsize 12
-\spacing onehalf
+\spacing single
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
@@ -1713,6 +1713,13 @@ Dostępna w urządzeniach pamięć RAM ma wpływ na czas obliczeń.
 
 \begin_layout Subsection*
 Skalowalność
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+100 urzadzen na jednym, 50 na dwoch, 25 na czterech i pobawic sie czestotliwosci
+a, pokaze czas
 \end_layout
 
 \begin_layout Standard

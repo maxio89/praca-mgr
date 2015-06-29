@@ -52,7 +52,7 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \bibtex_command default
 \index_command default
 \paperfontsize 12
-\spacing onehalf
+\spacing single
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
@@ -466,7 +466,7 @@ Modele programowania równoległego
 \paragraph_spacing onehalf
 Poniższy rozdzial zawiera wstęp do kilku modeli programowania równoległego
  opartych na architekturze MIMD.
- Modele te istnieją jako abstrakcja do fizycznej architektury sprzętowej,
+ Modele te istnieją jako abstrakcja od fizycznej architektury sprzętowej,
  co oznacza, że w niektórych przypadkach mogą być zaimplementowane na różnych
  architekturach sprzętowych.
 \end_layout
@@ -803,8 +803,8 @@ istnieje możliwość podzielenia zadania na kilka części, z których każda
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-Rozwiązanie to ma niestety również kilka wad, jak na przykład istnienie
- niebezpieczeństwa utworzenia tzw.
+Rozwiązanie to ma niestety również kilka wad, jak na przykład istnieje niebezpie
+czeństwo utworzenia tzw.
  wąskiego gardła co może spowodować problemy z wydajnością lub być tzw.
  single-point of failure.
  Jeśli urządzenie/proces posiadające rolę master ulega awarii, powinniśmy
@@ -838,6 +838,13 @@ Rozdzialy wymagaja wstepu, np.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Dla większości modeli programowania równoległego wymienionych w poprzednim
+ rozdziale można znaleść istniejące implementacje, niektóre z nich są komercyjne
+ ale zdarzają się także takie o otwartym kodzie źródłowym.
+ Poniżej zamieszczono krótką charakterystykę wybranych technologii.
 \end_layout
 
 \begin_layout Subsection*
@@ -1501,12 +1508,10 @@ key "34,32"
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 Cluster Singleton
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Cluster Singleton jest rozszerzeniem projektu Akka zapewniającym jedną instancję
  aktora danego typu w obrębie klastra lub w obrębie węzłów z wybraną rolą.
  Może zostać wykorzystane do zaimplementowania modelu Master/Slave opisanego
