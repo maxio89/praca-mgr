@@ -140,8 +140,7 @@ reference "fig:Schemat-SISD-."
 
 ).
  Wyniki wykonania instrukcji są deterministyczne.
- Wykorzystany w komputerach skalarnych oraz tzw.
- mainframe'ach.
+ Wykorzystany w komputerach skalarnych oraz typu mainframe.
  Przykład klasycznej architektury von Neumanna.
 \end_layout
 
@@ -561,9 +560,9 @@ Data Parallel
 Jest jedna zorganizowana globalna przestrzeń danych, np.
  w postaci tablicy na której operują procesy wykonujące się równolegle.
  Procesy wykonują operacje na swojej wydzielonej części pamięci.
- Operacja może polegać na przykład na dodaniu jakiejś liczby do kilku elementów
- tablicy.
- Jeżeli tablica posiada sto elementów a dziesięć różnych procesów wykonuje
+ Operacja może polegać na przykład na dodaniu konkretnej liczby do kilku
+ elementów tablicy.
+ Jeżeli tablica posiada sto elementów, a dziesięć różnych procesów wykonuje
  na niej jakieś operację, to każdy proces może mieć dostęp do dziesięciu
  elementów tablicy, co oznacza, że żaden proces nie będzie operował na tym
  samym elemencie tablicy.
@@ -575,13 +574,14 @@ Message Passing
 \end_layout
 
 \begin_layout Standard
-W tym modelu procesy, zwane również taskami posiadają dane na których operują.
- Każdy task posiada unikalny identyfikator i komunikuje się z innymi taskami
- przesyłając im jakieś informacje.
+W tym modelu procesy, zwane również zadaniami (ang.
+ tasks) posiadają dane na których operują.
+ Każdy zadanie posiada unikalny identyfikator i komunikuje się z innymi
+ zadaniami przesyłając im jakieś informacje.
  Komunikacja musi być zazwyczaj skoordynowana, co oznacza, że po operacji
- wysłania musi nastąpić odbiór wiadomości na innym tasku.
- Taski mogą wykonywać się równolegle, mogą być również tworzone dynamicznie.
- Każdy task może wykonywać się na oddzielnym procesorze, może być również
+ wysłania musi nastąpić odbiór wiadomości w innym zadaniu.
+ Zadania mogą wykonywać się równolegle, mogą być również tworzone dynamicznie.
+ Każde zadanie może wykonywać się na oddzielnym procesorze, może być również
  umieszczony na innej fizycznej maszynie.
  Implementacją tego modelu jest standard MPI, który zostanie opisany później.
  Model ten wykorzystuje DM.
@@ -592,15 +592,8 @@ Threads
 \end_layout
 
 \begin_layout Standard
-W tym modelu jeden 
-\begin_inset Quotes pld
-\end_inset
-
-ciężki
-\begin_inset Quotes prd
-\end_inset
-
- proces może posiadać kilka wykonywanych współbieżnie ścieżek, tzw.
+W tym modelu jeden złożony proces może posiadać kilka wykonywanych współbieżnie
+ ścieżek, tzw.
  wątków.
  Dla przykładu załóżmy, że procesem jest program, który po starcie uruchamia
  kilka zadań wykonywanych równolegle przez różne wątki.
@@ -618,8 +611,8 @@ ać ten sam obszar pamięci w tym samym czasie musi nastąpić synchronizacja
  Wątki mogą być tworzone i usuwane dynamicznie przez główny program i dzięki
  niemu mogą również współdzielić zasoby.
  Wykorzystuje model SM.
- Problemy, które mogą wystąpić w przypadku tego modelu, to są blokady wątków
- (ang.
+ Problemy, które mogą wystąpić w przypadku tego modelu, to zablokowanie
+ wątków (ang.
  deadlock), zagłodzenie wątków (ang.
  starvation) oraz tzw.
  race condition 
@@ -647,15 +640,15 @@ W modelu Shared Memory jeżeli procesy operują na wspólnych danych utrudnienie
 , które czasem mogą okazać się niewystarczające lub źle wpływać na proces
  zrównoleglania.
  W przypadku gdy współdzielony stan (pamięć) jest mutowalny, czyli może
- być modyfikowany przez wiele procesów rozwiązaniem powinna być synchronizacja
+ być modyfikowany przez wiele procesów, rozwiązaniem powinna być synchronizacja
  dostępu.
  Jeżeli jednak każdy proces posiada odizolowany stan, który nie może być
  mutowalny, to synchronizacja jest niepotrzebna lecz tracimy również możliwość
  współdzielenia stanu.
  Jednym z rozwiązań tych problemów jest wykorzystanie podejścia z języków
  funkcyjnych takich jak Scala lub Erlang, czyli niemutowalnych obiektów.
- Modelem wykorzystującym niemutowalne obiekty do przesyłania komunikatów
- jest model aktorowy wykorzystany m.in.
+ Modelem wykorzystującym takie obiekty do przesyłania komunikatów jest model
+ aktorowy wykorzystany m.in.
  we wspomnianych wyżej językach funkcyjnych oraz w wielu innych do zrównoleglani
 a obliczeń.
 \end_layout
@@ -668,7 +661,7 @@ Model Aktorowy (ang.
 \begin_layout Standard
 W modelu aktorowym głównym bytem są aktorzy.
  Komunikują się oni ze sobą asynchronicznie poprzez wymianę wiadomości a
- więc są trochę podobni do tasków w modelu Message Passing.
+ więc są trochę podobni do zadań w modelu Message Passing.
  Po wysłaniu wiadomości nie muszą czekać na odpowiedź a kolejność dostarczania
  wiadomości jest nieistotna.
  Wiadomości są buforowane w skrzynkach odbiorczych.
@@ -783,7 +776,7 @@ Rozwiązanie to ma niestety również kilka wad, jak na przykład istnieje niebe
 czeństwo utworzenia tzw.
  wąskiego gardła co może spowodować problemy z wydajnością lub być tzw.
  single-point of failure.
- Jeśli urządzenie/proces posiadające rolę Master ulega awarii powinniśmy
+ Jeśli urządzenie/proces posiadające rolę Master ulega awarii, powinniśmy
  w jakiś sposób obsłużyć taką sytuację np.
  poprzez ponowne wystartowanie procesu/urządzenia z rolą Master, aby zapewnić
  poprawne i niezawodne działanie komunikacji.
@@ -963,7 +956,7 @@ Jest to framework open-source napisany w Javie i wspierający obliczenia
  MapReduce służący do przetwarzania danych.
  Kolejnym istotnym komponentem jest YARN pomagający zarządzać zasobami dostępnym
 i w klastrze oraz wykorzystywany do harmonogramowania zadań.
- Zamierzeniem twórców było stworzenie narzędzia dobrze skalowalnego, oraz
+ Zamierzeniem twórców było stworzenie narzędzia dobrze skalowalnego oraz
  zapewniającego wysoką dostępność poprzez wykrywanie stanu urządzeń pracujących
  w klastrze 
 \begin_inset CommandInset citation
@@ -985,7 +978,7 @@ Jest systemem służącym do zarządzania zasobami oraz kolejkowaniem zadań
  Jest to projekt Open-source rozwijany przez Uniwersystet Wisconsin-Madison.
  Powstał w latach 80-tych.
  Może być uruchamiany na wielu platformach takich jak Windows czy Linux.
- Dostarcza mechanizmy zabezpieczeń takie jak autentykacja, autoryzacja czy
+ Dostarcza mechanizmy zabezpieczeń takie jak autentykacja, autoryzacja i
  szyfrowanie danych, jak również mechanizmy do wspomagania administrowania
  systemem.
  Może być użyty do rozłożenia obciążenia na komputerach pracujących w klastrze,
@@ -1025,9 +1018,9 @@ Systemy klastrowe
 
 \begin_layout Standard
 Klaster komputerowy jest zbiorem wielu komputerów połączonych zazwyczaj
- w sieci LAN i mających na celu rozwiązanie jakiegoś złożonego problemu
- obliczeniowego oraz współpracujących ze sobą.
- Zazwyczaj są używane do zwiększenia wydajności oraz dostępności jakichś
+ w sieci LAN i mających na celu rozwiązanie złożonego problemu obliczeniowego
+ oraz współpracujących ze sobą.
+ Zazwyczaj są używane do zwiększenia wydajności oraz dostępności konkretnych
  usług.
  W porównaniu do gridów komputery pracujące w klastrze mają podobną architekturę
  oraz zazwyczaj zajmują się wykonywaniem podobnych, skoordynowanych zadań.
@@ -1092,7 +1085,7 @@ Scala jest językiem funkcyjnym rozwijanym od 2001 roku przez firmę Typesafe,
  w Lozannie.
  Głównym aspektem przemawiającym na korzyść tego języka jest to, że do jego
  działania wystarczy maszyna wirtualna Javy.
- Jest to język obiektowy podobnie jak Java ale łączy również zalety języków
+ Jest to język obiektowy podobnie jak Java, ale łączy również zalety języków
  funkcyjnych, które w ostatnim czasie stają się coraz bardziej popularne.
  Zamiarem twórców było stworzenie języka eleganckiego oraz zwięzłego syntaktyczn
 ie.
@@ -1107,10 +1100,10 @@ key "42"
 .
  Wprowadza również wiele innowacji oraz ciekawych rozwiązań do konstrukcji
  języka jak np.
- case classes, currying, zagnieżdżanie funkcji, DSL, tail recursion, słowo
- kluczowe lazy lub trait, konsktrukcja podobna do interfejsu z języka Java
- ale mogąca posiadać częściową implementację.
- Scala preferuje obiekty immutable.
+ case classes, currying, zagnieżdżanie funkcji, DSL, słowo kluczowe lazy
+ lub trait, konsktrukcja podobna do interfejsu z języka Java ale mogąca
+ posiadać częściową implementację.
+ Scala preferuje obiekty niemutowalne.
  Obsługuje również funkcje wyższego rzędu oraz pozwala zwięźle definiować
  funkcje anonimowe, kładzie również duży nacisk na skalowalność.
  Dodatkową zaletą tego języka jest to, iż jest on w pełni kompatybilny z
@@ -1125,9 +1118,7 @@ key "27,28,30,8"
 \end_inset
 
 .
- Według autora niniejszej pracy do wad tego języka można zaliczyć m.in.
- to, że niektóre instrukcje da się wyrazić na wiele różnych sposobów, co
- utrudnia czytelność kodu oraz zwiększa trudność nauki tej technologii.
+ 
 \end_layout
 
 \begin_layout Subsection*
@@ -1145,7 +1136,7 @@ Jednym z kluczowych frameworków wykorzystanych w niniejszej pracy jest Akka.
  pracy rozszerzeń, które zostały opisane w jednym z następnych podrodziałów,
  wyczerpującej dokumentacji oraz dużej i aktywnej społeczności rozwijającej
  ten produkt, a także wsparciem komercyjnych firm.
- Akka używa modelu aktorowego, aby zwiększyć poziom abstrakcji i oddzielić
+ Akka używa modelu aktorowego aby zwiększyć poziom abstrakcji i oddzielić
  logikę biznesową od niskopoziomowego zarządzania wątkami oraz operacjami
  I/O 
 \begin_inset CommandInset citation
@@ -1164,9 +1155,8 @@ Podstawowym bytem w technologii Akka są aktorzy.
  Jest on lekkim, wydajnym oraz sterowanym zdarzeniami procesem, który komunikuje
  się z innymi aktorami za pomocą asynchronicznych i niemutowalnych wiadomości
  przechowywanych w skrzynkach odbiorczych, które posiada każdy aktor.
- Aktor enkapsuluje pewien stan i zachowania, które realizują określone zadania.
- Więcej informacji na temat koncepcji aktorów w projekcie Akka można znaleść
- w pozycji 
+ Aktor enkapsuluje pewien stan i zachowania, które realizują określone zadania
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "31"
@@ -1198,9 +1188,8 @@ key "49"
 application.conf
 \shape default
 , który jest głównym plikiem konfiguracyjnym systemu aktorowego.
- System aktorowy zarządza dostępnymi zasobami i może mieć uruchomione miliony
- aktorów gdyż instancja każdego z aktorów zajmuje zaledwie około 300 bajtów
- pamięci.
+ System aktorowy zarządza dostępnymi zasobami i może mieć uruchomione wiele
+ aktorów, instancja każdego z aktorów zajmuje zaledwie 300 bajtów pamięci.
 \end_layout
 
 \begin_layout Standard
@@ -1238,9 +1227,9 @@ key "54"
 
 \end_inset
 
- zwany też 
+ (zwany też 
 \shape italic
-fail fast
+fail fast)
 \shape default
  do zapewnienia niezawodnego działania systemu i skrócenia jego niedostępności,
 \end_layout
@@ -1270,8 +1259,8 @@ key "29"
 \end_layout
 
 \begin_layout Standard
-Zastosowania projektu Akka są bardzo szerokie, można je odnaleść chociażby
- w następujących dziedzinach:
+Zastosowania projektu Akka są bardzo szerokie, można je odnaleść w następujących
+ dziedzinach:
 \end_layout
 
 \begin_layout Itemize
@@ -1416,11 +1405,11 @@ join
  unikalnym identyfikatorem, tzw.
  uid, co pozwala na uruchomienie kilku węzłów klastra na jednej fizycznej
  maszynie.
- Jeżeli członek klastra ulegnie awarii lub opuści klaster na własne życzenie
+ Jeżeli członek klastra ulegnie awarii lub opuści klaster na własne życzenie,
  nie może on ponownie dołączyć do klastra dopóki system aktorowy uruchomiony
  na nim nie zostanie zrestartowany, co pozwoli na wygenerowanie nowego uid.
  Każdy węzeł może zmienić swój stan członkostwa lub może on zostać zmieniony
- automatycznie dzięki automatycznej detekcji niedziałających węzłów.
+ dzięki automatycznej detekcji niedziałających węzłów.
  Ustawienia detekcji niedziałających węzłów oraz protokołu Gossip są konfigurowa
 lne, tzn.
  że można np.
@@ -1473,7 +1462,7 @@ Cluster Singleton jest rozszerzeniem projektu Akka zapewniającym jedną instanc
  Może zostać wykorzystane do zaimplementowania modelu Master/Slave opisanego
  w jednym z poprzednich podrozdziałów.
  Rozszerzenie to dostarcza implementacji menedżera, który pozwala zarządzać
- instancjonowaniem aktora-singletona.
+ instancjonowaniem aktora typu singleton.
  Dostęp do działającej instancji jest możliwy z każdego urządzenia działającego
  w klastrze i odbywa się poprzez aktora pośrednika, tzw.
  proxy 
@@ -1495,8 +1484,8 @@ Rozszerzenie projektu Akka, które umożliwia komunikację między aktorami
  bez posiadania informacji na których konkretnie urządzeniach poszczególni
  aktorzy są uruchomieni, czyli lokacja aktora jest transparentna z punktu
  widzenia komunikacji.
- Dostarcza ono aktora-mediatora, który zarządza rejestracją innych aktorów
- do konkretnych kanałów komunikacji którymi są zainteresowani.
+ Dostarcza ono aktora pełniącego rolę mediatora, który zarządza rejestracją
+ innych aktorów do konkretnych kanałów komunikacji którymi są zainteresowani.
  Zachowanie to można porównać z subskrypcją RSS 
 \begin_inset CommandInset citation
 LatexCommand cite

@@ -108,8 +108,8 @@ name "cha:soc"
 \end_layout
 
 \begin_layout Standard
-Niniejszy rozdział zawiera charakterystykę urządzeń SoC oraz opis zjawiska
- Internet of Things.
+Niniejszy rozdział zawiera charakterystykę urządzeń SoC oraz opis idei Internet
+ of Things oraz Ubiquitous Computing.
 \end_layout
 
 \begin_layout Section
@@ -133,9 +133,9 @@ Urządzenia SoC (System-on-a-chip) są to układy, które oprócz głównego pro
  w ostatnich latach, głównie za sprawą taniego mini komputera jakim jest
  Raspberry Pi.
  Mają one zastosowanie m.in.
- jako systemy wbudowane, w dziedzinie Home Automation jak również wiele
- innych multimedialnych zastosowań ze względu na możliwości zbliżone do
- zwykłych PC oraz niewielkie rozmiary.
+ jako systemy wbudowane, w dziedzinie Home Automation jak również posiadają
+ wiele innych multimedialnych zastosowań ze względu na możliwości zbliżone
+ do zwykłych PC oraz niewielkie rozmiary.
  Z założenia powinny mieścić się na jednej płytce drukowalnej, być energooszczęd
 ne oraz tanie w produkcji seryjnej.
 \end_layout
@@ -219,7 +219,15 @@ Urządzenie stworzone przez firmę Intel bazujące na procesorze tej samej
  firmy klasy x86 Pentium o taktowaniu 400MHz (32 bity) wraz z 256MB pamięci
  RAM.
  Jest kompatybilne z systemami operacyjnymi takimi jak Windows, Linux lub
- Mac OS a także z wieloma rozszerzeniami czy bibliotekami platformy Arduino.
+ Mac OS a także z wieloma rozszerzeniami czy bibliotekami platformy Arduino
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "83"
+
+\end_inset
+
+.
  Cena oraz rozmiary urządzenia są podobne jak w przypadku urządzeń Parallela.
  Urządzenie to posiada również złącze Ethernet, MicroSD oraz mini PCI Express.
  Nie posiada natomiast karty dźwiękowej ani procesora graficznego 
@@ -264,10 +272,7 @@ Raspberry Pi jest jednym z urządzeń SoC szerzej wykorzystywanym w niniejszej
  Jest to urządzenie stworzone przez fundację non-profit oparte na architekturze
  ARM.
  Pierwsza wersja została wydana w roku 2012.
-\end_layout
-
-\begin_layout Standard
-Na rysunku 
+ Na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Schemat-Raspberry-Pi"
@@ -346,7 +351,7 @@ key "1"
 
 \end_inset
 
- oraz widoczna na rysunku 
+, której podgląd jest widoczny na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Klaster-Raspberry-Pi"
@@ -424,7 +429,7 @@ W roku 2015 został udostępniony do dystrybucji nowy model urządzenia oznaczon
  tym, że posiada 1GB pamięci RAM oraz czterordzeniowy procesor ARM o taktowaniu
  900MHz a także możliwość uruchomienia poza dystrybucjami Linuxa również
  systemu Windows w wersji 10.
- Cechuje się też mniejszym rozmiarem - wielkość karty kredytowej.
+ Cechuje się także mniejszym rozmiarem - wielkość karty kredytowej.
  Cena tej wersji urządzenia wynosi 35$ 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -447,7 +452,7 @@ Jest to rodzina mikrokontrolerów bazująca na technologii Atmel AVR i bardzo
  słabsze procesory oraz mniejszą ilość wbudowanych modułów ale są oparte
  na otwartej platformie, która jest łatwo programowalna, posiada dużą społecznoś
 ć zainteresowanych osób przyczyniających się do jej rozwoju oraz wiele darmowych
- rozszerzeń a także bibliotek ułatwiających ich użycie oraz poszerzających
+ rozszerzeń a także bibliotek ułatwiających ich użycie oraz rozszerzających
  możliwości tych urządzeń.
  Dzięki temu są one często wykorzystywane w połączeniu z urządzeniami SoC
  lub do sterowania innymi urządzeniami np.
@@ -478,7 +483,7 @@ Dzięki popularyzacji, miniaturyzacji oraz obniżeniu cen urządzeń SoC oraz
 anym użytkownikom lub uczelniom.
  Dla przykładu można podać akcję Intela w przypadku urządzenia Galileo,
  gdzie aż 50 tys.
- egzemplarzy trafiło do tysiąca uczelni na całym świecie a wśród nich również
+ egzemplarzy trafiło do tysiąca uczelni na całym świecie a wśród nich także
  do 18 polskich placówek 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -497,15 +502,15 @@ Internet of Things
 Wpółczesne systemy komputerowe stają się coraz mniejsze oraz tańsze, co
  skutkuje obecnością komputerów w prawie każdej dziedzinie życia.
  Dzięki rozwojowi urządzeń mobilnych, tanich sensorów, bezprzewodowej transmisji
- danych oraz technologiom działającym w chmurze zwiększającym zasięg Internetu
- coraz więcej urządzeń ma do niego dostęp.
+ danych oraz technologiom działającym w chmurze zasięg Internetu zostaje
+ zwiększony oraz coraz więcej urządzeń ma do niego dostęp.
  Skutkuje to tym, że ilość danych do przetwarzania ciągle wzrasta jak również
  wzrasta skala komunikacji tych urządzeń.
  Do tego typu urządzeń zaliczają się już nie tylko komputery osobiste i
  urządzenia mobilne takie jak smartfony, tablety czy inteligentne zegarki
- ale również urządzenia gospodarstwa domowego jak telewizory, lodówki, artykuły
- oświetleniowe i grzewcze oraz wiele innych urządzeń posiadających jakieś
- sensory i zbierających dane również na skalę przemysłową.
+ ale również urządzenia gospodarstwa domowego takie jak telewizory, lodówki,
+ artykuły oświetleniowe i grzewcze oraz wiele innych urządzeń posiadających
+ jakieś sensory i zbierających dane również na skalę przemysłową.
 \end_layout
 
 \begin_layout Standard
@@ -540,8 +545,8 @@ Warto również wspomnieć o istnieniu podobnego pojęcia zwanego IoE (ang.
  Internet of Everything) i zapoczątkowanego przez firmę Cisco, które czasem
  jest używane zamiennie do IoT.
  Ciekawostką jest fakt, że licznik pokazujący przybliżoną liczbę urządzeń
- podłączonych do Internetu jest aktualizowany na bierząco oraz zamieszczony
- na stronie internetowej.
+ podłączonych do Internetu jest aktualizowany na bieżąco oraz zamieszczony
+ na stronie internetowej firmy Cisco.
  Aktualnie wskazuje na ponad 16 bilionów urządzeń i cały czas rośnie 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -641,10 +646,19 @@ key "87,77"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 ew.
  wstawic tutaj ide o UC...
  aby wyjasnic cele...
  z takich kawaleczkow mozna pospinac klaster.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
