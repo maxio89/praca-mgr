@@ -97,7 +97,6 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \begin_body
 
 \begin_layout Chapter
-\paragraph_spacing onehalf
 Obliczenia równoległe oraz rozproszone
 \begin_inset CommandInset label
 LatexCommand label
@@ -109,19 +108,16 @@ name "cha:obliczenia"
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Rozdział zawiera klasyfikację modelu architektur równoległych a także opis
  kilku wybranych technologii mających zastosowanie przy obliczeniach równoległyc
 h oraz rozproszonych.
 \end_layout
 
 \begin_layout Section
-\paragraph_spacing onehalf
-Model architektur rownoleglych Flynna
+Model architektur równoleglych Flynna
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 W latach 60-tych Michael Flynn sklasyfikował architektury komputerowe w
  czterech kategoriach biorąc pod uwagę ilość intrukcji oraz ilość strumieni
  danych przetwarzanych przez procesory.
@@ -129,13 +125,11 @@ W latach 60-tych Michael Flynn sklasyfikował architektury komputerowe w
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 SISD (ang.
  Single Instruction, Single Data) 
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Jeden strumień danych jest przetwarzany sekwencyjnie przez jedną instrukcję
  w każdym kolejnym cyklu procesora (rysunek 
 \begin_inset CommandInset ref
@@ -146,7 +140,7 @@ reference "fig:Schemat-SISD-."
 
 ).
  Wyniki wykonania instrukcji są deterministyczne.
- Wykorzystany w komputerach skalarnych lub tzw.
+ Wykorzystany w komputerach skalarnych oraz tzw.
  mainframe'ach.
  Przykład klasycznej architektury von Neumanna.
 \end_layout
@@ -202,13 +196,11 @@ name "fig:Schemat-SISD-."
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 SIMD (ang.
  Single Instruction, Multiple Data) 
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Ta sama instrukcja jest wykonywana równolegle na wielu procesorach używających
  oddzielnych strumieni danych (rysunek 
 \begin_inset CommandInset ref
@@ -220,12 +212,13 @@ reference "fig:Schemat-SIMD-."
 ).
  Każdy procesor posiada swoją pamięć dla danych.
  Uzyskiwane wyniki są deterministyczne a instrukcje wykonywane są sekwencyjnie
- (lockstep).
+ (ang.
+ lockstep).
  Model ten dobrze pasuje do danych, które cechują się pewną regularnością,
  co sprawdza się np.
  przy przetwarzaniu obrazów.
- Jako przykład wykorzystania tej architektury można tutaj podać komputery
- wektorowe lub współczesne procesory GPU wykorzystywane m.in.
+ Jako przykład wykorzystania tej architektury można podać komputery wektorowe
+ lub współczesne procesory GPU wykorzystywane m.in.
  w kartach graficznych.
 \end_layout
 
@@ -280,13 +273,11 @@ name "fig:Schemat-SIMD-."
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 MISD (ang.
  Multiple Instruction, Single Data) 
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Wiele niezależnych instrukcji przetwarza równolegle ten sam strumień danych
  (rysunek 
 \begin_inset CommandInset ref
@@ -351,13 +342,11 @@ name "fig:Schemat-MISD-."
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 MIMD (ang.
  Multiple Instruction, Multiple Data) 
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Wiele procesorów wykonuje równolegle instrukcje przetwarzające niezależne
  strumienie danych (rysunek 
 \begin_inset CommandInset ref
@@ -367,8 +356,8 @@ reference "fig:Schemat-MIMD-."
 \end_inset
 
 ).
- Wykonanie może być synchroniczne jak i niesynchroniczne jak również determinist
-yczne lub nie.
+ Wykonanie może być synchroniczne jak i niesynchroniczne, jak również determinis
+tyczne lub nie.
  Podejście bardziej elastyczne niż SIMD a co za tym idzie mające szersze
  zastosowanie.
  Jako przykład można tutaj podać systemy wieloprocesorowe, klastry lub gridy
@@ -444,7 +433,7 @@ name "fig:Schemat-MIMD-."
 \begin_layout Standard
 Wyżej wymieniona klasyfikacja jest jedną z najstarszych oraz najbardziej
  ogólnych, będącą zazwyczaj punktem wyjścia do innych, bardziej szczegółowych
- klasyfikacji lub biorących pod uwagę inne aspekty zrównoleglania obliczeń.
+ lub biorących pod uwagę inne aspekty zrównoleglania obliczeń.
  W klasycznej pozycji książkowej 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -452,18 +441,16 @@ key "61"
 
 \end_inset
 
- rozważono ponadto równoległość na różnych poziomach, takich jak instrukcje
- (Instruction-Level Parallelism), dane (Data-Level Parallelism) oraz wątki
- (Thread-Level Parallelism).
+ rozważono ponadto równoległość na różnych poziomach abstrakcji, takich
+ jak instrukcje (Instruction-Level Parallelism), dane (Data-Level Parallelism)
+ oraz wątki (Thread-Level Parallelism).
 \end_layout
 
 \begin_layout Section
-\paragraph_spacing onehalf
 Modele programowania równoległego
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Poniższy rozdzial zawiera wstęp do kilku modeli programowania równoległego
  opartych na architekturze MIMD.
  Modele te istnieją jako abstrakcja od fizycznej architektury sprzętowej,
@@ -472,39 +459,35 @@ Poniższy rozdzial zawiera wstęp do kilku modeli programowania równoległego
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 SPMD (ang.
  Single Program, Multiple Data)
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 W tym modelu wiele procesorów wykonuje równolegle ten sam program przetwarzając
  różne strumienie danych.
  Jest to najbardziej powszechny model programowania równoległego, który
  może być wykonywany na większości współczesnych procesorach powszechnego
  użytku.
- W większości przypadków model ten nie wymaga synchronizacji tak jak w SIMD,
- gdyż procesory wykonują różne niezależne części programu i nie muszą się
- one wykonywać w tzw.
- lockstepie (
+ Zazwyczaj model ten nie wymaga synchronizacji tak jak w SIMD, gdyż procesory
+ wykonują różne niezależne części programu i nie muszą się one wykonywać
+ w tzw.
+ lockstepie 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "62"
 
 \end_inset
 
-) tak jak w przypadku SIMD.
+ tak jak w przypadku SIMD.
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 MPMD (ang.
  Multiple Program, Multiple Data)
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Kolejny model programowania równoległego, który może mieć szersze zastosowanie
  aniżeli SPMD.
  Wiele niezależnych procesorów wykonuje równolegle conajmniej dwa niezależne
@@ -525,16 +508,14 @@ Model SPMD implikuje kolejną klasyfikację ze względu na dostęp do pamięci
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 Shared Memory (SM)
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Procesy współdzielą jakiś obszar pamięci przechowujący dane, które odczytują
  lub zapisują asynchronicznie.
  Nie musi tutaj występować komunikacja pomiędzy procesami natomiast potrzebne
- są jakieś mechanizmy do kontroli dostępu do danych, takie jak synchronizacja,
+ są jakieś mechanizmy kontroli dostępu do danych, takie jak synchronizacja,
  semafory, blokady (ang.
  lock) lub bariery pamięci zapewniające poprawność wykonywania operacji
  przy zachowaniu spójności danych.
@@ -543,12 +524,10 @@ nej mogą być niederministyczne.
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 Distributed Memory (DM)
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Każdy proces posiada swoją własną przestrzeń pamięci, co oznacza, że nie
  ma bezpośredniego dostępu do pamięci innych procesów.
  Co za tym idzie wymagana jest komunikacja pomiędzy procesami w celu wymiany
@@ -557,8 +536,8 @@ Każdy proces posiada swoją własną przestrzeń pamięci, co oznacza, że nie
  Obszary pamięci nie muszą być podzielone sprzętowo, co oznacza, że ten
  model programowania może być zaimplementowany na sprzęcie posiadającym
  pamięć współdzieloną podzieloną logicznie pomiędzy procesy.
- Problemami które mogą wystąpić w opisywanym modelu jest load-balancing,
- podzielenie zadania na odpowiednie procesy jak również łączenie wyników
+ Problemami, które mogą wystąpić w opisywanym modelu jest load-balancing,
+ podzielenie zadania na odpowiednie procesy, jak również łączenie wyników
  zadań po zakończeniu obliczeń.
 \end_layout
 
@@ -575,14 +554,13 @@ m tego czy korzystają one z pamięci współdzielonej lub nie.
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 Data Parallel 
 \end_layout
 
 \begin_layout Standard
 Jest jedna zorganizowana globalna przestrzeń danych, np.
  w postaci tablicy na której operują procesy wykonujące się równolegle.
- Procesy wykonują operację na swojej wydzielonej części pamięci.
+ Procesy wykonują operacje na swojej wydzielonej części pamięci.
  Operacja może polegać na przykład na dodaniu jakiejś liczby do kilku elementów
  tablicy.
  Jeżeli tablica posiada sto elementów a dziesięć różnych procesów wykonuje
@@ -599,9 +577,9 @@ Message Passing
 \begin_layout Standard
 W tym modelu procesy, zwane również taskami posiadają dane na których operują.
  Każdy task posiada unikalny identyfikator i komunikuje się z innymi taskami
- przesyłając jakieś informacje.
+ przesyłając im jakieś informacje.
  Komunikacja musi być zazwyczaj skoordynowana, co oznacza, że po operacji
- wysłania, musi nastąpić odbiór wiadomości na innym tasku.
+ wysłania musi nastąpić odbiór wiadomości na innym tasku.
  Taski mogą wykonywać się równolegle, mogą być również tworzone dynamicznie.
  Każdy task może wykonywać się na oddzielnym procesorze, może być również
  umieszczony na innej fizycznej maszynie.
@@ -640,7 +618,7 @@ ać ten sam obszar pamięci w tym samym czasie musi nastąpić synchronizacja
  Wątki mogą być tworzone i usuwane dynamicznie przez główny program i dzięki
  niemu mogą również współdzielić zasoby.
  Wykorzystuje model SM.
- Problemy które mogą wystąpić w przypadku tego modelu, to są blokady wątków
+ Problemy, które mogą wystąpić w przypadku tego modelu, to są blokady wątków
  (ang.
  deadlock), zagłodzenie wątków (ang.
  starvation) oraz tzw.
@@ -701,7 +679,7 @@ W modelu aktorowym głównym bytem są aktorzy.
  w Erlangu lub Scali.
  Zaletą tego modelu jest to, że nie trzeba się martwić o współdzielenie
  skomplikowanych stanów lecz z drugiej strony problem nie zawsze da się
- podzielić na mniejsze części i zaimplementować z wykorzystaniem aktorów
+ podzielić na mniejsze części i zaimplementować z wykorzystaniem aktorów,
  co można traktować jako wadę tego podejścia 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -729,7 +707,8 @@ Wprowadza pojęcie atomicznych transakcji.
  Jeżeli wykonanie takiego bloku się nie powiedzie zmiany są wycofywane,
  co wymusza przechowywanie starszej wersji danych.
  Transakcje mogą wykonywać się równolegle.
- Zaimplementowany w wielu językach programowania, m.in.
+ Model ten zaimplementowano w wielu popularnych językach programowania,
+ m.in.
  w języku Scala 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -749,7 +728,7 @@ key "69,70"
 
 \begin_layout Standard
 W literaturze można znaleść jeszcze wiele innych modeli programowania równoległe
-go wykorzystujących podobne koncepcje jak te opisane powyżej jak również
+go wykorzystujących podobne koncepcje jak te opisane powyżej, jak również
  wprowadzające zupełnie inne podejścia.
  Ostatnim modelem, który zostanie opisany jest Master/Slave ze względu na
  szersze wykorzystanie go w niniejszej pracy.
@@ -760,10 +739,9 @@ Master/Slave
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Master/Slave może być implementacją modelu SPMD.
- W modelu Master/Slave jedno urządzenie lub proces zwane masterem kontroluje
- jedno lub więcej urządzeń lub procesów zwanych slave lub worker 
+ Polega on na tym, że jedno urządzenie lub proces zwane Master kontroluje
+ jedno lub więcej urządzeń lub procesów zwanych Slave lub Worker 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "17"
@@ -771,8 +749,8 @@ key "17"
 \end_inset
 
 .
- Obliczenia wykonywane przez workery odbywają się równolegle, natomiast
- master odpowiada za load-balancing oraz łączenie wyników w jedną całość.
+ Obliczenia wykonywane przez Workery odbywają się równolegle, natomiast
+ Master odpowiada za load-balancing oraz łączenie wyników w jedną całość.
 \end_layout
 
 \begin_layout Standard
@@ -780,7 +758,6 @@ Może okazać się przydatny w następujących przypadkach:
 \end_layout
 
 \begin_layout Itemize
-\paragraph_spacing single
 gdy chcemy mieć jeden proces, tzw.
  single-point of responsibility, który podejmuje decyzje lub koordynuje
  akcje w celu zachowania spójności w systemie,
@@ -802,14 +779,13 @@ istnieje możliwość podzielenia zadania na kilka części, z których każda
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Rozwiązanie to ma niestety również kilka wad, jak na przykład istnieje niebezpie
 czeństwo utworzenia tzw.
  wąskiego gardła co może spowodować problemy z wydajnością lub być tzw.
  single-point of failure.
- Jeśli urządzenie/proces posiadające rolę master ulega awarii, powinniśmy
- w jakiś sposób obsłużyć taką sytuację, np.
- poprzez ponowne wystartowanie procesu/urządzenia z rolą master aby zapewnić
+ Jeśli urządzenie/proces posiadające rolę Master ulega awarii powinniśmy
+ w jakiś sposób obsłużyć taką sytuację np.
+ poprzez ponowne wystartowanie procesu/urządzenia z rolą Master, aby zapewnić
  poprawne i niezawodne działanie komunikacji.
  Sytuacje takie mogą wprowadzić pewne opóźnienia w trakcie odzyskiwania
  sprawności systemu 
@@ -823,7 +799,6 @@ key "14"
 \end_layout
 
 \begin_layout Section
-\paragraph_spacing onehalf
 Istniejące rozwiązania
 \begin_inset Note Note
 status open
@@ -875,11 +850,10 @@ MPI (ang.
 \end_layout
 
 \begin_layout Standard
-Popularny standard szeroko stosowany w obliczeniach równoległych jak również
+Popularny standard szeroko stosowany w obliczeniach równoległych, jak również
  w przemyśle, powstał w roku 1994.
  Korzysta z modelu Message Passing i Distributed Memory.
- Najbardziej znane implementacje to OpenMPI lub MPICH dla języków C oraz
- Fortran.
+ Najbardziej znane implementacje to OpenMPI i MPICH dla języków C oraz Fortran.
  Zapewnia komunikację przez sieć dla danych przetwarzanych na różnych fizycznych
  maszynach 
 \begin_inset CommandInset citation
@@ -901,7 +875,7 @@ Jest to technologia opracowana w 2007 roku przez firmę NVIDIA, producenta
  kart graficznych.
  Wykorzystuje układy GPU a co za tym idzie architekturę SIMD.
  Pozwala wykonywać obliczenia równoległe.
- Dostarcza SDK oraz API pozwalających na pisanie aplikacji z wykorzystaniem
+ Dostarcza SDK oraz API pozwalające na pisanie aplikacji z wykorzystaniem
  języka C/C++ lub Fortran.
  Ma zastosowanie w przetwarzaniu video, biologii obliczeniowej i chemii,
  astrofizyce oraz różnego rodzaju symulacjach lub analizach 
@@ -920,7 +894,7 @@ OpenCL (ang.
 \end_layout
 
 \begin_layout Standard
-Technologia o otwartym kodzie źródłowym w przeciwieństwie do CUDA, tworzony
+Technologia o otwartym kodzie źródłowym w przeciwieństwie do CUDA, rozwijana
  przez grupę Khronos od 2009 roku.
  Wykorzystująca do obliczeń również procesory graficzne.
  Dodatkowo wspierająca obliczenia równoległe na zwykłych procesorach CPU.
@@ -990,8 +964,8 @@ Jest to framework open-source napisany w Javie i wspierający obliczenia
  Kolejnym istotnym komponentem jest YARN pomagający zarządzać zasobami dostępnym
 i w klastrze oraz wykorzystywany do harmonogramowania zadań.
  Zamierzeniem twórców było stworzenie narzędzia dobrze skalowalnego, oraz
- zapewniającego wysoką dostępność poprzez wykrywanie oraz wsparcie urządzeń
- pracujących w klastrze 
+ zapewniającego wysoką dostępność poprzez wykrywanie stanu urządzeń pracujących
+ w klastrze 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "74"
@@ -1008,16 +982,16 @@ HTCondor
 \begin_layout Standard
 Jest systemem służącym do zarządzania zasobami oraz kolejkowaniem zadań
  w architekturach rozproszonych.
- Jest to projekt open-source rozwijany przez Uniwersystet Wisconsin-Madison.
+ Jest to projekt Open-source rozwijany przez Uniwersystet Wisconsin-Madison.
  Powstał w latach 80-tych.
  Może być uruchamiany na wielu platformach takich jak Windows czy Linux.
  Dostarcza mechanizmy zabezpieczeń takie jak autentykacja, autoryzacja czy
- szyfrowanie danych jak również mechanizmy do wspomagania administrowania
+ szyfrowanie danych, jak również mechanizmy do wspomagania administrowania
  systemem.
- Może być użyty do rozłożenia obciążenia na komputerach pracujących w klastrze
+ Może być użyty do rozłożenia obciążenia na komputerach pracujących w klastrze,
  jak również do wykorzystania wolnych zasobów podłączonych do niego komputerów
- zwykłych użytkowników w celu wykonywania obliczeń dużej skali i korzystając
- z okazji gdy komputery są nieobciążone.
+ zwykłych użytkowników w celu wykonywania obliczeń dużej skali wykorzystując
+ czas gdy komputery są nieobciążone.
  Wspiera równoległe wykonywanie zadań napisanych w standardzie MPI.
  Może również zarządzać zasobami znajdującymi się w chmurze obliczeniowej
  lub gridzie 
@@ -1051,8 +1025,8 @@ Systemy klastrowe
 
 \begin_layout Standard
 Klaster komputerowy jest zbiorem wielu komputerów połączonych zazwyczaj
- w sieci LAN mających na celu rozwiązanie jakiegoś złożonego problemu obliczenio
-wego oraz współpracujących ze sobą.
+ w sieci LAN i mających na celu rozwiązanie jakiegoś złożonego problemu
+ obliczeniowego oraz współpracujących ze sobą.
  Zazwyczaj są używane do zwiększenia wydajności oraz dostępności jakichś
  usług.
  W porównaniu do gridów komputery pracujące w klastrze mają podobną architekturę
@@ -1085,12 +1059,10 @@ key "68,75"
 \end_layout
 
 \begin_layout Section
-\paragraph_spacing onehalf
 Scala i Akka
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Technologiom Scala i Akka został poświęcony osobny rozdział, ze względu
  na wykorzystanie ich w części praktyczej niniejszej pracy.
  Scala posiada wsparcie dla dwóch modeli programowania równoległego takich
@@ -1101,7 +1073,6 @@ Technologiom Scala i Akka został poświęcony osobny rozdział, ze względu
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 Scala 
 \begin_inset Note Note
 status open
@@ -1116,7 +1087,6 @@ start
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Scala jest językiem funkcyjnym rozwijanym od 2001 roku przez firmę Typesafe,
  której współtwórcą jest Martin Odersky na codzień pracujący na Uniwersytecie
  w Lozannie.
@@ -1161,23 +1131,21 @@ key "27,28,30,8"
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 Akka
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Jednym z kluczowych frameworków wykorzystanych w niniejszej pracy jest Akka.
- Akka jest projektem Open Source na licencji Apache 2 powstałym w roku 2009.
- Posiada wersję przeznaczoną dla języka Java jak również dla języka Scala.
+ Akka jest projektem Open-source na licencji Apache 2 powstałym w roku 2009.
+ Posiada wersję przeznaczoną dla języka Java, jak również dla języka Scala.
  Stał się częścią implemetacji języka Scala od wersji 2.10.
- Projekt Akka mimo stosunkowo niedługiej obecności na rynku jest w pełni
+ Projekt Akka pomimo stosunkowo niedługiej obecności na rynku jest w pełni
  gotowy do zastosowań produkcyjnych.
  Cechuje się obecnością wielu interesujących z punktu widzenia niniejszej
  pracy rozszerzeń, które zostały opisane w jednym z następnych podrodziałów,
  wyczerpującej dokumentacji oraz dużej i aktywnej społeczności rozwijającej
- ten produkt a także wsparciem komercyjnych firm.
- Akka używa modelu aktorowego aby zwiększyć poziom abstrakcji i oddzielić
+ ten produkt, a także wsparciem komercyjnych firm.
+ Akka używa modelu aktorowego, aby zwiększyć poziom abstrakcji i oddzielić
  logikę biznesową od niskopoziomowego zarządzania wątkami oraz operacjami
  I/O 
 \begin_inset CommandInset citation
@@ -1231,7 +1199,7 @@ application.conf
 \shape default
 , który jest głównym plikiem konfiguracyjnym systemu aktorowego.
  System aktorowy zarządza dostępnymi zasobami i może mieć uruchomione miliony
- aktorów gdyż instancja każdego z aktorów zajmuje zaledwie okolo 300 bajtów
+ aktorów gdyż instancja każdego z aktorów zajmuje zaledwie około 300 bajtów
  pamięci.
 \end_layout
 
@@ -1247,14 +1215,12 @@ key "43"
 \end_layout
 
 \begin_layout Itemize
-\paragraph_spacing single
 współbieżność, dzięki zaadaptowaniu modelu aktorowego, programista może
  zatem skupić się na logice biznesowej zamiast zajmować się problemami współbież
 ności,
 \end_layout
 
 \begin_layout Itemize
-\paragraph_spacing single
 skalowalność, asynchroniczna komunikacja pomiędzy aktorami dobrze skaluje
  się w systemach multiprocesorowych,
 \end_layout
@@ -1304,18 +1270,15 @@ key "29"
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing single
 Zastosowania projektu Akka są bardzo szerokie, można je odnaleść chociażby
  w następujących dziedzinach:
 \end_layout
 
 \begin_layout Itemize
-\paragraph_spacing single
 analiza danych,
 \end_layout
 
 \begin_layout Itemize
-\paragraph_spacing single
 bankowość inwestycyjna,
 \end_layout
 
@@ -1348,7 +1311,6 @@ serwisy REST, SOAP, message hub.
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Systemy w których potrzebujemy uzyskać wysoką przepustowość oraz małe opóźnienia
  są dobrym kandydatem do wykorzystania frameworka Akka 
 \begin_inset CommandInset citation
@@ -1361,12 +1323,10 @@ key "31"
 \end_layout
 
 \begin_layout Subsubsection*
-\paragraph_spacing onehalf
 Akka Cluster
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Jest to rozszerzenie projektu Akka pozwalające zaimplementować komunikację
  pomiędzy urządzeniami działającymi w obrębie klastra.
  Zapewnia ono pewien poziom abstrakcji dla protokołu TCP/IP 
@@ -1395,19 +1355,16 @@ key "33"
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing single
 Pojęcia:
 \end_layout
 
 \begin_layout Itemize
-\paragraph_spacing single
 węzeł (ang.
  node) - logiczny członek klastra, może istnieć wiele węzłów na jednej fizycznej
  maszynie, identyfikowany krotką: nazwa_hosta:port:uid,
 \end_layout
 
 \begin_layout Itemize
-\paragraph_spacing single
 klaster (ang.
  cluster) - grupa węzłów zarejestrowana w serwisie członkostwa, 
 \end_layout
@@ -1427,7 +1384,6 @@ key "31"
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 Lider jest tylko rolą jaką posiada dany węzeł, każdy węzeł może zostać liderem
  oraz każdy węzeł jest w stanie w sposób deterministyczny wyznaczyć lidera.
  Węzły mogą też posiadać inne role, które mogą się przydać np.
@@ -1437,7 +1393,7 @@ Lider jest tylko rolą jaką posiada dany węzeł, każdy węzeł może zostać 
 
 \begin_layout Standard
 Protokół Gossip wspomniany powyżej pozwala rozpropagować stan klastra do
- wszystkich jego węzłów, tak aby każdy węzeł miał takie same informację
+ wszystkich jego węzłów tak, aby każdy węzeł miał takie same informację
  o pozostałych członkach klastra.
  Protokół ten pomaga uzyskać zbieżność stanu klastra we wszystkich jego
  węzłach w skończonym czasie.
@@ -1455,7 +1411,7 @@ join
  Może on jednak utracić ten stan gdy np.
  wystąpią jakieś problemy z siecią.
  Stan nieosiągalny może trwać jedynie określony czas po upływie którego
- jeśli węzeł nie powróci do pełnej sprawności traci on status członka klastra.
+ jeśli węzeł nie powróci do pełnej sprawności utraci on status członka klastra.
  Każdy węzeł poza nazwą hosta oraz portem jest identyfikowany dodatkowo
  unikalnym identyfikatorem, tzw.
  uid, co pozwala na uruchomienie kilku węzłów klastra na jednej fizycznej
@@ -1469,7 +1425,7 @@ join
 lne, tzn.
  że można np.
  ustalić czas po którym węzeł zostanie uznany za nieosiągalny.
- Zdarzenia związane ze zmianą stanu węzłów klastra mogą być subskrybowanie
+ Zdarzenia związane ze zmianą stanu węzłów klastra mogą być subskrybowane
  przez istniejących członków, co ułatwia implementację monitoringu stanu
  klastra.
  Więcej szczegółów na temat idei członkostwa w klastrze oraz dostępnych
@@ -1496,7 +1452,7 @@ key "57"
  oraz integracja z nimi.
  Pozwalają one na dostęp do informacji systemowych takich jak zużycie CPU,
  wykorzystanie pamięci RAM, stan sieci.
- Mogą zostać wykorzystane do implementacji load balancigu lub monitorowania
+ Mogą zostać wykorzystane do implementacji load-balancigu lub monitorowania
  obciążenia urządzeń klastra 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1531,7 +1487,6 @@ key "14"
 \end_layout
 
 \begin_layout Subsection*
-\paragraph_spacing onehalf
 Distributed Publish Subscribe in Cluster
 \end_layout
 
@@ -1542,7 +1497,7 @@ Rozszerzenie projektu Akka, które umożliwia komunikację między aktorami
  widzenia komunikacji.
  Dostarcza ono aktora-mediatora, który zarządza rejestracją innych aktorów
  do konkretnych kanałów komunikacji którymi są zainteresowani.
- Zachowanie to, można porównać z subskrypcją RSS 
+ Zachowanie to można porównać z subskrypcją RSS 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "55"
@@ -1551,7 +1506,7 @@ key "55"
 
 .
  Wiadomość opublikowana w danym kanale powinna zostać dostarczona do wszystkich
- aktorów, którzy zostali w nim uprzednio zarejestrowani.
+ aktorów, którzy zostali w nim poprzednio zarejestrowani.
  Rozszerzenie to pozwala również wysłać wiadomość do jednego lub większej
  ilości aktorów pasujących do określonego wzorca 
 \begin_inset CommandInset citation

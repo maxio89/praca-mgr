@@ -212,20 +212,21 @@ Celem niniejszej pracy jest przygotowanie rozwiązania potrafiącego koordynowa�
 Do celów szczegółowych należy rozpoznanie tematyki obliczeń równoległych
  w środowisku rozproszonym, zbadanie oraz wybór odpowiednich technologii
  dzięki którym możliwe będzie zaprojektowanie architektury oraz implementacja
- platformy cechującej się mobilnością, skalowalnością a także zapewniającej
+ platformy cechującej się mobilnością, skalowalnością, a także zapewniającej
  wsparcie w sytuacji awarii urządzeń pracujących w klastrze.
  Głównym zadaniem powstałej platformy jest zarządzanie obliczeniami prowadzonymi
- w klastrze, ich load-balancing a ponadto jest ona również odpowiedzialna
- za komunikację urządzeń oraz monitoring stanu klastra czyli informowanie
- użytkownika jeżeli którekolwiek urządzenie opuści lub dołączy do klastra.
+ w klastrze oraz load-balancing.
+ Ponadto jest ona również odpowiedzialna za komunikację urządzeń oraz monitoring
+ stanu klastra czyli informowanie użytkownika jeżeli którekolwiek urządzenie
+ opuści lub dołączy do klastra.
  Wynika z tego, że oprócz części platformy odpowiedzialnej za obliczenia
- i zarządzanie zadaniami oraz stanem klastra wymagany jest interfejs użytkownika
-, dzięki któremu jest on w stanie zlecać zadania oraz mieć podgląd na stan
+ i zarządzanie zadaniami oraz stanem klastra, wymagany jest interfejs użytkownik
+a, dzięki któremu jest on w stanie zlecać zadania oraz mieć podgląd na stan
  działającego klastra.
  Dobór technologii oraz rozwiązań bierze pod uwagę ograniczone możliwości
  obliczeniowe typowych urządzeń SoC oraz mobilność powstałej platformy,
  dlatego faworyzowane są multiplatformowe technologie wysokiego poziomu,
- lecz na tyle wydajne aby możliwe było osiągnięcie zadowalającej efektywności
+ lecz na tyle wydajne, aby możliwe było osiągnięcie zadowalającej efektywności
  obliczeń biorąc pod uwagę różne ograniczenia.
  
 \end_layout
@@ -235,8 +236,8 @@ Ostatnim celem jest przetestowanie opracowanego rozwiązania poprzez implementac
 ę jednego z modeli programowania równoległego wykorzystanego do prowadzenia
  wymagających obliczeń matematycznych.
  Zbadana została skalowalność, wydajność oraz niezawodność.
- Zidentyfikowano również możliwości zastosowań jak również perspektywy dalszego
- rozwoju powstałej platformy.
+ Zidentyfikowano również możliwości zastosowań, jak również perspektywy
+ dalszego rozwoju powstałej platformy.
  
 \begin_inset Note Note
 status open
@@ -296,7 +297,7 @@ Kolejny rozdział zawiera opis możliwości zastosowania przygotowanego rozwiąz
 \end_layout
 
 \begin_layout Standard
-Ostatni rozdział podsumowuje niniejszą pracę czyli przedstawia wyciągniete
+Ostatni rozdział podsumowuje niniejszą pracę czyli przedstawia wyciągnięte
  wnioski oraz wskazanie kierunków dalszego rozwoju przygotowanej platformy.
 \begin_inset Note Note
 status open
