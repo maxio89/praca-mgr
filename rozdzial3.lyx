@@ -695,5 +695,26 @@ Koncepcją powiązaną z ideą IoT jest Ubiquitous Computing czyli wszechobecne
 e.
 \end_layout
 
+\begin_layout Standard
+Ideaa ta określa sytuację gdzie systemy komputerowe staną się integralną
+ częścią otaczającego nas świata, stając się bardziej transparentne dla
+ otoczenia.
+ Miliony małych bezprzewodowych urządzeń wykonujących różne obliczenia staną
+ się niewidoczne dla użytkowników, poprzez ich miniaturyzację oraz obecność
+ we wszystkich dziedzinach życia.
+ Środowisko w którym żyjemy stanie się bardziej inteligentne.
+\end_layout
+
+\begin_layout Standard
+Istotą tej idei jest wsparcie m.in.
+ takich technologii jak Internet, urządzenia mobilne, mikroprocesory, urządzenia
+ SoC, sensory czy sieci bezprzewodowe.
+ Temat ten dotyka również wiele innych powiązanych dziedzin jak obliczenia
+ rozproszone, obliczenia zależne od kontekstu (ang.
+ context-aware computing), protokoły transmisji, geolokalizacja, sztuczna
+ inteligencja (ang.
+ AI), interfakcja użytkownika z komputerem.
+\end_layout
+
 \end_body
 \end_document
