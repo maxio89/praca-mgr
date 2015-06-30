@@ -461,7 +461,7 @@ gdzie
 \end_inset
 
 , 
-\begin_inset Formula $x_{i}\epsilon[-5.12,\,5.12]$
+\begin_inset Formula $x_{i}\epsilon[-5,12,\,5,12]$
 \end_inset
 
  a 
@@ -928,7 +928,10 @@ Procent migrującej populacji.
 \end_layout
 
 \begin_layout Standard
-Migracja odbywa się poprzez wybranie pewnej ilości najlepszych osobników
+W trakcie awarii urządzenia podczas wykonywania obliczeń dzięki występowaniu
+ migracji opisanej w jednym z kolejnych podrozdziałów nie tracimy wszystkich
+ wyników pracy a jedynie te uzyskane od poprzedniej migracji.
+ Migracja odbywa się poprzez wybranie pewnej ilości najlepszych osobników
  populacji oraz wysłanie ich do innego węzła klastra.
  Wykonuje się ona co określoną liczbę cykli konfigurowalną w parametrach
  zadania.
@@ -1043,442 +1046,6 @@ name "fig:Realizacja-zadania"
 
 \end_layout
 
-\begin_layout Subsection*
-Monitoring
-\end_layout
-
-\begin_layout Standard
-Na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Podgląd-stanu-klastra"
-
-\end_inset
-
- przedstawiono interfejs klienta prezentujący obecny stan klastra.
- Wylistowano na nim również listę urządzeń pracujących w klastrze, z uwględnieni
-em aktywnego mastera, adresu IP wraz z portami, dostępność urządzenia oraz
- kilka metryk, m.in.
- zużycie CPU oraz pamięci RAM.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename dashboard.jpg
-	lyxscale 30
-	scale 30
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Podgląd stanu klastra.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Podgląd-stanu-klastra"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Stan klastra propagowany jest za pomocą protokołu Gossip opisanego w poprzednim
- rozdziale.
- Jeżeli jakieś urządzenie nie odpowiada przez określony czas w wyniku np.
- problemów z siecią, jest ono uznawane jako niedostępne, czyli nie może
- już przyjmować żadnych zadań ale może jeszcze powrócić do pracy w klastrze
- jeżeli odzyska sprawność w ciągu najbliższych kilku sekund.
- Jeżeli nie, w takim przypadku jest ono usuwane z listy urządzeń pracujących
- w klastrze.
- Po usunięciu urządzenia z klastra nie może ono dołączyć ponownie do klastra
- dopóki aplikacja uruchomiona na tym urządzeniu nie zostanie zrestartowana.
- Pozwala to zapobiec sytuacji, gdy w trakcie problemów z siecią, dane urządzenie
- odłączy się na chwilę od klastra aktywując własnego mastera a następnie
- po powrocie do klastra bedą aktywne dwa mastery.
- Dzieje się tak dlatego, że w przypadku gdy urządzenie utraci kontakt z
- pozostałymi urządzeniami, nie może ono z pewnością stwierdzić co było przyczyną
- awarii i zakłada, że jest jedynym urządzeniemi w klastrze.
- 
-\end_layout
-
-\begin_layout Standard
-W trakcie awarii urządzenia podczas wykonywania obliczeń dzięki występowaniu
- migracji opisanej w jednym z kolejnych podrozdziałów nie tracimy wszystkich
- wyników pracy a jedynie te uzyskane od poprzedniej migracji.
- Stan mastera jest zapisywany w bazie danych, co pozwala na jego odtworzenie
- w przypadku awarii urządzenia z aktywnym masterem.
- Do bazy danych persystowane są zserializowane zdarzenia zgodnie ze wzorcem
- Event Sourcing opisanym w pozycjach 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "18,19"
-
-\end_inset
-
-.
- Zdarzenia te odzwierciedlają stan przyjętego zadania.
- Listę zdarzeń oraz ich opis przedstawiono w tabeli 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Lista-zdarzeń-sterujących"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Lista zdarzeń sterujących stanem zadania.
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:Lista-zdarzeń-sterujących"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Przeniesc to do rozdzialu z architektura?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="2">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top" width="12cm">
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Nazwa stanu
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Opis
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkAccepted
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania po przyjęciu go przez mastera oraz wysłaniu potwierdzenia do
- klienta.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkStarted
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania przekazanego do realizacji do workera.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkInProgress
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania w trakcie trwania obliczeń, przechowujący częsciowe wyniki
- zadania.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkCompleted
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania otrzymany po zakończeniu obliczeń, przechowujący końcowe wyniki.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkerFailed
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania zakończonego niepowodzeniem.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-WorkerTimedOut
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-Stan zadania ustawiany jeśli worker pracujący nad danym zadaniem nie odeśle
- wyników w określonym czasie.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Dla przykładu, jeżeli klient zadał zadanie i zmieniło ono stan na WorkAccepted
- (czyli zostało zaakceptowane ale nie przesłane jeszcze do żadnego workera)
- a w tym samym czasie nastąpiła jakaś awaria przerywająca pracę mastera,
- kolejna instancja mastera zostanie aktywowana na innym urządzeniu i odtworzy
- stan mastera, który uległ awarii, co oznacza, że klient nie będzie musiał
- ponownie rozpoczynać zadania, lecz jego poprzednio rozpoczęte zadanie zostanie
- przekazane do realizacji do wolnego workera.
-\end_layout
-
-\begin_layout Standard
-Diagram prezentujący dopuszczalne zmiany stanów zadania przedstawiono na
- rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Przejścia-pomiędzy-stanami"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename work states.png
-	lyxscale 50
-	scale 50
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Przejścia pomiędzy stanami zadania.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Przejścia-pomiędzy-stanami"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection*
-Dystrybucja 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Przeniesc to do rozdzialu z architektura?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Do łatwej dystrybucji platformy między różnymi urządzeniami wykorzystano
- dodatek projektu Akka o nazwie Microkernel oraz rozszerzenie Sbt o nazwie
- sbt-native-packager.
-\end_layout
-
-\begin_layout Standard
-Akka Microkernel oraz sbt-native-packager dostarczają mechanizmu archiwizowania
- dzięki któremu można udostępniać aplikację jako pojedyńczy plik bez potrzeby
- uruchamiania lub instalowania dodatkowych aplikacji, dostarczania zależności
- lub ręcznego tworzenia skryptów startowych.
- Pozwalają również na wystartowanie systemu aktorowego używając klasy z
- metodą statyczną main 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "15,16"
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-Umożliwia to łatwą instalację oraz uruchomienie platformy na różnych urządzeniac
-h klastra.
- Do uruchomienia platformy na danym urządzeniu wystarczy aby posiadało ono
- zainstalowany system wraz z wirtualną maszyną Javy oraz archiwum z platformą,
- które po rozpakowaniu pozwala uruchomić aplikację za pomocą jednego skryptu
- wykonywalnego.
- Żadne dodatkowe oprogramowanie nie jest wymagane.
-\end_layout
-
 \begin_layout Section
 Wyniki testów 
 \begin_inset Note Note
@@ -1495,7 +1062,7 @@ Jakie wykresy, co jeszcze procz czasow wykonania zadan dla roznych ustawien
 \end_layout
 
 \begin_layout Standard
-Do przeprowadzenia testów zostało wykorzystanych kilka urządzeń Raspberry
+Do przeprowadzenia testów zostało wykorzystanych cztery urządzenia Raspberry
  Pi.
  Jako problem testowy wykorzystano optymalizację wielowymiarowej funkcji
  Rastrigina opisanej w poprzednim podrozdziale.
@@ -1508,20 +1075,14 @@ Ze wględu na ograniczoną precyzję obliczeń nie udało się uzyskać wyniku
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-Najlepsze uzyskane wyniki oscylowały w okolicach 
+ Najlepsze uzyskane wyniki oscylowały w okolicach 
 \begin_inset Formula $2e-30$
 \end_inset
 
 .
+ Ta precyzja odpowiada mniej więcej typowi Double wykorzystanemu do obliczeń,
+ który w języku Scala cechuje się podwójną precyzją zapisaną na 64 bitach
  
-\end_layout
-
-\begin_layout Standard
-Do obliczeń wykorzystano typ Double, który w języku Scala cechuje się podwójną
- precyzją, zapisaną na 64 bitach 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "8"
@@ -1532,41 +1093,63 @@ key "8"
 \end_layout
 
 \begin_layout Standard
-Na poniższych wykresach przedstawiono wyniki oraz czasy ich uzyskania w
- zależności od różnych ustawień początkowych zadania.
-\end_layout
-
-\begin_layout Standard
-Rozważono tutaj problem dla jednego urządzenia w celu porównania go z bardziej
- istotnym przypadkiem dla celów niniejszej pracy a mianowicie wielu urządzeń
- pracujących w klastrze, który rozważono w następnym podrozdziale poświeconemu
- skalowalności rozwiązania.
-\end_layout
-
-\begin_layout Standard
-Na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Całkowity-czas-wykonania"
-
+Na poniższych wykresach przedstawiono zmieniającą się wartość funkcji Rastrigina
+ najlepszego osobnika w populacji w trakcie trwania ewolucji oraz wpływ
+ różnych ustawień początkowych zadania na uzyskiwane wyniki.
+ Rozważono tutaj zarówno problem dla jednego urządzenia jak również wielu
+ urządzeń pracujących równolegle.
+ Dla zwiększenia czytelności wykresów wykresów i pokazać szybkość uzyskiwania
+ zbieżności algorytmu w większości przypadków użyto skali logarytmicznej.
+ Domyślnie współczynnik mutacji 
+\begin_inset Formula $mu$
 \end_inset
 
- przedstawiono wykres wartości funkcji Rastrigina 2D gdzie współczynnik
- mutacji wynosi 
-\begin_inset Formula $0.2$
+ wynosi 
+\begin_inset Formula $0,96$
 \end_inset
 
- a całkowita ilość cykli 
-\begin_inset Formula $10000$
+ a współczynnik krzyżowania 
+\begin_inset Formula $0.8$
 \end_inset
 
 .
- Aby zwiększyć czytelność wykresu użyto skali logarytmicznej.
+ Rozważono różne wielkości populacji, wymiary funkcji oraz ilość urządzeń.
+ Zbadano również wpływ migracji, poprzez zmianę współczynnika migracji określają
+cego ilość migrującej populacji jak i częstość jej występowania.
+ Częstotliwość wysyłania wyników częściowych odpowiada częstotliwości występowan
+ia migracji.
+ Na wykresach wskazano czas wykonania algorytmu oraz znalezione minimum.
+ Maksymalna ilość cykli była zazwyczaj ustawiona na 
+\begin_inset Formula $1000$
+\end_inset
+
+.
+ Na legendzie wykresów jako pierwszą liczbę podano wielkość populacji jeżeli
+ była ona zmienna w trakcie eksperymentu oraz numer urządzenia jeżeli w
+ trakcie eksperymentu każde urządzenie posiadało tą samą wielkość populacji
+ a na wykresie przedstawiono razem kilka z nich, z kolei obok w nawiasie
+ podano znalezione minimum.
+ Następnie podano również czas wykonania algorytmu wyrażony w sekundach.
+ Dla potrzeb testów założono, że jedno urządzenie odpowiada jednej wyspie
+ w algorytmie ewolucyjnym.
 \end_layout
 
 \begin_layout Standard
-Na wykresie uwzględniono również różne maksymalne wielkości populacji, co
- zaznaczono innym kolorem.
+Wykresy na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1"
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-1"
+
+\end_inset
+
+ pokazują, że większa populacja sprzyja znajdywaniu minimum.
 \end_layout
 
 \begin_layout Standard
@@ -1578,9 +1161,9 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename wykres_4_2_1.png
-	lyxscale 40
-	scale 40
+	filename 1.png
+	lyxscale 50
+	scale 50
 
 \end_inset
 
@@ -1591,56 +1174,9 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Całkowity czas wykonania ...
- Znaleziony punkt ..., wartość funkcji ...
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Całkowity-czas-wykonania"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Wykres na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Całkowity-czas-wykonania"
-
-\end_inset
-
- pokazuje, że w początkowych cyklach ewolucji populacji gdy osobnicy nie
- są jeszcze dobrze rozwinięci kolejne rozwiązania znajdywane są wolniej.
- Szybkość znajdywania nowych rozwiązań przyśpiesza wraz ze wzrostem ilości
- cykli oraz wzrostem wielkości populacji.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Całkowity czas wykonania ...
- Znaleziony punkt ..., wartość funkcji ...
- 
+Jedno urządzenie.
+ Wymiar funkcji 10.
+ Wyniki co 10 cykli.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Całkowity-czas-wykonania-1"
@@ -1661,35 +1197,585 @@ name "fig:Całkowity-czas-wykonania-1"
 \end_layout
 
 \begin_layout Standard
-Na rysunku ...
- przedstawiono wykres wartości funkcji dla większego współczynnika mutacji
- wynoszącego 
-\begin_inset Formula $0.4$
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 2.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Jedno urządzenie.
+ Wymiar funkcji 100.
+ Wyniki co 10 cykli.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-2"
+
+\end_inset
+
+ przedstawiono wpływ współczynnika mutacji na wyniki ewolucji.
+ Najlepsze wyniku uzyskano gdy współczynnik mutacji był maksymalny czyli
+ wynosił 
+\begin_inset Formula $1.0$
+\end_inset
+
+, co odzwierciedlało duży wpływ wartości losowej w kolejnych cyklach.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 3.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Jedno urządzenie.
+ Wymiar funkcji 200.
+ Wyniki co 10 cykli.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wykresy na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-3"
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-4"
+
+\end_inset
+
+ pokazują wpływ braku migracji na znajdywane wyniki.
+ Gdy migracja nie występuje mimo, że jedno z urządzeń zacznie ewoluować
+ dużo lepiej od innych, nie wpłynie to w żaden sposób na ewolucje odbywające
+ się na innych urządzeniach.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 4.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dwa urządzenia.
+ Wymiar funkcji 200.
+ Wyniki co 10 cykli.
+ Brak migracji.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 5.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cztery urządzenia.
+ Wymiar funkcji 200.
+ Wyniki co 10 cykli.
+ Brak migracji.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-4"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-5"
+
+\end_inset
+
+ przedstawiono dwa urządzenia ze współczynnikiem migracji wynoszącym 
+\begin_inset Formula $10$
+\end_inset
+
+., Oznacza to, biorąc pod uwagę, że maksymalna wielkość populacji wynosi
+ 
+\begin_inset Formula $100$
+\end_inset
+
+ a częstość przesyłania wyników (która odpowiada częstośći migracji) iż
+ co każde 10 cykli 10 najlepszych osobników populacji zostanie wysłanych
+ do sąsiedniej wyspy.
+ Duża ilość migrujących osobników ma wpływ na brak zróżnicowania populacji
+ na wyspach i co może skutkować małą zbieżnością algorytmu.
+ Wpływ osobników migrujących do sąsiednij wyspy jest przez to bardzo duży,
+ co odzwierciedlają podobne wykresy wartości funkcji zmieniającej się w
+ trakcie trwania ewolucji na obu urządzeniach.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 6.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dwa urządzenia.
+ Wymiar funkcji 200.
+ Wielkość populacji 100.
+ Wyniki co 10 cykli.
+ Współczynnik migracji 10.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-5"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wykres na rysunku rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-6"
+
+\end_inset
+
+ przedstawia dwa eksperymenty z mniejszym współczynnikiem migracji niż poprzedni
+o i wynoszącym 
+\begin_inset Formula $1$
 \end_inset
 
 .
+ Pierwszy zaznaczony jest kolorem czerwonym, gdzie w ewolucji biorą udział
+ dwa urządzenia.
+ Kolejny zaznaczony kolorem niebieskim gdzie udział biorą cztery urządzenia
+ pokazuje pozytywny wpływ na ewolucję większej ilości urządzeń.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 7.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cztery urządzenia.
+ Wymiar funkcji 200.
+ Wielkość populacji 100.
+ Wyniki co 10 cykli.
+ Współczynnik migracji 1.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-6"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+Wykresy na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-7"
 
-\series bold
-TODO
-\series default
- sprobowac zmiescic rozne wspolczynniki mutacji na jednym wykresie, z roznymi
- odcieniami danego koloru a drugi wykres zrobic dla 8 wymiarow.
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-8"
+
+\end_inset
+
+ pokazują, że poprzez rzadszą migrację (co 
+\begin_inset Formula $50$
+\end_inset
+
+ cykli) zmiany w sąsiednich wyspach zachodzą wolniej.
 \end_layout
 
 \begin_layout Standard
-Powtorzyc dla 0.4.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 8.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dwa urządzenia.
+ Wymiar funkcji 200.
+ Wielkość populacji 100.
+ Wyniki co 50 cykli.
+ Współczynnik migracji 1.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-7"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 9.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cztery urządzenia.
+ Wymiar funkcji 200.
+ Wielkość populacji 100.
+ Wyniki co 50 cykli.
+ Współczynnik migracji 1.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-8"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Powtorzyc dla 0.8.
+Wykresy na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-8"
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-9"
+
+\end_inset
+
+ pokazują, że optymalizacja funkcji Rastrigina o wymiarze 
+\begin_inset Formula $100$
+\end_inset
+
+ została rozwiązana bardzo szybko, bo w zaledwie stu cyklach.
+ Po zwiększeniu ilości urządzeń z dwóch do czterech ilość cykli potrzebna
+ do zoptymalizowania funkcji zmniejszyła się prawie o połowę.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 10.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dwa urządzenia.
+ Wymiar funkcji 100.
+ Wielkość populacji 100.
+ Wyniki co 10 cykli.
+ Współczynnik migracji 1.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-9"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 11.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cztery urządzenia.
+ Wymiar funkcji 100.
+ Wielkość populacji 100.
+ Wyniki co 10 cykli.
+ Współczynnik migracji 1.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-10"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 Podsumowując, zauważono, że większy współczynnik mutacji przyśpiesza znajdywanie
- nowych rozwiązań.
+ nowych rozwiązań oraz pomaga uzyskać lepszą zbieżność algorytmu.
+\end_layout
+
+\begin_layout Standard
+Na większości wykresów można zauważyć, że w początkowych cyklach ewolucji
+ populacji gdy osobnicy nie są jeszcze dobrze rozwinięci kolejne rozwiązania
+ znajdywane są wolniej, czyli zbieżność algorytmu jest mniejsza.
+ Szybkość znajdywania nowych rozwiązań przyśpiesza wraz ze wzrostem wielkości
+ populacji.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1703,23 +1789,16 @@ key "26"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-Dostępna w urządzeniach pamięć RAM ma wpływ na czas obliczeń.
+ Dostępna w urządzeniach pamięć RAM ma wpływ na czas obliczeń.
  Czas uzyskiwany przez nowszy model urządzenia, który posiada więcej pamięci
- jest parę procent lepszy.
+ był zazwyczaj parę procent lepszy.
+ Również warto zauważyć, że urządzenie posiadające rolę Master było zazwyczaj
+ trochę wolniejsze od pozostałych w związku z większym obciążeniem jakim
+ była potrzeba uruchomienia dodatkowych aktorów.
 \end_layout
 
 \begin_layout Subsection*
 Skalowalność
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-100 urzadzen na jednym, 50 na dwoch, 25 na czterech i pobawic sie czestotliwosci
-a, pokaze czas
 \end_layout
 
 \begin_layout Standard
@@ -1777,28 +1856,42 @@ Wykres ...
 \end_layout
 
 \begin_layout Standard
-4 urzadzenia, 2 wymiary.
-\end_layout
-
-\begin_layout Standard
-4 urzadzenia 8 wymiarow.
-\end_layout
-
-\begin_layout Standard
-Powtorzyc dla 20% migrujacej populacji.
-\end_layout
-
-\begin_layout Standard
-40%.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-100 to max wielkosc populacji, wymiar funkcji max 100, a co do dokladnosci
- to wystarczy 1 
+\align center
+\begin_inset Graphics
+	filename 13.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Całkowity czas wykonania ...
+ Znaleziony punkt ..., wartość funkcji ...
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-10-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1807,41 +1900,47 @@ status open
 \end_layout
 
 \begin_layout Standard
-1 wykres dla 10 wymiarow, populacja 10 I 100
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 14.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-Kolejny taki sam wykres dla rpi B+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Całkowity czas wykonania ...
+ Znaleziony punkt ..., wartość funkcji ...
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-10-3"
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-3 wykres dla 100 wymiarow, populacja 10 i 100
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-4 wykres dla 2 urzadzen, dla 10 wymiarow, populacja 10 I 100 – czy warto
- tutaj oddzielnie uwgledniac urzadzenia na wykresie, wtedy bylyby 4 wykresy,
- dwa dla 10 i dwa dla 100 populacji?
-\end_layout
+\end_inset
 
-\begin_layout Standard
-5 wykres dla 2 urzadzen, dla 100 wymiarow, populacja 10 I 100
-\end_layout
 
-\begin_layout Standard
-Zrobic wykres dla 3 urzadzen?
-\end_layout
-
-\begin_layout Standard
-6 wykres dla 4 urzadzen, dla 10 wymiarow, populacja 10 I 100
-\end_layout
-
-\begin_layout Standard
-7 wykres dla 4 urzadzen, dla 100 wymiarow, populacja 10 I 100
-\end_layout
-
-\begin_layout Standard
-8 wykres dla przyspieszenia – jak go zrobic?
 \end_layout
 
 \begin_layout Subsection*
@@ -1858,6 +1957,50 @@ Wydajność
 Wydajnosc mastera.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 12.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Całkowity czas wykonania ...
+ Znaleziony punkt ..., wartość funkcji ...
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-10-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection*
 Narzut komunikacji.
 \end_layout
@@ -1872,6 +2015,38 @@ Częstość wykonywania zapisów do bazy, przesyłania wyników częściowych do
 Pozostałym parametrem konfigurującym zadanie jest częstość przesyłania wyników
  częściowych do klienta co ma wpływ również na częstość wykonywania zapisów
  do bazy.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Całkowity czas wykonania ...
+ Znaleziony punkt ..., wartość funkcji ...
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-10-4"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*

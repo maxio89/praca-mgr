@@ -180,7 +180,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Wygląd klastra 
+Plan wyglądu klastra 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Wygląd-klastra"
@@ -212,10 +212,16 @@ Na urządzeniach uruchomione są aplikacje oparte o technologie JVM, które
 \begin_layout Standard
 
 \series bold
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\series bold
 Opisac na podstawie notatek/pytan/todosow z jakimi problemami sie zmagano.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \series bold
 load-balancing, wybor nowego mastera, wysylanie progresu, persystencja,
@@ -229,67 +235,84 @@ load-balancing, wybor nowego mastera, wysylanie progresu, persystencja,
  populacje do bazki
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \series bold
 czemu odpowiada aktor
 \end_layout
 
-\begin_layout Standard
-Na urzadzeniach klastra wykonywane sa obliczenia rownolegle, ktore sa rozpoczyna
-ne przez klienta klastra a nastepnie dystrybuowane przez wezel posiadajacy
- role Master pomiedzy pozostale wezly posiadajace role Slave, ktore zajmuja
- sie wlasciwymi obliczenia.
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Powinna istniec tylko jedna instancja mastera w obrebie klastra a w przypadku
- awarii urzadzenia na ktorym znajduje sie ta instancja powinna zostac uruchomion
-a inna instancja Mastera na jednym z pozostalych urzadzen, ktore bedzie
- w stanie odtworzyc stan poprzedniej instancji.
- Co wymaga aby co jakis okreslony czas stan Mastera byl zapisywany.
- Stan Mastera jest istotny ze wgledu na przechowywane przez niego informacje
- o wynikach zadania , ktore nie dotarly jeszcze do klienta lub o zadaniach
- rozpoczetych przez klienta ale nie wyslanych jeszcze do zadnego Workera.
- Komunikacja na linii Master-Worker, powinna byc zaimplementowana w sposob
- aby Master nie stanowil tzw.
- „waskiego gardla” klastra.
- Wyzwaniem bedzie rowniez wybor algorytmu losowania nowego Mastera jak rowniez
- load-balancingu zadan, ktory powinien byc zaimplementowany w sposob aby
- obciazenie Workerow bylo rownomierne i wyeliminowac sytuacje gdy Worker
- jest w stanie bezczynnosci mimo, ze istnieje zakolejkowane zadanie.
+Na urządzeniach klastra wykonywane są obliczenia równolegle, które są rozpoczyna
+ne przez klienta klastra a następnie dystrybuowane przez węzeł posiadający
+ rolę Master pomiędzy pozostałe wezły posiadające rolę Slave, które zajmują
+ się właściwymi obliczeniami.
 \end_layout
 
 \begin_layout Standard
-Wyniki zadan odsylane sa do mastera, ktory nastepnie wysyla je klientowi.
- W przypadku dlugo trwajacych zadan przesylane sa wyniki czesciowe co jakis
- okreslony czas aby poinformowac klienta o postepie prac.
+Powinna istnieć tylko jedna instancja Mastera w obrębie klastra a w przypadku
+ awarii urządzenia na którym znajduje się ta instancja powinna zostać uruchomion
+a inna na jednym z pozostałych urządzeń, które będzie w stanie odtworzyć
+ stan poprzedniej instancji.
+ Co wymaga, aby co jakiś określony czas stan Mastera był zapisywany.
+ Stan ten jest istotny ze wględu na przechowywane przez niego informacje
+ o wynikach zadania, które nie dotarły jeszcze do klienta lub informacje
+ o zadaniach rozpoczętych przez klienta ale nie wysłanych jeszcze do żadnego
+ Workera.
+ Komunikacja na linii Master-Worker powinna być zaimplementowana w taki
+ sposób, aby Master nie stanowił tzw.
+ „wąskiego gardła” klastra.
+ Wyzwaniem będzie rowniez wybór algorytmu losowania nowego Mastera, jak
+ również load-balancing zadań, który powinien być zaimplementowany w sposób
+ aby obciążenie Workerów było równomierne i powinien on wyeliminować sytuacje
+ gdy Worker jest w stanie bezczynności mimo, że istnieje zakolejkowane zadanie.
 \end_layout
 
 \begin_layout Standard
-W trakcie trwania obliczen czesciowe wyniki co jakis okreslony czas sa zapisywan
-e w bazie danych, po to aby mozliwe bylo ich odzyskanie w sytuacji awarii
- ktoregos urzadzenia.
+Wyniki zadań odsyłane są do Mastera, który następnie wysyła je klientowi.
+ W przypadku długo trwających zadań przesyłane są wyniki częściowe co jakiś
+ okreslony czas aby poinformować klienta o postępie prac.
 \end_layout
 
 \begin_layout Standard
-Interesujaca kwestia jest jakie dane wymagaja persystencji oraz jak czesto
- ma sie ona odbywac a takze gdzie bedzie przechowywany magazyn danych.
- Jezeli podjeta zostanie decyzja, ze na urzadzeniu, ktore moze ulec potencjalnej
- awarii, to byc moze bedzie wymagana replikacja aby zapewnic bezpieczenstwo
+W trakcie trwania obliczeń częściowe wyniki co jakiś określony czas są zapisywan
+e w bazie danych, po to aby możliwe było ich odzyskanie w sytuacji awarii
+ któregoś urządzenia.
+\end_layout
+
+\begin_layout Standard
+Interesującą kwestią jest wybór tego jakie dane wymagają persystencji oraz
+ jak często powinna się ona odbywać, a także gdzie będzie przechowywany
+ magazyn danych.
+ Jeżeli podjęta zostanie decyzja, że na urządzeniu, które może ulec potencjalnej
+ awarii, to być może będzie wymagana replikacja aby zapewnić bezpieczenstwo
  danych.
 \end_layout
 
 \begin_layout Standard
-Poza wykonywaniem zadan platforma monitoruje prace urzadzen, informuje o
- dolaczeniu nowych oraz opuszczeniu klastra przez urzadzenie – rozrozniane
- sa sytuacje gdy urzadzenie opusci klaster na wlasne zyczenie albo ulegnie
- awarii, czyli przestanie odpowiadac i w takim przypadku zostanie uznane
- za niedostepne oraz usuniete z klastra po jakims okreslonym czasie.
+Poza wykonywaniem zadań platforma monitoruje pracę urządzeń, informuje o
+ dołączeniu nowych oraz opuszczeniu klastra przez urządzenie – rozrożniane
+ są sytuacje gdy urządzenie opuści klaster na własne życzenie albo ulegnie
+ awarii, czyli przestanie brać udział w komunikacji z pozostałymi urządzeniami
+ i w takim przypadku zostanie uznane za niedostępne oraz usunięte z klastra
+ po jakimś określonym czasie.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Model zadania, jego konfiguracja i inicjalizacja.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -365,8 +388,8 @@ backend
  W klastrze może być uruchomionych wiele takich instancji, po jednej na
  każdym urządzeniu lub jeśli urządzenie posiada wystarczająco dużo mocy
  obliczeniowej może posiadać ich kilka.
- Każda uruchomiona aplikacja posiada uruchomionego workera oraz tylko jedna
- z nich posiada również uruchomionego mastera, gdyż w klastrze powinna być
+ Każda uruchomiona aplikacja posiada uruchomionego Workera oraz tylko jedna
+ z nich posiada również uruchomionego Mastera, gdyż w klastrze powinna być
  tylko jedna aktywna instancja mastera.
 \end_layout
 
@@ -396,37 +419,33 @@ backend
  Założono również, że urządzenia pracują w sieci lokalnej z wykorzystaniem
  technologii Ethernet.
  Użytkownik komunikuje się za pomocą protokołu HTTP z urządzeniem klienckim,
- które z kolei przesyła odpowiednie żadania do urządzenia posiadającego
- aktywnego mastera.
+ które z kolei przesyła odpowiednie żądania do urządzenia posiadającego
+ aktywnego Mastera.
  Urządzenie klienckie nie musi posiadać informacji o tym gdzie dokładnie
- jest aktywny master, ponieważ dostęp do mastera odbywa się poprzez proxy.
+ jest aktywny Master, ponieważ dostęp do mastera odbywa się poprzez proxy.
  Natomiast aplikacja kliencka powinna mieć podany adres IP przynajmniej
  jednego urządzenia pracującego w klastrze.
  Może mieć informację o kilku adresach IP urządzeń pracujących w klastrze,
  co pozwala uniknąć problemów gdy jedno z urządzeń nie odpowiada.
- Najłatwiejszym sposobem podania adresów urządzeń pracujących w klastrze
- jest użycie dodatkowych argumentów podczas uruchamiania aplikacji.
- Szczegóły tych ustawień oraz sposobu uruchamiania aplikacji wchodzących
- w skład przygotowanej platformy zostały opisane w dodatku A załączonym
- do niniejszej pracy.
+ 
 \end_layout
 
 \begin_layout Standard
 Urządzenia wykonujące obliczenia w klastrze komunikują się ze sobą za pomocą
  protokołu TCP/IP, którym zarządza Akka.
- Odkąd aktywny master posiada listę wszystkich zarejestrowanych workerów
+ Odkąd aktywny Master posiada listę wszystkich zarejestrowanych Workerów,
  potrafi on w łatwy sposób nawiązywać z nimi kontakt oraz informować ich
  o nadchodzących zadaniach od klienta.
  Z kolei komunikacja w drugą stronę, np.
- gdy worker skończył wykonywać zadanie i chce wysłać zgromadzone wyniki
- odbywa się poprzez proxy, ponieważ worker nie wie na którym urządzeniu
- znajduje się aktywny master.
- Gdy master otrzyma wyniki zadania od realizującego je workera odsyła je
+ gdy Worker skończył wykonywać zadanie i chce wysłać zgromadzone wyniki
+ odbywa się poprzez proxy, ponieważ Worker nie wie na którym urządzeniu
+ znajduje się aktywny Master.
+ Gdy Master otrzyma wyniki zadania od realizującego je Workera odsyła je
  do klienta za pomocą rozszerzenia 
 \shape italic
 Distributed Publish Subscribe in Cluster 
 \shape default
-opisanego w jednym z następnych podrozdzialow.
+opisanego w jednym z poprzednich rozdzialow.
  Co oznacza, że nie musi posiadać informacji o adresie IP klienta, ponieważ
  opublikowane wyniki trafią tylko do zainteresowanych odbiorców.
 \end_layout
@@ -495,8 +514,8 @@ Wybrani aktorzy
 
 \begin_layout Standard
 Poniżej wymieniono kilka aktorów działających w klastrze z uwzględnieniem
- tego w jakiej aplikacji wchodzącej w skład przygotowanej platformy są oni
- uruchomieni.
+ tego na jakiej aplikacji wchodzącej w skład przygotowanej platformy są
+ oni uruchomieni.
 \end_layout
 
 \begin_layout Standard
@@ -512,29 +531,29 @@ ClusterSingletonManager, aktor dostarczony wraz z rozszerzeniem
 \shape italic
 Akka Cluster Singleton
 \shape default
-, który odpowiada za to aby w klastrze była aktywna tylko jedna instancja
- mastera.
+, który odpowiada za to, aby w klastrze była aktywna tylko jedna instancja
+ Mastera.
  Zostaje on uruchomiony na wszystkich węzłach lub tylko na węzłach z wybraną
  rolą.
- Instancjonuje aktora singletona na najstarszym węźle, czyli takim, który
- dołączył do klastra najwcześniej.
+ Instancjonuje aktora typu singleton na najstarszym węźle, czyli takim,
+ który dołączył do klastra najwcześniej.
  Monitoruje on również stan dostępności węzła na którym uruchomiony jest
- aktor singleton i w przypadku awarii startuje nową instancję mastera na
- innym węźle klastra.
+ aktor typu Singleton i w przypadku awarii startuje nową instancję Mastera
+ na innym węźle klastra.
 \end_layout
 
 \begin_layout Itemize
 ClusterSingletonProxy, aktor współpracujący z poprzednim opisanym aktorem
  i będący pośrednikiem (ang.
- proxy) zapewniającym dostęp do aktora singletona czyli w tym przypadku
- mastera.
+ proxy) zapewniającym dostęp do aktora typu singleton czyli w tym przypadku
+ Mastera.
  Jest on uruchomiony na każdym węźle, który potrzebuje komunikować się z
- masterem i działa jak router przekierowujący wszystkie przychodzące wiadomości
- do aktora singletona.
+ Masterem i działa jako router przekierowujący wszystkie przychodzące wiadomości
+ do aktora typu singleton.
  Jeśli aktor ten jest niedostępny np.
  ze względu na awarię lub jest w trakcie odzyskiwania sprawności, zadaniem
  aktora ClusterSingletonProxy jest przechowywanie wszystkich odebranych
- wiadomości aż do momentu ponownego nawiązania komunikacji z masterem 
+ wiadomości aż do momentu ponownego nawiązania komunikacji 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "14"
@@ -549,7 +568,7 @@ DistributedPubSubMediator, aktor ten zostaje uruchomiony na wszystkich węzłach
  klastra lub tylko na węzłach z wybraną rolą.
  Zarządza rejestracją innych aktorów do wybranych kanałów komunikacji oraz
  replikuje tą wiedzę pośród inne instancje pracujące na pozostałych urządzeniach
- klastra, tak aby zachować spójność tych danych w obrębie klastra.
+ klastra tak, aby zachować spójność tych danych w obrębie klastra.
  Zajmuje się również wysyłaniem wiadomości z każdego urządzenia klastra
  do zarejestrowanych aktorów pracujących na jakimkolwiek urządzeniu w obrębie
  klastra 
@@ -563,24 +582,23 @@ key "47"
 \end_layout
 
 \begin_layout Itemize
-Master, jest to tzw.
- aktor singleton.
+Master, jest to aktor typu singleton.
  Oznacza to, że w obrębie klastra powinna być aktywna tylko jedna instancja
  tego aktora.
  Jest to zapewnione poprzez aktora ClusterSingletonManager opisanego powyżej.
- Dostęp do mastera uzyskuje się poprzez proxy, czyli aktora ClusterSingletonProx
+ Dostęp do Mastera uzyskuje się poprzez proxy, czyli aktora ClusterSingletonProx
 y z każdego urządzenia pracującego w klastrze.
- Głównymi zadaniami tego aktora są: przydzielanie zadań workerom, zarządzanie
+ Głównymi zadaniami tego aktora są: przydzielanie zadań Workerom, zarządzanie
  ich rejestracją, odbieranie wyników i przesyłanie ich do klienta, reagowanie
- w sytuacji awarii jednego z workerów oraz zapisywanie wyników do bazy.
+ w sytuacji awarii jednego z Workerów oraz zapisywanie wyników do bazy.
 \end_layout
 
 \begin_layout Itemize
-Worker, jest to aktor realizujący zadania otrzymane od mastera po uprzedniej
- rejestracji w serwisie mastera.
- Każdy worker uruchamia jedną instancję aktora wykonującego właściwe obliczenia,
+Worker, jest to aktor realizujący zadania otrzymane od Mastera po uprzedniej
+ rejestracji w serwisie Mastera.
+ Każdy Worker uruchamia jedną instancję aktora wykonującego właściwe obliczenia,
  tzw.
- WorkExecutor, po to aby zachować responsywność podczas komunikacji z masterem.
+ WorkExecutor po to, aby zachować responsywność podczas komunikacji z Masterem.
  Zajmuje się on również procesem migracji, gdzie znowu jest wykorzystywany
  mechanizm publikowania w wybranym kanale dostarczony wraz z rozszerzeniem
  
@@ -591,7 +609,7 @@ Distributed Publish Subscribe.
 \begin_layout Itemize
 WorkExecutor, aktor wykonujący właściwe obliczenia czyli realizujący zadanie
  zlecone przez klienta.
- Jest on instancjonowany przez workera i komunikuje się tylko z nim.
+ Jest on instancjonowany przez Workera i komunikuje się tylko z nim.
  
 \end_layout
 
@@ -605,13 +623,13 @@ frontend
 
 \begin_layout Itemize
 Frontend, aktor z którym komunikuje się użytkownik.
- Odbiera on wyniki zadań od mastera oraz przesyła mu zadania do wykonania.
- Do komunikacji z masterem używa proxy, natomiast wyniki odbiera dzięki
+ Odbiera on wyniki zadań od Mastera oraz przesyła mu zadania do wykonania.
+ Do komunikacji z Masterem używa proxy, natomiast wyniki odbiera dzięki
  rozszerzeniu 
 \shape italic
 Distributed Publish Subscribe
 \shape default
- oraz byciu zarejestrowanym w wybranym kanale komunikacji.
+ oraz faktem bycia zarejestrowanym w wybranym kanale komunikacji.
 \end_layout
 
 \begin_layout Itemize
@@ -624,7 +642,7 @@ Metrics, aktor subskrybujący zdarzenia związane ze zmianą różnych metryk
 \begin_layout Itemize
 Monitor, aktor obserwujący zdarzenia związane z członkostwem w klastrze.
  Jeżeli jakiś węzeł dołącza do klastra lub go opuszcza taka informacja jest
- aktualizowana na widoku w aplikacji webowej.
+ aktualizowana na widoku w aplikacji klienckiej.
 \end_layout
 
 \begin_layout Standard
@@ -638,7 +656,7 @@ backend
 \shape default
 , m.in.
  ClusterSingletonProxy oraz DistributedPubSubMediator, którzy służą do komunikac
-ji z masterem oraz odbieraniem wyników realizowanych zadań.
+ji z Masterem oraz odbieraniem wyników realizowanych zadań.
 \end_layout
 
 \begin_layout Subsection
@@ -675,8 +693,8 @@ reference "fig:Rejestracja-Workerów."
 
 \end_inset
 
- przedstawiono proces rejestracji workerów w serwisie mastera, po to aby
- master mógł ich poinformować o tym, że posiada jakieś zadanie, które trzeba
+ przedstawiono proces rejestracji workerów w serwisie Mastera po to, aby
+ Master mógł ich poinformować o tym, że posiada jakieś zadanie, które trzeba
  zrealizować.
  
 \end_layout
@@ -752,7 +770,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Opis komunikatów - rejestracja workerów.
+Opis komunikatów - rejestracja Workerów.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -811,7 +829,7 @@ RegisterWorker
 \begin_inset Text
 
 \begin_layout Plain Layout
-Komunikat rejestrujący workera o danym ID w serwisie mastera.
+Komunikat rejestrujący Workera o danym ID w serwisie Mastera.
 \end_layout
 
 \end_inset
@@ -833,8 +851,8 @@ WorkIsReady
 \begin_inset Text
 
 \begin_layout Plain Layout
-Informacja o tym, że master posiada zakolejkowane zadanie po które dany
- worker może się zgłosić.
+Informacja o tym, że Master posiada zakolejkowane zadanie po które dany
+ Worker może się zgłosić.
 \end_layout
 
 \end_inset
@@ -1009,7 +1027,7 @@ Work
 \begin_inset Text
 
 \begin_layout Plain Layout
-Komunikat przechowujący parametry konfiguracyjne zadania jak również jego
+Komunikat przechowujący parametry konfiguracyjne zadania, jak również jego
  ID.
 \end_layout
 
@@ -1054,8 +1072,8 @@ WorkIsReady
 \begin_inset Text
 
 \begin_layout Plain Layout
-Informacja o tym, że master posiada zakolejkowane zadanie po które dany
- worker może się zgłosić.
+Informacja o tym, że Master posiada zakolejkowane zadanie po które dany
+ Worker może się zgłosić.
 \end_layout
 
 \end_inset
@@ -1077,7 +1095,7 @@ WorkerRequestsWork
 \begin_inset Text
 
 \begin_layout Plain Layout
-Komunikat przechowujący ID workera i informujący mastera, że dany worker
+Komunikat przechowujący ID Workera i informujący Mastera, że dany Worker
  jest wolny i może zająć się kolejnym zadaniem.
 \end_layout
 
@@ -1100,8 +1118,8 @@ WorkIsProgress
 \begin_inset Text
 
 \begin_layout Plain Layout
-Komunikat przechowujący częściowe wyniki zadania jak również jego ID oraz
- ID workera.
+Komunikat przechowujący częściowe wyniki zadania, jak również jego ID oraz
+ ID Workera.
 \end_layout
 
 \end_inset
@@ -1123,7 +1141,7 @@ WorkIsDone
 \begin_inset Text
 
 \begin_layout Plain Layout
-Komunikat przechowujący WorkResult oraz ID workera.
+Komunikat przechowujący WorkResult oraz ID Workera.
 \end_layout
 
 \end_inset
@@ -1164,13 +1182,13 @@ Komunikat przechowujący końcowe wyniki zadania jak i jego ID.
 \end_layout
 
 \begin_layout Standard
-Do odpowiedniego rozłożenia obciążenia pomiędzy pracujących workerów początkowo
- rozważano podejście gdzie to master decyduje, któremu workerowi przydzielić
+Do odpowiedniego rozłożenia obciążenia pomiędzy pracujących Workerów początkowo
+ rozważano podejście gdzie to Master decyduje, któremu Workerowi przydzielić
  zadanie bazując między innymi na metrykach takich jak obciążenie CPU lub
  zajętość pamięci RAM.
- Jednak okazało się ono nieefektywne w implementacji testowanych algorytmów
- genetycznych, ponieważ te metryki zmieniały się zazwyczaj z opóźnieniem
- pozostawiając workera w stanie bezczynności przez nieokreślony czas.
+ Jednak okazało się ono nieefektywne, ponieważ te metryki zmieniały się
+ zazwyczaj z opóźnieniem pozostawiając Workera w stanie bezczynności przez
+ nieokreślony czas.
  Zdecydowano się zatem zaimplementować podejście zwane
 \shape italic
  Work Pulling Pattern
@@ -1182,8 +1200,441 @@ key "50"
 
 \end_inset
 
- w którym to wolny worker zgłasza się po zadanie a nie oczekuje na akcję
- mastera.
+ w którym to wolny Worker zgłasza się po zadanie a nie oczekuje na akcję
+ Mastera.
+\end_layout
+
+\begin_layout Subsection
+Monitoring
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Podgląd-stanu-klastra"
+
+\end_inset
+
+ przedstawiono interfejs klienta prezentujący obecny stan klastra.
+ Wylistowano na nim również listę urządzeń pracujących w klastrze, z uwględnieni
+em aktywnego Mastera, adresu IP wraz z portami, dostępność urządzenia oraz
+ kilka metryk, m.in.
+ zużycie CPU oraz pamięci RAM.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dashboard.jpg
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Podgląd stanu klastra.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Podgląd-stanu-klastra"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stan klastra propagowany jest za pomocą protokołu Gossip opisanego w poprzednim
+ rozdziale.
+ Jeżeli jakieś urządzenie nie odpowiada przez określony czas w wyniku np.
+ problemów z siecią, jest ono uznawane jako niedostępne, czyli nie może
+ już przyjmować żadnych zadań ale może jeszcze powrócić do pracy w klastrze
+ jeżeli odzyska sprawność w ciągu najbliższych kilku sekund.
+ Jeżeli nie, w takim przypadku jest ono usuwane z listy urządzeń pracujących
+ w klastrze.
+ Po usunięciu urządzenia z klastra nie może ono dołączyć ponownie do klastra
+ dopóki aplikacja uruchomiona na tym urządzeniu nie zostanie zrestartowana.
+ Pozwala to zapobiec sytuacji, gdy w trakcie problemów z siecią, dane urządzenie
+ odłączy się na chwilę od klastra aktywując własnego Mastera a następnie
+ po powrocie do klastra bedą aktywne dwa Mastery.
+ Dzieje się tak dlatego, że w przypadku gdy urządzenie utraci kontakt z
+ pozostałymi urządzeniami, nie może ono z pewnością stwierdzić co było przyczyną
+ awarii i zakłada, że jest jedynym urządzeniemi w klastrze.
+ 
+\end_layout
+
+\begin_layout Standard
+Stan Mastera jest zapisywany w bazie danych, co pozwala na jego odtworzenie
+ w przypadku awarii urządzenia z aktywnym Masterem.
+ Do bazy danych persystowane są zserializowane zdarzenia zgodnie ze wzorcem
+ Event Sourcing opisanym w pozycjach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "18,19"
+
+\end_inset
+
+.
+ Zdarzenia te odzwierciedlają stan przyjętego zadania.
+ Listę zdarzeń oraz ich opis przedstawiono w tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Lista-zdarzeń-sterujących"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Lista zdarzeń sterujących stanem zadania.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Lista-zdarzeń-sterujących"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Przeniesc to do rozdzialu z architektura?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nazwa stanu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Opis
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkAccepted
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania po przyjęciu go przez Mastera oraz wysłaniu potwierdzenia do
+ klienta.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkStarted
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania przekazanego do realizacji dla Workera.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkInProgress
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania w trakcie trwania obliczeń, przechowujący częsciowe wyniki
+ zadania.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkCompleted
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania otrzymany po zakończeniu obliczeń, przechowujący końcowe wyniki.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkerFailed
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania zakończonego niepowodzeniem.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WorkerTimedOut
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+Stan zadania ustawiany jeśli Worker pracujący nad danym zadaniem nie odeśle
+ wyników w określonym czasie.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dla przykładu, jeżeli klient zadał zadanie i zmieniło ono stan na WorkAccepted
+ (czyli zostało zaakceptowane ale nie przesłane jeszcze do żadnego Workera)
+ a w tym samym czasie nastąpiła jakaś awaria przerywająca pracę Mastera,
+ kolejna instancja Mastera zostanie aktywowana na innym urządzeniu i odtworzy
+ stan Mastera, który uległ awarii, co oznacza, że klient nie będzie musiał
+ ponownie rozpoczynać zadania, lecz jego poprzednio rozpoczęte zadanie zostanie
+ przekazane do realizacji do wolnego Workera.
+\end_layout
+
+\begin_layout Standard
+Diagram prezentujący dopuszczalne zmiany stanów zadania przedstawiono na
+ rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Przejścia-pomiędzy-stanami"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename work states.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Przejścia pomiędzy stanami zadania.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Przejścia-pomiędzy-stanami"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Dystrybucja 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Przeniesc to do rozdzialu z architektura?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Do łatwej dystrybucji platformy pomiędzy różnymi urządzeniami wykorzystano
+ dodatek projektu Akka o nazwie Microkernel oraz rozszerzenie Sbt o nazwie
+ sbt-native-packager.
+\end_layout
+
+\begin_layout Standard
+Akka Microkernel oraz sbt-native-packager dostarczają mechanizmu archiwizowania
+ dzięki któremu można udostępniać aplikację jako pojedyńczy plik bez potrzeby
+ uruchamiania lub instalowania dodatkowych aplikacji, dostarczania zależności
+ lub ręcznego tworzenia skryptów startowych.
+ Pozwalają również na wystartowanie systemu aktorowego używając klasy z
+ metodą statyczną main 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "15,16"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Umożliwia to łatwą instalację oraz uruchomienie platformy na różnych urządzeniac
+h klastra.
+ Do uruchomienia platformy na danym urządzeniu wystarczy aby posiadało ono
+ zainstalowany system wraz z wirtualną maszyną Javy oraz archiwum z platformą,
+ które po rozpakowaniu pozwala uruchomić aplikację za pomocą jednego skryptu
+ wykonywalnego.
+ Żadne dodatkowe oprogramowanie nie jest wymagane.
 \end_layout
 
 \begin_layout Section
@@ -1228,7 +1679,7 @@ MongoDB jest bazą NoSQL opartą na dokumentach typu JSON, co pozwala na elastyc
 ość oraz przejrzystość w przechowywaniu danych.
  Jest to technologia Open Source.
  Jako, że jest to baza NoSQL posiada ona elastyczny schemat danych.
- Wspiera replikację oraz sharding a także map reduce.
+ Wspiera replikację oraz sharding, a także map reduce.
  Technologia ta została wykorzystana ze względu na jej łatwe użycie, dobrą
  skalowalność oraz wydajność przy wykorzystaniu stosunkowo niewielkich zasobów
  obliczeniowych 
@@ -1253,14 +1704,14 @@ Play Framework i AngularJS
 
 \begin_layout Standard
 Technologie Play Framework oraz AngularJS zostały wykorzystane do przygotowania
- aplikacji webowej będącej interfejsem klienta dzięki któremu może sterować
- on działaniem platformy, monitorować ją oraz oglądać wyniki obliczeń.
+ aplikacji internetowej będącej interfejsem klienta dzięki któremu może
+ sterować on działaniem platformy, monitorować ją oraz oglądać wyniki obliczeń.
 \end_layout
 
 \begin_layout Standard
 Play Framework jest to technologia server-side, działająca zarówno z językiem
  Java jak i Scala.
- Integruje ona komponenty oraz API potrzebne do stworzenia aplikacji webowej
+ Integruje ona komponenty oraz API potrzebne do stworzenia aplikacji klienckiej
  opartej o wzorzec MVC.
  Bazuje on na lekkiej, bezstanowej architekturze, niskim zużyciu zasobów,
  wysokiej skalowalności oraz programowaniu reaktywnym.

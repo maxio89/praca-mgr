@@ -132,23 +132,26 @@ Zbyt dlugie zdania, brak przecinkow
 
 \begin_layout Standard
 W ramach niniejszej pracy udało się spełnić początkowe założenia i przygotować
- platformę oferującą możliwość uruchomienia obliczeń równoległych na wielu
- urządzeniach pracujących w klastrze, dostarczającą narzędzi do monitoringu,
- rozwiązującą problem load-balancingu zadań, skalowalności a także zapewniającą
- wsparcie w sytuacji awarii tychże urządzeń poprzez reorganizację oraz odzyskiwa
-nie sprawności czyli powrót do stanu klastra sprzed wystąpienia awarii.
+ dobrze skalowalną platformę oferującą możliwość uruchomienia obliczeń równoległ
+ych na wielu urządzeniach pracujących w klastrze.
+ Dostarcza ona narzędzi do monitoringu, rozwiązuje problem load-balancingu
+ zadań, a także zapewnia wsparcie w sytuacji awarii poprzez reorganizację
+ oraz odzyskanie sprawności czyli powrót do stanu klastra sprzed wystąpienia
+ awarii.
  Platforma pozwala również na prowadzenie efektywnych obliczeń mimo ograniczonej
  mocy obliczeniowej urządzeń SoC.
- Wykorzystanie tych urządzeń oraz technologii działających na maszynie wirtualne
-j Javy zapewnia mobilność tego rozwiązania.
+ Komunikacja, która występuje na platformie odbywa się asynchronicznie przez
+ co nie powoduje dużego narzutu do czasu obliczeń.
+ Wykorzystanie urządzeń oraz technologii współpracujących z maszyną wirtualną
+ Javy zapewnia dużą mobilność tego rozwiązania.
 \end_layout
 
 \begin_layout Standard
 Technologia Akka okazała się kluczowa z punktu widzenia niniejszej pracy
  idealnie wkomponowując się w wybraną tematykę.
- Dzięki rozwiązanion wysokiego poziomu ułatwiły one tworzenie nowych komponentów
- oraz dostarczyły pewnych strategii oraz wzorców zwiększając tym samym przejrzys
-tość jak i możliwości dalszego rozwóju przygotowanego rozwiązania.
+ Dzięki rozwiązanion wysokiego poziomu ułatwiła ona tworzenie nowych komponentów
+ oraz dostarczyła pewnych strategii oraz wzorców zwiększając tym samym przejrzys
+tość jak i możliwości dalszego rozwoju przygotowanego rozwiązania.
 \end_layout
 
 \begin_layout Standard
@@ -178,11 +181,12 @@ Wiele aplikacji klienckich
 \begin_layout Standard
 W testowanym rozwiązaniu rozważono tylko jedną aplikację kliencką, będącą
  jedynym źródłem zadań w klastrze.
- W kolejnych etapach prac nad stworzoną platformą warto byłoby się pokusić
- o zaimplementowanie przypadku gdzie klientów jest więcej i w różnym stopniu
- obciążają oni urządzenia pracujące w klastrze a także nad sposobem dysponowania
- wolnymi węzłami tak, aby jeden klient nie zajął wszystkich dostępnych węzłów
- podczas gdy reszta nie byłaby w żaden sposób obsługiwana.
+ W kolejnych etapach prac nad stworzoną platformą warto byłoby przetestować
+ przypadek gdzie klientów jest więcej i w różnym stopniu obciążają oni urządzeni
+a pracujące w klastrze.
+ Wymagałoby to zaimplementowania sposobu dysponowania wolnymi węzłami tak,
+ aby jeden klient nie zajął wszystkich dostępnych węzłów, podczas gdy reszta
+ nie byłaby w żaden sposób obsługiwana.
 \end_layout
 
 \begin_layout Subsection*
@@ -195,9 +199,9 @@ Na potrzeby niniejszej pracy rozważono działanie urządzeń klastra w sieci
  sieci globalnej Internet, gdzie węzły klastra mogłyby być uruchomione na
  różnego typu urządzeniach znacząco oddalonych od siebie i mających do siebie
  dostęp za pomocą protokołu TCP/IP.
- Ciekawym aspektem tutaj byłaby zróżnicowana przepustowość połączeń, ponieważ
- w takim przypadku trzeba byłoby dobrać odpowiednie ustawienia detekcji
- awarii i arbitralne wybranie dozwolonego czasu opóźnień mogłoby być niełatwym
+ Ciekawym aspektem tutaj byłaby zróżnicowana przepustowość połączeń w sieci,
+ ponieważ w takim przypadku pasowałoby dobrać odpowiednie ustawienia detekcji
+ awarii a arbitralne wybranie dozwolonego czasu opóźnień mogłoby być niełatwym
  zadaniem.
  
 \end_layout
@@ -224,7 +228,7 @@ key "58"
  W roku 2011 Martin Odersky współtwórca języka Scala oraz jego zespół pracujący
  na uniwersytecie w Lozannie uzyskali wielomilionowy grant od Europejskiej
  Rady ds.
- Badań Naukowych (ERBN) dzięki któremu mogli kontynuować pracę nad problemami
+ Badań Naukowych (ERBN), dzięki któremu mogli kontynuować pracę nad problemami
  zrównoleglania obliczeń w różnych modelach programowania jak np.
  OpenMP, MPI, CUDA, OpenCL 
 \begin_inset CommandInset citation
@@ -247,7 +251,7 @@ Kolejną kwestią którą można rozważyć w planach dalszego rozwoju jest zaim
 owanie innych algorytmów, które będą w stanie równie dobrze wykorzystać
  potencjał stworzonej platformy.
  Warto byłoby również poeksperymentować z różnymi modyfikacjami algorytmów
- genetycznych, takimi jak inne metody selekcji lub krzyżowania, aby uzyskać
+ ewolucyjnych, takimi jak inne metody selekcji lub krzyżowania, aby uzyskać
  jeszcze większą efektywność obliczeń.
 \end_layout
 
@@ -277,7 +281,7 @@ IoT
 
 \begin_layout Standard
 W ostatnich latach coraz bardziej wzrasta znaczenie urządzeń podłączonych
- do Internetu.
+ do Internetu co zostało już wspomniane w rozdziale trzecim.
  Coraz więcej sprzętu codziennego użytku posiada zainstalowane układy procesorow
 e o wystarczającej mocy obliczeniowej, aby móc obsłużyć systemy mobilne
  takie jak Android.
