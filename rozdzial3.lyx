@@ -702,14 +702,14 @@ Idea ta określa sytuację gdzie systemy komputerowe staną się integralną
 \end_layout
 
 \begin_layout Standard
-Istotą tej idei jest wsparcie m.in.
- takich technologii jak Internet, urządzenia mobilne, mikroprocesory, urządzenia
- SoC, sensory czy sieci bezprzewodowe.
+Istotą tej idei jest wsparcie ze strony takich technologii jak m.in.
+ Internet, urządzenia mobilne, mikroprocesory, urządzenia SoC, sensory czy
+ sieci bezprzewodowe.
  Temat ten dotyka również wiele innych powiązanych dziedzin jak obliczenia
  rozproszone, obliczenia zależne od kontekstu (ang.
  context-aware computing), protokoły transmisji, geolokalizacja, sztuczna
  inteligencja (ang.
- AI), interakcja użytkownika z komputerem 
+ AI) oraz interakcja użytkownika z komputerem 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "94,95"

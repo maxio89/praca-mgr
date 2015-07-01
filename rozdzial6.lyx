@@ -136,19 +136,19 @@ W ramach niniejszej pracy udało się spełnić początkowe założenia i przygo
 ych na wielu urządzeniach pracujących w klastrze.
  Dostarcza ona narzędzi do monitoringu, rozwiązuje problem load-balancingu
  zadań, a także zapewnia wsparcie w sytuacji awarii poprzez reorganizację
- oraz odzyskanie sprawności czyli powrót do stanu klastra sprzed wystąpienia
+ oraz odzyskanie sprawności, czyli powrót do stanu klastra sprzed wystąpienia
  awarii.
  Platforma pozwala również na prowadzenie efektywnych obliczeń mimo ograniczonej
  mocy obliczeniowej urządzeń SoC.
- Komunikacja, która występuje na platformie odbywa się asynchronicznie przez
- co nie powoduje dużego narzutu do czasu obliczeń.
+ Komunikacja, która występuje na platformie odbywa się asynchronicznie,
+ przez co nie powoduje zbyt dużego obciążenia.
  Wykorzystanie urządzeń oraz technologii współpracujących z maszyną wirtualną
  Javy zapewnia dużą mobilność tego rozwiązania.
 \end_layout
 
 \begin_layout Standard
 Technologia Akka okazała się kluczowa z punktu widzenia niniejszej pracy
- idealnie wkomponowując się w wybraną tematykę.
+ i idealnie wkomponowała się w wybraną tematykę.
  Dzięki rozwiązanion wysokiego poziomu ułatwiła ona tworzenie nowych komponentów
  oraz dostarczyła pewnych strategii oraz wzorców zwiększając tym samym przejrzys
 tość jak i możliwości dalszego rozwoju przygotowanego rozwiązania.
@@ -158,9 +158,9 @@ tość jak i możliwości dalszego rozwoju przygotowanego rozwiązania.
 Niniejsza praca pozwoliła również autorowi na zapoznanie się z tematyką
  problemów występujących w klastrach oraz rozwiązaniami stosowanymi w celu
  zrównoleglenia lub rozproszenia obliczeń.
- Kolejnym ciekawym aspektem niniejszej pracy, który pozwolił na eksplorację
+ Kolejnymi ciekawymi aspektami niniejszej pracy, które pozwoliły na eksplorację
  nowych obszarów wiedzy z punktu widzenia autora jest względnie nowa dziedzina
- w programowaniu a mianowicie programowanie reaktywne i technologie z platformy
+ w programowaniu, a mianowicie programowanie reaktywne i technologie z platformy
  Typesafe w połączeniu z urządzeniami SoC oraz Cluster Computing.
 \end_layout
 
@@ -200,7 +200,7 @@ Na potrzeby niniejszej pracy rozważono działanie urządzeń klastra w sieci
  różnego typu urządzeniach znacząco oddalonych od siebie i mających do siebie
  dostęp za pomocą protokołu TCP/IP.
  Ciekawym aspektem tutaj byłaby zróżnicowana przepustowość połączeń w sieci,
- ponieważ w takim przypadku pasowałoby dobrać odpowiednie ustawienia detekcji
+ ponieważ w takim przypadku należałoby dobrać odpowiednie ustawienia detekcji
  awarii a arbitralne wybranie dozwolonego czasu opóźnień mogłoby być niełatwym
  zadaniem.
  
@@ -250,9 +250,9 @@ Inne algorytmy
 Kolejną kwestią którą można rozważyć w planach dalszego rozwoju jest zaimplement
 owanie innych algorytmów, które będą w stanie równie dobrze wykorzystać
  potencjał stworzonej platformy.
- Warto byłoby również poeksperymentować z różnymi modyfikacjami algorytmów
- ewolucyjnych, takimi jak inne metody selekcji lub krzyżowania, aby uzyskać
- jeszcze większą efektywność obliczeń.
+ Warto byłoby również przeprowadzić eksperymenty z różnymi modyfikacjami
+ algorytmów ewolucyjnych, takimi jak inne metody selekcji lub krzyżowania,
+ aby uzyskać jeszcze większą efektywność obliczeń.
 \end_layout
 
 \begin_layout Subsection*
@@ -272,7 +272,7 @@ Urządzenia SoC na których testowano przygotowaną platformę posiadają ograni
  (tzw.
  heap dump) pod kątem instancjonowanych obiektów oraz zajętości pamięci.
  Można byłoby również wykonać tuning GC (ang.
- Garbage Collector) oraz spróbować dobrać jego optymalne parametry.
+ Garbage Collector) oraz spróbować dobrać optymalne parametry GC.
 \end_layout
 
 \begin_layout Subsection*
@@ -285,9 +285,9 @@ W ostatnich latach coraz bardziej wzrasta znaczenie urządzeń podłączonych
  Coraz więcej sprzętu codziennego użytku posiada zainstalowane układy procesorow
 e o wystarczającej mocy obliczeniowej, aby móc obsłużyć systemy mobilne
  takie jak Android.
- Stwarza to zatem pole do popisu oraz nowe pomysły wykorzystania stworzonego
- rozwiązania w wersji bardziej rozproszonej oraz z wykorzystaniem nie tylko
- urządzeń SoC.
+ Stwarza to zatem możliwości wykorzystania stworzonego rozwiązania w wersji
+ bardziej rozproszonej z użyciem komunikacji bezprzewodowej oraz innych
+ urządzeń.
 \end_layout
 
 \end_body

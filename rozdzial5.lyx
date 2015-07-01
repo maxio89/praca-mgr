@@ -132,16 +132,30 @@ Poniżej wymieniono kilka możliwych zastosowań przygotowanej platformy:
 \end_layout
 
 \begin_layout Itemize
-Symulacje.
+symulacje, np.
+ w biologii, chemii lub fizyce,
 \end_layout
 
 \begin_layout Itemize
-Obliczenia rownolegle.
+problemy optymalizacyjne,
 \end_layout
 
 \begin_layout Itemize
-Problemy optymalizacyjne.
- 
+przyśpieszenie obliczeń krytycznych,
+\end_layout
+
+\begin_layout Itemize
+przeszukiwanie dużych zbiorów rozwiązań, np.
+ problem grupowania,
+\end_layout
+
+\begin_layout Itemize
+szeregowanie zadań,
+\end_layout
+
+\begin_layout Itemize
+oraz wszelkie obliczenia gdzie zadanie może być podzielone na kilka niezależnych
+ części.
 \begin_inset Note Note
 status open
 
@@ -159,18 +173,18 @@ Równoległe algorytmy ewolucyjne
 \end_layout
 
 \begin_layout Standard
-W rozdziale opisano kilka algorytmów użytych podczas implementacji rozwiązania
- stworzonego na potrzeby niniejszej pracy.
+W rozdziale opisano odmianę algorytmów ewolucyjnych wykorzystaną do obliczeń
+ równoległych na przygotowanej platformie.
 \end_layout
 
 \begin_layout Subsection
-Algorytmy genetyczne
+Algorytmy ewolucyjne
 \end_layout
 
 \begin_layout Standard
-Algorytmy genetyczne zaliczają się do grupy algorytmów ewolucyjnych.
- Zostały opracowane przez Johna Hollanda w latach siedemdziesiątych i są
- inspirowane teorią ewolucji Darwina tudzież ewolucją biologiczną 
+Algorytmy ewolucyjne zostały opracowane przez Johna Hollanda w latach siedemdzie
+siątych i są inspirowane teorią ewolucji Darwina tudzież ewolucją biologiczną
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "10"
@@ -178,7 +192,7 @@ key "10"
 \end_inset
 
 .
- Istnieje wiele różnych prac traktujących o wykorzystaniu algorytmów genetycznyc
+ Istnieje wiele różnych prac traktujących o wykorzystaniu algorytmów ewolucyjnyc
 h, różnych ich odmianach czy modyfikacjach oraz badaniu ich efektywności.
  Przykładem może być praca magisterska zawarta w pozycji 
 \begin_inset CommandInset citation
@@ -187,7 +201,7 @@ key "10"
 
 \end_inset
 
- lub trochę starsza pozycja książkowa 
+ lub trochę starsza, klasyczna pozycja książkowa 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "12"
@@ -195,7 +209,8 @@ key "12"
 \end_inset
 
 .
- Opis implementacji algorytmów genetycznych można znaleść w pozycji 
+ Dokładny opis implementacji algorytmów ewolucyjnych można znaleść w pozycji
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "13"
@@ -203,6 +218,17 @@ key "13"
 \end_inset
 
 .
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+warto sie odwolywac do starszych pozycji?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -331,7 +357,7 @@ Algorytmy ewolucyjne sprawdzają się tam gdzie nie jest dobrze znana przestrze�
  nie da się obliczyć analitycznie lub przeszukiwanie dużych przestrzeni
  rozwiązań jak np.
  w przypadku problemu grupowania.
- Alborytmy genetyczne są mniej zależne od wstępnej inicjalizacji zadania
+ Alborytmy ewolucyjne są mniej zależne od wstępnej inicjalizacji zadania
  oraz mniej skłonne do znajdywania rozwiązań lokalnych zamiast optymalnych
  
 \begin_inset CommandInset citation
@@ -361,7 +387,7 @@ Jest to odmiana algorytmów ewolucyjnych przystosowana do obliczeń równoległy
  Istotna jest tutaj topologia połączeń pomiędzy wyspami pozwalająca na wymianę
  osobników, metoda selekcji migrujących osobników, ich wielkość oraz odstęp
  pomiędzy kolejnymi migracjami.
- Badania różnych parametrów tych zjawis można znaleść m.in.
+ Badania różnych parametrów tych zjawis można znaleźć m.in.
  w pracy 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -377,23 +403,20 @@ Problemy benchmarkowe
 \end_layout
 
 \begin_layout Standard
-Algorytmy ewolucyjne ze wgledu na kilka ich cech, m.in.
- mozliwosc znalezienia wielu optymalnych rozwiazan sa czesto wykorzystywane
+Algorytmy ewolucyjne ze wględu na kilka ich cech, m.in.
+ możliwość znalezienia wielu optymalnych rozwiązań są często wykorzystywane
  do optymalizacji wielomodalnej.
 \end_layout
 
 \begin_layout Standard
-W problemach wielomodalnych zdarza sie, ze funkcja celu nie uzglednia wszystkich
- elementow majacych wplyw na jakosc rozwiazania.
- Spowodowane jest to zazwyczaj pewnymi uproszczeniami, ktore trzeba przyjac
- implementujac model algorytmow ewolucyjnych oraz istnieniem cech niemierzalnych.
- Dlatego istotnym jest aby algorytm optymalizacyjny byl w stanie znalesc
- wiele rownie dobrych rozwiazan.
-\end_layout
-
-\begin_layout Standard
-Odbywa sie to dzieki wprowadzeniu czynnika losowego, ktory pozwala utrzymywac
- roznorodnosc populacji i zapobiega znajdywaniu rozwiazan optymalnych lokalnie
+W problemach wielomodalnych zdarza się, że funkcja celu nie uwzglednia wszystkic
+h elementów mających wpływ na jakość rozwiązania.
+ Spowodowane jest to zazwyczaj pewnymi uproszczeniami, które trzeba przyjąć
+ implementujac model algorytmów ewolucyjnych oraz istnieniem cech niemierzalnych.
+ Dlatego istotnym jest, aby algorytm optymalizacyjny był w stanie znaleść
+ wiele równie dobrych rozwiązań.
+ Odbywa się to dzięki wprowadzeniu czynnika losowego, który pozwala utrzymywać
+ różnorodność populacji i zapobiega znajdywaniu rozwiązań optymalnych lokalnie
  zamiast globalnie 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -405,8 +428,8 @@ key "88"
 \end_layout
 
 \begin_layout Standard
-Istnieje grupa funkcji, ktore sa wykorzystywane jako tzw.
- benchmarki w optymalizacji wielomodalnej, jedna z nich jest wielowymiarowa
+Istnieje grupa funkcji, które są wykorzystywane jako tzw.
+ benchmarki w optymalizacji wielomodalnej, jedną z nich jest wielowymiarowa
  funkcja Rastrigina 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -418,8 +441,12 @@ key "89"
 \end_layout
 
 \begin_layout Standard
-Algorytmy genetyczne opisane w poprzednim podrozdziale zostały wykorzystane
+Algorytmy ewolucyjne opisane w poprzednim podrozdziale zostały wykorzystane
  do znalezienia minimum funkcji Rastrigina.
+\end_layout
+
+\begin_layout Subsection
+Funkcja Rastrigina
 \end_layout
 
 \begin_layout Standard
@@ -610,10 +637,6 @@ Jaki tytuł? Opisac jak za pomoca platformy zaimplementowalem ewolucje
 
 \end_layout
 
-\begin_layout Standard
-....
-\end_layout
-
 \begin_layout Subsection*
 \begin_inset Note Note
 status open
@@ -630,13 +653,13 @@ Czy przeniesc to do rozdzialu 4 i jakos rozdzielic na dwa podrozdzialy,
 
 \begin_layout Standard
 Rozwiązanie stworzone na potrzeby niniejszej pracy przetestowano dzięki
- zaimplementowaniu algorytmów genetycznych w odmianie wyspowej opisanych
+ zaimplementowaniu algorytmów ewolucyjnych w odmianie wyspowej opisanych
  w poprzednim rozdziale.
 \end_layout
 
 \begin_layout Standard
-Implementacja ta, została oparta na implementacji algorytmów genetycznych
- przedstawionej w książce Scala for Machine Learning 
+Implementacja ta, została oparta na implementacji algorytmów ewolucyjnych
+ przedstawionej w pozycji 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "20"
@@ -647,8 +670,12 @@ key "20"
 \end_layout
 
 \begin_layout Standard
-W przypadku problemu Rastrigina gen jest liczbą typu Double, chromosomy
- zawierają listę genów czyli obrazują punkty w przestrzeni rozwiązań.
+W przypadku problemu Rastrigina gen odpowiada liczbie typu 
+\shape italic
+Double
+\shape default
+ a chromosomy zawierają listę genów, czyli obrazują punkty w przestrzeni
+ rozwiązań.
  W przypadku dwuwymiarowej funkcji Rastrigina jest to lista dwuelementowa.
  Natomiast populacja zawiera listę chromosomów.
 \end_layout
@@ -787,7 +814,7 @@ Początkowy rozmiar populacji (podczas krzyżowania
 
 \begin_layout Plain Layout
 \align left
-i mutacji liczba osobników populacji zostaje wzrasta).
+i mutacji liczba osobników populacji wzrasta).
 \end_layout
 
 \end_inset
@@ -906,6 +933,16 @@ Migration factor
 \begin_layout Plain Layout
 \align left
 Procent migrującej populacji.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Dodac info o crossover param
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -929,8 +966,8 @@ Procent migrującej populacji.
 
 \begin_layout Standard
 W trakcie awarii urządzenia podczas wykonywania obliczeń dzięki występowaniu
- migracji opisanej w jednym z kolejnych podrozdziałów nie tracimy wszystkich
- wyników pracy a jedynie te uzyskane od poprzedniej migracji.
+ migracji nie tracimy wszystkich wyników pracy a jedynie te uzyskane od
+ poprzedniej migracji.
  Migracja odbywa się poprzez wybranie pewnej ilości najlepszych osobników
  populacji oraz wysłanie ich do innego węzła klastra.
  Wykonuje się ona co określoną liczbę cykli konfigurowalną w parametrach
@@ -946,12 +983,15 @@ key "21"
 \end_inset
 
 .
- Migracja odbywa się bez użycia mastera, do jej działania wykorzystano rozszerze
-nie frameworka Akka o nazwie 
+ Migracja odbywa się bez użycia 
+\shape italic
+mastera
+\shape default
+, do jej działania wykorzystano rozszerzenie frameworka Akka o nazwie 
 \shape italic
 Distributed Publish Subscribe in Cluster
 \shape default
- opisane w poprzednim rozdziale.
+ opisane w jednym z poprzednich rozdziałów.
 \end_layout
 
 \begin_layout Standard
@@ -976,7 +1016,11 @@ reference "fig:Realizacja-zadania"
  zaprezentowano wygląd interfejsu użytkownika pozwalającego na podgląd wyników
  rozpoczętych zadań oraz rozpoczęcie nowych.
  Widoczne jest tutaj każde z urządzeń wykonujących obliczenia w klastrze
- i są one identyfikowane po adresie IP oraz ID workera.
+ i są one identyfikowane po adresie IP oraz ID 
+\shape italic
+workera
+\shape default
+.
  
 \end_layout
 
@@ -1033,6 +1077,16 @@ name "fig:Realizacja-zadania"
 
 \end_inset
 
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+lepsza rozdzielczosc
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -1053,7 +1107,8 @@ status open
 
 \begin_layout Plain Layout
 Jakie wykresy, co jeszcze procz czasow wykonania zadan dla roznych ustawien
- zadania oraz ilosci urzadzen?
+ zadania oraz ilosci urzadzen? Wstawic info o prawie amdahla oraz wzory
+ przyspieszenia i skutecznosci
 \end_layout
 
 \end_inset
@@ -1062,7 +1117,7 @@ Jakie wykresy, co jeszcze procz czasow wykonania zadan dla roznych ustawien
 \end_layout
 
 \begin_layout Standard
-Do przeprowadzenia testów zostało wykorzystanych cztery urządzenia Raspberry
+Do przeprowadzenia testów posłużono się czterema urządzeniami Raspberry
  Pi.
  Jako problem testowy wykorzystano optymalizację wielowymiarowej funkcji
  Rastrigina opisanej w poprzednim podrozdziale.
@@ -1080,9 +1135,8 @@ Ze wględu na ograniczoną precyzję obliczeń nie udało się uzyskać wyniku
 \end_inset
 
 .
- Ta precyzja odpowiada mniej więcej typowi Double wykorzystanemu do obliczeń,
- który w języku Scala cechuje się podwójną precyzją zapisaną na 64 bitach
- 
+ Ta precyzja odpowiada typowi Double w języku Scala, czyli podwójna precyzja
+ zapisana na 64 bitach 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "8"
@@ -1098,7 +1152,7 @@ Na poniższych wykresach przedstawiono zmieniającą się wartość funkcji Rast
  różnych ustawień początkowych zadania na uzyskiwane wyniki.
  Rozważono tutaj zarówno problem dla jednego urządzenia jak również wielu
  urządzeń pracujących równolegle.
- Dla zwiększenia czytelności wykresów wykresów i pokazać szybkość uzyskiwania
+ Dla zwiększenia czytelności wykresów i pokazania szybkości uzyskiwania
  zbieżności algorytmu w większości przypadków użyto skali logarytmicznej.
  Domyślnie współczynnik mutacji 
 \begin_inset Formula $mu$
@@ -1113,12 +1167,16 @@ Na poniższych wykresach przedstawiono zmieniającą się wartość funkcji Rast
 \end_inset
 
 .
- Rozważono różne wielkości populacji, wymiary funkcji oraz ilość urządzeń.
+ Rozważono różne wielkości populacji, wymiary funkcji oraz ilości urządzeń.
  Zbadano również wpływ migracji, poprzez zmianę współczynnika migracji określają
 cego ilość migrującej populacji jak i częstość jej występowania.
  Częstotliwość wysyłania wyników częściowych odpowiada częstotliwości występowan
 ia migracji.
- Na wykresach wskazano czas wykonania algorytmu oraz znalezione minimum.
+ 
+\end_layout
+
+\begin_layout Standard
+Na wykresach wskazano również czas wykonania algorytmu oraz znalezione minimum.
  Maksymalna ilość cykli była zazwyczaj ustawiona na 
 \begin_inset Formula $1000$
 \end_inset
@@ -1249,12 +1307,13 @@ reference "fig:Całkowity-czas-wykonania-1-2"
 \end_inset
 
  przedstawiono wpływ współczynnika mutacji na wyniki ewolucji.
- Najlepsze wyniku uzyskano gdy współczynnik mutacji był maksymalny czyli
+ Najlepsze wyniki uzyskano gdy współczynnik mutacji był maksymalny czyli
  wynosił 
 \begin_inset Formula $1.0$
 \end_inset
 
-, co odzwierciedlało duży wpływ wartości losowej w kolejnych cyklach.
+, co odzwierciedlało duży wpływ wartości losowej na osobników populacji
+ w kolejnych cyklach ewolucji.
 \end_layout
 
 \begin_layout Standard
@@ -1318,7 +1377,7 @@ reference "fig:Całkowity-czas-wykonania-1-4"
 
  pokazują wpływ braku migracji na znajdywane wyniki.
  Gdy migracja nie występuje mimo, że jedno z urządzeń zacznie ewoluować
- dużo lepiej od innych, nie wpłynie to w żaden sposób na ewolucje odbywające
+ dużo szybciej od innych, nie wpłynie to w żaden sposób na ewolucje odbywające
  się na innych urządzeniach.
 \end_layout
 
@@ -1421,19 +1480,22 @@ reference "fig:Całkowity-czas-wykonania-1-5"
 \begin_inset Formula $10$
 \end_inset
 
-., Oznacza to, biorąc pod uwagę, że maksymalna wielkość populacji wynosi
- 
+.
+ Oznacza to, biorąc pod uwagę, że maksymalna wielkość populacji wynosi 
 \begin_inset Formula $100$
 \end_inset
 
- a częstość przesyłania wyników (która odpowiada częstośći migracji) iż
- co każde 10 cykli 10 najlepszych osobników populacji zostanie wysłanych
- do sąsiedniej wyspy.
+ a częstość przesyłania wyników 
+\begin_inset Formula $10$
+\end_inset
+
+ iż co każde dziesięć cykli dziesięciu najlepszych osobników populacji zostanie
+ wysłanych do sąsiedniej wyspy.
  Duża ilość migrujących osobników ma wpływ na brak zróżnicowania populacji
- na wyspach i co może skutkować małą zbieżnością algorytmu.
- Wpływ osobników migrujących do sąsiednij wyspy jest przez to bardzo duży,
- co odzwierciedlają podobne wykresy wartości funkcji zmieniającej się w
- trakcie trwania ewolucji na obu urządzeniach.
+ na wyspach, co może skutkować małą zbieżnością algorytmu.
+ Wpływ osobników migrujących do sąsiedniej wyspy jest przez to bardzo duży,
+ co obrazują podobne wykresy wartości funkcji zmieniającej się w trakcie
+ trwania ewolucji na obu urządzeniach.
 \begin_inset Float figure
 wide false
 sideways false
@@ -1480,7 +1542,7 @@ name "fig:Całkowity-czas-wykonania-1-5"
 \end_layout
 
 \begin_layout Standard
-Wykres na rysunku rysunku 
+Wykres na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Całkowity-czas-wykonania-1-6"
@@ -1493,10 +1555,10 @@ o i wynoszącym
 \end_inset
 
 .
- Pierwszy zaznaczony jest kolorem czerwonym, gdzie w ewolucji biorą udział
- dwa urządzenia.
- Kolejny zaznaczony kolorem niebieskim gdzie udział biorą cztery urządzenia
- pokazuje pozytywny wpływ na ewolucję większej ilości urządzeń.
+ Pierwszy eksperyment (zaznaczony odcieniami czerwonego), gdzie w ewolucji
+ biorą udział dwa urządzenia zebrał gorsze wyniki aniżeli kolejny (zaznaczony
+ odcieniami niebieskiego), gdzie udział biorą cztery urządzenia.
+ Sytuacja ta pokazuje pozytywny wpływ na ewolucję większej ilości urządzeń.
  
 \begin_inset Float figure
 wide false
@@ -1558,7 +1620,7 @@ reference "fig:Całkowity-czas-wykonania-1-8"
 
 \end_inset
 
- pokazują, że poprzez rzadszą migrację (co 
+ pokazują, że poprzez mniej częstą migrację (co 
 \begin_inset Formula $50$
 \end_inset
 
@@ -1708,6 +1770,16 @@ name "fig:Całkowity-czas-wykonania-1-9"
 
 \end_inset
 
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+zmniejszyc czcionke w legendzie bo nie miesci sie w marginesach
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -1779,56 +1851,6 @@ Na większości wykresów można zauważyć, że w początkowych cyklach ewolucj
 \end_layout
 
 \begin_layout Standard
-Warto dodać, że podczas przeprowadzania testów w klastrze pracowały dwa
- typy urządzeń Raspberry Pi, model B oraz B plus, który jest nowszy od modelu
- B oraz posiada większą ilość zaistalowanej pamięci RAM 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "26"
-
-\end_inset
-
-.
- Dostępna w urządzeniach pamięć RAM ma wpływ na czas obliczeń.
- Czas uzyskiwany przez nowszy model urządzenia, który posiada więcej pamięci
- był zazwyczaj parę procent lepszy.
- Również warto zauważyć, że urządzenie posiadające rolę Master było zazwyczaj
- trochę wolniejsze od pozostałych w związku z większym obciążeniem jakim
- była potrzeba uruchomienia dodatkowych aktorów.
-\end_layout
-
-\begin_layout Subsection*
-Skalowalność
-\end_layout
-
-\begin_layout Standard
-Kolejnymi dwoma parametrami konfigurującymi zadanie są współczynnik migracji
- oraz częstość jej występowania.
-\end_layout
-
-\begin_layout Standard
-Mają one bezpośredni wpływ na skalowalność platformy.
- Współczynnik migracji podawany jest w zakresie 
-\begin_inset Formula $0..100$
-\end_inset
-
- i oznacza procent migrującej populacji.
- Natomiast parametr określający częstość występowania migracji wyznacza
- co ile cykli następuje migracja.
- Jego wartość może wynosić zero, wtedy migracja nie występuje lub jakiś
- ułamek maksymalnej liczby cykli.
-\end_layout
-
-\begin_layout Standard
-Bez występowania migracji osobników pomiędzy wyspami (węzłami klastra) mogłaby
- zaistnieć sytuacja, gdy pomimo pracy kilku urządzeń w klastrze każde z
- nich uzyskałoby podobne wyniki w zbliżonym czasie, co oznaczałoby, że równie
- dobrze obliczenia mogłyby być przeprowadzane tylko na jednym urządzeniu,
- bo wzrost liczby urządzeń nie wpłynął znacząco na szybkość znajdywanych
- wyników.
-\end_layout
-
-\begin_layout Standard
 Dzięki zastosowaniu migracji, gdy do klastra zostaje włączone nowe urządzenie
  i zaczyna wykonywać obliczenia, to po odebraniu osobników migrujących z
  innej wyspy, którzy z dużym prawdopodobieństwem będą zawierali lepszej
@@ -1842,6 +1864,261 @@ Dzięki zastosowaniu migracji, gdy do klastra zostaje włączone nowe urządzeni
 \end_layout
 
 \begin_layout Standard
+Warto dodać, że podczas przeprowadzania testów w klastrze pracowały dwa
+ typy urządzeń Raspberry Pi, model B oraz B plus, który jest nowszy od modelu
+ B oraz posiada większą ilość zaistalowanej pamięci RAM 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "26"
+
+\end_inset
+
+.
+ Dostępna w urządzeniach pamięć RAM ma wpływ na czas obliczeń.
+ Czas uzyskiwany przez nowszy model urządzenia, który posiada więcej pamięci
+ był zazwyczaj parę procent lepszy.
+ Również warto zauważyć, że urządzenie posiadające rolę 
+\shape italic
+master
+\shape default
+ było zazwyczaj trochę wolniejsze od pozostałych w związku z większym obciążenie
+m jakim była potrzeba uruchomienia dodatkowych aktorów.
+\end_layout
+
+\begin_layout Subsection*
+Skalowalność
+\end_layout
+
+\begin_layout Standard
+W ramach sprawdzenia skalowalności platformy uruchomiono obliczenia z populacją
+ o wielkości 400 osobników na jednym urządzeniu, następnie rozmieszczono
+ po 200 osobników na dwóch urządzeniach działających równolegle, a na końcu
+ zmierzono czas wykonania takiej samej ilości cykli na czterech urządzeniach
+ zawierających po 100 osobników w populacji.
+\end_layout
+
+\begin_layout Standard
+Na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-10-2"
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-10-3"
+
+\end_inset
+
+ pokazano czasy wykonania poszczególnych wariantów.
+ Na drugim wykresie zwiększono wielkość problemu poprzez podwojenie wymiaru
+ funkcji Rastrigina, przez co uzyskano większe przyśpieszenie.
+ 
+\end_layout
+
+\begin_layout Standard
+Poniżej przedstawiono wzory na skuteczność oraz przyśpiesznie, według których
+ oceniono skalowalność powstałej platformy w kontekście pracy na wielu urządzeni
+ach.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+S=\frac{T_{s}}{T_{p}},
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+gdzie 
+\begin_inset Formula $S$
+\end_inset
+
+ to jest przyśpieszenie, 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+ oznacza czas wykonania programu w wersji sekwencyjnej a 
+\begin_inset Formula $T_{p}$
+\end_inset
+
+ w wersji równoległej.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+E=\frac{S}{P},
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+gdzie 
+\begin_inset Formula $E$
+\end_inset
+
+ oznacza skuteczność, 
+\begin_inset Formula $S$
+\end_inset
+
+ przyśpieszenie, natomiast 
+\begin_inset Formula $P$
+\end_inset
+
+ ilość użytych procesorów, w tym przypadku urządzeń.
+\end_layout
+
+\begin_layout Standard
+Zgodnie z prawem Amdahla skuteczność powinna wynosić między 
+\begin_inset Formula $0$
+\end_inset
+
+ a 
+\begin_inset Formula $1$
+\end_inset
+
+, czyli dla dwóch urządzeń nie powinniśmy uzyskać więszkego przyśpieszenia
+ niż dwukrotne.
+ Wyjątkiem są na przykład przypadki gdy brakuje pamięci operacyjnej i jest
+ potrzeba użycia pamięci 
+\shape italic
+cache
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "61"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dla pierwszego przypadku i problemu dwóch urządzeń oraz wymiaru funkcji
+ 
+\begin_inset Formula $100$
+\end_inset
+
+ skuteczność wyniosła 
+\begin_inset Formula $0,86$
+\end_inset
+
+ a przyśpieszenie 
+\begin_inset Formula $1,73$
+\end_inset
+
+, co jest dobrym wynikiem i oznacza, że szybkość wykonania tysiąca cykli
+ algorytmu wzrosła prawie dwukrotnie po dołożeniu drugiego urządzenia a
+ przyśpieszenie było prawie liniowe.
+ Po włączeniu kolejnych dwóch urządzeń przyśpieszenie wyniosło 
+\begin_inset Formula $2,73$
+\end_inset
+
+ a skuteczność 
+\begin_inset Formula $0,68$
+\end_inset
+
+ co jest wynikiem troszkę gorszym, oznacza to, że cztery urządzenia były
+ tylko około dwa i pół razy lepsze od jednego.
+ Spowodowane jest to zapewne tym, że problem wybrany w tym przypadku nie
+ był zbytnio wymagający, dlatego do następnego eksperymentu zdecydowano
+ się zwiększyć rozmiar funkcji do 
+\begin_inset Formula $200$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+W kolejnym eksperymencie, którego wyniki zaprezentowano na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-10-3"
+
+\end_inset
+
+, dla dwóch urządzeń przyśpieszenie wyniosło 
+\begin_inset Formula $2,33$
+\end_inset
+
+ a skuteczność 
+\begin_inset Formula $1,16$
+\end_inset
+
+ a dla czterech przyśpieszenie wyniosło 
+\begin_inset Formula $4,24$
+\end_inset
+
+ natomiast skuteczność 
+\begin_inset Formula $1,06$
+\end_inset
+
+.
+ Co oznacza, że wraz ze wzrostem liczby urządzeń przyśpieszenie nieznacznie
+ maleje, natomiast uzyskano tutaj przyśpieszenie ponad liniowe, co jest
+ wynikiem trochę zaskakującym biorąc pod uwagę prawo Amdahla 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "61"
+
+\end_inset
+
+, lecz można tłumaczyć go faktem, iż w przypadku z tylko jednym urządzeniem
+ komunikacja nie była obecna.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Kolejnymi dwoma parametrami konfigurującymi zadanie są współczynnik migracji
+ oraz częstość jej występowania.
+\end_layout
+
+\begin_layout Plain Layout
+Mają one bezpośredni wpływ na skalowalność platformy.
+ Współczynnik migracji podawany jest w zakresie 
+\begin_inset Formula $0..100$
+\end_inset
+
+ i oznacza procent migrującej populacji.
+ Natomiast parametr określający częstość występowania migracji wyznacza
+ co ile cykli następuje migracja.
+ Jego wartość może wynosić zero, wtedy migracja nie występuje lub jakiś
+ ułamek maksymalnej liczby cykli.
+\end_layout
+
+\begin_layout Plain Layout
+Bez występowania migracji osobników pomiędzy wyspami (węzłami klastra) mogłaby
+ zaistnieć sytuacja, gdy pomimo pracy kilku urządzeń w klastrze każde z
+ nich uzyskałoby podobne wyniki w zbliżonym czasie, co oznaczałoby, że równie
+ dobrze obliczenia mogłyby być przeprowadzane tylko na jednym urządzeniu,
+ bo wzrost liczby urządzeń nie wpłynął znacząco na szybkość znajdywanych
+ wyników.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 
 \series bold
 Tutaj chciałbym pokazać jaki jest wpływ migracji oraz jej parametrów na
@@ -1849,10 +2126,15 @@ Tutaj chciałbym pokazać jaki jest wpływ migracji oraz jej parametrów na
  dla jednego urządzenia..
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Wykres ...
  Na wykresie przedstawiono innym kolorem różną częstość migracji dla 10%
  migrującej populacji.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1877,9 +2159,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Całkowity czas wykonania ...
- Znaleziony punkt ..., wartość funkcji ...
- 
+Wymiar funkcji 100.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Całkowity-czas-wykonania-1-10-2"
@@ -1921,8 +2201,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Całkowity czas wykonania ...
- Znaleziony punkt ..., wartość funkcji ...
+Wymiar funkcji 200.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -1944,17 +2223,48 @@ name "fig:Całkowity-czas-wykonania-1-10-3"
 \end_layout
 
 \begin_layout Subsection*
-Wydajność 
+Wykorzystanie zasobów sprzętowych 
 \end_layout
 
 \begin_layout Standard
-Średnie zużycie pamięci RAM oraz obciążenie procesora w trakcie wykonywania
- obliczeń (w zależności od różnych ustawień początkowych) oraz w stanie
- bezczynności.
+Na wykresie 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wykorzystanie-pamięci-RAM"
+
+\end_inset
+
+ zaprezentowano zużycie pamięci RAM oraz obciążenie procesora w trakcie
+ wykonywania obliczeń oraz w stanie bezczynności.
+ 
 \end_layout
 
 \begin_layout Standard
-Wydajnosc mastera.
+W trakcie obciążenia procesor był wykorzystywany prawie w stu procentach,
+ natomiast w odwrotnej sytuacji jego obciążenie oscylowało w okolicy piętnastu
+ procent.
+ Zwracając uwagę na pamięć RAM można zauważyć, że w trakcie wykonywania
+ zadania zużycie pamięci rosło do 70%, cykliczne spadki zużycia były spowodowane
+ zapewne włączaniem się GC.
+ W trakcie bezczynności również widać pewną okresowość w zwalnianiu użytych
+ zasobów związaną z aktywnością GC.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Wydajność mastera.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1979,12 +2289,21 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Całkowity czas wykonania ...
- Znaleziony punkt ..., wartość funkcji ...
+Wykorzystanie pamięci RAM oraz CPU.
  
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Całkowity-czas-wykonania-1-10-1"
+name "fig:Wykorzystanie-pamięci-RAM"
+
+\end_inset
+
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+% zamiast MB
+\end_layout
 
 \end_inset
 
@@ -2002,51 +2321,19 @@ name "fig:Całkowity-czas-wykonania-1-10-1"
 \end_layout
 
 \begin_layout Subsection*
-Narzut komunikacji.
+Narzut komunikacji
 \end_layout
 
 \begin_layout Standard
-Częstość wykonywania zapisów do bazy, przesyłania wyników częściowych do
- klienta oraz wpływ wielkości populacji i wymiaru funkcji na czas obliczen
- oraz wielkosc przesylanych wiadomosci.
-\end_layout
-
-\begin_layout Standard
-Pozostałym parametrem konfigurującym zadanie jest częstość przesyłania wyników
- częściowych do klienta co ma wpływ również na częstość wykonywania zapisów
- do bazy.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Całkowity czas wykonania ...
- Znaleziony punkt ..., wartość funkcji ...
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Całkowity-czas-wykonania-1-10-4"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+Częstość wykonywania zapisów do bazy oraz przesyłania wyników częściowych
+ do klienta ma dość duży wpływ na czas trwania poszczególnych cykli ewolucji.
+ Wielkość migrującej populacji ma natomiast nieznaczny wpływ na czas wykonania
+ cykli, ponieważ migracja odbywa się asynchronicznie i zazwyczaj jest to
+ niewielki ułamek całej populacji więc narzut przesyłania takich wiadomości
+ jest mniejszy aniżeli przesyłania wyników gdzie przesyłana jest cała istniejąca
+ populacja.
+ Z kolei całkowita wielkość populacji oraz wymiar funkcji mają duży wpływ
+ na wielkość przesyłanych wiadomości pomiędzy aktorami.
 \end_layout
 
 \begin_layout Subsection*
