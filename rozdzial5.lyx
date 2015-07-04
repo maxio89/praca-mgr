@@ -118,54 +118,28 @@ algorytm ewolucyjny zamiast genetycznego
 \end_layout
 
 \begin_layout Standard
-W niniejszym rozdziale opisano wykorzystanie przygotowanej platformy w praktyce,
- sposób jej użycia oraz zasady działania a także wyniki zaimplementowanych
- rozwiązań.
-\end_layout
-
-\begin_layout Section
-Zastosowania 
+Dzięki zaimplementowaniu algorytmów ewolucyjnych w modelu Master/Slave przygotow
+ana platforma może zostać wykorzystana m.in.
+ do symulacji, rozwiązywania problemów optymalizacyjnych, przyśpieszenia
+ obliczeń krytycznych, przeszukiwania dużych zbiorów rozwiązań, szeregowania
+ zadań oraz wszelkich obliczeń, gdzie zadanie może zostać podzielone na
+ kilka niezależnych części wykonywanych równolegle na każdym z 
+\shape italic
+workerów
+\shape default
+.
+ Dzięki wykorzystaniu urządzeń SoC, które pobierają stosunkowo niewielką
+ ilość prądu, zestawienie platformy jest możliwe w warunkach, gdzie dostęp
+ do energii elektrycznej jest mocno ograniczony i wykorzystanie np.
+ zasilania bateryjnego.
 \end_layout
 
 \begin_layout Standard
-Poniżej wymieniono kilka możliwych zastosowań przygotowanej platformy:
-\end_layout
-
-\begin_layout Itemize
-symulacje, np.
- w biologii, chemii lub fizyce,
-\end_layout
-
-\begin_layout Itemize
-problemy optymalizacyjne,
-\end_layout
-
-\begin_layout Itemize
-przyśpieszenie obliczeń krytycznych,
-\end_layout
-
-\begin_layout Itemize
-przeszukiwanie dużych zbiorów rozwiązań, np.
- problem grupowania,
-\end_layout
-
-\begin_layout Itemize
-szeregowanie zadań,
-\end_layout
-
-\begin_layout Itemize
-oraz wszelkie obliczenia gdzie zadanie może być podzielone na kilka niezależnych
- części.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Co jeszcze?
-\end_layout
-
-\end_inset
-
-
+Działanie platformy przetestowano dzięki optymalizacji funkcji wielomodalnej
+ Rastrigina.
+ Poniższy rozdział zawiera wyniki eksperymentów z uwzględnieniem takich
+ cech stworzonej platformy jak m.in.
+ skalowalności czy wydajność obliczeń.
 \end_layout
 
 \begin_layout Section
@@ -177,7 +151,7 @@ W rozdziale opisano odmianę algorytmów ewolucyjnych wykorzystaną do obliczeń
  równoległych na przygotowanej platformie.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Algorytmy ewolucyjne
 \end_layout
 
@@ -370,7 +344,7 @@ key "9,10"
  
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Model wyspowy
 \end_layout
 
@@ -445,8 +419,11 @@ Algorytmy ewolucyjne opisane w poprzednim podrozdziale zostały wykorzystane
  do znalezienia minimum funkcji Rastrigina.
 \end_layout
 
-\begin_layout Subsection
-Funkcja Rastrigina
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -658,8 +635,7 @@ Rozwiązanie stworzone na potrzeby niniejszej pracy przetestowano dzięki
 \end_layout
 
 \begin_layout Standard
-Implementacja ta, została oparta na implementacji algorytmów ewolucyjnych
- przedstawionej w pozycji 
+Implementacja ta została oparta na tej przedstawionej w pozycji 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "20"
@@ -670,10 +646,7 @@ key "20"
 \end_layout
 
 \begin_layout Standard
-W przypadku problemu Rastrigina gen odpowiada liczbie typu 
-\shape italic
-Double
-\shape default
+W przypadku problemu Rastrigina gen odpowiada liczbie zmiennoprzecinkowej
  a chromosomy zawierają listę genów, czyli obrazują punkty w przestrzeni
  rozwiązań.
  W przypadku dwuwymiarowej funkcji Rastrigina jest to lista dwuelementowa.
@@ -1158,7 +1131,7 @@ Na poniższych wykresach przedstawiono zmieniającą się wartość funkcji Rast
 \begin_inset Formula $mu$
 \end_inset
 
- wynosi 
+ wynosił 
 \begin_inset Formula $0,96$
 \end_inset
 
@@ -1339,6 +1312,8 @@ status open
 
 \begin_layout Plain Layout
 Jedno urządzenie.
+ Zmienny wsp.
+ mutacji.
  Wymiar funkcji 200.
  Wyniki co 10 cykli.
 \begin_inset CommandInset label
@@ -1481,7 +1456,8 @@ reference "fig:Całkowity-czas-wykonania-1-5"
 \end_inset
 
 .
- Oznacza to, biorąc pod uwagę, że maksymalna wielkość populacji wynosi 
+ Oznacza to, biorąc pod uwagę fakt, że maksymalna wielkość populacji wynosi
+ 
 \begin_inset Formula $100$
 \end_inset
 
@@ -1489,8 +1465,8 @@ reference "fig:Całkowity-czas-wykonania-1-5"
 \begin_inset Formula $10$
 \end_inset
 
- iż co każde dziesięć cykli dziesięciu najlepszych osobników populacji zostanie
- wysłanych do sąsiedniej wyspy.
+, iż co każde dziesięć cykli dziesięciu najlepszych osobników populacji
+ zostanie wysłanych do sąsiedniej wyspy.
  Duża ilość migrujących osobników ma wpływ na brak zróżnicowania populacji
  na wyspach, co może skutkować małą zbieżnością algorytmu.
  Wpływ osobników migrujących do sąsiedniej wyspy jest przez to bardzo duży,
@@ -1556,9 +1532,9 @@ o i wynoszącym
 
 .
  Pierwszy eksperyment (zaznaczony odcieniami czerwonego), gdzie w ewolucji
- biorą udział dwa urządzenia zebrał gorsze wyniki aniżeli kolejny (zaznaczony
+ biorą udział dwa urządzenia uzyskał gorsze wyniki aniżeli kolejny (zaznaczony
  odcieniami niebieskiego), gdzie udział biorą cztery urządzenia.
- Sytuacja ta pokazuje pozytywny wpływ na ewolucję większej ilości urządzeń.
+ Sytuacja ta pokazuje pozytywny wpływ większej ilości urządzeń na ewolucję.
  
 \begin_inset Float figure
 wide false
@@ -1736,7 +1712,7 @@ reference "fig:Całkowity-czas-wykonania-1-9"
 \end_inset
 
  została rozwiązana bardzo szybko, bo w zaledwie stu cyklach.
- Po zwiększeniu ilości urządzeń z dwóch do czterech ilość cykli potrzebna
+ Po zwiększeniu ilości urządzeń z dwóch do czterech, ilość cykli potrzebna
  do zoptymalizowania funkcji zmniejszyła się prawie o połowę.
 \begin_inset Float figure
 wide false
@@ -1839,12 +1815,6 @@ name "fig:Całkowity-czas-wykonania-1-10"
 \begin_layout Standard
 Podsumowując, zauważono, że większy współczynnik mutacji przyśpiesza znajdywanie
  nowych rozwiązań oraz pomaga uzyskać lepszą zbieżność algorytmu.
-\end_layout
-
-\begin_layout Standard
-Na większości wykresów można zauważyć, że w początkowych cyklach ewolucji
- populacji gdy osobnicy nie są jeszcze dobrze rozwinięci kolejne rozwiązania
- znajdywane są wolniej, czyli zbieżność algorytmu jest mniejsza.
  Szybkość znajdywania nowych rozwiązań przyśpiesza wraz ze wzrostem wielkości
  populacji.
  
@@ -1855,7 +1825,7 @@ Dzięki zastosowaniu migracji, gdy do klastra zostaje włączone nowe urządzeni
  i zaczyna wykonywać obliczenia, to po odebraniu osobników migrujących z
  innej wyspy, którzy z dużym prawdopodobieństwem będą zawierali lepszej
  jakości rozwiązania aniżeli nowo zainicjalizowani osobnicy na aktualnej
- wyspie ewolucja takiej wyspy zostaje przyśpieszona.
+ wyspie, ewolucja takiej wyspy zostaje przyśpieszona.
  Przy wysokiej częstości migracji oraz dużym procencie migrującej populacji
  istnieje ryzyko, że wyspy zostaną zdominowane przez osobników o podobnych
  cechach, co może prowadzić do odnalezienia jedynie lokalnego minimum zamiast
@@ -1989,8 +1959,8 @@ Zgodnie z prawem Amdahla skuteczność powinna wynosić między
 
 , czyli dla dwóch urządzeń nie powinniśmy uzyskać więszkego przyśpieszenia
  niż dwukrotne.
- Wyjątkiem są na przykład przypadki gdy brakuje pamięci operacyjnej i jest
- potrzeba użycia pamięci 
+ Wyjątkiem są przypadki gdy brakuje pamięci operacyjnej i istnieje potrzeba
+ użycia pamięci 
 \shape italic
 cache
 \shape default
@@ -2014,22 +1984,22 @@ Dla pierwszego przypadku i problemu dwóch urządzeń oraz wymiaru funkcji
 \begin_inset Formula $0,86$
 \end_inset
 
- a przyśpieszenie 
+, a przyśpieszenie 
 \begin_inset Formula $1,73$
 \end_inset
 
 , co jest dobrym wynikiem i oznacza, że szybkość wykonania tysiąca cykli
- algorytmu wzrosła prawie dwukrotnie po dołożeniu drugiego urządzenia a
+ algorytmu wzrosła prawie dwukrotnie po dołożeniu drugiego urządzenia, a
  przyśpieszenie było prawie liniowe.
  Po włączeniu kolejnych dwóch urządzeń przyśpieszenie wyniosło 
 \begin_inset Formula $2,73$
 \end_inset
 
- a skuteczność 
+, a skuteczność 
 \begin_inset Formula $0,68$
 \end_inset
 
- co jest wynikiem troszkę gorszym, oznacza to, że cztery urządzenia były
+, co jest wynikiem troszkę gorszym, oznacza to, że cztery urządzenia były
  tylko około dwa i pół razy lepsze od jednego.
  Spowodowane jest to zapewne tym, że problem wybrany w tym przypadku nie
  był zbytnio wymagający, dlatego do następnego eksperymentu zdecydowano
@@ -2247,7 +2217,7 @@ W trakcie obciążenia procesor był wykorzystywany prawie w stu procentach,
  zadania zużycie pamięci rosło do 70%, cykliczne spadki zużycia były spowodowane
  zapewne włączaniem się GC.
  W trakcie bezczynności również widać pewną okresowość w zwalnianiu użytych
- zasobów związaną z aktywnością GC.
+ zasobów związaną zapewne z aktywnością GC.
 \end_layout
 
 \begin_layout Standard
@@ -2322,16 +2292,83 @@ status open
 
 \begin_layout Subsection*
 Narzut komunikacji
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+dodac wykres
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Częstość wykonywania zapisów do bazy oraz przesyłania wyników częściowych
- do klienta ma dość duży wpływ na czas trwania poszczególnych cykli ewolucji.
- Wielkość migrującej populacji ma natomiast nieznaczny wpływ na czas wykonania
- cykli, ponieważ migracja odbywa się asynchronicznie i zazwyczaj jest to
- niewielki ułamek całej populacji więc narzut przesyłania takich wiadomości
- jest mniejszy aniżeli przesyłania wyników gdzie przesyłana jest cała istniejąca
- populacja.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 15.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Zmienne parametry migracji Wymiar funkcji 100.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Całkowity-czas-wykonania-1-10-3-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Całkowity-czas-wykonania-1-10-3-1"
+
+\end_inset
+
+ przedstawiono wykres zależności częstotliwości migracji oraz wielkości
+ migrującej populacji.
+ Przetestowano współczynnik migracji wynoszący 1 oraz 10 a także częstotliwość
+ przesyłania wyników wynoszącą 10 oraz 100.
+\end_layout
+
+\begin_layout Standard
+Częstotliwość migracji, która odpowiada również częstotliwości przesyłania
+ wyników częściowych do klienta (podczas których wykonywane są zapisy do
+ bazy danych) ma widoczny wpływ na czas trwania ewolucji.
+ Wielkość migrującej populacji ma natomiast nieznaczny wpływ na czas ewolucji,
+ ponieważ migracja odbywa się asynchronicznie i zazwyczaj odbywa się stosunkowo
+ rzadko i w małych ilościach więc narzut przesyłania takich wiadomości jest
+ mały.
  Z kolei całkowita wielkość populacji oraz wymiar funkcji mają duży wpływ
  na wielkość przesyłanych wiadomości pomiędzy aktorami.
 \end_layout

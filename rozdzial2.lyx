@@ -108,9 +108,13 @@ name "cha:obliczenia"
 \end_layout
 
 \begin_layout Standard
-Rozdział zawiera klasyfikację modelu architektur równoległych a także opis
- kilku wybranych technologii mających zastosowanie przy obliczeniach równoległyc
-h oraz rozproszonych.
+Dzięki rozwojowi systemów wieloprocesorowych oraz wielu technologii wspierającyc
+h programowanie równoległe, jak na przykład języki funkcyjne takie jak Scala,
+ które u podstaw swych założeń mają na celu dobrą skalowalność we współczesnych
+ architekturach, obliczenia równoległe stały się tematem bardzo interesującym.
+ Rozdział ten zawiera klasyfikację modelu architektur równoległych, a także
+ przegląd kilku wybranych technologii mających zastosowanie przy obliczeniach
+ równoległych oraz rozproszonych.
 \end_layout
 
 \begin_layout Section
@@ -695,7 +699,8 @@ Wprowadza pojęcie atomicznych transakcji.
  Jest to alternatywa do blokowaniu dostępu do pamięci poprzez synchronizację.
  Transakcja obejmuje serię odczytów i zapisów do pamięci współdzielonej
  a jej stan nie jest widoczny dla innych transakcji dopóki nie zostanie
- ona zakończona i zakomitowana.
+ ona zakończona i zatwierdzona (ang.
+ commit).
  Wyróżnia się tutaj sekcje krytyczne zwane blokami atomicznymi.
  Jeżeli wykonanie takiego bloku się nie powiedzie zmiany są wycofywane,
  co wymusza przechowywanie starszej wersji danych.
@@ -1081,7 +1086,7 @@ start
 
 \begin_layout Standard
 Scala jest językiem funkcyjnym rozwijanym od 2001 roku przez firmę Typesafe,
- której współtwórcą jest Martin Odersky na codzień pracujący na Uniwersytecie
+ której współtwórcą jest Martin Odersky na co dzień pracujący na Uniwersytecie
  w Lozannie.
  Głównym aspektem przemawiającym na korzyść tego języka jest to, że do jego
  działania wystarczy maszyna wirtualna Javy.

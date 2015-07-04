@@ -108,8 +108,12 @@ name "cha:soc"
 \end_layout
 
 \begin_layout Standard
-Niniejszy rozdział zawiera charakterystykę urządzeń SoC oraz opis idei Internet
- of Things oraz Ubiquitous Computing.
+Miniaturyzacja oraz rozwój procesorów zwiększa możliwości ich zastosowania.
+ Dzięki temu współczesne systemy komputerowe przybierają coraz bardziej
+ nietypowe formy, co stwarza możliwości ich wykorzystania do niekonwencjonalnych
+ metod obliczeń, takich jak Ubiquitous Computing opisane w poniższym rozdziale.
+ Rozdział zawiera również charakterystykę urządzeń SoC oraz opis idei Internet
+ of Things.
 \end_layout
 
 \begin_layout Section

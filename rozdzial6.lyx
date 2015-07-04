@@ -149,7 +149,7 @@ ych na wielu urządzeniach pracujących w klastrze.
 \begin_layout Standard
 Technologia Akka okazała się kluczowa z punktu widzenia niniejszej pracy
  i idealnie wkomponowała się w wybraną tematykę.
- Dzięki rozwiązanion wysokiego poziomu ułatwiła ona tworzenie nowych komponentów
+ Dzięki rozwiązaniom wysokiego poziomu ułatwiła ona tworzenie nowych komponentów
  oraz dostarczyła pewnych strategii oraz wzorców zwiększając tym samym przejrzys
 tość jak i możliwości dalszego rozwoju przygotowanego rozwiązania.
 \end_layout
@@ -162,10 +162,6 @@ Niniejsza praca pozwoliła również autorowi na zapoznanie się z tematyką
  nowych obszarów wiedzy z punktu widzenia autora jest względnie nowa dziedzina
  w programowaniu, a mianowicie programowanie reaktywne i technologie z platformy
  Typesafe w połączeniu z urządzeniami SoC oraz Cluster Computing.
-\end_layout
-
-\begin_layout Section
-Możliwości rozwoju
 \end_layout
 
 \begin_layout Standard
@@ -190,7 +186,7 @@ a pracujące w klastrze.
 \end_layout
 
 \begin_layout Subsection*
-Sieć rozgległa
+Sieć rozległa
 \end_layout
 
 \begin_layout Standard
@@ -268,8 +264,8 @@ Urządzenia SoC na których testowano przygotowaną platformę posiadają ograni
  Nie można zatem pozwolić sobie na zbędne operacje i nadmierną zajętość
  pamięci, co może wydłużyć wykonywanie obliczeń.
  Warto byłoby użyć jakiegoś narzędzia do profilowania JVM, aby sprawdzić
- czy nie ma żadnych wycieków pamięci, a także przenalizować zrzut pamięci
- (tzw.
+ czy nie ma żadnych wycieków pamięci, a także przeanalizować zrzut pamięci
+ (ang.
  heap dump) pod kątem instancjonowanych obiektów oraz zajętości pamięci.
  Można byłoby również wykonać tuning GC (ang.
  Garbage Collector) oraz spróbować dobrać optymalne parametry GC.

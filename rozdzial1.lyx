@@ -258,7 +258,7 @@ Opis rozdziałów
 \end_layout
 
 \begin_layout Standard
-Na poczatku pracy zawarto motywacje oraz opis jej celów.
+Na początku pracy zawarto motywacje oraz opis jej celów.
  Następnie zamieszczono wprowadzenie do tematyki obliczeń równoległych wraz
  z podziałem sprzętowych architektur oraz opisem kilku popularnych modeli
  programowania jak również istniejących implementacji wykorzystujących wymienion
@@ -269,7 +269,7 @@ e architektury oraz modele.
 \begin_layout Standard
 W kolejnym rozdziale opisano kilka popularnych koncepcji takich jak urządzenia
  SoC, Internet of Things oraz Ubiquitous Computing.
- Zawarto w nim rownież porównanie paru istniejących urządzeń SoC, przytoczono
+ Zawarto w nim również porównanie paru istniejących urządzeń SoC, przytoczono
  niektóre przykłady zastosowania wymienionych idei oraz pokazano skalę tych
  zjawisk powołując się na rożne źródła.
 \end_layout

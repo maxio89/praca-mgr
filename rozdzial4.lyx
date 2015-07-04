@@ -108,8 +108,6 @@ name "cha:klaster"
 \end_layout
 
 \begin_layout Standard
-Rozdział ten przedstawia opis przygotowanego rozwiązania.
- 
 \begin_inset Note Note
 status open
 
@@ -125,6 +123,19 @@ Na poczatku kazdego rozdzialu musi byc klej (na koncu tez powinien).
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Idee opisane w poprzednich rozdziałach a w szczególności urządzenia SoC
+ oraz obliczenia równoległe znalazły odzwierciedlenie w głównej części niniejsze
+j pracy.
+ W poniższym rozdziale opisano przygotowaną platformę pozwalającą na zestawienie
+ klastra obliczeniowego wykorzystującego urządzenia SoC oraz technologie
+ Scala i Akka.
+ Znalazł się tutaj m.in.
+ zarys początkowej koncepcji, szczegóły implementacyjne gotowego rozwiązania
+ oraz opis wykorzystanych technologii.
+ 
 \end_layout
 
 \begin_layout Section
@@ -377,12 +388,8 @@ Niniejszy podrozdział omawia wybrane aspekty przygotowanej platformy, takie
  Ponadto zawiera opis dystrybucji przygotowanego rozwiązania.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Architektura
-\end_layout
-
-\begin_layout Standard
-Na początek warto wyjaśnić kilka pojęć.
 \end_layout
 
 \begin_layout Standard
@@ -598,7 +605,7 @@ name "fig:Podgląd-architektury."
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Wybrani aktorzy 
 \end_layout
 
@@ -797,7 +804,7 @@ masterem
  oraz odbieraniem wyników realizowanych zadań.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Protokoły komunikacji
 \end_layout
 
@@ -1433,7 +1440,7 @@ mastera
 .
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Monitoring
 \end_layout
 
@@ -1885,7 +1892,7 @@ zastanowic sie czy z started nie mozna przejsc do completed i czy z timeout
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Dystrybucja 
 \begin_inset Note Note
 status open
