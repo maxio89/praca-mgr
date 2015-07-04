@@ -140,8 +140,8 @@ Urządzenia SoC (System-on-Chip) są to układy, które oprócz głównego proce
  jako systemy wbudowane, w dziedzinie Home Automation jak również posiadają
  wiele innych multimedialnych zastosowań ze względu na możliwości zbliżone
  do zwykłych PC oraz niewielkie rozmiary.
- Z założenia powinny mieścić się na jednej płytce drukowalnej, być energooszczęd
-ne oraz tanie w produkcji seryjnej.
+ Z założenia powinny mieścić się na jednej płytce drukowanej, być energooszczędn
+e oraz tanie w produkcji seryjnej.
 \end_layout
 
 \begin_layout Standard
@@ -252,7 +252,7 @@ Urządzenie promowane przez firmę Microsoft i kompatybilne z Windowsem 10
  jest również w zintegrowany procesor graficzny Intel HD Graphics, 1GB pamięci
  RAM, kartę dźwiękową oraz m.in.
  w złącze MicroSD, HDMI, USB 2.0 oraz Ethernet.
- Posiada trochę wieksze rozmiary od innych opisywanych tutaj urządzeń.
+ Posiada trochę większe rozmiary od innych opisywanych tutaj urządzeń.
  Cena urządzenia również jest wyższa, bo wynosi około 300$ 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -359,7 +359,7 @@ reference "fig:Klaster-Raspberry-Pi"
 \end_inset
 
 .
- Pełną specyfikację urządzenia można znaleść w pozycji 
+ Pełną specyfikację urządzenia można znaleźć w pozycji 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "26"
@@ -499,7 +499,7 @@ Internet of Things
 \end_layout
 
 \begin_layout Standard
-Wpółczesne systemy komputerowe stają się coraz mniejsze oraz tańsze, co
+Współczesne systemy komputerowe stają się coraz mniejsze oraz tańsze, co
  skutkuje obecnością komputerów w prawie każdej dziedzinie życia.
  Dzięki rozwojowi urządzeń mobilnych, tanich sensorów, bezprzewodowej transmisji
  danych oraz technologiom działającym w chmurze zasięg Internetu zostaje
@@ -595,17 +595,6 @@ name "fig:Prognozy-ilości-urządzeń"
 \end_inset
 
 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Inny wykres do IoT, bo ten jest niewidoczny albo poprawic tekst aby byl
- widoczny
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -630,7 +619,7 @@ Wiele firm komercyjnych zauważa w tychże prognozach sposób na zysk, dlatego
 \end_layout
 
 \begin_layout Standard
-Internet oraz wiele współczesnie używanych technologii zostało wymyślonych
+Internet oraz wiele współcześnie używanych technologii zostało wymyślonych
  o wiele wcześniej aniżeli koncepcja IoT więc nie wszystkie są gotowe na
  taką ilość urządzeń oraz danych.
  Pozostawia to miejsce do badań nad nowymi rozwiązaniami oraz istniejącymi
@@ -645,54 +634,16 @@ key "87,77"
 .
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-ew.
- wstawic tutaj ide o UC...
- aby wyjasnic cele...
- z takich kawaleczkow mozna pospinac klaster.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
-Ubiquitous
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Mark Weiser 1991
-\end_layout
-
-\end_inset
-
- Computing
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-prosze ten rozdzial zamknac opisem idei Ubiquitous Computing - ktora jest
- jedna z mozliwych idei zastosowujacych IoT (i nie tylko) w obliczeniach.
- 
-\end_layout
-
-\end_inset
-
-
+Ubiquitous Computing
 \end_layout
 
 \begin_layout Standard
 Koncepcją powiązaną z ideą IoT jest Ubiquitous Computing, czyli wszechobecne
  obliczenia.
- Poraz pierwszy tej nazwy użył Mark Weiser w 1991 roku (czyli parę lat wcześniej
- przed wymyśleniem nazwy IoT) w odniesieniu do urządzeń działających w Interneci
-e.
+ Po raz pierwszy tej nazwy użył Mark Weiser w 1991 roku (czyli parę lat
+ wcześniej przed wymyśleniem nazwy IoT) w odniesieniu do urządzeń działających
+ w Internecie.
 \end_layout
 
 \begin_layout Standard

@@ -108,24 +108,6 @@ name "cha:klaster"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Na poczatku kazdego rozdzialu musi byc klej (na koncu tez powinien).
- I tak na poczatku 4.
- rozdzialu powinien Pan napisac ze idee opisane wczesniej, w szczegolnosci
- SoC, znalazly odzwierciedlenie w glownej czesci Panskiej pracy magisterskiej,
- gdyz podjal sie Pan oprogramowania klastra obliczeniowego na SoC.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Idee opisane w poprzednich rozdziałach a w szczególności urządzenia SoC
  oraz obliczenia równoległe znalazły odzwierciedlenie w głównej części niniejsze
 j pracy.
@@ -140,17 +122,6 @@ j pracy.
 
 \begin_layout Section
 Koncepcja
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Jaki czas powinien byc uzyty w celach pracy oraz koncepcji? Czy koncepcja
- to sa bardziej szczegolowe cele?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -228,50 +199,13 @@ W klastrze uruchomione są aplikacje oparte o technologie JVM, które komunikuj�
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-Opisac na podstawie notatek/pytan/todosow z jakimi problemami sie zmagano.
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-load-balancing, wybor nowego mastera, wysylanie progresu, persystencja,
- zapewnienie jednej instancji mastera, wykrywanie awarii, reakcje w przypadku
- awarii, jak konfigurowac zadania, Zapisywac stan aktora na kazdym node
- lub do zdalnej bazki czy przesylac dane do jednego node’a i tam zapisywac,
- np.
- we frontend, Gdzie persystowac dane, co potrzebujemy zapisywac, cala populacje
- co kilka ewaluacji (chyba nie po kazdej?) czy moze tylko najlepszego osobnika?
- - po jakiejs ustalonej liczbie ewolucji mozna robic snapshot, czyli zapisac
- populacje do bazki
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-czemu odpowiada aktor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Na urządzeniach klastra wykonywane są obliczenia równolegle, które są rozpoczyna
 ne przez klienta klastra a następnie dystrybuowane przez węzeł posiadający
  rolę 
 \shape italic
 master
 \shape default
- pomiędzy pozostałe wezły posiadające rolę 
+ pomiędzy pozostałe węzły posiadające rolę 
 \shape italic
 slave
 \shape default
@@ -291,7 +225,7 @@ mastera
 mastera
 \shape default
  był zapisywany.
- Stan ten jest istotny ze wględu na przechowywane przez niego informacje
+ Stan ten jest istotny ze względu na przechowywane przez niego informacje
  o wynikach zadania, które nie dotarły jeszcze do klienta lub informacje
  o zadaniach rozpoczętych przez klienta ale nie wysłanych jeszcze do żadnego
  
@@ -306,7 +240,7 @@ master
 \shape default
  nie stanowił tzw.
  „wąskiego gardła” klastra.
- Wyzwaniem jest rowniez wybór algorytmu losowania nowego 
+ Wyzwaniem jest również wybór algorytmu losowania nowego 
 \shape italic
 mastera
 \shape default
@@ -329,7 +263,7 @@ mastera
 \shape default
 , który następnie wysyła je klientowi.
  W przypadku długo trwających zadań przesyłane są wyniki częściowe co jakiś
- okreslony czas aby poinformować klienta o postępie prac.
+ określony czas aby poinformować klienta o postępie prac.
 \end_layout
 
 \begin_layout Standard
@@ -343,43 +277,20 @@ Interesującą kwestią jest wybór tego jakie dane wymagają persystencji oraz
  jak często powinna się ona odbywać, a także gdzie będzie przechowywany
  magazyn danych.
  Jeżeli podjęta zostanie decyzja, że na urządzeniu, które może ulec potencjalnej
- awarii, to będzie wymagana replikacja aby zapewnić bezpieczenstwo danych.
+ awarii, to będzie wymagana replikacja aby zapewnić bezpieczeństwo danych.
 \end_layout
 
 \begin_layout Standard
 Poza wykonywaniem zadań platforma ma za zadanie monitorować pracę urządzeń,
- informować o dołączaniu nowych oraz opuszczaniu klastra przez urządzęnia
- będące jego członkiem – rozrożniane są sytuacje gdy urządzenie opuści klaster
+ informować o dołączaniu nowych oraz opuszczaniu klastra przez urządzenia
+ będące jego członkiem – rozróżniane są sytuacje gdy urządzenie opuści klaster
  na własne życzenie albo ulegnie awarii, czyli przestanie brać udział w
  komunikacji z pozostałymi urządzeniami i w takim przypadku zostanie uznane
  za niedostępne oraz usunięte z klastra po jakimś określonym czasie.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Model zadania, jego konfiguracja i inicjalizacja.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Platforma 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Nie uzywac tutaj slowa ewolucja, pozmieniac master i worker na male litery.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -542,7 +453,7 @@ workera
 \shape italic
 Distributed Publish Subscribe in Cluster 
 \shape default
-opisanego w jednym z poprzednich rozdziałow.
+opisanego w jednym z poprzednich rozdziałów.
  Co oznacza, że nie musi posiadać informacji o adresie IP klienta, ponieważ
  opublikowane wyniki trafią tylko do zainteresowanych odbiorców.
 \end_layout
@@ -1032,17 +943,6 @@ master
 worker
 \shape default
  może się zgłosić.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-rozroznic mastera i workera jako urzadzenia oraz Mastera i Workera jako
- aktorow.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -1453,8 +1353,8 @@ reference "fig:Podgląd-stanu-klastra"
 \end_inset
 
  przedstawiono interfejs klienta prezentujący obecny stan klastra.
- Wylistowano na nim również listę urządzeń pracujących w klastrze, z uwględnieni
-em aktywnego 
+ Wylistowano na nim również listę urządzeń pracujących w klastrze, z uwzględnien
+iem aktywnego 
 \shape italic
 mastera
 \shape default
@@ -1493,16 +1393,6 @@ name "fig:Podgląd-stanu-klastra"
 \end_inset
 
  
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Dokladniejsze zdjecie
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -1534,7 +1424,7 @@ Gossip
 \shape italic
 mastera
 \shape default
- a następnie po powrocie do klastra bedą aktywne dwa urządzenia 
+ a następnie po powrocie do klastra będą aktywne dwa urządzenia 
 \shape italic
 master
 \shape default
@@ -1595,16 +1485,6 @@ name "tab:Lista-zdarzeń-sterujących"
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Przeniesc to do rozdzialu z architektura?
 \end_layout
 
 \end_inset
@@ -1711,7 +1591,7 @@ WorkInProgress
 
 \begin_layout Plain Layout
 \align left
-Stan zadania w trakcie trwania obliczeń, przechowujący częsciowe wyniki
+Stan zadania w trakcie trwania obliczeń, przechowujący częściowe wyniki
  zadania.
 \end_layout
 
@@ -1869,17 +1749,6 @@ name "fig:Przejścia-pomiędzy-stanami"
 \end_inset
 
 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-zastanowic sie czy z started nie mozna przejsc do completed i czy z timeout
- i failed powinno byc przejscie do started
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -1894,16 +1763,6 @@ zastanowic sie czy z started nie mozna przejsc do completed i czy z timeout
 
 \begin_layout Subsection*
 Dystrybucja 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Przeniesc to do rozdzialu z architektura?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1914,7 +1773,7 @@ Do łatwej dystrybucji platformy pomiędzy różnymi urządzeniami wykorzystano
 
 \begin_layout Standard
 Akka Microkernel oraz sbt-native-packager dostarczają mechanizmu archiwizowania
- dzięki któremu można udostępniać aplikację jako pojedyńczy plik bez potrzeby
+ dzięki któremu można udostępniać aplikację jako pojedynczy plik bez potrzeby
  uruchamiania lub instalowania dodatkowych aplikacji, dostarczania zależności
  lub ręcznego tworzenia skryptów startowych.
  Pozwalają również na wystartowanie systemu aktorowego używając klasy z
@@ -1994,7 +1853,7 @@ key "41"
 \end_layout
 
 \begin_layout Standard
-Kolejnymi argumentami przemawiającymi na korzysć tej technologii są łatwa
+Kolejnymi argumentami przemawiającymi na korzyść tej technologii są łatwa
  dostępność dokumentacji oraz integracja z innymi technologiami wykorzystanymi
  w niniejszej pracy.
 \end_layout

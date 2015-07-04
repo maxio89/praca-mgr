@@ -118,12 +118,12 @@ h programowanie równoległe, jak na przykład języki funkcyjne takie jak Scala
 \end_layout
 
 \begin_layout Section
-Model architektur równoleglych Flynna
+Model architektur równoległych Flynna
 \end_layout
 
 \begin_layout Standard
 W latach 60-tych Michael Flynn sklasyfikował architektury komputerowe w
- czterech kategoriach biorąc pod uwagę ilość intrukcji oraz ilość strumieni
+ czterech kategoriach biorąc pod uwagę ilość instrukcji oraz ilość strumieni
  danych przetwarzanych przez procesory.
  Poniżej opisano je w skrócie oraz pokazano schematy poglądowe.
 \end_layout
@@ -445,8 +445,10 @@ key "61"
 \end_inset
 
  rozważono ponadto równoległość na różnych poziomach abstrakcji, takich
- jak instrukcje (Instruction-Level Parallelism), dane (Data-Level Parallelism)
- oraz wątki (Thread-Level Parallelism).
+ jak instrukcje (ang.
+ Instruction-Level Parallelism), dane (ang.
+ Data-Level Parallelism) oraz wątki (ang.
+ Thread-Level Parallelism).
 \end_layout
 
 \begin_layout Section
@@ -454,7 +456,7 @@ Modele programowania równoległego
 \end_layout
 
 \begin_layout Standard
-Poniższy rozdzial zawiera wstęp do kilku modeli programowania równoległego
+Poniższy rozdział zawiera wstęp do kilku modeli programowania równoległego
  opartych na architekturze MIMD.
  Modele te istnieją jako abstrakcja od fizycznej architektury sprzętowej,
  co oznacza, że w niektórych przypadkach mogą być zaimplementowane na różnych
@@ -493,7 +495,7 @@ MPMD (ang.
 \begin_layout Standard
 Kolejny model programowania równoległego, który może mieć szersze zastosowanie
  aniżeli SPMD.
- Wiele niezależnych procesorów wykonuje równolegle conajmniej dwa niezależne
+ Wiele niezależnych procesorów wykonuje równolegle co najmniej dwa niezależne
  programy.
 \end_layout
 
@@ -523,7 +525,7 @@ Procesy współdzielą jakiś obszar pamięci przechowujący dane, które odczyt
  lock) lub bariery pamięci zapewniające poprawność wykonywania operacji
  przy zachowaniu spójności danych.
  W związku z wymienionymi problemami programy korzystające z pamięci współdzielo
-nej mogą być niederministyczne.
+nej mogą być niedeterministyczne.
 \end_layout
 
 \begin_layout Subsection*
@@ -552,8 +554,8 @@ Każdy proces posiada swoją własną przestrzeń pamięci, co oznacza, że nie
 \end_layout
 
 \begin_layout Standard
-Poniżej wymieniono kilka innych modeli programowania równoległego z uwględnienie
-m tego czy korzystają one z pamięci współdzielonej lub nie.
+Poniżej wymieniono kilka innych modeli programowania równoległego z uwzględnieni
+em tego czy korzystają one z pamięci współdzielonej lub nie.
 \end_layout
 
 \begin_layout Subsection*
@@ -694,7 +696,7 @@ STM (ang.
 
 \begin_layout Standard
 Wprowadza pojęcie atomicznych transakcji.
- Każdy dostęp do pamięci wpółdzielonej objęty jest transakcją, której idea
+ Każdy dostęp do pamięci współdzielonej objęty jest transakcją, której idea
  jest podobna do transakcji bazodanowych.
  Jest to alternatywa do blokowaniu dostępu do pamięci poprzez synchronizację.
  Transakcja obejmuje serię odczytów i zapisów do pamięci współdzielonej
@@ -725,7 +727,7 @@ key "69,70"
 \end_layout
 
 \begin_layout Standard
-W literaturze można znaleść jeszcze wiele innych modeli programowania równoległe
+W literaturze można znaleźć jeszcze wiele innych modeli programowania równoległe
 go wykorzystujących podobne koncepcje jak te opisane powyżej, jak również
  wprowadzające zupełnie inne podejścia.
  Ostatnim modelem, który zostanie opisany jest Master/Slave ze względu na
@@ -798,24 +800,11 @@ key "14"
 
 \begin_layout Section
 Istniejące rozwiązania
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Rozdzialy wymagaja wstepu, np.
- 2.3.
- - powinien napisac Pan dwa zdania tak zeby sie kleil tekst - poprzedni
- rozdzial mowil o modelach a tu mowi Pan o implementacjach...
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
 Dla większości modeli programowania równoległego wymienionych w poprzednim
- rozdziale można znaleść istniejące implementacje, niektóre z nich są komercyjne
+ rozdziale można znaleźć istniejące implementacje, niektóre z nich są komercyjne
  ale zdarzają się także takie o otwartym kodzie źródłowym.
  Poniżej zamieszczono krótką charakterystykę wybranych technologii.
 \end_layout
@@ -1062,7 +1051,7 @@ Scala i Akka
 
 \begin_layout Standard
 Technologiom Scala i Akka został poświęcony osobny rozdział, ze względu
- na wykorzystanie ich w części praktyczej niniejszej pracy.
+ na wykorzystanie ich w części praktycznej niniejszej pracy.
  Scala posiada wsparcie dla dwóch modeli programowania równoległego takich
  jak STM oraz Actor Model, który został wykorzystany dzięki użyciu frameworka
  Akka.
@@ -1072,16 +1061,6 @@ Technologiom Scala i Akka został poświęcony osobny rozdział, ze względu
 
 \begin_layout Subsection*
 Scala 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-start
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1106,8 +1085,8 @@ key "42"
  Wprowadza również wiele innowacji oraz ciekawych rozwiązań do konstrukcji
  języka jak np.
  case classes, currying, zagnieżdżanie funkcji, DSL, słowo kluczowe lazy
- lub trait, konsktrukcja podobna do interfejsu z języka Java ale mogąca
- posiadać częściową implementację.
+ lub trait, konstrukcja podobna do interfejsu z języka Java ale mogąca posiadać
+ częściową implementację.
  Scala preferuje obiekty niemutowalne.
  Obsługuje również funkcje wyższego rzędu oraz pozwala zwięźle definiować
  funkcje anonimowe, kładzie również duży nacisk na skalowalność.
@@ -1134,11 +1113,11 @@ Akka
 Jednym z kluczowych frameworków wykorzystanych w niniejszej pracy jest Akka.
  Akka jest projektem Open-source na licencji Apache 2 powstałym w roku 2009.
  Posiada wersję przeznaczoną dla języka Java, jak również dla języka Scala.
- Stał się częścią implemetacji języka Scala od wersji 2.10.
+ Stał się częścią implementacji języka Scala od wersji 2.10.
  Projekt Akka pomimo stosunkowo niedługiej obecności na rynku jest w pełni
  gotowy do zastosowań produkcyjnych.
  Cechuje się obecnością wielu interesujących z punktu widzenia niniejszej
- pracy rozszerzeń, które zostały opisane w jednym z następnych podrodziałów,
+ pracy rozszerzeń, które zostały opisane w jednym z następnych podrozdziałów,
  wyczerpującej dokumentacji oraz dużej i aktywnej społeczności rozwijającej
  ten produkt, a także wsparciem komercyjnych firm.
  Akka używa modelu aktorowego aby zwiększyć poziom abstrakcji i oddzielić
@@ -1264,7 +1243,7 @@ key "29"
 \end_layout
 
 \begin_layout Standard
-Zastosowania projektu Akka są bardzo szerokie, można je odnaleść w następujących
+Zastosowania projektu Akka są bardzo szerokie, można je odnaleźć w następujących
  dziedzinach:
 \end_layout
 
@@ -1399,7 +1378,7 @@ Protokół Gossip wspomniany powyżej pozwala rozpropagować stan klastra do
 \end_layout
 
 \begin_layout Standard
-Czlonkostwo w klastrze jest rozpoczynane komendą 
+Członkostwo w klastrze jest rozpoczynane komendą 
 \shape italic
 join
 \shape default
@@ -1427,7 +1406,7 @@ lne, tzn.
  przez istniejących członków, co ułatwia implementację monitoringu stanu
  klastra.
  Więcej szczegółów na temat idei członkostwa w klastrze oraz dostępnych
- stanów węzłów można znaleść w pozycjach 
+ stanów węzłów można znaleźć w pozycjach 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "31,56"

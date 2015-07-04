@@ -83,16 +83,6 @@ name "cha:wprowadzenie"
 
 \begin_layout Section*
 Motywacja
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Zbyt dlugie zdania, brak przecinkow
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -174,31 +164,10 @@ key "91"
  na tworzenie społeczności wspierających oraz testujących technologie o
  otwartym kodzie źródłowym.
  
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Dodac odnosniki do BigData, IoT, SoC i jakis ksiazek zwiazanych z architekturami
- rownoleglymi lub modelami programowania
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section*
 Cel pracy 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Użyć czasu przeszłego? Raczej przeszly albo terazniejszy
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -239,18 +208,6 @@ Ostatnim celem jest przetestowanie opracowanego rozwiązania poprzez implementac
  Zidentyfikowano również możliwości zastosowań, jak również perspektywy
  dalszego rozwoju powstałej platformy.
  
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Czy warto pisać tutaj jakie technologie zostały wykorzystane skoro piszemy
- to na samym końcu, czy na tym etapie jeszcze nie wiemy nic o technologiach?
- O Scali i Akkce moge wspomniec.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section*
@@ -299,30 +256,6 @@ Kolejny rozdział zawiera opis możliwości zastosowania przygotowanego rozwiąz
 \begin_layout Standard
 Ostatni rozdział podsumowuje niniejszą pracę czyli przedstawia wyciągnięte
  wnioski oraz wskazanie kierunków dalszego rozwoju przygotowanej platformy.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-z uwglednieniem .
- wyniki testow wydajnosc i skalowalnosc rozwiazanie poczatkowych zalozen
- 
-\end_layout
-
-\begin_layout Plain Layout
-Rozważania na temat obu tych problemów..
-\end_layout
-
-\begin_layout Plain Layout
-Rozdział numer cztery został w całości poświecony problemowi..
-\end_layout
-
-\begin_layout Plain Layout
-Zostal przedstawiony...
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_body

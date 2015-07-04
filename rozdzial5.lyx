@@ -105,16 +105,6 @@ name "cha:mozliwosci"
 \end_inset
 
 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-algorytm ewolucyjny zamiast genetycznego
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -183,7 +173,7 @@ key "12"
 \end_inset
 
 .
- Dokładny opis implementacji algorytmów ewolucyjnych można znaleść w pozycji
+ Dokładny opis implementacji algorytmów ewolucyjnych można znaleźć w pozycji
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -193,16 +183,6 @@ key "13"
 
 .
  
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-warto sie odwolywac do starszych pozycji?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection*
@@ -238,12 +218,12 @@ Krzyżowanie - tworzenie osobników potomnych w trakcie trwania ewolucji na
 
 \begin_layout Itemize
 Mutacja - modyfikacja osobnika zawierająca element losowości, mająca na
- celu próbę ekploracji nowych obszarów rozwiązań.
+ celu próbę eksploracji nowych obszarów rozwiązań.
 \end_layout
 
 \begin_layout Itemize
 Funkcja przystosowania (ang.
- fitness) - zwana też funckją celu, określa jakość danego rozwiązania.
+ fitness) - zwana też funkcją celu, określa jakość danego rozwiązania.
 \end_layout
 
 \begin_layout Itemize
@@ -325,13 +305,13 @@ Zastosowanie
 Algorytmy ewolucyjne sprawdzają się tam gdzie nie jest dobrze znana przestrzeń
  rozwiązań ale został określony sposób oceny jakości rozwiązania.
  Znajdują one zastosowanie przy rozwiązywaniu problemów NP, np.
- problemu komiwojażera w którym trzeba znaleść najkrótszą drogę łączącą
- wszystkie miasta tak, aby odwiedzić każde miasto conajmniej raz.
+ problemu komiwojażera w którym trzeba znaleźć najkrótszą drogę łączącą
+ wszystkie miasta tak, aby odwiedzić każde miasto co najmniej raz.
  Innymi zastosowaniami mogą być choćby poszukiwania ekstremów funkcji, których
  nie da się obliczyć analitycznie lub przeszukiwanie dużych przestrzeni
  rozwiązań jak np.
  w przypadku problemu grupowania.
- Alborytmy ewolucyjne są mniej zależne od wstępnej inicjalizacji zadania
+ Algorytmy ewolucyjne są mniej zależne od wstępnej inicjalizacji zadania
  oraz mniej skłonne do znajdywania rozwiązań lokalnych zamiast optymalnych
  
 \begin_inset CommandInset citation
@@ -361,7 +341,7 @@ Jest to odmiana algorytmów ewolucyjnych przystosowana do obliczeń równoległy
  Istotna jest tutaj topologia połączeń pomiędzy wyspami pozwalająca na wymianę
  osobników, metoda selekcji migrujących osobników, ich wielkość oraz odstęp
  pomiędzy kolejnymi migracjami.
- Badania różnych parametrów tych zjawis można znaleźć m.in.
+ Badania różnych parametrów tych zjawisk można znaleźć m.in.
  w pracy 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -377,17 +357,17 @@ Problemy benchmarkowe
 \end_layout
 
 \begin_layout Standard
-Algorytmy ewolucyjne ze wględu na kilka ich cech, m.in.
+Algorytmy ewolucyjne ze względu na kilka ich cech, m.in.
  możliwość znalezienia wielu optymalnych rozwiązań są często wykorzystywane
  do optymalizacji wielomodalnej.
 \end_layout
 
 \begin_layout Standard
-W problemach wielomodalnych zdarza się, że funkcja celu nie uwzglednia wszystkic
+W problemach wielomodalnych zdarza się, że funkcja celu nie uwzględnia wszystkic
 h elementów mających wpływ na jakość rozwiązania.
  Spowodowane jest to zazwyczaj pewnymi uproszczeniami, które trzeba przyjąć
- implementujac model algorytmów ewolucyjnych oraz istnieniem cech niemierzalnych.
- Dlatego istotnym jest, aby algorytm optymalizacyjny był w stanie znaleść
+ implementując model algorytmów ewolucyjnych oraz istnieniem cech niemierzalnych.
+ Dlatego istotnym jest, aby algorytm optymalizacyjny był w stanie znaleźć
  wiele równie dobrych rozwiązań.
  Odbywa się to dzięki wprowadzeniu czynnika losowego, który pozwala utrzymywać
  różnorodność populacji i zapobiega znajdywaniu rozwiązań optymalnych lokalnie
@@ -428,7 +408,7 @@ Algorytmy ewolucyjne opisane w poprzednim podrozdziale zostały wykorzystane
 
 \begin_layout Standard
 Funkcja Rastrigina jest funkcją niewypukłą.
- Ze wględu na to, że posiada wiele minimów lokalnych oraz jedno globalne
+ Ze względu na to, że posiada wiele minimów lokalnych oraz jedno globalne
  dla 
 \begin_inset Formula $x=0$
 \end_inset
@@ -439,7 +419,7 @@ Funkcja Rastrigina jest funkcją niewypukłą.
 
  bywa trudna w optymalizacji, ponieważ algorytmy optymalizacyjne mogą utknąć
  w którymś z lokalnych minimów tracąc szanse na znalezienie minimum globalnego.
- Funckja ta często znajduje zatem zastosowanie jako funkcja testująca algorytmy
+ Funkcja ta często znajduje zatem zastosowanie jako funkcja testująca algorytmy
  optymalizacyjne.
  Została ona również użyta jako problem testowy w niniejszej implementacji.
 \end_layout
@@ -523,7 +503,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Wykres funckji Rastrigina 3D 
+Wykres funkcji Rastrigina 3D 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "24"
@@ -602,30 +582,6 @@ name "fig:Wykres-funkcji-Rastrigina-2D"
 
 \begin_layout Section
 Ewolucyjna optymalizacja na platformie 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Jaki tytuł? Opisac jak za pomoca platformy zaimplementowalem ewolucje
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection*
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Czy przeniesc to do rozdzialu 4 i jakos rozdzielic na dwa podrozdzialy,
- tutaj zostawic tylko screeny aplikacji?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -906,16 +862,6 @@ Migration factor
 \begin_layout Plain Layout
 \align left
 Procent migrującej populacji.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Dodac info o crossover param
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -1051,16 +997,6 @@ name "fig:Realizacja-zadania"
 \end_inset
 
  
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-lepsza rozdzielczosc
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -1075,18 +1011,6 @@ lepsza rozdzielczosc
 
 \begin_layout Section
 Wyniki testów 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Jakie wykresy, co jeszcze procz czasow wykonania zadan dla roznych ustawien
- zadania oraz ilosci urzadzen? Wstawic info o prawie amdahla oraz wzory
- przyspieszenia i skutecznosci
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1097,8 +1021,8 @@ Do przeprowadzenia testów posłużono się czterema urządzeniami Raspberry
 \end_layout
 
 \begin_layout Standard
-Ze wględu na ograniczoną precyzję obliczeń nie udało się uzyskać wyniku
- równego poszukiwanemu minumum, czyli 
+Ze względu na ograniczoną precyzję obliczeń nie udało się uzyskać wyniku
+ równego poszukiwanemu minimum, czyli 
 \begin_inset Formula $f(x)=0$
 \end_inset
 
@@ -1836,7 +1760,7 @@ Dzięki zastosowaniu migracji, gdy do klastra zostaje włączone nowe urządzeni
 \begin_layout Standard
 Warto dodać, że podczas przeprowadzania testów w klastrze pracowały dwa
  typy urządzeń Raspberry Pi, model B oraz B plus, który jest nowszy od modelu
- B oraz posiada większą ilość zaistalowanej pamięci RAM 
+ B oraz posiada większą ilość zainstalowanej pamięci RAM 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "26"
@@ -1889,7 +1813,7 @@ reference "fig:Całkowity-czas-wykonania-1-10-3"
 \end_layout
 
 \begin_layout Standard
-Poniżej przedstawiono wzory na skuteczność oraz przyśpiesznie, według których
+Poniżej przedstawiono wzory na skuteczność oraz przyśpieszenie, według których
  oceniono skalowalność powstałej platformy w kontekście pracy na wielu urządzeni
 ach.
 \end_layout
@@ -1957,7 +1881,7 @@ Zgodnie z prawem Amdahla skuteczność powinna wynosić między
 \begin_inset Formula $1$
 \end_inset
 
-, czyli dla dwóch urządzeń nie powinniśmy uzyskać więszkego przyśpieszenia
+, czyli dla dwóch urządzeń nie powinniśmy uzyskać większego przyśpieszenia
  niż dwukrotne.
  Wyjątkiem są przypadki gdy brakuje pamięci operacyjnej i istnieje potrzeba
  użycia pamięci 
@@ -2046,65 +1970,6 @@ key "61"
 
 , lecz można tłumaczyć go faktem, iż w przypadku z tylko jednym urządzeniem
  komunikacja nie była obecna.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Kolejnymi dwoma parametrami konfigurującymi zadanie są współczynnik migracji
- oraz częstość jej występowania.
-\end_layout
-
-\begin_layout Plain Layout
-Mają one bezpośredni wpływ na skalowalność platformy.
- Współczynnik migracji podawany jest w zakresie 
-\begin_inset Formula $0..100$
-\end_inset
-
- i oznacza procent migrującej populacji.
- Natomiast parametr określający częstość występowania migracji wyznacza
- co ile cykli następuje migracja.
- Jego wartość może wynosić zero, wtedy migracja nie występuje lub jakiś
- ułamek maksymalnej liczby cykli.
-\end_layout
-
-\begin_layout Plain Layout
-Bez występowania migracji osobników pomiędzy wyspami (węzłami klastra) mogłaby
- zaistnieć sytuacja, gdy pomimo pracy kilku urządzeń w klastrze każde z
- nich uzyskałoby podobne wyniki w zbliżonym czasie, co oznaczałoby, że równie
- dobrze obliczenia mogłyby być przeprowadzane tylko na jednym urządzeniu,
- bo wzrost liczby urządzeń nie wpłynął znacząco na szybkość znajdywanych
- wyników.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-Tutaj chciałbym pokazać jaki jest wpływ migracji oraz jej parametrów na
- wyniki obliczeń porównując wyniki z poprzedniego podrozdziału uzyskane
- dla jednego urządzenia..
-\end_layout
-
-\begin_layout Plain Layout
-Wykres ...
- Na wykresie przedstawiono innym kolorem różną częstość migracji dla 10%
- migrującej populacji.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2221,23 +2086,6 @@ W trakcie obciążenia procesor był wykorzystywany prawie w stu procentach,
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-Wydajność mastera.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -2268,16 +2116,6 @@ name "fig:Wykorzystanie-pamięci-RAM"
 \end_inset
 
  
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-% zamiast MB
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -2292,16 +2130,6 @@ status open
 
 \begin_layout Subsection*
 Narzut komunikacji
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-dodac wykres
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
