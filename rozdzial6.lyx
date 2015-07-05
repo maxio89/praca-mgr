@@ -128,7 +128,15 @@ Technologia Akka okazała się kluczowa z punktu widzenia niniejszej pracy
  i idealnie wkomponowała się w wybraną tematykę.
  Dzięki rozwiązaniom wysokiego poziomu ułatwiła ona tworzenie nowych komponentów
  oraz dostarczyła pewnych strategii oraz wzorców zwiększając tym samym przejrzys
-tość jak i możliwości dalszego rozwoju przygotowanego rozwiązania.
+tość jak
+\begin_inset space ~
+\end_inset
+
+i
+\begin_inset space ~
+\end_inset
+
+możliwości dalszego rozwoju przygotowanego rozwiązania.
 \end_layout
 
 \begin_layout Standard
@@ -136,9 +144,13 @@ Niniejsza praca pozwoliła również autorowi na zapoznanie się z tematyką
  problemów występujących w klastrach oraz rozwiązaniami stosowanymi w celu
  zrównoleglenia lub rozproszenia obliczeń.
  Kolejnymi ciekawymi aspektami niniejszej pracy, które pozwoliły na eksplorację
- nowych obszarów wiedzy z punktu widzenia autora jest względnie nowa dziedzina
- w programowaniu, a mianowicie programowanie reaktywne i technologie z platformy
- Typesafe w połączeniu z urządzeniami SoC oraz Cluster Computing.
+ nowych obszarów wiedzy z
+\begin_inset space ~
+\end_inset
+
+punktu widzenia autora jest względnie nowa dziedzina w programowaniu, a
+ mianowicie programowanie reaktywne i technologie z platformy Typesafe w
+ połączeniu z urządzeniami SoC oraz Cluster Computing.
 \end_layout
 
 \begin_layout Standard

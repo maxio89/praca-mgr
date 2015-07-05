@@ -120,7 +120,7 @@ workerów
 .
  Dzięki wykorzystaniu urządzeń SoC, które pobierają stosunkowo niewielką
  ilość prądu, zestawienie platformy jest możliwe w warunkach, gdzie dostęp
- do energii elektrycznej jest mocno ograniczony i wykorzystanie np.
+ do energii elektrycznej jest mocno ograniczony poprzez wykorzystanie np.
  zasilania bateryjnego.
 \end_layout
 
@@ -276,7 +276,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Schemat blokowy ewolucji.
+Schemat blokowy algorytmu ewolucji.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -303,12 +303,16 @@ Zastosowanie
 
 \begin_layout Standard
 Algorytmy ewolucyjne sprawdzają się tam gdzie nie jest dobrze znana przestrzeń
- rozwiązań ale został określony sposób oceny jakości rozwiązania.
+ rozwiązań ale
+\begin_inset space ~
+\end_inset
+
+został określony sposób oceny jakości rozwiązania.
  Znajdują one zastosowanie przy rozwiązywaniu problemów NP, np.
  problemu komiwojażera w którym trzeba znaleźć najkrótszą drogę łączącą
  wszystkie miasta tak, aby odwiedzić każde miasto co najmniej raz.
- Innymi zastosowaniami mogą być choćby poszukiwania ekstremów funkcji, których
- nie da się obliczyć analitycznie lub przeszukiwanie dużych przestrzeni
+ Innymi zastosowaniami mogą być chociażby poszukiwania ekstremów funkcji,
+ których nie da się obliczyć analitycznie lub przeszukiwanie dużych przestrzeni
  rozwiązań jak np.
  w przypadku problemu grupowania.
  Algorytmy ewolucyjne są mniej zależne od wstępnej inicjalizacji zadania
@@ -334,7 +338,11 @@ Jest to odmiana algorytmów ewolucyjnych przystosowana do obliczeń równoległy
  Zamiast jednej dużej populacji rozważamy tutaj kilka podpopulacji zwanych
  wyspami.
  Każda wyspa może być traktowana jako osobna populacja, ponieważ ewolucja
- na niej zachodzi w izolacji od pozostałych wysp.
+ na niej zachodzi w izolacji od
+\begin_inset space ~
+\end_inset
+
+pozostałych wysp.
  Co pewien okres populacje znajdujące się na wyspach wymieniają się między
  sobą pewną ilością osobników w procesie migracji.
  Pozwala to przyśpieszyć znajdywanie rozwiązania.
@@ -935,7 +943,7 @@ reference "fig:Realizacja-zadania"
  zaprezentowano wygląd interfejsu użytkownika pozwalającego na podgląd wyników
  rozpoczętych zadań oraz rozpoczęcie nowych.
  Widoczne jest tutaj każde z urządzeń wykonujących obliczenia w klastrze
- i są one identyfikowane po adresie IP oraz ID 
+ identyfikowane po adresie IP oraz ID 
 \shape italic
 workera
 \shape default
@@ -953,9 +961,16 @@ key "22"
 \end_inset
 
 .
- Dla każdego zadania rysowany jest wykres przedstawiający wartość funkcji
- Rastrigina zmieniającą się w trakcie trwania ewolucji, czyli w kolejnych
- cyklach algorytmu.
+ Dla
+\begin_inset space ~
+\end_inset
+
+każdego zadania rysowany jest wykres przedstawiający wartość funkcji Rastrigina
+ zmieniającą się w
+\begin_inset space ~
+\end_inset
+
+trakcie trwania ewolucji, czyli w kolejnych cyklach algorytmu.
  Wykres narysowano za pomocą biblioteki D3.js 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1032,7 +1047,11 @@ Ze względu na ograniczoną precyzję obliczeń nie udało się uzyskać wyniku
 \end_inset
 
 .
- Ta precyzja odpowiada typowi Double w języku Scala, czyli podwójna precyzja
+ Ta
+\begin_inset space ~
+\end_inset
+
+precyzja odpowiada typowi Double w języku Scala, czyli podwójna precyzja
  zapisana na 64 bitach 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1047,7 +1066,7 @@ key "8"
 Na poniższych wykresach przedstawiono zmieniającą się wartość funkcji Rastrigina
  najlepszego osobnika w populacji w trakcie trwania ewolucji oraz wpływ
  różnych ustawień początkowych zadania na uzyskiwane wyniki.
- Rozważono tutaj zarówno problem dla jednego urządzenia jak również wielu
+ Rozważono tutaj zarówno problem dla jednego urządzenia, jak również wielu
  urządzeń pracujących równolegle.
  Dla zwiększenia czytelności wykresów i pokazania szybkości uzyskiwania
  zbieżności algorytmu w większości przypadków użyto skali logarytmicznej.
@@ -1060,7 +1079,11 @@ Na poniższych wykresach przedstawiono zmieniającą się wartość funkcji Rast
 \end_inset
 
 .
- Rozważono różne wielkości populacji, wymiary funkcji oraz ilości urządzeń.
+ Rozważono różne wielkości populacji, wymiary funkcji oraz
+\begin_inset space ~
+\end_inset
+
+ilości urządzeń.
  Zbadano również wpływ migracji, poprzez zmianę współczynnika migracji określają
 cego ilość migrującej populacji jak i częstość jej występowania.
  Częstotliwość wysyłania wyników częściowych odpowiada częstotliwości występowan
@@ -2807,8 +2830,11 @@ reference "fig:Całkowity-czas-wykonania-1-5"
  Duża ilość migrujących osobników ma wpływ na brak zróżnicowania populacji
  na wyspach, co może skutkować małą zbieżnością algorytmu.
  Wpływ osobników migrujących do sąsiedniej wyspy jest przez to bardzo duży,
- co obrazują podobne wykresy wartości funkcji zmieniającej się w trakcie
- trwania ewolucji na obu urządzeniach.
+ co obrazują podobne wykresy wartości funkcji zmieniającej się w
+\begin_inset space ~
+\end_inset
+
+trakcie trwania ewolucji na obu urządzeniach.
 \end_layout
 
 \begin_layout Standard
@@ -3149,9 +3175,12 @@ o i wynoszącym
 \end_inset
 
 .
- Pierwszy eksperyment (zaznaczony odcieniami czerwonego), gdzie w ewolucji
- biorą udział dwa urządzenia uzyskał gorsze wyniki aniżeli kolejny (zaznaczony
- odcieniami niebieskiego), gdzie udział biorą cztery urządzenia.
+ Pierwszy eksperyment (zaznaczony odcieniami czerwonego), gdzie w
+\begin_inset space ~
+\end_inset
+
+ewolucji biorą udział dwa urządzenia uzyskał gorsze wyniki aniżeli kolejny
+ (zaznaczony odcieniami niebieskiego), w którym udział biorą cztery urządzenia.
  Sytuacja ta pokazuje pozytywny wpływ większej ilości urządzeń na ewolucję.
 \end_layout
 
@@ -4556,8 +4585,8 @@ name "fig:Całkowity-czas-wykonania-1-10"
 \begin_layout Standard
 Podsumowując, zauważono, że większy współczynnik mutacji przyśpiesza znajdywanie
  nowych rozwiązań oraz pomaga uzyskać lepszą zbieżność algorytmu.
- Szybkość znajdywania nowych rozwiązań przyśpiesza wraz ze wzrostem wielkości
- populacji.
+ Szybkość znajdywania nowych rozwiązań przyśpiesza również wraz ze wzrostem
+ wielkości populacji.
  
 \end_layout
 
@@ -4592,8 +4621,12 @@ key "26"
 \shape italic
 master
 \shape default
- było zazwyczaj trochę wolniejsze od pozostałych w związku z większym obciążenie
-m jakim była potrzeba uruchomienia dodatkowych aktorów.
+ było zazwyczaj trochę wolniejsze od
+\begin_inset space ~
+\end_inset
+
+pozostałych w związku z większym obciążeniem jakim była potrzeba uruchomienia
+ dodatkowych aktorów.
 \end_layout
 
 \begin_layout Subsection*
@@ -4625,7 +4658,7 @@ reference "fig:Całkowity-czas-wykonania-1-10-3"
 
  pokazano czasy wykonania poszczególnych wariantów.
  Na drugim wykresie zwiększono wielkość problemu poprzez podwojenie wymiaru
- funkcji Rastrigina, przez co uzyskano większe przyśpieszenie.
+ funkcji Rastrigina, przez co uzyskano jeszcze większe przyśpieszenie.
  
 \end_layout
 
@@ -4659,7 +4692,11 @@ gdzie
 \begin_inset Formula $T_{p}$
 \end_inset
 
- w wersji równoległej.
+ w
+\begin_inset space ~
+\end_inset
+
+wersji równoległej.
 \end_layout
 
 \begin_layout Standard
@@ -4736,7 +4773,11 @@ Dla pierwszego przypadku i problemu dwóch urządzeń oraz wymiaru funkcji
 \begin_inset Formula $2,73$
 \end_inset
 
-, a skuteczność 
+, a
+\begin_inset space ~
+\end_inset
+
+skuteczność 
 \begin_inset Formula $0,68$
 \end_inset
 
@@ -4763,7 +4804,11 @@ reference "fig:Całkowity-czas-wykonania-1-10-3"
 \begin_inset Formula $2,33$
 \end_inset
 
- a skuteczność 
+ a
+\begin_inset space ~
+\end_inset
+
+skuteczność 
 \begin_inset Formula $1,16$
 \end_inset
 
@@ -5866,8 +5911,8 @@ reference "fig:Całkowity-czas-wykonania-1-10-3-1"
 
 \begin_layout Standard
 Częstotliwość migracji, która odpowiada również częstotliwości przesyłania
- wyników częściowych do klienta (podczas których wykonywane są zapisy do
- bazy danych) ma widoczny wpływ na czas trwania ewolucji.
+ wyników częściowych do klienta (podczas których wykonywane są również zapisy
+ do bazy danych) ma widoczny wpływ na czas trwania ewolucji.
  Wielkość migrującej populacji ma natomiast nieznaczny wpływ na czas ewolucji,
  ponieważ migracja odbywa się asynchronicznie i zazwyczaj odbywa się stosunkowo
  rzadko i w małych ilościach więc narzut przesyłania takich wiadomości jest

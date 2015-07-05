@@ -114,7 +114,7 @@ j pracy.
  W poniższym rozdziale opisano przygotowaną platformę pozwalającą na zestawienie
  klastra obliczeniowego wykorzystującego urządzenia SoC oraz technologie
  Scala i Akka.
- Znalazł się tutaj m.in.
+ Znalazły się tutaj m.in.
  zarys początkowej koncepcji, szczegóły implementacyjne gotowego rozwiązania
  oraz opis wykorzystanych technologii.
  
@@ -264,11 +264,15 @@ mastera
 \begin_inset space ~
 \end_inset
 
-powinien być zaimplementowany w sposób aby obciążenie 
+powinien być zaimplementowany w sposób, aby obciążenie 
 \shape italic
 workerów
 \shape default
- było równomierne i powinien on wyeliminować sytuacje gdy 
+ było równomierne i
+\begin_inset space ~
+\end_inset
+
+powinien on wyeliminować sytuacje gdy 
 \shape italic
 worker
 \shape default
@@ -282,7 +286,7 @@ mastera
 \shape default
 , który następnie wysyła je klientowi.
  W przypadku długo trwających zadań przesyłane są wyniki częściowe co jakiś
- określony czas aby poinformować klienta o
+ określony czas, aby poinformować klienta o
 \begin_inset space ~
 \end_inset
 
@@ -291,7 +295,7 @@ postępie prac.
 
 \begin_layout Standard
 W trakcie trwania obliczeń częściowe wyniki co jakiś określony czas są zapisywan
-e w bazie danych, po to aby możliwe było ich odzyskanie w sytuacji awarii
+e w bazie danych po to, aby możliwe było ich odzyskanie w sytuacji awarii
  któregoś urządzenia.
 \end_layout
 
@@ -300,7 +304,7 @@ Interesującą kwestią jest wybór tego jakie dane wymagają persystencji oraz
  jak często powinna się ona odbywać, a także gdzie będzie przechowywany
  magazyn danych.
  Jeżeli podjęta zostanie decyzja, że na urządzeniu, które może ulec potencjalnej
- awarii, to będzie wymagana replikacja aby zapewnić bezpieczeństwo danych.
+ awarii, to będzie wymagana replikacja, aby zapewnić bezpieczeństwo danych.
 \end_layout
 
 \begin_layout Standard
@@ -483,7 +487,11 @@ workera
 \shape italic
 Distributed Publish Subscribe in Cluster 
 \shape default
-opisanego w jednym z poprzednich rozdziałów.
+opisanego w jednym z
+\begin_inset space ~
+\end_inset
+
+poprzednich rozdziałów.
  Co oznacza, że nie musi posiadać informacji o adresie IP klienta, ponieważ
  opublikowane wyniki trafią tylko do zainteresowanych odbiorców.
 \end_layout
@@ -618,7 +626,11 @@ key "14"
 
 \begin_layout Itemize
 DistributedPubSubMediator, aktor ten zostaje uruchomiony na wszystkich węzłach
- klastra lub tylko na węzłach z wybraną rolą.
+ klastra lub
+\begin_inset space ~
+\end_inset
+
+tylko na węzłach z wybraną rolą.
  Zarządza rejestracją innych aktorów do wybranych kanałów komunikacji oraz
  replikuje tą wiedzę pośród inne instancje pracujące na pozostałych urządzeniach
  klastra tak, aby zachować spójność tych danych w obrębie klastra.
@@ -649,8 +661,11 @@ mastera
 \shape italic
 workerom
 \shape default
-, zarządzanie ich rejestracją, odbieranie wyników i przesyłanie ich do klienta,
- reagowanie w sytuacji awarii jednego z 
+, zarządzanie ich rejestracją, odbieranie wyników i przesyłanie ich do
+\begin_inset space ~
+\end_inset
+
+klienta, reagowanie w sytuacji awarii jednego z 
 \shape italic
 workerów
 \shape default
@@ -675,8 +690,11 @@ masterem
 \shape default
 .
  Zajmuje się on również procesem migracji, gdzie znowu jest wykorzystywany
- mechanizm publikowania w wybranym kanale dostarczony wraz z rozszerzeniem
- 
+ mechanizm publikowania w
+\begin_inset space ~
+\end_inset
+
+wybranym kanale dostarczony wraz z rozszerzeniem 
 \shape italic
 Distributed Publish Subscribe.
 \end_layout
@@ -711,7 +729,11 @@ masterem
 \shape italic
 Distributed Publish Subscribe
 \shape default
- oraz faktem bycia zarejestrowanym w wybranym kanale komunikacji.
+ oraz faktem bycia zarejestrowanym w
+\begin_inset space ~
+\end_inset
+
+wybranym kanale komunikacji.
 \end_layout
 
 \begin_layout Itemize
@@ -724,7 +746,11 @@ Metrics, aktor subskrybujący zdarzenia związane ze zmianą różnych metryk
 \begin_layout Itemize
 Monitor, aktor obserwujący zdarzenia związane z członkostwem w klastrze.
  Jeżeli jakiś węzeł dołącza do klastra lub go opuszcza taka informacja jest
- aktualizowana na warstwie widoku w aplikacji klienckiej.
+ aktualizowana na warstwie widoku w
+\begin_inset space ~
+\end_inset
+
+aplikacji klienckiej.
 \end_layout
 
 \begin_layout Standard
@@ -764,9 +790,12 @@ reference "fig:Protokół-Master/Worker."
 
 \end_inset
 
- przedstawiono dwa najważniejsze protokoły definiujące kolejność oraz rodzaje
- przesyłanych wiadomości podczas komunikacji na linii Frontend-Master-Worker-Wor
-kExecutor.
+ przedstawiono dwa najważniejsze protokoły definiujące kolejność oraz
+\begin_inset space ~
+\end_inset
+
+rodzaje przesyłanych wiadomości podczas komunikacji na linii Frontend-Master-Wor
+ker-WorkExecutor.
  Widoczni są tam również aktorzy biorący lub nie udział we wspomnianej komunikac
 ji.
 \end_layout
@@ -1001,7 +1030,11 @@ reference "fig:Protokół-Master/Worker."
  pokazano przepływ informacji podczas zlecania oraz realizacji zadania.
  Dla uproszczenia przedstawiono przypadek zadania zrealizowanego bez przesyłania
  częściowych wyników.
- W przypadku zadań trwających długo lub gdzie czas trwania nie jest z góry
+ W
+\begin_inset space ~
+\end_inset
+
+przypadku zadań trwających długo lub gdzie czas trwania nie jest z góry
  określony (tzw.
  
 \shape italic
@@ -1011,8 +1044,12 @@ long-running jobs)
 \shape italic
 WorkInProgress
 \shape default
-, który jest przesyłany cyklicznie w trakcie wykonywania zadania i zawiera
- jego częściowe wyniki, można go umiejscowić pomiędzy komunikatami 
+, który jest przesyłany cyklicznie w
+\begin_inset space ~
+\end_inset
+
+trakcie wykonywania zadania i zawiera jego częściowe wyniki, można go umiejscowi
+ć pomiędzy komunikatami 
 \shape italic
 Work
 \shape default
@@ -1388,8 +1425,8 @@ iem aktywnego
 \shape italic
 mastera
 \shape default
-, adresu IP wraz z portami, dostępność urządzenia oraz kilka metryk, m.in.
- zużycie CPU oraz pamięci RAM.
+, adresu IP wraz z portem, dostępności urządzenia oraz kilku metryk, m.in.
+ zużycia CPU oraz pamięci RAM.
 \end_layout
 
 \begin_layout Standard
@@ -1460,9 +1497,20 @@ master
 \shape default
 .
  Dzieje się tak dlatego, że w przypadku gdy urządzenie utraci kontakt z
- pozostałymi urządzeniami, nie może ono z pewnością stwierdzić czy to ono
- utraciło połączenie lub czy inne urządzenia uległy awarii więc zakłada,
- że jest jedynym pozostałym urządzeniem w klastrze.
+\begin_inset space ~
+\end_inset
+
+pozostałymi urządzeniami, nie może ono z pewnością stwierdzić czy to ono
+ utraciło połączenie lub
+\begin_inset space ~
+\end_inset
+
+czy
+\begin_inset space ~
+\end_inset
+
+inne urządzenia uległy awarii więc zakłada, że jest jedynym pozostałym urządzeni
+em w klastrze.
  
 \end_layout
 
@@ -1477,8 +1525,11 @@ mastera
 masterem
 \shape default
 .
- Do bazy danych persystowane są zserializowane zdarzenia zgodnie ze wzorcem
- Event Sourcing opisanym w pozycjach 
+ Do bazy danych persystowane są zserializowane zdarzenia zgodnie ze
+\begin_inset space ~
+\end_inset
+
+wzorcem Event Sourcing opisanym w pozycjach 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "18,19"
@@ -1821,10 +1872,14 @@ key "15,16"
 \begin_layout Standard
 Umożliwia to łatwą instalację oraz uruchomienie platformy na różnych urządzeniac
 h klastra.
- Do uruchomienia platformy na danym urządzeniu wystarczy aby posiadało ono
- zainstalowany system wraz z wirtualną maszyną Javy oraz archiwum z platformą,
- które po rozpakowaniu pozwala uruchomić odpowiednią aplikację za pomocą
- jednego skryptu wykonywalnego.
+ Do
+\begin_inset space ~
+\end_inset
+
+uruchomienia platformy na danym urządzeniu wystarczy aby posiadało ono zainstalo
+wany system wraz z wirtualną maszyną Javy oraz archiwum z platformą, które
+ po rozpakowaniu pozwala uruchomić odpowiednią aplikację za pomocą jednego
+ skryptu wykonywalnego.
  Żadne dodatkowe oprogramowanie nie jest wymagane.
 \end_layout
 
@@ -1866,7 +1921,11 @@ MongoDB
 
 \begin_layout Standard
 MongoDB jest bazą NoSQL opartą na dokumentach typu JSON, co pozwala na elastyczn
-ość oraz przejrzystość w przechowywaniu danych.
+ość oraz
+\begin_inset space ~
+\end_inset
+
+przejrzystość w przechowywaniu danych.
  Jest to technologia Open Source.
  Jako, że jest to baza NoSQL posiada ona elastyczny schemat danych.
  Wspiera replikację oraz sharding, a także map reduce.
@@ -1904,7 +1963,11 @@ Play Framework jest to technologia server-side, działająca zarówno z językie
  Integruje ona komponenty oraz API potrzebne do stworzenia aplikacji klienckiej
  opartej o wzorzec MVC.
  Bazuje on na lekkiej, bezstanowej architekturze, niskim zużyciu zasobów,
- wysokiej skalowalności oraz programowaniu reaktywnym.
+ wysokiej skalowalności oraz
+\begin_inset space ~
+\end_inset
+
+programowaniu reaktywnym.
  Do komunikacji wykorzystuje metody protokołu HTTP oraz pozwala na implementację
  serwisów w technologii REST.
  Play zapewnia również wsparcie dla technologii WebSocket wykorzystanej
