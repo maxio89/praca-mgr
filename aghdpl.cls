@@ -4,7 +4,7 @@
 %          
 % Author:  Marcin Szpyrka     (mszpyrka@agh.edu.pl)
 %          Grzegorz J. Nalepa (gjn@agh.edu.pl)
-%          AGH University of Science and Technology, Krak體, POLAND
+%          AGH University of Science and Technology, Krak贸w, POLAND
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -47,8 +47,8 @@
 % 
 % \pagestyle{fancy}
 
-\bibliographystyle{abbrv}
-
+% \bibliographystyle{abbrv}
+ 
 %------------------------------------------------------------------------------
 
 \newcommand{\titlepages}{%
@@ -90,7 +90,7 @@ im. Stanis\l{}awa Staszica w Krakowie}}}
 \begin{flushright}
 \begin{minipage}[!h]{12cm}
 \mbox{\large{\scshape \textbf{O\'SWIADCZENIE AUTORA PRACY}}}\\[3mm] 
-{\scshape O\'swiadczam, \'swiadomy odpowiedzialno\'sci karnej za po\'swiadczenie nieprawdy, \.ze niniejsz\k{a} prac\k{e} dyplomow\k{a} wykona\l{}em osobi\'scie i samodzielnie, i nie korzysta\l{}em ze \'zr\'ode\l{} innych ni\.z wymienione w pracy.}\\
+{\scshape O\'swiadczam, \'swiadomy odpowiedzialno\'sci karnej za po\'swiadczenie nieprawdy, \.ze niniejsz\k{a} prac\k{e} dyplomow\k{a} wykona\l{}em osobi\'scie i samodzielnie, i \.ze nie korzysta\l{}em ze \'zr\'ode\l{} innych ni\.z wymienione w pracy.}\\
 \end{minipage}
 
 \vspace{2cm}
@@ -136,8 +136,8 @@ University of Science and Technology in Krakow}}}
 
 \vspace*{15cm} \vfill
 \begin{flushright} 
-\begin{minipage}[!h]{8cm}
-{\Large \@acknowledgements}
+\begin{minipage}[!h]{9cm}
+{\Large \begin{flushright} \@acknowledgements \end{flushright}}
 \end{minipage}
 \end{flushright}
 
@@ -178,13 +178,13 @@ University of Science and Technology in Krakow}}}
 \flushbottom
 
 %---------------------------------------------------------------------------
-% Ustawienia parametr體 dla tytu丑w rozdzia丑w, podrozdzia丑w, itd.
+% Ustawienia parametr贸w dla tytu鲁贸w rozdzia鲁贸w, podrozdzia鲁贸w, itd.
 %---------------------------------------------------------------------------
 
 
 \titleformat{\chapter}[block]
 {\bfseries\LARGE}{\filright \LARGE \makebox[6.7mm][l]{\thechapter.}}{0ex}{}
-%odst阷y: lewy, g髍a, d蟪
+%odst锚py: lewy, g贸ra, d贸鲁
 \titlespacing{\chapter}{0pt}{17mm}{19mm}
 \titleformat{\section}[block]
 {\bfseries\Large}{\filright \Large\thesection. }{0ex}{}
@@ -197,7 +197,7 @@ University of Science and Technology in Krakow}}}
 \titlespacing{\subsubsection}{7mm}{3mm}{1.5mm}
 
 %---------------------------------------------------------------------------
-% Ustawienia parametr體 generowania spisu tre禼i i spisu rysunk體
+% Ustawienia parametr贸w generowania spisu tre露ci i spisu rysunk贸w
 %---------------------------------------------------------------------------
 
 \renewcommand{\cfttoctitlefont}{\bfseries\Large}

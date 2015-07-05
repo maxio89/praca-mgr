@@ -145,7 +145,14 @@ reference "fig:Schemat-SISD-."
 ).
  Wyniki wykonania instrukcji są deterministyczne.
  Wykorzystany w komputerach skalarnych oraz typu mainframe.
- Przykład klasycznej architektury von Neumanna.
+ Przykład klasycznej architektury von Neumanna 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "97"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -291,7 +298,8 @@ reference "fig:Schemat-MISD-."
 
 ).
  Model mający słabe zastosowanie komercyjne, mógłby zostać wykorzystany
- w przypadku potrzeby redundancji obliczeń.
+ w przypadku potrzeby redundancji obliczeń, czyli wielokrotnego wykonywania
+ tych samych obliczeń w celu minimalizacji błędów.
 \end_layout
 
 \begin_layout Standard
@@ -444,8 +452,11 @@ key "61"
 
 \end_inset
 
- rozważono ponadto równoległość na różnych poziomach abstrakcji, takich
- jak instrukcje (ang.
+ rozważono ponadto równoległość na
+\begin_inset space ~
+\end_inset
+
+różnych poziomach abstrakcji, takich jak instrukcje (ang.
  Instruction-Level Parallelism), dane (ang.
  Data-Level Parallelism) oraz wątki (ang.
  Thread-Level Parallelism).
@@ -459,8 +470,16 @@ Modele programowania równoległego
 Poniższy rozdział zawiera wstęp do kilku modeli programowania równoległego
  opartych na architekturze MIMD.
  Modele te istnieją jako abstrakcja od fizycznej architektury sprzętowej,
- co oznacza, że w niektórych przypadkach mogą być zaimplementowane na różnych
- architekturach sprzętowych.
+ co oznacza, że
+\begin_inset space ~
+\end_inset
+
+w
+\begin_inset space ~
+\end_inset
+
+niektórych przypadkach mogą być zaimplementowane na różnych architekturach
+ sprzętowych.
 \end_layout
 
 \begin_layout Subsection*
@@ -555,7 +574,11 @@ Każdy proces posiada swoją własną przestrzeń pamięci, co oznacza, że nie
 
 \begin_layout Standard
 Poniżej wymieniono kilka innych modeli programowania równoległego z uwzględnieni
-em tego czy korzystają one z pamięci współdzielonej lub nie.
+em tego czy
+\begin_inset space ~
+\end_inset
+
+korzystają one z pamięci współdzielonej lub nie.
 \end_layout
 
 \begin_layout Subsection*
@@ -588,7 +611,7 @@ W tym modelu procesy, zwane również zadaniami (ang.
  wysłania musi nastąpić odbiór wiadomości w innym zadaniu.
  Zadania mogą wykonywać się równolegle, mogą być również tworzone dynamicznie.
  Każde zadanie może wykonywać się na oddzielnym procesorze, może być również
- umieszczony na innej fizycznej maszynie.
+ umieszczone na innej fizycznej maszynie.
  Implementacją tego modelu jest standard MPI, który zostanie opisany później.
  Model ten wykorzystuje DM.
 \end_layout
@@ -651,8 +674,12 @@ W modelu Shared Memory jeżeli procesy operują na wspólnych danych utrudnienie
  Jeżeli jednak każdy proces posiada odizolowany stan, który nie może być
  mutowalny, to synchronizacja jest niepotrzebna lecz tracimy również możliwość
  współdzielenia stanu.
- Jednym z rozwiązań tych problemów jest wykorzystanie podejścia z języków
- funkcyjnych takich jak Scala lub Erlang, czyli niemutowalnych obiektów.
+ Jednym z
+\begin_inset space ~
+\end_inset
+
+rozwiązań tych problemów jest wykorzystanie podejścia z języków funkcyjnych
+ takich jak Scala lub Erlang, czyli niemutowalnych obiektów.
  Modelem wykorzystującym takie obiekty do przesyłania komunikatów jest model
  aktorowy wykorzystany m.in.
  we wspomnianych wyżej językach funkcyjnych oraz w wielu innych do zrównoleglani
@@ -701,14 +728,21 @@ Wprowadza pojęcie atomicznych transakcji.
  Jest to alternatywa do blokowaniu dostępu do pamięci poprzez synchronizację.
  Transakcja obejmuje serię odczytów i zapisów do pamięci współdzielonej
  a jej stan nie jest widoczny dla innych transakcji dopóki nie zostanie
- ona zakończona i zatwierdzona (ang.
+ ona zakończona i
+\begin_inset space ~
+\end_inset
+
+zatwierdzona (ang.
  commit).
  Wyróżnia się tutaj sekcje krytyczne zwane blokami atomicznymi.
  Jeżeli wykonanie takiego bloku się nie powiedzie zmiany są wycofywane,
  co wymusza przechowywanie starszej wersji danych.
  Transakcje mogą wykonywać się równolegle.
- Model ten zaimplementowano w wielu popularnych językach programowania,
- m.in.
+ Model ten zaimplementowano w
+\begin_inset space ~
+\end_inset
+
+wielu popularnych językach programowania, m.in.
  w języku Scala 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -731,7 +765,11 @@ W literaturze można znaleźć jeszcze wiele innych modeli programowania równol
 go wykorzystujących podobne koncepcje jak te opisane powyżej, jak również
  wprowadzające zupełnie inne podejścia.
  Ostatnim modelem, który zostanie opisany jest Master/Slave ze względu na
- szersze wykorzystanie go w niniejszej pracy.
+ szersze wykorzystanie go w
+\begin_inset space ~
+\end_inset
+
+niniejszej pracy.
 \end_layout
 
 \begin_layout Subsection*
@@ -740,8 +778,23 @@ Master/Slave
 
 \begin_layout Standard
 Master/Slave może być implementacją modelu SPMD.
- Polega on na tym, że jedno urządzenie lub proces zwane Master kontroluje
- jedno lub więcej urządzeń lub procesów zwanych Slave lub Worker 
+ Polega on na tym, że jedno urządzenie lub
+\begin_inset space ~
+\end_inset
+
+proces zwane 
+\shape italic
+master
+\shape default
+ kontroluje jedno lub więcej urządzeń lub procesów zwanych 
+\shape italic
+slave
+\shape default
+ lub 
+\shape italic
+worker
+\shape default
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "17"
@@ -749,8 +802,19 @@ key "17"
 \end_inset
 
 .
- Obliczenia wykonywane przez Workery odbywają się równolegle, natomiast
- Master odpowiada za load-balancing oraz łączenie wyników w jedną całość.
+ Obliczenia wykonywane przez 
+\shape italic
+workery
+\shape default
+ odbywają się równolegle, natomiast 
+\shape italic
+master
+\shape default
+ odpowiada za
+\begin_inset space ~
+\end_inset
+
+load-balancing oraz łączenie wyników w jedną całość.
 \end_layout
 
 \begin_layout Standard
@@ -759,13 +823,19 @@ Może okazać się przydatny w następujących przypadkach:
 
 \begin_layout Itemize
 gdy chcemy mieć jeden proces, tzw.
- single-point of responsibility, który podejmuje decyzje lub koordynuje
- akcje w celu zachowania spójności w systemie,
+ single-point of responsibility, który podejmuje decyzje lub
+\begin_inset space ~
+\end_inset
+
+koordynuje akcje w celu zachowania spójności w systemie,
 \end_layout
 
 \begin_layout Itemize
-potrzebujemy zapewnić jeden punkt dostępu do zewnętrznego systemu lub jeden
- punkt wejścia do systemu z zewnątrz,
+potrzebujemy zapewnić jeden punkt dostępu do
+\begin_inset space ~
+\end_inset
+
+zewnętrznego systemu lub jeden punkt wejścia do systemu z zewnątrz,
 \end_layout
 
 \begin_layout Itemize
@@ -783,8 +853,11 @@ Rozwiązanie to ma niestety również kilka wad, jak na przykład istnieje niebe
 czeństwo utworzenia tzw.
  wąskiego gardła co może spowodować problemy z wydajnością lub być tzw.
  single-point of failure.
- Jeśli urządzenie/proces posiadające rolę Master ulega awarii, powinniśmy
- w jakiś sposób obsłużyć taką sytuację np.
+ Jeśli urządzenie/proces posiadające rolę 
+\shape italic
+master
+\shape default
+ ulega awarii, powinniśmy w jakiś sposób obsłużyć taką sytuację np.
  poprzez ponowne wystartowanie procesu/urządzenia z rolą Master, aby zapewnić
  poprawne i niezawodne działanie komunikacji.
  Sytuacje takie mogą wprowadzić pewne opóźnienia w trakcie odzyskiwania
@@ -818,8 +891,11 @@ OpenMP (ang.
 Standard używany na skalę przemysłową, korzystający z modelu Threads i pamięci
  współdzielonej.
  Dostępne są implementację w językach C/C++ oraz Fortran.
- Pozwala na wielowątkowe obliczenia w których wiele wątków pracuje na tym
- samym zestawie danych.
+ Pozwala na wielowątkowe obliczenia w
+\begin_inset space ~
+\end_inset
+
+których wiele wątków pracuje na tym samym zestawie danych.
  Pierwsza wersja standardu została opublikowana w roku 1997 dla języka Fortran
  
 \begin_inset CommandInset citation
@@ -865,7 +941,11 @@ Jest to technologia opracowana w 2007 roku przez firmę NVIDIA, producenta
  Dostarcza SDK oraz API pozwalające na pisanie aplikacji z wykorzystaniem
  języka C/C++ lub Fortran.
  Ma zastosowanie w przetwarzaniu video, biologii obliczeniowej i chemii,
- astrofizyce oraz różnego rodzaju symulacjach lub analizach 
+ astrofizyce oraz
+\begin_inset space ~
+\end_inset
+
+różnego rodzaju symulacjach lub analizach 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "66"
@@ -947,7 +1027,10 @@ Jest to framework open-source napisany w Javie i wspierający obliczenia
  Pierwsza wersja została opublikowana w 2005 roku.
  Jego dwoma głównymi komponentami są HDFS (Hadoop Distributed File System)
  wykorzystujący technologię HBase i służący do przechowywania danych oraz
- MapReduce służący do przetwarzania danych.
+\begin_inset space ~
+\end_inset
+
+MapReduce służący do przetwarzania danych.
  Kolejnym istotnym komponentem jest YARN pomagający zarządzać zasobami dostępnym
 i w klastrze oraz wykorzystywany do harmonogramowania zadań.
  Zamierzeniem twórców było stworzenie narzędzia dobrze skalowalnego oraz
@@ -973,12 +1056,22 @@ Jest systemem służącym do zarządzania zasobami oraz kolejkowaniem zadań
  Powstał w latach 80-tych.
  Może być uruchamiany na wielu platformach takich jak Windows czy Linux.
  Dostarcza mechanizmy zabezpieczeń takie jak autentykacja, autoryzacja i
- szyfrowanie danych, jak również mechanizmy do wspomagania administrowania
- systemem.
- Może być użyty do rozłożenia obciążenia na komputerach pracujących w klastrze,
- jak również do wykorzystania wolnych zasobów podłączonych do niego komputerów
- zwykłych użytkowników w celu wykonywania obliczeń dużej skali wykorzystując
- czas gdy komputery są nieobciążone.
+ szyfrowanie danych, jak
+\begin_inset space ~
+\end_inset
+
+również
+\begin_inset space ~
+\end_inset
+
+mechanizmy do wspomagania administrowania systemem.
+ Może być użyty do rozłożenia obciążenia na
+\begin_inset space ~
+\end_inset
+
+komputerach pracujących w klastrze, a także do wykorzystania wolnych zasobów
+ podłączonych do niego komputerów zwykłych użytkowników w celu wykonywania
+ obliczeń dużej skali wykorzystując czas gdy komputery są nieobciążone.
  Wspiera równoległe wykonywanie zadań napisanych w standardzie MPI.
  Może również zarządzać zasobami znajdującymi się w chmurze obliczeniowej
  lub gridzie 
@@ -1001,8 +1094,12 @@ key "73"
 \begin_layout Standard
 Wymienione wyżej narzędzia implementują różne modele programowania równoległego.
  Warto również wspomnieć o takich architekturach jak systemy gridowe lub
- klastry komputerowe, które są polem do testowania wspomnianych technologii
- oraz w dużym stopniu przyczyniły się do ich rozwoju.
+ klastry komputerowe, które są
+\begin_inset space ~
+\end_inset
+
+polem do testowania wspomnianych technologii oraz w dużym stopniu przyczyniły
+ się do ich rozwoju.
  
 \end_layout
 
@@ -1016,8 +1113,12 @@ Klaster komputerowy jest zbiorem wielu komputerów połączonych zazwyczaj
  oraz współpracujących ze sobą.
  Zazwyczaj są używane do zwiększenia wydajności oraz dostępności konkretnych
  usług.
- W porównaniu do gridów komputery pracujące w klastrze mają podobną architekturę
- oraz zazwyczaj zajmują się wykonywaniem podobnych, skoordynowanych zadań.
+ W porównaniu do
+\begin_inset space ~
+\end_inset
+
+gridów komputery pracujące w klastrze mają podobną architekturę oraz zazwyczaj
+ zajmują się wykonywaniem podobnych, skoordynowanych zadań.
  Mogą posiadać dostęp poprzez sieć do magazynu danych, który można traktować
  jako pamięć współdzieloną.
  W typowym wykorzystaniu klastra istnieje dodatkowo maszyna klienta, która
@@ -1029,13 +1130,17 @@ Systemy gridowe
 \end_layout
 
 \begin_layout Standard
-Systemy które integrują heterogeniczne zasoby będące pod kontrolą różnych
+Systemy, które integrują heterogeniczne zasoby będące pod kontrolą różnych
  domen i połączone siecią komputerową WAN.
  Zapewniają narzędzia do zarządzania zasobami, uwierzytelniania oraz autoryzacji
  w celu rozwiązywania problemów dużej skali.
  Gridy są rozszerzeniem idei klastrów.
  Mogą zapewniać takie usługi jak globalny magazyn danych, aplikacje sieciowe,
- Software as a Service czyli pojęcia znane z chmur obliczeniowych 
+ Software as a Service czyli
+\begin_inset space ~
+\end_inset
+
+pojęcia znane z chmur obliczeniowych 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "68,75"
@@ -1069,8 +1174,12 @@ Scala jest językiem funkcyjnym rozwijanym od 2001 roku przez firmę Typesafe,
  w Lozannie.
  Głównym aspektem przemawiającym na korzyść tego języka jest to, że do jego
  działania wystarczy maszyna wirtualna Javy.
- Jest to język obiektowy podobnie jak Java, ale łączy również zalety języków
- funkcyjnych, które w ostatnim czasie stają się coraz bardziej popularne.
+ Jest
+\begin_inset space ~
+\end_inset
+
+to język obiektowy podobnie jak Java, ale łączy również zalety języków funkcyjny
+ch, które w ostatnim czasie stają się coraz bardziej popularne.
  Zamiarem twórców było stworzenie języka eleganckiego oraz zwięzłego syntaktyczn
 ie.
  Mimo, że Scala jest językiem dynamicznie typowanym zapewnia tzw.
@@ -1091,8 +1200,11 @@ key "42"
  Obsługuje również funkcje wyższego rzędu oraz pozwala zwięźle definiować
  funkcje anonimowe, kładzie również duży nacisk na skalowalność.
  Dodatkową zaletą tego języka jest to, iż jest on w pełni kompatybilny z
- językiem Java, co oznacza, że możemy w nim używać bibliotek lub frameworków
- napisanych w Javie bez żadnych dodatkowych deklaracji.
+ językiem Java, co oznacza, że możemy w nim używać bibliotek lub
+\begin_inset space ~
+\end_inset
+
+frameworków napisanych w Javie bez żadnych dodatkowych deklaracji.
  Ostatecznie program napisany w Scali jest kompilowany do kodu bajtowego
  Javy 
 \begin_inset CommandInset citation
@@ -1121,8 +1233,11 @@ Jednym z kluczowych frameworków wykorzystanych w niniejszej pracy jest Akka.
  wyczerpującej dokumentacji oraz dużej i aktywnej społeczności rozwijającej
  ten produkt, a także wsparciem komercyjnych firm.
  Akka używa modelu aktorowego aby zwiększyć poziom abstrakcji i oddzielić
- logikę biznesową od niskopoziomowego zarządzania wątkami oraz operacjami
- I/O 
+ logikę biznesową od
+\begin_inset space ~
+\end_inset
+
+niskopoziomowego zarządzania wątkami oraz operacjami I/O 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "29,31"
@@ -1189,8 +1304,11 @@ key "43"
 
 \begin_layout Itemize
 współbieżność, dzięki zaadaptowaniu modelu aktorowego, programista może
- zatem skupić się na logice biznesowej zamiast zajmować się problemami współbież
-ności,
+ zatem skupić się na
+\begin_inset space ~
+\end_inset
+
+logice biznesowej zamiast zajmować się problemami współbieżności,
 \end_layout
 
 \begin_layout Itemize
@@ -1361,8 +1479,12 @@ key "31"
 \end_layout
 
 \begin_layout Standard
-Lider jest tylko rolą jaką posiada dany węzeł, każdy węzeł może zostać liderem
- oraz każdy węzeł jest w stanie w sposób deterministyczny wyznaczyć lidera.
+Lider jest rolą jaką posiada dany węzeł, każdy węzeł może zostać liderem
+ oraz każdy węzeł jest w
+\begin_inset space ~
+\end_inset
+
+stanie w sposób deterministyczny wyznaczyć lidera.
  Węzły mogą też posiadać inne role, które mogą się przydać np.
  w ograniczeniu zasięgu komunikacji.
  
@@ -1370,7 +1492,7 @@ Lider jest tylko rolą jaką posiada dany węzeł, każdy węzeł może zostać 
 
 \begin_layout Standard
 Protokół Gossip wspomniany powyżej pozwala rozpropagować stan klastra do
- wszystkich jego węzłów tak, aby każdy węzeł miał takie same informację
+ wszystkich jego węzłów tak, aby każdy węzeł posiadał takie same informację
  o pozostałych członkach klastra.
  Protokół ten pomaga uzyskać zbieżność stanu klastra we wszystkich jego
  węzłach w skończonym czasie.
@@ -1393,9 +1515,13 @@ join
  unikalnym identyfikatorem, tzw.
  uid, co pozwala na uruchomienie kilku węzłów klastra na jednej fizycznej
  maszynie.
- Jeżeli członek klastra ulegnie awarii lub opuści klaster na własne życzenie,
- nie może on ponownie dołączyć do klastra dopóki system aktorowy uruchomiony
- na nim nie zostanie zrestartowany, co pozwoli na wygenerowanie nowego uid.
+ Jeżeli członek klastra ulegnie awarii lub
+\begin_inset space ~
+\end_inset
+
+opuści klaster na własne życzenie, nie może on ponownie dołączyć do klastra
+ dopóki system aktorowy uruchomiony na nim nie zostanie zrestartowany, co
+ pozwoli na wygenerowanie nowego uid.
  Każdy węzeł może zmienić swój stan członkostwa lub może on zostać zmieniony
  dzięki automatycznej detekcji niedziałających węzłów.
  Ustawienia detekcji niedziałających węzłów oraz protokołu Gossip są konfigurowa
@@ -1403,13 +1529,19 @@ lne, tzn.
  że można np.
  ustalić czas po którym węzeł zostanie uznany za nieosiągalny.
  Zdarzenia związane ze zmianą stanu węzłów klastra mogą być subskrybowane
- przez istniejących członków, co ułatwia implementację monitoringu stanu
- klastra.
- Więcej szczegółów na temat idei członkostwa w klastrze oraz dostępnych
- stanów węzłów można znaleźć w pozycjach 
+ przez istniejących członków, co
+\begin_inset space ~
+\end_inset
+
+ułatwia implementację monitoringu stanu klastra.
+ Więcej szczegółów na temat idei członkostwa w
+\begin_inset space ~
+\end_inset
+
+klastrze oraz dostępnych stanów węzłów można znaleźć w pozycji 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "31,56"
+key "31"
 
 \end_inset
 
@@ -1426,11 +1558,18 @@ key "57"
 
 \end_inset
 
- oraz integracja z nimi.
+ oraz
+\begin_inset space ~
+\end_inset
+
+integracja z nimi.
  Pozwalają one na dostęp do informacji systemowych takich jak zużycie CPU,
- wykorzystanie pamięci RAM, stan sieci.
- Mogą zostać wykorzystane do implementacji load-balancigu lub monitorowania
- obciążenia urządzeń klastra 
+ wykorzystanie pamięci RAM czy stan sieci.
+ Mogą zostać wykorzystane do implementacji load-balancigu lub
+\begin_inset space ~
+\end_inset
+
+monitorowania obciążenia urządzeń klastra 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "34,32"
@@ -1449,8 +1588,12 @@ Cluster Singleton jest rozszerzeniem projektu Akka zapewniającym jedną instanc
  aktora danego typu w obrębie klastra lub w obrębie węzłów z wybraną rolą.
  Może zostać wykorzystane do zaimplementowania modelu Master/Slave opisanego
  w jednym z poprzednich podrozdziałów.
- Rozszerzenie to dostarcza implementacji menedżera, który pozwala zarządzać
- instancjonowaniem aktora typu singleton.
+ Rozszerzenie to
+\begin_inset space ~
+\end_inset
+
+dostarcza implementacji menedżera, który pozwala zarządzać instancjonowaniem
+ aktora typu singleton.
  Dostęp do działającej instancji jest możliwy z każdego urządzenia działającego
  w klastrze i odbywa się poprzez aktora pośrednika, tzw.
  proxy 
@@ -1472,8 +1615,12 @@ Rozszerzenie projektu Akka, które umożliwia komunikację między aktorami
  bez posiadania informacji na których konkretnie urządzeniach poszczególni
  aktorzy są uruchomieni, czyli lokacja aktora jest transparentna z punktu
  widzenia komunikacji.
- Dostarcza ono aktora pełniącego rolę mediatora, który zarządza rejestracją
- innych aktorów do konkretnych kanałów komunikacji którymi są zainteresowani.
+ Dostarcza ono aktora pełniącego rolę mediatora, który
+\begin_inset space ~
+\end_inset
+
+zarządza rejestracją innych aktorów do konkretnych kanałów komunikacji którymi
+ są zainteresowani.
  Zachowanie to można porównać z subskrypcją RSS 
 \begin_inset CommandInset citation
 LatexCommand cite

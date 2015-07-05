@@ -91,9 +91,13 @@ Obliczenia równoległe a także systemy rozproszone od lat są wykorzystywane
  skali, a także wspomagania systemów wysokiej dostępności.
  Innymi obszarami zastosowań są różnego rodzaju symulacje, np.
  w biologii, chemii, astrofizyce lub medycynie, jak również przyśpieszenie
- krytycznych obliczeń w takich dziedzinach jak systemy obronne, przemysł
- komunikacyjny, meteorologia, astrodynamika, ponadto rozwiązywanie problemów
- optymalizacyjnych i przetwarzanie dużej ilości danych 
+ krytycznych obliczeń w takich dziedzinach jak
+\begin_inset space ~
+\end_inset
+
+systemy obronne, przemysł komunikacyjny, meteorologia, astrodynamika, ponadto
+ rozwiązywanie problemów optymalizacyjnych i przetwarzanie dużej ilości
+ danych 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "68,75"
@@ -106,11 +110,26 @@ key "68,75"
 
 \begin_layout Standard
 Przyczyniło się to do silnego rozwoju poruszanej tematyki, lecz niektóre
- koncepcje opracowane już w połowie XX wieku kiedy trudno było przewidzieć
- skalę z jaką wzrasta ilość nowych urządzeń oraz danych do przetwarzania
- w dzisiejszych czasach napotykają pewne bariery.
+ koncepcje opracowane już
+\begin_inset space ~
+\end_inset
+
+w
+\begin_inset space ~
+\end_inset
+
+połowie XX wieku kiedy trudno było przewidzieć skalę z jaką wzrasta ilość
+ nowych urządzeń oraz
+\begin_inset space ~
+\end_inset
+
+danych do przetwarzania w dzisiejszych czasach napotykają pewne bariery.
  Cały czas kreowane są nowe idee w myśl rozwoju współczesnych technologii
- co sprawia, że tematyka niniejszej pracy nie traci na aktualności.
+ co sprawia, że tematyka niniejszej pracy nie traci na
+\begin_inset space ~
+\end_inset
+
+aktualności.
  Takie koncepcje jak BigData lub IoT motywują do rozwoju prac związanych
  z wydajnym przetwarzaniem dużej ilości danych 
 \begin_inset CommandInset citation
@@ -135,9 +154,13 @@ key "87,84,77"
 \end_inset
 
 .
- Pomimo tego, że proces miniaturyzacji oraz zwiększania wydajności procesorów
- osiąga bariery technologiczne poprzez rozwój systemów wieloprocesorowych
- udaje się nadal zwiększać efektywność obliczeń 
+ Pomimo tego, że proces miniaturyzacji oraz
+\begin_inset space ~
+\end_inset
+
+zwiększania wydajności procesorów osiąga bariery technologiczne poprzez
+ rozwój systemów wieloprocesorowych udaje się nadal zwiększać efektywność
+ obliczeń 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "93"
@@ -148,11 +171,19 @@ key "93"
  Powstają aplikacje i technologie mające na celu połączenie zasobów w jedną
  całość oraz efektywne ich wykorzystanie.
  Zasoby te mogą być zgromadzone lokalnie lub rozproszone w różnych rejonach
- świata i połączone w sieci Internet.
+ świata i połączone w
+\begin_inset space ~
+\end_inset
+
+sieci Internet.
  Natomiast dzięki elastycznym formom handlu, jak na przykład sprzedaż zużytej
- mocy obliczeniowej w Amazon AWS oraz popularyzacji rozwiązań chmur obliczeniowy
-ch udaje się w coraz łatwiejszy sposób docierać do klienta indywidualnego
- oraz mniejszych firm 
+ mocy obliczeniowej w
+\begin_inset space ~
+\end_inset
+
+Amazon AWS oraz popularyzacji rozwiązań chmur obliczeniowych udaje się w
+ coraz łatwiejszy sposób docierać do klienta indywidualnego oraz mniejszych
+ firm 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "91"
@@ -161,8 +192,11 @@ key "91"
 
 .
  Możliwość użycia tego typu rozwiązań przez zwykłych użytkowników ma wpływ
- na tworzenie społeczności wspierających oraz testujących technologie o
- otwartym kodzie źródłowym.
+ na tworzenie społeczności wspierających oraz
+\begin_inset space ~
+\end_inset
+
+testujących technologie o otwartym kodzie źródłowym.
  
 \end_layout
 
@@ -202,8 +236,12 @@ a, dzięki któremu jest on w stanie zlecać zadania oraz mieć podgląd na stan
 
 \begin_layout Standard
 Ostatnim celem jest przetestowanie opracowanego rozwiązania poprzez implementacj
-ę jednego z modeli programowania równoległego wykorzystanego do prowadzenia
- wymagających obliczeń matematycznych.
+ę jednego z
+\begin_inset space ~
+\end_inset
+
+modeli programowania równoległego wykorzystanego do prowadzenia wymagających
+ obliczeń matematycznych.
  Zbadana została skalowalność, wydajność oraz niezawodność.
  Zidentyfikowano również możliwości zastosowań, jak również perspektywy
  dalszego rozwoju powstałej platformy.

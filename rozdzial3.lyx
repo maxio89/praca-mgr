@@ -249,9 +249,17 @@ Sharks Cove
 Urządzenie promowane przez firmę Microsoft i kompatybilne z Windowsem 10
  oraz systemem Android.
  Pracuje pod kontrolą procesora Intel Atom o taktowaniu 1.33GHz, wyposażone
- jest również w zintegrowany procesor graficzny Intel HD Graphics, 1GB pamięci
- RAM, kartę dźwiękową oraz m.in.
- w złącze MicroSD, HDMI, USB 2.0 oraz Ethernet.
+ jest również w
+\begin_inset space ~
+\end_inset
+
+zintegrowany procesor graficzny Intel HD Graphics, 1GB pamięci RAM, kartę
+ dźwiękową oraz m.in.
+ w
+\begin_inset space ~
+\end_inset
+
+złącze MicroSD, HDMI, USB 2.0 oraz Ethernet.
  Posiada trochę większe rozmiary od innych opisywanych tutaj urządzeń.
  Cena urządzenia również jest wyższa, bo wynosi około 300$ 
 \begin_inset CommandInset citation
@@ -269,9 +277,9 @@ Raspberry Pi
 
 \begin_layout Standard
 Raspberry Pi jest urządzeniem SoC wykorzystywanym w niniejszej pracy.
- Jest to urządzenie stworzone przez fundację non-profit Rasberry Pi Foundation
- ,oparte na architekturze ARM.
- Pierwsza wersja została wydana w roku 2012.
+ Jest to urządzenie stworzone przez fundację non-profit Rasberry Pi Foundation,
+ oparte na architekturze ARM.
+ Pierwsza jego wersja została wydana w roku 2012.
  Na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -304,14 +312,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Schemat Raspberry Pi model B [
+Schemat Raspberry Pi model B 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "26"
 
 \end_inset
 
-].
+.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -334,7 +342,7 @@ name "fig:Schemat-Raspberry-Pi"
 
 \begin_layout Standard
 Urządzenie Raspberry Pi w wersji B posiada jednostkę CPU o taktowaniu 700MHz
- oraz 512MB pamięci RAM.
+ oraz 256MB pamięci RAM.
  Poza procesorem CPU jest również wyposażone m.in.
  w jednostkę GPU, dwa porty USB, złącze kart SD, złącze Ethernet 100Mb/s
  oraz złącze MicroUSB wykorzystane do zasilania.
@@ -476,15 +484,21 @@ key "83"
 
 \begin_layout Standard
 Dzięki popularyzacji, miniaturyzacji oraz obniżeniu cen urządzeń SoC oraz
- mikrokontrolerów rozwinęła się idea Internet Of Things.
+ mikrokontrolerów rozwinęła się idea Internet of Things.
  Firmy które wypuszczają nowe urządzenia na rynek starają się aktywizować
  społeczności wokół tych urządzeń, np.
- poprzez udostępnianie darmowych urządzeń we wczesnej fazie promocji zainteresow
-anym użytkownikom lub uczelniom.
+ poprzez udostępnianie darmowych urządzeń we
+\begin_inset space ~
+\end_inset
+
+wczesnej fazie promocji zainteresowanym użytkownikom lub uczelniom.
  Dla przykładu można podać akcję Intela w przypadku urządzenia Galileo,
  gdzie aż 50 tys.
- egzemplarzy trafiło do tysiąca uczelni na całym świecie a wśród nich także
- do 18 polskich placówek 
+ egzemplarzy trafiło do tysiąca uczelni na
+\begin_inset space ~
+\end_inset
+
+całym świecie a wśród nich także do 18 polskich placówek 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "85"
@@ -507,10 +521,13 @@ Współczesne systemy komputerowe stają się coraz mniejsze oraz tańsze, co
  Skutkuje to tym, że ilość danych do przetwarzania ciągle wzrasta jak również
  wzrasta skala komunikacji tych urządzeń.
  Do tego typu urządzeń zaliczają się już nie tylko komputery osobiste i
- urządzenia mobilne takie jak smartfony, tablety czy inteligentne zegarki
+\begin_inset space ~
+\end_inset
+
+urządzenia mobilne takie jak smartfony, tablety czy inteligentne zegarki
  ale również urządzenia gospodarstwa domowego takie jak telewizory, lodówki,
  artykuły oświetleniowe i grzewcze oraz wiele innych urządzeń posiadających
- jakieś sensory i zbierających dane również na skalę przemysłową.
+ różnego rodzaju sensory i zbierających dane również na skalę przemysłową.
 \end_layout
 
 \begin_layout Standard
@@ -518,8 +535,11 @@ Koncepcja IoT (ang.
  Internet Of Things) rozwinęła się wokół wszystkich urządzeń podłączonych
  do Internetu.
  Zapoczątkował ją Kevin Ashton w 1999 roku.
- Zauważono tutaj wiele nowych możliwości jak również tendencję do wzrostu
- liczby urządzeń połączonych z Internetem.
+ Zauważono tutaj wiele nowych możliwości jak
+\begin_inset space ~
+\end_inset
+
+również tendencję do wzrostu liczby urządzeń połączonych z Internetem.
  Firma Cisco szacuje, że do roku 2020 liczba takich urządzeń może przekroczyć
  50 miliardów 
 \begin_inset CommandInset citation
@@ -547,7 +567,11 @@ Warto również wspomnieć o istnieniu podobnego pojęcia zwanego IoE (ang.
  Ciekawostką jest fakt, że licznik pokazujący przybliżoną liczbę urządzeń
  podłączonych do Internetu jest aktualizowany na bieżąco oraz zamieszczony
  na stronie internetowej firmy Cisco.
- Aktualnie wskazuje na ponad 16 miliardów urządzeń i cały czas rośnie 
+ Aktualnie wskazuje na ponad 16
+\begin_inset space ~
+\end_inset
+
+miliardów urządzeń i cały czas rośnie 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "84"
@@ -622,9 +646,12 @@ Wiele firm komercyjnych zauważa w tychże prognozach sposób na zysk, dlatego
 Internet oraz wiele współcześnie używanych technologii zostało wymyślonych
  o wiele wcześniej aniżeli koncepcja IoT więc nie wszystkie są gotowe na
  taką ilość urządzeń oraz danych.
- Pozostawia to miejsce do badań nad nowymi rozwiązaniami oraz istniejącymi
- problemami, których ilość będzie rosła wraz ze wzrostem skali tego zjawiska
- 
+ Pozostawia to
+\begin_inset space ~
+\end_inset
+
+miejsce do badań nad nowymi rozwiązaniami oraz istniejącymi problemami,
+ których ilość będzie rosła wraz ze wzrostem skali tego zjawiska 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "87,77"
@@ -652,7 +679,8 @@ Idea ta określa sytuację gdzie systemy komputerowe staną się integralną
  otoczenia.
  Miliony małych bezprzewodowych urządzeń wykonujących różne obliczenia staną
  się niewidoczne dla użytkowników dzięki miniaturyzacji i integracji ze
- środowiskiem ale będą objawiać swą obecność we wszystkich dziedzinach życia.
+ środowiskiem, ale będą objawiać swą obecność we wszystkich dziedzinach
+ życia.
  Środowisko w którym żyjemy stanie się bardziej inteligentne.
 \end_layout
 

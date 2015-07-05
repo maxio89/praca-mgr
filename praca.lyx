@@ -10,6 +10,12 @@
 \usepackage[polish]{babel}
 \usepackage{textcomp}
 
+
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{breaklinks=true}
+\urlstyle{same}
+
 % dodatkowe pakiety
 \usepackage{enumerate}
 \usepackage{listings}
@@ -159,7 +165,7 @@ shorttitleEN{Mobile computing cluster based on SoC devices}
 
 
 \backslash
-thesistypePL{Praca magisterska} 
+thesistypePL{Praca magisterska}
 \end_layout
 
 \begin_layout Plain Layout
@@ -186,12 +192,27 @@ supervisorEN{Aleksander Byrski Ph.D}
 \end_layout
 
 \begin_layout Plain Layout
-
+\begin{flushright}
 
 \backslash
-acknowledgements{Dziękuję mojemu promotorowi za podjęcie się prowadzenia
- niniejszej pracy oraz wszystkie wskazówki, Karolinie za wsparcie oraz cierpliwo
-ść a także Rafałowi za cenne uwagi.} 
+acknowledgements{Dziękuję mojemu promotorowi
+\backslash
+
+\backslash
+za podjęcie się prowadzenia niniejszej pracy
+\backslash
+
+\backslash
+oraz wszystkie wskazówki,
+\backslash
+
+\backslash
+Karolinie za wsparcie oraz cierpliwość,
+\backslash
+
+\backslash
+a także Rafałowi za cenne uwagi.} 
+\end{flushright}
 \end_layout
 
 \begin_layout Plain Layout
@@ -295,9 +316,11 @@ filename "rozdzial6.lyx"
 \end_layout
 
 \begin_layout Standard
+\align left
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "bibliografia"
+options "plabbrv"
 
 \end_inset
 

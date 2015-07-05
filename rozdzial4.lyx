@@ -133,8 +133,12 @@ reference "fig:Wygląd-klastra"
 \end_inset
 
  zaprezentowano początkową koncepcję przedstawiającą sieć lokalną i działający
- w niej klaster obliczeniowy w skład którego wchodzą urządzenia Raspberry
- Pi, gdzie jedno z nich pełni rolę 
+ w
+\begin_inset space ~
+\end_inset
+
+niej klaster obliczeniowy w skład którego wchodzą urządzenia Raspberry Pi,
+ gdzie jedno z nich pełni rolę 
 \shape italic
 master
 \shape default
@@ -195,7 +199,11 @@ name "fig:Wygląd-klastra"
 
 \begin_layout Standard
 W klastrze uruchomione są aplikacje oparte o technologie JVM, które komunikują
- się ze sobą za pomocą protokołu TCP/IP.
+ się ze sobą za
+\begin_inset space ~
+\end_inset
+
+pomocą protokołu TCP/IP.
 \end_layout
 
 \begin_layout Standard
@@ -217,9 +225,13 @@ Powinna istnieć tylko jedna instancja
 \shape italic
 mastera
 \shape default
- w obrębie klastra a w przypadku awarii urządzenia na którym znajduje się
- ta instancja powinna zostać uruchomiona inna na jednym z pozostałych urządzeń,
- które będzie w stanie odtworzyć stan poprzedniej instancji.
+ w obrębie klastra a w przypadku awarii urządzenia na
+\begin_inset space ~
+\end_inset
+
+którym znajduje się ta instancja powinna zostać uruchomiona inna na jednym
+ z pozostałych urządzeń, które będzie w stanie odtworzyć stan poprzedniej
+ instancji.
  Co wymaga, aby co określony czas stan 
 \shape italic
 mastera
@@ -227,7 +239,11 @@ mastera
  był zapisywany.
  Stan ten jest istotny ze względu na przechowywane przez niego informacje
  o wynikach zadania, które nie dotarły jeszcze do klienta lub informacje
- o zadaniach rozpoczętych przez klienta ale nie wysłanych jeszcze do żadnego
+ o
+\begin_inset space ~
+\end_inset
+
+zadaniach rozpoczętych przez klienta ale nie wysłanych jeszcze do żadnego
  
 \shape italic
 workera
@@ -244,8 +260,11 @@ master
 \shape italic
 mastera
 \shape default
-, jak również load-balancing zadań, który powinien być zaimplementowany
- w sposób aby obciążenie 
+, jak również load-balancing zadań, który
+\begin_inset space ~
+\end_inset
+
+powinien być zaimplementowany w sposób aby obciążenie 
 \shape italic
 workerów
 \shape default
@@ -263,7 +282,11 @@ mastera
 \shape default
 , który następnie wysyła je klientowi.
  W przypadku długo trwających zadań przesyłane są wyniki częściowe co jakiś
- określony czas aby poinformować klienta o postępie prac.
+ określony czas aby poinformować klienta o
+\begin_inset space ~
+\end_inset
+
+postępie prac.
 \end_layout
 
 \begin_layout Standard
@@ -282,11 +305,15 @@ Interesującą kwestią jest wybór tego jakie dane wymagają persystencji oraz
 
 \begin_layout Standard
 Poza wykonywaniem zadań platforma ma za zadanie monitorować pracę urządzeń,
- informować o dołączaniu nowych oraz opuszczaniu klastra przez urządzenia
- będące jego członkiem – rozróżniane są sytuacje gdy urządzenie opuści klaster
- na własne życzenie albo ulegnie awarii, czyli przestanie brać udział w
- komunikacji z pozostałymi urządzeniami i w takim przypadku zostanie uznane
- za niedostępne oraz usunięte z klastra po jakimś określonym czasie.
+ informować o
+\begin_inset space ~
+\end_inset
+
+dołączaniu nowych oraz opuszczaniu klastra przez urządzenia będące jego
+ członkiem – rozróżniane są sytuacje gdy urządzenie opuści klaster na własne
+ życzenie albo ulegnie awarii, czyli przestanie brać udział w komunikacji
+ z pozostałymi urządzeniami i w takim przypadku zostanie uznane za niedostępne
+ oraz usunięte z klastra po jakimś określonym czasie.
 \end_layout
 
 \begin_layout Section
@@ -317,8 +344,11 @@ backend
 \shape default
 .
  Posiadają one różne odpowiedzialności jak i różne rodzaje uruchomionych
- na nich aktorów, których dokładniejszy opis znajduje się w kolejnym podrozdzial
-e.
+ na nich aktorów, których dokładniejszy opis znajduje się w
+\begin_inset space ~
+\end_inset
+
+kolejnym podrozdziale.
  
 \end_layout
 
@@ -484,7 +514,7 @@ status open
 \begin_inset Graphics
 	filename architektura.png
 	lyxscale 30
-	scale 30
+	scale 35
 
 \end_inset
 
@@ -1373,7 +1403,7 @@ status open
 \begin_inset Graphics
 	filename dashboard.jpg
 	lyxscale 30
-	scale 30
+	scale 40
 
 \end_inset
 
